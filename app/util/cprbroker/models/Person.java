@@ -267,7 +267,6 @@ public class Person implements IPerson {
         // Now name and address have been set
         postalLabel = new util.Converters().ToPostalLabel(this);
 
-
         contact = builder.contact;
         nextOfKinContact = builder.nextOfKinContact;
         effect = builder.effect;
@@ -275,7 +274,6 @@ public class Person implements IPerson {
         tilstand = builder.tilstand;
         tidspunkt = builder.tidspunkt;
         relationsWithPerson = builder.relationsWithPerson;
-
     }
 
 
@@ -396,6 +394,4 @@ public class Person implements IPerson {
     public IPersonRelationshipsWithIPerson relationsWithPerson() {
         return relationsWithPerson;
     }
-
-
 }

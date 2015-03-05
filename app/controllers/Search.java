@@ -50,6 +50,7 @@ import util.cprbroker.IPerson;
 import util.cprbroker.IUuid;
 import views.html.list;
 import views.html.show_error;
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -167,16 +168,78 @@ public class Search extends Controller {
         SearchInput searchInput = new SearchInput();
         searchInput.fillFromSession(this);
 
+        // access level - add to person model
+        Integer accessLevel=Integer.valueOf(session("accesslevel"));
+
+
+        // test access level
+        //play.Logger.info("Access Level: " + accessLevel);
+        //accessLevel = 1;
+        //session("accesslevel", ""+accessLevel);
+        // end test access level
+
         if (person == null) {
             return ok(show_error.render(503, searchInput));
         }
-        if (person.code() == 200) {
-            return ok(views.html.person.render(person, searchInput));
+        if (person.code() == 200) {  
+            List<IPerson> persons = new ArrayList<IPerson>();
+            persons.add(person);
+            String path = request().path();
+            path = path.substring(0, path.indexOf("page") + 5);
+            int page = 1;      
+            return ok(views.html.list_detailed.render(persons, persons.size(), page, path, searchInput, accessLevel)); 
         } else {
             //TODO - A person wasn't found
             return ok(show_error.render(person.code(), searchInput));
         }
     }
+
+    @Security.Authenticated(Secured.class)
+    public Result showPersonFull(String uuid) {
+        // Logging the show request
+        play.Logger.info(String.format( "At <%s> user <%s> requested to see uuid <%s>",
+                DateTime.now(),
+                Secured.getCurrntUsername(),
+                uuid
+        ));
+
+        IPerson person = null;
+        try {
+            person = cprBroker.read(uuid);
+
+            // Logging the show request
+            play.Logger.info(session("username") + "'s request to CPRBroker responded, " + person.code() + " - " + person.message());
+        } catch (Exception ex) {
+            play.Logger.error(ex.toString());
+        }
+
+        SearchInput searchInput = new SearchInput();
+        searchInput.fillFromSession(this);
+        Integer accessLevel=Integer.valueOf(session("accesslevel"));
+
+        if (person == null) {
+            return ok(show_error.render(503, searchInput));
+        }
+        if (person.code() == 200) {
+            if (accessLevel < 2) { // never allow full access unless access level is 3
+                List<IPerson> persons = new ArrayList<IPerson>();
+                persons.add(person);
+                String path = request().path();
+                path = path.substring(0, path.indexOf("page") + 5);
+                int page = 1;      
+                return ok(views.html.list_detailed.render(persons, persons.size(), page, path, searchInput, accessLevel)); 
+            }
+            else {
+                return ok(views.html.person.render(person, searchInput, accessLevel));   
+            }
+
+              
+        } else {
+            //TODO - A person wasn't found
+            return ok(show_error.render(person.code(), searchInput));
+        }
+    }
+
 
     @Security.Authenticated(Secured.class)
     public Result getUuidFromCpr() {
@@ -196,7 +259,6 @@ public class Search extends Controller {
         if (searchForm.hasErrors()) {
             return badRequest("Form had errors");
         }
-
 
         // Input type == cprnumber
         IUuid uuid = cprBroker.getUuid(searchForm.get().query);

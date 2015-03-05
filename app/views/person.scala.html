@@ -31,18 +31,25 @@
 * the terms of any one of the MPL, the GPL or the LGPL.
 *
 * ***** END LICENSE BLOCK ***** *@
-@(person: util.cprbroker.IPerson, searchInput: controllers.Search.SearchInput)
+@(person: util.cprbroker.IPerson, searchInput: controllers.Search.SearchInput, accesslevel: Integer)
 
 @import util.cprbroker.EAddressType;
 @import util.Converters;
+@import play.Play;
 
 @main("CPReader", searchInput) {
-
-    <div class="well">
+    <div class="well">    
+        
+        @*
+        <hr>
+        <h5>Access Level Config: @Play.application().configuration().getInt("cprbroker.accesslevel")</h5>
+        <h5>Access Level Passed: @accesslevel</h5>
+        *@
         <h3>
             <span class="glyphicon glyphicon-user"></span>
             Person: @person.registerInformation.cprCitizen.socialSecurityNumber
         </h3>
+        
         <div>
         @person.postalLabel().map { l =>
             @l <br>
@@ -55,9 +62,15 @@
                 }
                 @if(person.tidspunkt.tidspunkt != null) {
                     @Messages("person.registrationdate"): @person.tidspunkt.tidspunkt.toString("dd.MM.yy HH:mm:ss")
+                    
                 }
             </p>
         }
+        <p class="text-right">
+        @cart(person)
+        </p>
+        
+
     </div>
 
     <ul class="nav nav-pills nav-justified">
@@ -66,16 +79,12 @@
         <li><a href="#relationer" data-toggle="pill">Relationer</a></li>
     </ul>
 
-
-
     <div class="tab-content">
         <div class="tab-pane active" id="generelt">
-
             <div class="row">
                 <div class="col-md-6">
                     <br/>
                     <div class="panel panel-default">
-
                         <div class="panel-heading">
                             <h3 class="panel-title">@Messages("resultat.egenskaber")</h3>
                         </div>
@@ -171,6 +180,7 @@
                     @if(person.relationsWithPerson != null) {
                         @for(r <- person.relationsWithPerson.allRelations) {
                             @relation(r)
+                            
                         }
                     }
                 </div>

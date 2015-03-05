@@ -84,10 +84,10 @@ public class PersonRelationships implements IPersonRelationships {
 			ERelationshipType type = newRelationship.get(0).relationshipType();
 			
 			switch(type) {
-				case aegtefaelle:
+				case aegtefaelle: // spouse
 					aegtefaelle(newRelationship);
 					break;
-				case boern:
+				case boern: // children
 					boern(newRelationship);
 					break;
 				case bopaelssamling:
@@ -99,22 +99,22 @@ public class PersonRelationships implements IPersonRelationships {
 				case erstatingFor:
 					erstatingFor(newRelationship);
 					break;
-				case fader:
+				case fader: // father
 					fader(newRelationship);
 					break;
 				case foraeldremydighedsboern:
 					foraeldremydighedsboern(newRelationship);
 					break;
-				case foraeldremyndighedsindehaver:
+				case foraeldremyndighedsindehaver: // 
 					foraeldremyndighedsindehaver(newRelationship);
 					break;					
-				case moder:
+				case moder: // mother
 					moder(newRelationship);
 					break;
-				case registreretPartner:
+				case registreretPartner: // registered partner
 					registreretPartner(newRelationship);
 					break;
-				case retligHandleevneVaergeForPersonen:
+				case retligHandleevneVaergeForPersonen: // legal guardian
 					retligHandleevneVaergeForPersonen(newRelationship);
 					break;
 				case retligHandleevneVaergemaalsindehaver:

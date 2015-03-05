@@ -69,6 +69,9 @@
                 </div>
             </div>
 
+
+
+
             @for(person <- persons) {
                 <a href="/show/uuid/@person.uuid/" class="list-group-item">
                     @person.registerInformation.cprCitizen.socialSecurityNumber
@@ -102,6 +105,7 @@
                                 @person.address.danishAddress.districtName
                             }
                         </span>
+
                     }
                 </a>
             }

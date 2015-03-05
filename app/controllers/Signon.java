@@ -38,7 +38,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Singleton;
-
 import play.data.Form;
 import play.data.validation.Constraints.Required;
 import play.data.validation.ValidationError;
@@ -49,6 +48,19 @@ import util.auth.AuthResponseType;
 import util.auth.IAuthenticationResponse;
 import util.auth.Secured;
 import views.html.login;
+
+
+
+import conf.IConfiguration;
+import play.Configuration;
+import java.io.InputStream;
+import java.lang.ClassLoader;
+import play.api.Play;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.*;
 
 /**
  * @author Beemen Beshara
@@ -64,7 +76,6 @@ public class Signon extends Controller {
 
         @Required
         public String password;
-
 
         public String getUsername() {
             return username;
@@ -89,6 +100,60 @@ public class Signon extends Controller {
         );
     }
 
+    // simple test function to obtain access levels for the signed in user
+    public String getAccessLevel(String username, String password)
+    {
+        // parse csv access levels file
+        String accessFileURL = "http://www.address.to/accessfile.csv"; // path to online file, if required
+        
+        InputStream inputStream = null;
+        BufferedReader fileReader = null;
+
+        final String DELIMITER = ",";
+        boolean onlineFile=false; // just use a local file in the 'conf' directory for now
+
+        try
+        {
+            if(onlineFile) 
+            {
+                inputStream = new URL(accessFileURL).openStream(); // online
+            }
+            else 
+            {
+                inputStream = play.Play.application().resourceAsStream("accessfile.csv"); // local (stored in 'conf' directory)
+            }
+
+            fileReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+             
+            String line = "";
+
+            while ((line = fileReader.readLine()) != null)
+            {   
+                //Get all tokens available in line
+                String[] tokens = line.split(DELIMITER);
+               
+                if (tokens[0].equals(username))
+                {
+                    // we have a match, so return the access level
+                    play.Logger.info("USER "+tokens[0]+" FOUND WITH ACCESS LEVEL "+tokens[2]);
+                    return tokens[2];
+                }
+            }
+        }
+        catch (Exception e) {
+            play.Logger.info("ERROR");
+        }
+        finally
+        {
+            try {
+                fileReader.close();
+            } catch (IOException e) {
+                play.Logger.info("ERROR");
+            }
+        }
+        return "0"; // lowest level access as default
+    }
+
     public Result authenticate() {
 
         Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
@@ -106,10 +171,12 @@ public class Signon extends Controller {
             session().clear();
             session("username", loginForm.get().username);
 
+            // save the access level here
+            session("accesslevel", getAccessLevel(loginForm.get().username, loginForm.get().password));
+
             play.Logger.info("[" + request().remoteAddress() + "] " +
                     session("username") +
                     " has succesfully logged in.");
-
 
             return redirect(
                     routes.Home.index()

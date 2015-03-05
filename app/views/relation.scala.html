@@ -49,6 +49,7 @@
 		                 @if(relation.person.firstname) { @relation.person.firstname}
 		                 @if(relation.person.middelname) { @relation.person.middelname}
 		                 @if(relation.person.lastname) { @relation.person.lastname}
+
 	             }	             
 	         </h3>
 		 </div>
@@ -62,10 +63,14 @@
                } else {
                    <p>Der findes ingen lokale informationer om denne relation, og din installation giver ikke tilladelse til at lave opslag i eksterne kilder.</p>
                }
+
           }
       
          @tilstande(relation.person.tilstand)
          @virkning(relation.effect, true)
+         <p class="text-right">
+            @cart(relation.person)
+         </p>
       </div>
  </div>
 </div>

@@ -11,12 +11,13 @@ define(function () {
             var redirectLocation = null;
             var queryExists = false;
 
+            // if the input is recognised as a CPR number, redirect to a uuid search
             if (cpr.test(query) || cprpattern.test(query)) {
                 $.post('/search/cpr/', {"query": query.replace("-", "")}, function (data) {
                     window.location = '/show/uuid/' + data + '/';
                 });
             }
-
+            // otherwise build the name based search string and redirect to a name search
             else if (firstmiddlelastname.test(query) || firstlastname.test(query) || lastname.test(query)) {
                 redirectLocation = '/search'
                 if (query.length > 0) {
