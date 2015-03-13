@@ -33,8 +33,8 @@ GET         /showfull/uuid/:uuid/                                        @contro
 GET         /assets/*file                                                controllers.Assets.at(path="/public", file)
 
 # Shopping cart
-GET 		/cart/add/:firstname/:lastname/:id							 @controllers.Cart.addItem(firstname : String, lastname : String, id : String)
-GET 		/cart/remove/:id											 @controllers.Cart.removeItem(id : String)
+GET 		/cart/add/:firstname/:lastname/:uri						 	 @controllers.Cart.addItem(firstname : String, lastname : String, uri : String)
+GET 		/cart/remove/:firstname/:lastname							 @controllers.Cart.removeItem(firstname : String, lastname : String)
 GET 		/cart/view													 @controllers.Cart.view()
 GET 		/cart/empty													 @controllers.Cart.empty()
 GET 		/cart/copy													 @controllers.Cart.copy()

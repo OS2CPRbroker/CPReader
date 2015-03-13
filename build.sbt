@@ -16,6 +16,7 @@ libraryDependencies += "org.json" % "json" % "20090211"
 
 libraryDependencies += "commons-io" % "commons-io" % "2.4"
 
+libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.34"
 
 play.Project.playJavaSettings
 
@@ -30,3 +31,4 @@ lazy val jaxws = project
 lazy val root = project.in(file("."))
     .aggregate(jaxws)
     .dependsOn(jaxws)
+

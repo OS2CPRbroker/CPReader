@@ -28,6 +28,7 @@ nav.quicksearch_local = Local
 
 nav.help = Help
 nav.logout_button = Log out
+nav.cart = View cart
 
 results.list.amountOfResults = Der er {0} resultater på søgningen:
 results.list.searchFailed = Fejl i søgningen

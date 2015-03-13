@@ -54,8 +54,7 @@ public class RegexAddressParser implements IAddressParser {
                 + "(" + "(?<door>[a-zA-Z]+)" + comma + ")?"
                 + "(?<postCode>[0-9]{4})" + comma
                 + "(?<postDistrict>\\p{L}+(\\s+\\p{L}+)*)\\Z";
-
-
+                
         Pattern p = Pattern.compile(pat);
         Matcher m = p.matcher(addressString);
         if (m.matches()) {

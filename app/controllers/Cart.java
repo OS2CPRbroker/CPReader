@@ -61,6 +61,7 @@ public class Cart extends Controller
     private Logger logger = new Logger();
 
     @Security.Authenticated(Secured.class)
+    
     /*public Result index() 
     {
         // get cart items from cache
@@ -76,7 +77,7 @@ public class Cart extends Controller
     public Result view() 
     {
 
-        logger.logMessage("test");
+        logger.logInfo("test");
         // get cart items from cache
         List<List<String>> cartItems = (List<List<String>>) Cache.get("cartdata");
         if (cartItems == null)
@@ -90,6 +91,7 @@ public class Cart extends Controller
     {
     	cartItems = new ArrayList<List<String>>();
         Cache.set("cartdata", cartItems, CART_CACHE_TIMEOUT);
+        flash("message", "Cart emptied.");
     	return ok(views.html.viewcart.render(cartItems.size(), cartItems));
     }
 
@@ -100,63 +102,97 @@ public class Cart extends Controller
     	StringBuilder stringBuilder = new StringBuilder();
         // get cart items from cache
         List<List<String>> cartItems = (List<List<String>>) Cache.get("cartdata");
-
-    	for ( int i = 0;  i < cartItems.size(); i++)
-     	{
-     		// copy one number per line
-     		stringBuilder.append(cartItems.get(i).get(2)+"\n");
-     	}
-
-     	String finalString = stringBuilder.toString();
-
-		copiedData = new StringSelection(finalString);	
-        clipBoard.setContents(copiedData, copiedData);
-
-        Transferable t = clipBoard.getContents( null );
-
-        if ( t.isDataFlavorSupported(DataFlavor.stringFlavor) )
+        int itemscopied = 0;
+        if (cartItems != null)
         {
-            Object o = t.getTransferData( DataFlavor.stringFlavor );
-            String data = (String)t.getTransferData( DataFlavor.stringFlavor );
+        	for ( int i = 0;  i < cartItems.size(); i++)
+         	{
+         		// copy one number per line
+         		stringBuilder.append(cartItems.get(i).get(2)+"\n");
+                itemscopied++;
+         	}
+
+         	String finalString = stringBuilder.toString();
+
+    		copiedData = new StringSelection(finalString);	
+            clipBoard.setContents(copiedData, copiedData);
+
+            Transferable t = clipBoard.getContents( null );
+
+            if ( t.isDataFlavorSupported(DataFlavor.stringFlavor) )
+            {
+                Object o = t.getTransferData( DataFlavor.stringFlavor );
+                String data = (String)t.getTransferData( DataFlavor.stringFlavor );
+            }
+            flash("message", itemscopied + " items copied to the clipboard.");
+            return ok(views.html.viewcart.render(cartItems.size(), cartItems));
         }
-    	return ok(views.html.viewcart.render(cartItems.size(), cartItems));
+        else
+        {
+            return ok("Nothing to copy");
+        }
+    	
     }
 
-    public Result addItem(String firstname, String lastname, String cprnum)
+    public Result addItem(String firstname, String lastname, String uri)
     {
         boolean exists=false;
         List<String> personData = new ArrayList<String>();
-        personData.add( firstname );
-        personData.add( lastname );
-        personData.add( cprnum );
-
-        // get cart items from cache
-        List<List<String>> cartItems = (List<List<String>>) Cache.get("cartdata");
-
-        if (cartItems == null)
+        
+        flash("message", firstname+" "+lastname+ "has been added to the cart.");
+        if (session(firstname+lastname) != null)
         {
-            cartItems = new ArrayList<List<String>>();
-        }
+            String cprnum = session(firstname+lastname);
+            personData.add( firstname );
+            personData.add( lastname );
+            personData.add( cprnum );
 
-        // scan through and see if the person already exists
-        for (int i = 0;  i < cartItems.size(); i++)
-        {
-            String searchByCprNum = cartItems.get(i).get(2);
-            if(searchByCprNum.equals(cprnum))
+            logger.logInfo("ID FROM SESSION: " + session(firstname+lastname));
+
+            // get cart items from cache
+            List<List<String>> cartItems = (List<List<String>>) Cache.get("cartdata");
+
+            if (cartItems == null)
             {
-                exists=true;
+                cartItems = new ArrayList<List<String>>();
             }
-        }
-        if(!exists) 
+
+            // scan through and see if the person already exists
+            for (int i = 0;  i < cartItems.size(); i++)
+            {
+                String searchByCprNum = cartItems.get(i).get(2);
+                if(searchByCprNum.equals(cprnum))
+                {
+                    exists=true;
+                }
+            }
+            if(!exists) 
+            {
+                cartItems.add( personData );
+            }
+            Cache.set("cartdata", cartItems, CART_CACHE_TIMEOUT);
+        } 
+        else
         {
-            cartItems.add( personData );
+            logger.logInfo("NO SUCH PERSON: " + session(firstname+lastname));
         }
-        Cache.set("cartdata", cartItems, CART_CACHE_TIMEOUT);
-        return ok(views.html.viewcart.render(cartItems.size(), cartItems));
+        String[] segments = uri.split("/");
+
+      
+        String showtype = segments[segments.length-3];
+        String idStr = segments[segments.length-1];  
+        logger.logInfo("uri: " + showtype);
+
+        if (showtype.equals("showfull"))
+        {
+            return redirect(controllers.routes.Search.showPersonFull(idStr)); 
+        }
+        return redirect(controllers.routes.Search.showPerson(idStr)); 
     }
 
-    public Result removeItem(String cprnum) 
+    public Result removeItem(String firstname, String lastname) 
     {
+        String cprnum = session(firstname+lastname);
         // get cart items from cache
         List<List<String>> cartItems = (List<List<String>>) Cache.get("cartdata");
 
@@ -172,6 +208,7 @@ public class Cart extends Controller
             if(searchByCprNum.equals(cprnum))
             {
                 cartItems.remove(i);
+                flash("message", firstname + " " + lastname + " removed from the cart.");
             }
         }
     	return ok(views.html.viewcart.render(cartItems.size(), cartItems));

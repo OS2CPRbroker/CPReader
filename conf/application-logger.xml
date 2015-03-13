@@ -31,11 +31,22 @@
           <maxHistory>30</maxHistory>
       </rollingPolicy>
   </appender>  
+
+  <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+    <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+      <driverClass>com.mysql.jdbc.Driver</driverClass>
+        <url>jdbc:mysql://localhost:8889/cprlogger</url>
+        <user>mat</user>
+        <password>mat</password>
+      </connectionSource>
+  </appender>
+  
   
   <logger name="play" level="INFO" />
   <logger name="application" level="INFO" />
   <logger name="org.perf4j.TimingLogger" additivity="false" level="INFO" >
     <appender-ref ref="perf4jFileAppender"/>
+    <appender-ref ref="DB" />
   </logger>
 
   <root level="ERROR">

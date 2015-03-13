@@ -48,7 +48,7 @@ import util.auth.AuthResponseType;
 import util.auth.IAuthenticationResponse;
 import util.auth.Secured;
 import views.html.login;
-
+import play.cache.Cache;
 
 
 import conf.IConfiguration;
@@ -61,6 +61,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
+
+import play.Application.*;
 
 /**
  * @author Beemen Beshara
@@ -101,16 +103,19 @@ public class Signon extends Controller {
     }
 
     // simple test function to obtain access levels for the signed in user
-    public String getAccessLevel(String username, String password)
+    public String getAccessLevel(String username)
     {
         // parse csv access levels file
-        String accessFileURL = "http://www.address.to/accessfile.csv"; // path to online file, if required
-        
+        String accessFileURL = play.Play.application().configuration().getString("accessfile.url")+play.Play.application().configuration().getString("accessfile.name");
+
+        play.Logger.info("ACCESS URL: " + accessFileURL);
         InputStream inputStream = null;
         BufferedReader fileReader = null;
 
         final String DELIMITER = ",";
         boolean onlineFile=false; // just use a local file in the 'conf' directory for now
+
+
 
         try
         {
@@ -120,7 +125,7 @@ public class Signon extends Controller {
             }
             else 
             {
-                inputStream = play.Play.application().resourceAsStream("accessfile.csv"); // local (stored in 'conf' directory)
+                inputStream = play.Play.application().resourceAsStream(play.Play.application().configuration().getString("accessfile.name")); // local (stored in 'conf' directory)
             }
 
             fileReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
@@ -132,11 +137,11 @@ public class Signon extends Controller {
                 //Get all tokens available in line
                 String[] tokens = line.split(DELIMITER);
                
-                if (tokens[0].equals(username))
+                if (tokens[0].toLowerCase().equals(username.toLowerCase()))
                 {
                     // we have a match, so return the access level
-                    play.Logger.info("USER "+tokens[0]+" FOUND WITH ACCESS LEVEL "+tokens[2]);
-                    return tokens[2];
+                    play.Logger.info("USER "+tokens[0]+" FOUND WITH ACCESS LEVEL "+tokens[1]);
+                    return tokens[1];
                 }
             }
         }
@@ -172,7 +177,10 @@ public class Signon extends Controller {
             session("username", loginForm.get().username);
 
             // save the access level here
-            session("accesslevel", getAccessLevel(loginForm.get().username, loginForm.get().password));
+            //session("accesslevel", getAccessLevel(loginForm.get().username, loginForm.get().password));
+
+
+            Cache.set("accesslevel", getAccessLevel(loginForm.get().username), 3600); // good for 2 hours
 
             play.Logger.info("[" + request().remoteAddress() + "] " +
                     session("username") +

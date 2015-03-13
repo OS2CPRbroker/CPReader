@@ -54,43 +54,54 @@
             <div class="row">
                 <div class="col-md-2">
                 </div>
-                <div class="col-md-8">
-                    <table class="table table-striped">
-                        <caption><h3>View Cart (@numberOfItems Items)</h3></caption>
-                        <thead>
-                            <tr>
-                            <th>Name</th>
-                            <th>CPR Number</th>
-                            <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                             @for(item <- cart){
+
+                @if(numberOfItems > 0) {
+                    <div class="col-md-8">
+                        <table class="table table-striped">
+
+                            <caption><h3>View Cart (@numberOfItems Items)</h3></caption>
+                            <thead>
                                 <tr>
-                                <td>@item(0) @item(1)</td>
-                                <td>@item(2)</td>
-                                <td><a href="@routes.Cart.removeItem(item(2))">Remove</a></td>
+                                <th>Name</th>
+                                <th>CPR Number</th>
+                                <th></th>
                                 </tr>
+                            </thead>
+                            <tbody>
+                                 @for(item <- cart){
+                                    <tr>
+                                    <td>@item(0) @item(1)</td>
+                                    <td>@item(2)</td>
+                                    <td><a href="@routes.Cart.removeItem(item(0),item(1))">Remove</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        </br>
+                        </br>
+                        <hr>
+                        <div>
+                            @if(cart.length > 0) {
+                            <div style="float: left;">
+                                <a href="@routes.Cart.copy()"><span class="glyphicon glyphicon-file"></span> Copy CPR Numbers</a>
+                            </div>
+                            <div style="float: right;">
+                                <a href="@routes.Cart.empty()"><span class="glyphicon glyphicon-trash"></span> Empty Cart</a>
+                            </div>
                             }
-                        </tbody>
-                    </table>
-                    </br>
-                    </br>
-                    <hr>
-                    <div>
-                        <div style="float: left;">
-                            <a href="@routes.Cart.copy()"><span class="glyphicon glyphicon-file"></span> Copy CPR Numbers</a>
-                        </div>
-                        <div style="float: right;">
-                            <a href="@routes.Cart.empty()"><span class="glyphicon glyphicon-trash"></span> Empty Cart</a>
                         </div>
                     </div>
-                    
-                    
-                </div>
+                } else { 
+                    <div class="col-md-8">
+                    There are currently no items in the cart
+                    </div>
+                }
+
+                
                 <div class="col-md-2">
                 </div>
             </div>
+            <h5>@flash.get("message")</h5>
         </div>
     </div>
 

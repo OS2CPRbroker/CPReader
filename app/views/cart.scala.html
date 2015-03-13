@@ -32,10 +32,11 @@
 * ***** END LICENSE BLOCK ***** *@
 
 @(person: util.cprbroker.IPerson)
-
-<a href="@routes.Cart.addItem(person.firstname, person.lastname, person.registerInformation.cprCitizen.socialSecurityNumber)"><span class="glyphicon glyphicon-plus"></span> Add To Cart</a>
+<a href="@routes.Cart.addItem(person.firstname, person.lastname, request.uri)"><span class="glyphicon glyphicon-plus"></span> Add To Cart</a>
+<br>@flash.get("message")
+<!--
 <a href="@routes.Cart.view()"><span class="glyphicon glyphicon-shopping-cart"></span> View Cart</a>
-
+-->
 
 
 

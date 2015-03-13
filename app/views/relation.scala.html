@@ -69,7 +69,12 @@
          @tilstande(relation.person.tilstand)
          @virkning(relation.effect, true)
          <p class="text-right">
-            @cart(relation.person)
+            @if(relation != null) {
+              <div id="session" style="display: none;">
+              @session.put(relation.person.firstname+relation.person.lastname, relation.person.registerInformation.cprCitizen.socialSecurityNumber)
+              </div>
+              @cart(relation.person)
+            }
          </p>
       </div>
  </div>

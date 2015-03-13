@@ -49,7 +49,7 @@
                 </h3>
             </div>
         </div>
-
+       
         
 
         <div class="list-group">
@@ -125,6 +125,9 @@
                     <div class="col-md-3">
                         <div class="panel panel-default">
                             <div class="panel-heading">
+                            <div id="session" style="display: none;">
+                            @session.put(person.firstname+person.lastname, person.registerInformation.cprCitizen.socialSecurityNumber)
+                            </div>
                             @cart(person)
                             </div>
                         </div>

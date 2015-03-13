@@ -40,6 +40,7 @@
     <title>@title</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" >
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <!-- Bootstrap -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
@@ -47,7 +48,25 @@
     <!-- Custom styles for this template -->
     <link href="@routes.Assets.at("stylesheets/navbar.css")" rel="stylesheet">
     <link href="@routes.Assets.at("javascripts/jquery-ui-1.11.2.custom/jquery-ui.css")" rel="stylesheet">
+
+
+     <script type="text/javascript">
+      // Popup window code
+      function newPopup(url) {
+        var w = 640;
+        var h = 480;
+        var left = (screen.width/2)-(w/2);
+        var top = (screen.height/2)-(h/2);
+
+        popupWindow = window.open(
+          url,'Cart','resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=no, width='+w+', height='+h+', top='+top+', left='+left);
+      }
+      </script>
+
   </head>
+
+
+
   <body>
   
     <div class="container">

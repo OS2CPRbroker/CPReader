@@ -169,15 +169,17 @@ public class Search extends Controller {
         searchInput.fillFromSession(this);
 
         // access level - add to person model
-        Integer accessLevel=Integer.valueOf(session("accesslevel"));
-
-
+        Integer accessLevel=0;
+        if (Cache.get("accesslevel") != null)
+        {
+            accessLevel = Integer.parseInt(Cache.get("accesslevel").toString());
+        }
+        
         // test access level
         //play.Logger.info("Access Level: " + accessLevel);
         //accessLevel = 1;
         //session("accesslevel", ""+accessLevel);
         // end test access level
-
         if (person == null) {
             return ok(show_error.render(503, searchInput));
         }
@@ -215,27 +217,41 @@ public class Search extends Controller {
 
         SearchInput searchInput = new SearchInput();
         searchInput.fillFromSession(this);
-        Integer accessLevel=Integer.valueOf(session("accesslevel"));
+        // access level - add to person model
+        Integer accessLevel=0;
+        if (Cache.get("accesslevel") != null)
+        {
+            accessLevel = Integer.parseInt(Cache.get("accesslevel").toString());
+        }
+
+
 
         if (person == null) {
             return ok(show_error.render(503, searchInput));
         }
+
+        play.Logger.info("1 SHOW PERSON FULL WITH ACCESS LEVEL :"+accessLevel);
+
+
         if (person.code() == 200) {
-            if (accessLevel < 2) { // never allow full access unless access level is 3
+            if (accessLevel < 2) { // never allow full access unless access level is 2
                 List<IPerson> persons = new ArrayList<IPerson>();
                 persons.add(person);
                 String path = request().path();
                 path = path.substring(0, path.indexOf("page") + 5);
                 int page = 1;      
+                play.Logger.info("2 SHOW PERSON FULL WITH ACCESS LEVEL :"+accessLevel);
                 return ok(views.html.list_detailed.render(persons, persons.size(), page, path, searchInput, accessLevel)); 
             }
             else {
+                play.Logger.info("3 SHOW PERSON FULL WITH ACCESS LEVEL :"+accessLevel);
                 return ok(views.html.person.render(person, searchInput, accessLevel));   
             }
 
               
         } else {
             //TODO - A person wasn't found
+            play.Logger.info("4 SHOW PERSON FULL WITH ACCESS LEVEL :"+accessLevel);
             return ok(show_error.render(person.code(), searchInput));
         }
     }
