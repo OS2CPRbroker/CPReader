@@ -72,7 +72,7 @@
                                     <tr>
                                     <td>@item(0) @item(1)</td>
                                     <td>@item(2)</td>
-                                    <td><a href="@routes.Cart.removeItem(item(0),item(1))">Remove</a></td>
+                                    <td><a href="@routes.Cart.removeItem(item(0),item(1), request.uri)">Remove</a></td>
                                     </tr>
                                 }
                             </tbody>
@@ -83,10 +83,10 @@
                         <div>
                             @if(cart.length > 0) {
                             <div style="float: left;">
-                                <a href="@routes.Cart.copy()"><span class="glyphicon glyphicon-file"></span> Copy CPR Numbers</a>
+                                <a href="@routes.Cart.copy(request.uri)"><span class="glyphicon glyphicon-file"></span> Copy CPR Numbers</a>
                             </div>
                             <div style="float: right;">
-                                <a href="@routes.Cart.empty()"><span class="glyphicon glyphicon-trash"></span> Empty Cart</a>
+                                <a href="@routes.Cart.empty(request.uri)"><span class="glyphicon glyphicon-trash"></span> Empty Cart</a>
                             </div>
                             }
                         </div>
@@ -105,7 +105,7 @@
         </div>
     </div>
 
-    
+   
     @helper.requireJs(core = routes.Assets.at("javascripts/require.js").url, module = routes.Assets.at("javascripts/main").url)
 
   </body>

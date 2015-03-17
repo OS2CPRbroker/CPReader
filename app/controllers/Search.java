@@ -124,7 +124,14 @@ public class Search extends Controller {
         SearchInput searchInput = new SearchInput(name, address, online);
         searchInput.saveToSession(this);
 
-        if (persons != null) {
+        // access level - add to person model
+        Integer accessLevel=0;
+        if (Cache.get("accesslevel") != null)
+        {
+            accessLevel = Integer.parseInt(Cache.get("accesslevel").toString());
+        }
+        if (persons != null) 
+        {
             // calculate the searchIndex, which is the starting point of the search
             int fromIndex = ((page - 1) * 10);
             int toIndex = ((page) * 10);
@@ -137,9 +144,12 @@ public class Search extends Controller {
 
             List<IPerson> subPersons = persons.subList(fromIndex, toIndex);
 
-            return ok(list.render(subPersons, persons.size(), page, path, searchInput));
-        } else
-            return ok(list.render(persons, 0, page, path, searchInput));
+            return ok(list.render(subPersons, persons.size(), page, path, searchInput, accessLevel));
+        } 
+        else
+        {
+            return ok(list.render(persons, 0, page, path, searchInput, accessLevel));
+        }
     }
 
     /**
@@ -189,7 +199,8 @@ public class Search extends Controller {
             String path = request().path();
             path = path.substring(0, path.indexOf("page") + 5);
             int page = 1;      
-            return ok(views.html.list_detailed.render(persons, persons.size(), page, path, searchInput, accessLevel)); 
+            //return ok(views.html.list_detailed.render(persons, persons.size(), page, path, searchInput, accessLevel)); 
+            return ok(list.render(persons, 0, page, path, searchInput, accessLevel));
         } else {
             //TODO - A person wasn't found
             return ok(show_error.render(person.code(), searchInput));
@@ -234,7 +245,7 @@ public class Search extends Controller {
 
 
         if (person.code() == 200) {
-            if (accessLevel < 2) { // never allow full access unless access level is 2
+            /*if (accessLevel < 2) { // never allow full access unless access level is 2
                 List<IPerson> persons = new ArrayList<IPerson>();
                 persons.add(person);
                 String path = request().path();
@@ -244,9 +255,10 @@ public class Search extends Controller {
                 return ok(views.html.list_detailed.render(persons, persons.size(), page, path, searchInput, accessLevel)); 
             }
             else {
+            */
                 play.Logger.info("3 SHOW PERSON FULL WITH ACCESS LEVEL :"+accessLevel);
                 return ok(views.html.person.render(person, searchInput, accessLevel));   
-            }
+            //}
 
               
         } else {

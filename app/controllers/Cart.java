@@ -77,7 +77,7 @@ public class Cart extends Controller
     public Result view() 
     {
 
-        logger.logInfo("test");
+        //logger.logInfo("test");
         // get cart items from cache
         List<List<String>> cartItems = (List<List<String>>) Cache.get("cartdata");
         if (cartItems == null)
@@ -87,15 +87,18 @@ public class Cart extends Controller
     	return ok(views.html.viewcart.render(cartItems.size(), cartItems));
     }
 
-    public Result empty() 
+    public Result empty(String uri) 
     {
     	cartItems = new ArrayList<List<String>>();
         Cache.set("cartdata", cartItems, CART_CACHE_TIMEOUT);
         flash("message", "Cart emptied.");
-    	return ok(views.html.viewcart.render(cartItems.size(), cartItems));
+        Cache.set("numcartitems", cartItems.size(), CART_CACHE_TIMEOUT);
+        // redirect to where we came from
+        String[] segments = uri.split("/");
+        return redirect(uri);
     }
 
-    public Result copy() throws UnsupportedFlavorException, IOException 
+    public Result copy(String uri) throws UnsupportedFlavorException, IOException 
     {
     	Clipboard clipBoard = Toolkit.getDefaultToolkit().getSystemClipboard();
     	StringSelection copiedData = new StringSelection("");
@@ -125,7 +128,8 @@ public class Cart extends Controller
                 String data = (String)t.getTransferData( DataFlavor.stringFlavor );
             }
             flash("message", itemscopied + " items copied to the clipboard.");
-            return ok(views.html.viewcart.render(cartItems.size(), cartItems));
+            //return ok(views.html.viewcart.render(cartItems.size(), cartItems));
+            return redirect(uri);
         }
         else
         {
@@ -147,7 +151,7 @@ public class Cart extends Controller
             personData.add( lastname );
             personData.add( cprnum );
 
-            logger.logInfo("ID FROM SESSION: " + session(firstname+lastname));
+            //logger.logInfo("ID FROM SESSION: " + session(firstname+lastname));
 
             // get cart items from cache
             List<List<String>> cartItems = (List<List<String>>) Cache.get("cartdata");
@@ -170,27 +174,17 @@ public class Cart extends Controller
             {
                 cartItems.add( personData );
             }
+            Cache.set("numcartitems", cartItems.size(), CART_CACHE_TIMEOUT);
             Cache.set("cartdata", cartItems, CART_CACHE_TIMEOUT);
         } 
         else
         {
-            logger.logInfo("NO SUCH PERSON: " + session(firstname+lastname));
+            //logger.logInfo("NO SUCH PERSON: " + session(firstname+lastname));
         }
-        String[] segments = uri.split("/");
-
-      
-        String showtype = segments[segments.length-3];
-        String idStr = segments[segments.length-1];  
-        logger.logInfo("uri: " + showtype);
-
-        if (showtype.equals("showfull"))
-        {
-            return redirect(controllers.routes.Search.showPersonFull(idStr)); 
-        }
-        return redirect(controllers.routes.Search.showPerson(idStr)); 
+        return redirect(uri);
     }
 
-    public Result removeItem(String firstname, String lastname) 
+    public Result removeItem(String firstname, String lastname, String uri) 
     {
         String cprnum = session(firstname+lastname);
         // get cart items from cache
@@ -211,7 +205,9 @@ public class Cart extends Controller
                 flash("message", firstname + " " + lastname + " removed from the cart.");
             }
         }
-    	return ok(views.html.viewcart.render(cartItems.size(), cartItems));
+        Cache.set("numcartitems", cartItems.size(), CART_CACHE_TIMEOUT);
+        Cache.set("cartdata", cartItems, CART_CACHE_TIMEOUT);
+        return redirect(uri);
     }
  }
 

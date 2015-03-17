@@ -214,6 +214,8 @@ public class Signon extends Controller {
                 " has succesfully logged out.");
 
         session().clear();
+        Cache.set("numcartitems", 0, 0);
+        Cache.set("cartdata", null, 0);
         //flash("success", play.i18n.Messages.get("logout.succesful"));
         return redirect(
                 routes.Signon.login()

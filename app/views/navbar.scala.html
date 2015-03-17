@@ -45,8 +45,6 @@
     </div>
 
     <div class="navbar-collapse collapse">
-    
-
         <form id="quicksearch" class="navbar-form navbar-left" role="search">
             <div class="form-group" id="querygroup">
                 <input type="text" class="form-control" id="query" placeholder="@Messages("nav.quicksearch_placeholder")" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getQuery()" />
@@ -69,7 +67,9 @@
                 <li><a href="@routes.Signon.logout()">@Messages("nav.logout_button")</a></li>
             }
 
-            <li><a href="JavaScript:newPopup('@routes.Cart.view()');"><span class="glyphicon glyphicon-shopping-cart"></span>  @Messages("nav.cart")</a> </li>
+            @*<li><a href="JavaScript:newPopup('@routes.Cart.view()');"><span class="glyphicon glyphicon-shopping-cart"></span>  @Messages("nav.cart")</a> </li>*@
+
+            <li>@cartview()</li>
         </ul>
     </div> <!--/.nav-collapse -->
 </div>
