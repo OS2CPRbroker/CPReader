@@ -43,12 +43,6 @@ import util.addresses.IAddressParser;
 import util.auth.IAuthentication;
 import util.auth.Secured;
 import util.auth.TestAuthenticationStrategy;
-import util.auth.WindowsAuthenticationStrategy;
-import util.auth.unboundid.IUnboundidAuthentication;
-import util.auth.unboundid.IUnboundidConnection;
-import util.auth.unboundid.implementations.ProxyUserUnboundidAuthentication;
-import util.auth.unboundid.implementations.UnboundidAuthentication;
-import util.auth.unboundid.implementations.UnboundidConnection;
 import util.auth.unboundid.implementations.UnboundidLdapAuthentication;
 import util.cprbroker.ICprBrokerAccessor;
 import util.cprbroker.jaxws.JaxWsCprBroker;
@@ -93,7 +87,6 @@ public class Global extends GlobalSettings {
 	        	// Use these for LDAP authentication
 	        	//bind(IAuthentication.class).to(ProxyUserUnboundidAuthentication.class);
 		        //bind(IUnboundidConnection.class).to(UnboundidConnection.class);
-	        	//bind(IUnboundidAuthentication.class).to(UnboundidLdapAuthentication.class).in(Singleton.class);
 
 				// Use this for test/test authentication
 	        	bind(IAuthentication.class).to(TestAuthenticationStrategy.class);

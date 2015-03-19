@@ -25,6 +25,7 @@ import com.unboundid.ldap.sdk.SimpleBindRequest;
 
 import conf.IConfiguration;
 
+// This class is not used anywhere, and is simply the same as ProxyUserUnboundidAuthentication
 public class UnboundidAuthentication implements IAuthentication {
 	
 	private IUnboundidConnection connection;
