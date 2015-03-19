@@ -80,9 +80,16 @@ public class RewriteHandler : IHttpHandler
         {
             var cookiesString0 = req.Headers[HttpRequestHeader.Cookie];
             var cookies = CookieParser.Parse(cookiesString0).ToList();
+
+            // Pass username
             var userCookie = new Cookie("") { Name = "username", Value = context.User.Identity.Name };
-            
             cookies.Add(userCookie);// Always add because this 
+
+            // Pass user groups
+            var windowsIdentity = context.User.Identity as System.Security.Principal.WindowsIdentity;
+            var groupNames = windowsIdentity.Groups.Select(g => g.Translate(typeof(System.Security.Principal.NTAccount)).Value).ToArray();
+            var groupsCookie = new Cookie("") { Name = "usergroups", Value = string.Join(",", groupNames) };
+            cookies.Add(groupsCookie);
 
             var cookiesString = CookieParser.ToString(cookies.ToArray());
             req.Headers[HttpRequestHeader.Cookie] = cookiesString;

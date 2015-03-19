@@ -34,11 +34,14 @@
 package util.auth;
 
 import play.mvc.Http;
+import util.StringUtils;
+
+import java.util.ArrayList;
 
 /**
  * Created by Beemen on 17/12/2014.
  */
-public class WindowsAuthenticationStrategy implements IAuthentication ,IIntegratedAuthenticaton{
+public class WindowsAuthenticationStrategy implements IAuthentication ,IIntegratedAuthenticaton, IGroupAuthentication {
     @Override
     public IAuthenticationResponse authentication(String username, String password) {
         return new AuthenticationResponse(AuthResponseType.SUCCESS, "OK");
@@ -54,6 +57,21 @@ public class WindowsAuthenticationStrategy implements IAuthentication ,IIntegrat
         if(cookie != null) {
             ret = cookie.value();
             ctx.session().put("username", ret);
+        }
+        return ret;
+    }
+
+    @Override
+    public String[] getUserGroups(String userName){
+        String[] ret = new String[0];
+
+        Http.Context ctx = Http.Context.current();
+        Http.Cookie cookie = ctx.request().cookie("usergroups");
+
+        if(cookie != null) {
+            String s = cookie.value();
+            ret = s.split(",");
+            //ctx.session().put("username", ret);
         }
         return ret;
     }
