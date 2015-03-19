@@ -58,33 +58,25 @@ public class ProxyUserUnboundidAuthentication implements IAuthentication {
 		uniqueUserAttribute = config.getString("ldap.uniqueuserattribute");
 		lowerCaseAuthorizedGroupDn = (authorizedGroupRdn + "," + baseDn).toLowerCase();
 		play.Logger.debug("UnboundidAuthentication.constructor, basedn: " + baseDn);
-		play.Logger.debug("UnboundidAuthentication.constructor, authorizedgrouprdn: "
-						+ authorizedGroupRdn);
-		play.Logger.debug("UnboundidAuthentication.constructor, authorizedattribute: "
-						+ authorizedAttribute);
-
+		play.Logger.debug("UnboundidAuthentication.constructor, authorizedgrouprdn: " + authorizedGroupRdn);
+		play.Logger.debug("UnboundidAuthentication.constructor, authorizedattribute: " + authorizedAttribute);
 	}
 
 	@Override
-	public IAuthenticationResponse authentication(final String username,
-			final String password) {
-		StopWatch stopWatch = new Slf4JStopWatch(
-				"UnboundidAuthentication.authentication");
+	public IAuthenticationResponse authentication(final String username, final String password) {
+
+		StopWatch stopWatch = new Slf4JStopWatch("UnboundidAuthentication.authentication");
 
 		// Try to get a connection
-		LDAPConnection ldapConnection = (LDAPConnection) connection
-				.getConnection();
-
+		LDAPConnection ldapConnection = (LDAPConnection) connection.getConnection();
 		if (ldapConnection == null) {
-			stopWatch
-					.stop("UnboundidAuthentication.authentication.noConnection");
-			return new AuthenticationResponse(AuthResponseType.ERROR,
-					"Connection error");
+			stopWatch.stop("UnboundidAuthentication.authentication.noConnection");
+			return new AuthenticationResponse(AuthResponseType.ERROR, "Connection error");
 		}
 
 		try {
-
 			// proxy user bindrequest
+            // TODO: Why is this needed at all ??!!
 			final BindRequest proxyBindRequest = new SimpleBindRequest(proxyUserName, proxyPassword);
 			BindResult proxyBindResult = ldapConnection.bind(proxyBindRequest);
 			
@@ -102,9 +94,7 @@ public class ProxyUserUnboundidAuthentication implements IAuthentication {
 					play.Logger.debug("Found entry: " + proxySearchResult.getSearchEntries().get(0).getDN());
 					
 					final String binddn = proxySearchResult.getSearchEntries().get(0).getDN();
-
-					final BindRequest bindRequest = new SimpleBindRequest(
-							binddn, password);
+					final BindRequest bindRequest = new SimpleBindRequest(binddn, password);
 
 					// trying to bind with the non-proxy user
 					BindResult bindResult = ldapConnection.bind(bindRequest);
@@ -118,48 +108,37 @@ public class ProxyUserUnboundidAuthentication implements IAuthentication {
 						play.Logger.debug("recursiveSearchMemberOf returned:: " +isMember);
 												
 						if (isMember) {
-							stopWatch.stop("UnboundidAuthentication.authentication.succesful");
-														
-							return new AuthenticationResponse(
-									AuthResponseType.SUCCESS, "login.succesful");
-						} else {							
-							
-							stopWatch.stop("UnboundidAuthentication.authentication.unsuccesful");
+                            stopWatch.stop("UnboundidAuthentication.authentication.succesful");
+							return new AuthenticationResponse(AuthResponseType.SUCCESS, "login.succesful");
+						}
+                        else {
+                            stopWatch.stop("UnboundidAuthentication.authentication.unsuccesful");
 							// didn't return any, so user isn't authorized
-							return new AuthenticationResponse(
-									AuthResponseType.INFO,
-									"login.not_authorized");
-						} 
-					} else {
+							return new AuthenticationResponse(AuthResponseType.INFO, "login.not_authorized");
+						}
+					}
+                    else {
 						stopWatch.stop("UnboundidAuthentication.authentication.unsuccesful");
 						// ResultCode != success
-						return new AuthenticationResponse(
-								AuthResponseType.INFO,
-								"login.invalid_credientials");
+						return new AuthenticationResponse(AuthResponseType.INFO, "login.invalid_credientials");
 					}
 				} else {
-					return new AuthenticationResponse(
-							AuthResponseType.INFO,
-							"login.invalid_credientials");
+					return new AuthenticationResponse(AuthResponseType.INFO, "login.invalid_credientials");
 				}
 			}
-
-		} catch (final LDAPException lex) {
-
-			stopWatch.stop(
-					"UnboundidAuthentication.authentication.unsuccesful",
-					lex.getMessage());
+            else{
+                // TODO: What shall we do if we cannot do a binding with a proxy user??
+            }
+		}
+        catch (final LDAPException lex) {
+			stopWatch.stop("UnboundidAuthentication.authentication.unsuccesful", lex.getMessage());
 			play.Logger.warn(lex.toString());
-
-			return new AuthenticationResponse(AuthResponseType.INFO,
-					"login.unexpected_error");
-
-		} finally {
+			return new AuthenticationResponse(AuthResponseType.INFO, "login.unexpected_error");
+		}
+        finally {
 			// always close the connection afterwards
 			ldapConnection.close();
-
 		}
-		
 		return null; // This should never happen
 	}
 
