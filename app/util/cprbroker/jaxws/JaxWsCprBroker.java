@@ -394,7 +394,12 @@ public class JaxWsCprBroker implements ICprBrokerAccessor {
                 for (int i = 0; i < soegListOutputType.getLaesResultat().size(); i++) {
                     LaesResultatType laesResultatType = soegListOutputType.getLaesResultat().get(i);
                     String uuid = soegListOutputType.getIdliste().getUUID().get(i);
-                    persons.add(getPerson(uuid, laesResultatType, soegListOutputType.getStandardRetur(), false));
+
+
+                    persons.add(getPerson(uuid, laesResultatType, soegListOutputType.getStandardRetur(), true));
+
+
+
                 }
             }
         }

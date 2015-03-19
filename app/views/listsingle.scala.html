@@ -37,25 +37,7 @@
 @import play.Play;
     @main("CPReader", searchInput) {
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                @if(persons != null) {
 
-                    @Messages("results.list.amountOfResults", results) <strong>@searchInput.getQuery()</strong>
-                    @if(searchInput.getAddressQuery() != null && searchInput.getAddressQuery().length > 0) {
-                            &nbsp;@searchInput.getAddressQuery();
-                    }
-                } else {
-                    @Messages("results.list.searchFailed", results)
-                }
-                </h3>
-            </div>
-        </div>
-        
-
-        @partial_pagination(results, currentpage, location)
-        
         <div class="list-group">
         @if(persons != null) {
             <div class="panel panel-default">
@@ -72,8 +54,8 @@
                 </div>
             </div>
 
-
             @for(person <- persons) {
+
                 <a href="#detailModal@person.registerInformation.cprCitizen.socialSecurityNumber" data-toggle="modal" class="list-group-item">
                     @person.registerInformation.cprCitizen.socialSecurityNumber
                     @if(person.firstname) {
@@ -334,6 +316,9 @@
 
 
 
+
+
+
                 @*
                 <a href="/showfull/uuid/@person.uuid/" class="list-group-item">
                     @person.registerInformation.cprCitizen.socialSecurityNumber
@@ -371,11 +356,14 @@
                     }
                 </a>
                 *@
+
+
+
+
+
+
             }
         }
         </div>
-
-        @partial_pagination(results, currentpage, location)
-
-
     }
+
