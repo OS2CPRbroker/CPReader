@@ -111,7 +111,7 @@ public class Cart extends Controller
         	for ( int i = 0;  i < cartItems.size(); i++)
          	{
          		// copy one number per line
-         		stringBuilder.append(cartItems.get(i).get(2)+"\n");
+         		stringBuilder.append(cartItems.get(i).get(3)+"\n");
                 itemscopied++;
          	}
 
@@ -138,18 +138,21 @@ public class Cart extends Controller
     	
     }
 
-    public Result addItem(String firstname, String lastname, String uri)
+
+    //public Result addItem(String firstname, String lastname, String uri)
+    public Result addItem(String cprnum, String uri)
     {
         boolean exists=false;
         List<String> personData = new ArrayList<String>();
         
-        flash("message", firstname+" "+lastname+ "has been added to the cart.");
-        if (session(firstname+lastname) != null)
+        flash("message", session(cprnum+"_fname") + " " + session(cprnum+"_mname") + " " + session(cprnum+"_lname") + "has been added to the cart.");
+        if (session(cprnum+"_cprnum") != null)
         {
-            String cprnum = session(firstname+lastname);
-            personData.add( firstname );
-            personData.add( lastname );
-            personData.add( cprnum );
+
+            personData.add(session(cprnum+"_fname"));
+            personData.add(session(cprnum+"_mname"));
+            personData.add(session(cprnum+"_lname"));
+            personData.add(session(cprnum+"_cprnum"));
 
             //logger.logInfo("ID FROM SESSION: " + session(firstname+lastname));
 
@@ -164,7 +167,7 @@ public class Cart extends Controller
             // scan through and see if the person already exists
             for (int i = 0;  i < cartItems.size(); i++)
             {
-                String searchByCprNum = cartItems.get(i).get(2);
+                String searchByCprNum = cartItems.get(i).get(3);
                 if(searchByCprNum.equals(cprnum))
                 {
                     exists=true;
@@ -184,9 +187,8 @@ public class Cart extends Controller
         return redirect(uri);
     }
 
-    public Result removeItem(String firstname, String lastname, String uri) 
+    public Result removeItem(String cprnum, String uri)
     {
-        String cprnum = session(firstname+lastname);
         // get cart items from cache
         List<List<String>> cartItems = (List<List<String>>) Cache.get("cartdata");
 
@@ -198,11 +200,11 @@ public class Cart extends Controller
      	for ( int i = 0;  i < cartItems.size(); i++)
      	{
      		
-            String searchByCprNum = cartItems.get(i).get(2);
-            if(searchByCprNum.equals(cprnum))
+            String searchByCprNum = cartItems.get(i).get(3);
+            if(searchByCprNum.equals(session(cprnum+"_cprnum")))
             {
                 cartItems.remove(i);
-                flash("message", firstname + " " + lastname + " removed from the cart.");
+                flash("message", session(cprnum+"_fname") + " " + session(cprnum+"_mname") + " "+ session(cprnum+"_lname") + " removed from the cart.");
             }
         }
         Cache.set("numcartitems", cartItems.size(), CART_CACHE_TIMEOUT);

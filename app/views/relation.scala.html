@@ -35,13 +35,19 @@
 
 @import util.cprbroker.ERelationshipType;
 @import play.Play;
-<div class="col-md-6">
+<div class="col-md-12">
  <div class="panel panel-default">
 	    <div class="panel-heading">
     @if(relation.person.code == 200 || Play.application().configuration().getInt("cprbroker.accesslevel") > 0) {
     <a href="/show/uuid/@relation.person.uuid/">
     }           
 		     
+
+
+
+
+
+
 	         <h3 class="panel-title">
 	             <span class="glyphicon glyphicon-user"></span> @relation.relationshipType
 	             @if(relation.person.code == 200) {
@@ -52,10 +58,30 @@
 
 	             }	             
 	         </h3>
+
+           <p class="text-right">
+            @if(relation != null && relation.person.firstname != null && relation.person.lastname != null && relation.person.registerInformation.cprCitizen.socialSecurityNumber != null) {
+              <div id="session" style="display: none;">
+              @session.put(relation.person.firstname+relation.person.lastname, relation.person.registerInformation.cprCitizen.socialSecurityNumber)
+              </div>
+              @if(session.get("usecart") == "1") {
+                @cart(relation.person)
+              }
+            }
+         </p>
+
+
+
+
+
+
+
+
 		 </div>
 		 @if(relation.person.code == 200 || Play.application().configuration().getInt("cprbroker.accesslevel") > 0) {
      </a>
      }
+      @*
       <div class="panel-body">
          @if(relation.person.code != 200) {
                @if(Play.application().configuration().getInt("cprbroker.accesslevel") > 0) {
@@ -65,17 +91,15 @@
                }
 
           }
-      
+          
          @tilstande(relation.person.tilstand)
          @virkning(relation.effect, true)
-         <p class="text-right">
-            @if(relation != null) {
-              <div id="session" style="display: none;">
-              @session.put(relation.person.firstname+relation.person.lastname, relation.person.registerInformation.cprCitizen.socialSecurityNumber)
-              </div>
-              @cart(relation.person)
-            }
-         </p>
+         
+         
+
+
+
       </div>
+      *@
  </div>
 </div>

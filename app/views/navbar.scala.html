@@ -33,7 +33,6 @@
 * ***** END LICENSE BLOCK ***** *@
 
 @(searchInput : Search.SearchInput)
-
 <div class="navbar navbar-default">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -66,10 +65,13 @@
             @if(!util.auth.Secured.getIsIntegratedAuthenticaton){
                 <li><a href="@routes.Signon.logout()">@Messages("nav.logout_button")</a></li>
             }
-
             @*<li><a href="JavaScript:newPopup('@routes.Cart.view()');"><span class="glyphicon glyphicon-shopping-cart"></span>  @Messages("nav.cart")</a> </li>*@
-
+            
+            @if(session.get("usecart") == "1") {
             <li>@cartview()</li>
+            }
         </ul>
+        
     </div> <!--/.nav-collapse -->
 </div>
+@flash.get("message")

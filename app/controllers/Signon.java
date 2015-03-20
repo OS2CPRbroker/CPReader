@@ -63,6 +63,8 @@ import java.io.InputStreamReader;
 import java.net.*;
 
 import play.Application.*;
+import play.api.libs.json.*;
+
 
 /**
  * @author Beemen Beshara
@@ -102,26 +104,45 @@ public class Signon extends Controller {
         );
     }
 
-    // simple test function to obtain access levels for the signed in user
+    public void initGroups()
+    {
+        String groupslist = "group0, anothergroup, andanothergroup";
+        session("grouplist", groupslist);
+    }
+
     public String getAccessLevel(String username)
     {
+        initGroups(); // test data
+
         // parse csv access levels file
         String accessFileURL = play.Play.application().configuration().getString("accessfile.url")+play.Play.application().configuration().getString("accessfile.name");
-
-        play.Logger.info("ACCESS URL: " + accessFileURL);
+        String accesslevel = "0";
         InputStream inputStream = null;
         BufferedReader fileReader = null;
 
         final String DELIMITER = ",";
+
+
         boolean onlineFile=false; // just use a local file in the 'conf' directory for now
-
-
+        if (play.Play.application().configuration().getString("accessfile.online").equals("true"))
+        {
+            onlineFile=true;
+        }
 
         try
         {
             if(onlineFile) 
             {
-                inputStream = new URL(accessFileURL).openStream(); // online
+                try
+                {
+                    inputStream = new URL(accessFileURL).openStream(); // online
+                }
+                catch(Exception e)
+                {
+                    play.Logger.info("FAILED TO ONLINE OPEN ACCESS FILE, DEFAULTING TO LOCAL FILE");
+                    inputStream = play.Play.application().resourceAsStream(play.Play.application().configuration().getString("accessfile.name")); // local (stored in 'conf' directory)
+                }
+
             }
             else 
             {
@@ -131,22 +152,64 @@ public class Signon extends Controller {
             fileReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
              
             String line = "";
+            String grouplist = session("grouplist");
+            String[] groupnames = grouplist.split(DELIMITER);
 
             while ((line = fileReader.readLine()) != null)
             {   
-                //Get all tokens available in line
-                String[] tokens = line.split(DELIMITER);
-               
-                if (tokens[0].toLowerCase().equals(username.toLowerCase()))
+                if (line.isEmpty() || line.trim().equals("") || line.trim().equals("\n"))
                 {
-                    // we have a match, so return the access level
-                    play.Logger.info("USER "+tokens[0]+" FOUND WITH ACCESS LEVEL "+tokens[1]);
-                    return tokens[1];
+                    // skip it
                 }
+                else
+                {
+                    //Get all tokens available in line
+                    String[] tokens = line.split(DELIMITER);
+                   
+                    // check group level access
+                    if (groupnames != null && groupnames.length > 0)
+                    {
+                        for (int i = 0;  i < groupnames.length; i++)
+                        {
+                            groupnames[i] = groupnames[i].replaceAll("\\s",""); // strip any white space
+                            if (tokens[0].toLowerCase().equals(groupnames[i].toLowerCase()))
+                            {
+                                // we have a match, so return the access level
+                                accesslevel = tokens[1];
+                                // set user cart usage
+                                if (play.Play.application().configuration().getString("cart.enabled").equals("true"))
+                                {
+                                    // user specific cart access
+                                    session("usecart", ""+tokens[2]);
+                                }
+                            }
+                        }
+                    }
+
+                    // check individual user level access (overrides group level access)
+                    if (tokens[0].toLowerCase().equals(username.toLowerCase()))
+                    {
+                        // we have a match, so return the access level
+                        accesslevel = tokens[1];
+
+                        // set user cart usage
+                        if (play.Play.application().configuration().getString("cart.enabled").equals("true"))
+                        {
+                            // user specific cart access
+                            session("usecart", ""+tokens[2]);
+                        }   
+                    }
+                }
+            }
+            // override any cart access if the master cart usage is set to false
+            if (play.Play.application().configuration().getString("cart.enabled").equals("false"))
+            {
+                // disable for all
+                session("usecart", "0");  
             }
         }
         catch (Exception e) {
-            play.Logger.info("ERROR");
+            play.Logger.info("ERROR ");
         }
         finally
         {
@@ -156,8 +219,11 @@ public class Signon extends Controller {
                 play.Logger.info("ERROR");
             }
         }
-        return "0"; // lowest level access as default
+
+        return accesslevel; // lowest level access as default
     }
+
+
 
     public Result authenticate() {
 
@@ -177,9 +243,11 @@ public class Signon extends Controller {
             session("username", loginForm.get().username);
 
             // save the access level here
-            //session("accesslevel", getAccessLevel(loginForm.get().username, loginForm.get().password));
+            //session("accesslevel", getAccessLevelFromFile(loginForm.get().username, loginForm.get().password));
 
 
+            //Cache.set("accesslevel", getAccessLevel(loginForm.get().username), 3600); // good for 2 hours
+            Cache.set("accesslevel", 0, 0);
             Cache.set("accesslevel", getAccessLevel(loginForm.get().username), 3600); // good for 2 hours
 
             play.Logger.info("[" + request().remoteAddress() + "] " +
@@ -202,6 +270,10 @@ public class Signon extends Controller {
             play.Logger.info("[" + request().remoteAddress() + "] " +
                     "Login attempt with bad credientials.");
 
+            // clear the cart contents
+            Cache.set("numcartitems", 0, 0);
+            Cache.set("cartdata", null, 0);
+
             return badRequest(login.render(loginForm));
         }
     }
@@ -214,8 +286,12 @@ public class Signon extends Controller {
                 " has succesfully logged out.");
 
         session().clear();
+
+        // clear the cart contents on logout
         Cache.set("numcartitems", 0, 0);
         Cache.set("cartdata", null, 0);
+
+        
         //flash("success", play.i18n.Messages.get("logout.succesful"));
         return redirect(
                 routes.Signon.login()

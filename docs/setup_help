@@ -1,5 +1,44 @@
+The accessfile.csv (found in the conf/ directory) is contains setting user access levels and cart usage
 
-Steps to setup the logging database.
+-----------
+User Access
+-----------
+
+The user access levels are available on 2 levels.
+
+1) Group Level
+  - Set to 0, 1 or 2 
+  - This is checked first, then set in the session as "accesslevel".
+   
+2) User Level (if present)
+  - Set to 0, 1 or 2
+  - This is checked next, then set in the session as "accesslevel".
+  - This setting overrides the previously set group level access.
+
+------------------
+Cart Functionality
+------------------
+
+The cart functionality is available on 3 levels
+
+1) Master Level
+  - This is a master cart setting, found in application.conf; using the 'cart.enabled' variable
+  - If this is set to true, the group, then user cart usage settings are checked (see below)
+  - If this is set to false, the cart is disable for all users and no more checks are done regarding the cart
+
+2) Group Level
+  - Set to 0 or 1 (0 switches cart functionality off, 1 switches it on)
+  - This is checked, then set in the session as "usecart".
+
+3) User Level
+  - Set to 0 or 1 (0 switches cart functionality off, 1 switches it on)
+  - This is checked, then set in the session as "usecart".
+  - This setting overrides the previously set group cart usage.
+
+
+-----------------------------------
+Steps to setup the logging database
+-----------------------------------
 
 1) Create a MySQL database with the name 'cprlogger'
 2) Run the SQL command provided below to create the required tables

@@ -69,7 +69,9 @@
         <div id="session" style="display: none;">
             @session.put(person.firstname+person.lastname, person.registerInformation.cprCitizen.socialSecurityNumber)
         </div>
-        @cart(person)
+        @if(session.get("usecart") == "1") {
+            @cart(person)
+        }
         </p>
         
 

@@ -17,3 +17,8 @@ margin-bottom: 30px;
     margin-top: 1%;
     text-align: right;
 }
+
+div.modal-content {
+	width: 900px;
+	margin-left: -150px;
+}
