@@ -43,7 +43,8 @@ import util.addresses.IAddressParser;
 import util.auth.IAuthentication;
 import util.auth.Secured;
 import util.auth.TestAuthenticationStrategy;
-import util.auth.unboundid.implementations.UnboundidLdapAuthentication;
+import util.auth.WindowsAuthenticationStrategy;
+import util.auth.unboundid.implementations.ProxyUserUnboundidAuthentication;
 import util.cprbroker.ICprBrokerAccessor;
 import util.cprbroker.jaxws.JaxWsCprBroker;
 
