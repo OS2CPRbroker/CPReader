@@ -24,9 +24,11 @@ public class RewriteHandler : IHttpHandler
     public void ProcessRequest(HttpContext context)
     {
         var url = System.Configuration.ConfigurationManager.AppSettings["RewriteUrl"]
-            + context.Request.Path;
+            //+ context.Request.Path;
+            + context.Request.ServerVariables["HTTP_URL"];
 
-        System.Net.HttpWebRequest req = System.Net.WebRequest.Create(url) as HttpWebRequest;
+        var uri = HackedUri.Create(url);
+        System.Net.HttpWebRequest req = System.Net.WebRequest.Create(uri) as HttpWebRequest;
         req.Method = context.Request.HttpMethod;
         req.AllowAutoRedirect = false; // Send redirect bach to browser           
 
