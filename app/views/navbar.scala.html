@@ -65,6 +65,9 @@
             @if(!util.auth.Secured.authenticationStrategy.isInstanceOf[util.auth.IIntegratedAuthenticaton]){
                 <li><a href="@routes.Signon.logout()">@Messages("nav.logout_button")</a></li>
             }
+            @if(true) {
+                <li>@util.auth.Secured.getCurrntUsername()</li>
+            }
             @*<li><a href="JavaScript:newPopup('@routes.Cart.view()');"><span class="glyphicon glyphicon-shopping-cart"></span>  @Messages("nav.cart")</a> </li>*@
             
             @if(session.get("usecart") == "1") {
