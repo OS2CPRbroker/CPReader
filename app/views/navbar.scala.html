@@ -62,11 +62,9 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/">@Messages("nav.help")</a> </li>
+            <li><span id="currentUsername">@util.auth.Secured.getCurrntUsername()</span></li>
             @if(!util.auth.Secured.authenticationStrategy.isInstanceOf[util.auth.IIntegratedAuthenticaton]){
                 <li><a href="@routes.Signon.logout()">@Messages("nav.logout_button")</a></li>
-            }
-            @if(true) {
-                <li>@util.auth.Secured.getCurrntUsername()</li>
             }
             @*<li><a href="JavaScript:newPopup('@routes.Cart.view()');"><span class="glyphicon glyphicon-shopping-cart"></span>  @Messages("nav.cart")</a> </li>*@
             

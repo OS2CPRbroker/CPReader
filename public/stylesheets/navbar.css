@@ -22,3 +22,8 @@ div.modal-content {
 	width: 900px;
 	margin-left: -150px;
 }
+.nav>li>span#currentUsername {
+    padding: 15px;
+    line-height: 20px;
+    display: block;
+}
