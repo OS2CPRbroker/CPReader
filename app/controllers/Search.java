@@ -42,6 +42,7 @@ import play.data.validation.Constraints.Required;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
+import util.AccessLevelManager;
 import util.StringUtils;
 import util.auth.Secured;
 import util.cprbroker.ESourceUsageOrder;
@@ -54,7 +55,6 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.util.Date;
 import java.util.List;
 
 @Singleton
@@ -124,12 +124,7 @@ public class Search extends Controller {
         SearchInput searchInput = new SearchInput(name, address, online);
         searchInput.saveToSession(this);
 
-        // access level - add to person model
-        Integer accessLevel=0;
-        if (Cache.get("accesslevel") != null)
-        {
-            accessLevel = Integer.parseInt(Cache.get("accesslevel").toString());
-        }
+        int accessLevel = AccessLevelManager.getCurrentAccessLevel();
         if (persons != null) 
         {
             // calculate the searchIndex, which is the starting point of the search
@@ -181,18 +176,8 @@ public class Search extends Controller {
         //searchInput.fillFromSession(this);
 
         // access level - add to person model
-        Integer accessLevel=0;
-        if (Cache.get("accesslevel") != null)
-        {
-            accessLevel = Integer.parseInt(Cache.get("accesslevel").toString());
-        }
+        Integer accessLevel = AccessLevelManager.getCurrentAccessLevel();
         
-        // test access level
-        // play.Logger.info("Access Level: " + accessLevel);
-        // accessLevel = 1;
-        // session("accesslevel", ""+accessLevel);
-        // end test access level
-
         if (person == null) {
             return ok(show_error.render(503, searchInput));
         }
@@ -233,12 +218,7 @@ public class Search extends Controller {
         searchInput.fillFromSession(this);
 
         // access level - add to person model
-        Integer accessLevel=0;
-        if (Cache.get("accesslevel") != null)
-        {
-            accessLevel = Integer.parseInt(Cache.get("accesslevel").toString());
-        }
-
+        Integer accessLevel = AccessLevelManager.getCurrentAccessLevel();
         if (person == null) {
             return ok(show_error.render(503, searchInput));
         }
