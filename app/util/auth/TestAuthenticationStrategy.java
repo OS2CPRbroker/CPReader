@@ -42,7 +42,7 @@ import play.Configuration;
  * @author Søren Kirkegård
  *
  */
-public class TestAuthenticationStrategy implements IAuthentication {
+public class TestAuthenticationStrategy implements IAuthentication, IGroupAuthentication {
 
 	private final String username;
 	private final String password;
@@ -100,5 +100,14 @@ public class TestAuthenticationStrategy implements IAuthentication {
 		} else {
 			return new AuthenticationResponse(AuthResponseType.ERROR, "Forkert brugernavn eller kodeord");
 		}
-	}	
+	}
+
+    @Override
+    public String[] getUserGroups(String userName) {
+        String[] ret = new String[3];
+        ret[0] = "group0";
+        ret[1] = "anothergroup";
+        ret[2] = "andanothergroup";
+        return ret;
+    }
 }

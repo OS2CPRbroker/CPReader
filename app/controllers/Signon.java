@@ -44,9 +44,11 @@ import play.data.validation.ValidationError;
 import play.mvc.*;
 import play.mvc.Controller;
 import play.mvc.Result;
+import scala.util.parsing.combinator.testing.Str;
 import util.AccessLevelManager;
 import util.auth.AuthResponseType;
 import util.auth.IAuthenticationResponse;
+import util.auth.IGroupAuthentication;
 import util.auth.Secured;
 import views.html.login;
 import play.cache.Cache;
@@ -125,7 +127,11 @@ public class Signon extends Controller {
             session("username", loginForm.get().username);
 
             // save the access level here
-            AccessLevelManager.setCurrentAccessLevel(AccessLevelManager.getAccessLevel(loginForm.get().username));
+            String userName = loginForm.get().username;
+            String[] userGroups = null;
+            if(IGroupAuthentication.class.isInstance(Secured.authenticationStrategy))
+                userGroups = ((IGroupAuthentication)Secured.authenticationStrategy).getUserGroups(userName);
+            AccessLevelManager.setCurrentAccessLevel(AccessLevelManager.getAccessLevel(userName, userGroups));
 
             play.Logger.info("[" + request().remoteAddress() + "] " +
                     session("username") +

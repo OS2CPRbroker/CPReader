@@ -26,16 +26,8 @@ public abstract class AccessLevelManager {
         Cache.set("accesslevel", accessLevel, 3600); // good for 2 hours
     }
 
-    public static void initGroups()
+    public static String getAccessLevel(String username, String[] groupnames)
     {
-        String groupslist = "group0, anothergroup, andanothergroup";
-        Context.current().session().put("grouplist", groupslist);
-    }
-
-    public static String getAccessLevel(String username)
-    {
-        initGroups(); // test data
-
         // parse csv access levels file
         String accessFileURL = play.Play.application().configuration().getString("accessfile.url")+play.Play.application().configuration().getString("accessfile.name");
         String accesslevel = "0";
@@ -43,7 +35,6 @@ public abstract class AccessLevelManager {
         BufferedReader fileReader = null;
 
         final String DELIMITER = ",";
-
 
         boolean onlineFile=false; // just use a local file in the 'conf' directory for now
         if (play.Play.application().configuration().getString("accessfile.online").equals("true"))
@@ -73,9 +64,6 @@ public abstract class AccessLevelManager {
             fileReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
 
             String line = "";
-            String grouplist = Context.current().session().get("grouplist");
-            String[] groupnames = grouplist.split(DELIMITER);
-
             while ((line = fileReader.readLine()) != null)
             {
                 if (line.isEmpty() || line.trim().equals("") || line.trim().equals("\n"))
