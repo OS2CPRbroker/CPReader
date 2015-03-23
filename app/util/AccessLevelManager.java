@@ -2,6 +2,8 @@ package util;
 
 import play.cache.Cache;
 import play.mvc.Http.Context;
+import util.auth.IGroupAuthentication;
+import util.auth.Secured;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,19 +16,24 @@ import java.net.URL;
  */
 public abstract class AccessLevelManager {
     public static int getCurrentAccessLevel(){
-        Integer accessLevel=0;
-        if (Cache.get("accesslevel") != null)
+        if (Cache.get("accesslevel") == null)
         {
-            accessLevel = Integer.parseInt(Cache.get("accesslevel").toString());
+            String userName = Secured.getCurrntUsername();
+            String[] groupNames = null;
+            if(IGroupAuthentication.class.isInstance(Secured.authenticationStrategy)){
+                groupNames = ((IGroupAuthentication)Secured.authenticationStrategy).getUserGroups(Secured.getCurrntUsername());
+            }
+            setCurrentAccessLevel(calculateAccessLevel(userName, groupNames));
         }
-        return accessLevel;
+        // Now we are sure the value is stored
+        return Integer.parseInt(Cache.get("accesslevel").toString());
     }
 
     public static void setCurrentAccessLevel(String accessLevel) {
         Cache.set("accesslevel", accessLevel, 3600); // good for 2 hours
     }
 
-    public static String getAccessLevel(String username, String[] groupnames)
+    public static String calculateAccessLevel(String username, String[] groupnames)
     {
         // parse csv access levels file
         String accessFileURL = play.Play.application().configuration().getString("accessfile.url")+play.Play.application().configuration().getString("accessfile.name");

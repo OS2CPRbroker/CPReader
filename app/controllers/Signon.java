@@ -41,10 +41,8 @@ import javax.inject.Singleton;
 import play.data.Form;
 import play.data.validation.Constraints.Required;
 import play.data.validation.ValidationError;
-import play.mvc.*;
 import play.mvc.Controller;
 import play.mvc.Result;
-import scala.util.parsing.combinator.testing.Str;
 import util.AccessLevelManager;
 import util.auth.AuthResponseType;
 import util.auth.IAuthenticationResponse;
@@ -52,21 +50,6 @@ import util.auth.IGroupAuthentication;
 import util.auth.Secured;
 import views.html.login;
 import play.cache.Cache;
-
-
-import conf.IConfiguration;
-import play.Configuration;
-import java.io.InputStream;
-import java.lang.ClassLoader;
-import play.api.Play;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.*;
-
-import play.Application.*;
-import play.api.libs.json.*;
 
 
 /**
@@ -126,12 +109,8 @@ public class Signon extends Controller {
             session().clear();
             session("username", loginForm.get().username);
 
-            // save the access level here
-            String userName = loginForm.get().username;
-            String[] userGroups = null;
-            if(IGroupAuthentication.class.isInstance(Secured.authenticationStrategy))
-                userGroups = ((IGroupAuthentication)Secured.authenticationStrategy).getUserGroups(userName);
-            AccessLevelManager.setCurrentAccessLevel(AccessLevelManager.getAccessLevel(userName, userGroups));
+            // Make a dummy call to save the current access level in session/cache/etc
+            int dummy = AccessLevelManager.getCurrentAccessLevel();
 
             play.Logger.info("[" + request().remoteAddress() + "] " +
                     session("username") +
