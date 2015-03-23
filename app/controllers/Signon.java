@@ -44,6 +44,7 @@ import play.data.validation.ValidationError;
 import play.mvc.*;
 import play.mvc.Controller;
 import play.mvc.Result;
+import util.AccessLevelManager;
 import util.auth.AuthResponseType;
 import util.auth.IAuthenticationResponse;
 import util.auth.Secured;
@@ -245,12 +246,7 @@ public class Signon extends Controller {
             session("username", loginForm.get().username);
 
             // save the access level here
-            //session("accesslevel", getAccessLevelFromFile(loginForm.get().username, loginForm.get().password));
-
-
-            //Cache.set("accesslevel", getAccessLevel(loginForm.get().username), 3600); // good for 2 hours
-            Cache.set("accesslevel", 0, 0);
-            Cache.set("accesslevel", getAccessLevel(loginForm.get().username), 3600); // good for 2 hours
+            AccessLevelManager.setCurrentAccessLevel(getAccessLevel(loginForm.get().username));
 
             play.Logger.info("[" + request().remoteAddress() + "] " +
                     session("username") +

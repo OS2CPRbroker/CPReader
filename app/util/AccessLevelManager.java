@@ -14,4 +14,8 @@ public abstract class AccessLevelManager {
         }
         return accessLevel;
     }
+
+    public static void setCurrentAccessLevel(String accessLevel) {
+        Cache.set("accesslevel", accessLevel, 3600); // good for 2 hours
+    }
 }
