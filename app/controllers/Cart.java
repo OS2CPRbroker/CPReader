@@ -142,10 +142,12 @@ public class Cart extends Controller
     //public Result addItem(String firstname, String lastname, String uri)
     public Result addItem(String cprnum, String uri)
     {
+
+        play.Logger.info("adding " + cprnum);
         boolean exists=false;
         List<String> personData = new ArrayList<String>();
         
-        flash("message", session(cprnum+"_fname") + " " + session(cprnum+"_mname") + " " + session(cprnum+"_lname") + "has been added to the cart.");
+        
         if (session(cprnum+"_cprnum") != null)
         {
 
@@ -175,13 +177,20 @@ public class Cart extends Controller
             }
             if(!exists) 
             {
+                
                 cartItems.add( personData );
+                flash("message", session(cprnum+"_fname") + " " + session(cprnum+"_mname") + " " + session(cprnum+"_lname") + "has been added to the cart.");
+            }
+            else
+            {
+                flash("message", session(cprnum+"_fname") + " " + session(cprnum+"_mname") + " " + session(cprnum+"_lname") + "has aready been added to the cart.");
             }
             Cache.set("numcartitems", cartItems.size(), CART_CACHE_TIMEOUT);
             Cache.set("cartdata", cartItems, CART_CACHE_TIMEOUT);
         } 
         else
         {
+            play.Logger.info("problem adding " + cprnum);
             //logger.logInfo("NO SUCH PERSON: " + session(firstname+lastname));
         }
         return redirect(uri);

@@ -99,6 +99,8 @@ public class Signon extends Controller {
     }
 
     public static Result login() {
+         Cache.set("numcartitems", 0, 0);
+        Cache.set("cartdata", null, 0);
         return ok(
                 login.render(Form.form(Login.class))
         );
