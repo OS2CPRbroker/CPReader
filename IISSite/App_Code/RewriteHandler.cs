@@ -87,7 +87,9 @@ public class RewriteHandler : IHttpHandler
 
             // Pass user groups
             var windowsIdentity = context.User.Identity as System.Security.Principal.WindowsIdentity;
-            var groupNames = windowsIdentity.Groups.Select(g => g.Translate(typeof(System.Security.Principal.NTAccount)).Value).ToArray();
+            var groupNames = new string[] { };
+            if (windowsIdentity.Groups != null)
+                groupNames = windowsIdentity.Groups.Select(g => g.Translate(typeof(System.Security.Principal.NTAccount)).Value).ToArray();
             var groupsCookie = new Cookie("") { Name = "usergroups", Value = string.Join(",", groupNames) };
             cookies.Add(groupsCookie);
 
