@@ -143,23 +143,16 @@
 
                                 @if(accesslevel > 0) {
 
-                                    @*
-                                    <ul class="nav nav-pills nav-justified">
-                                        <li class="active"><a href="#generelt" data-toggle="pill">Generelt</a></li>
-                                        <li><a href="#addresse" data-toggle="pill">Adresse</a></li>
-                                        <li><a href="#relationer" data-toggle="pill">Relationer</a></li>    
-                                    </ul>
-                                    *@
-                                    
+                                  
 
                                     
                                     <ul class="nav nav-pills nav-justified">
                                         @if(accesslevel > 1) {
-                                            <li class="active"><a href="#generelt" data-toggle="pill">Generelt</a></li>
-                                            <li><a href="#addresse" data-toggle="pill">Adresse</a></li>
+                                            <li class="active"><a href="#generelt@person.registerInformation.cprCitizen.socialSecurityNumber" data-toggle="pill">Generelt</a></li>
+                                            <li><a href="#addresse@person.registerInformation.cprCitizen.socialSecurityNumber" data-toggle="pill">Adresse</a></li>
                                             @if(person.relationsWithPerson != null) {
                                                 @if(person.relationsWithPerson.allRelations.length > 0) {
-                                                    <li><a href="#relationer" data-toggle="pill">Relationer</a></li>
+                                                    <li><a href="#relationer@person.registerInformation.cprCitizen.socialSecurityNumber" data-toggle="pill">Relationer</a></li>
                                                 }
                                             }
                                         }else{
@@ -179,7 +172,7 @@
 
 
                                         @if(accesslevel > 1) {
-                                            <div class="tab-pane active" id="generelt">
+                                            <div class="tab-pane active" id="generelt@person.registerInformation.cprCitizen.socialSecurityNumber">
                                                 <div class="row">
                                                     <div class="col-md-7">
                                                         
@@ -261,7 +254,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="tab-pane" id="addresse">
+                                            <div class="tab-pane" id="addresse@person.registerInformation.cprCitizen.socialSecurityNumber">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         @if(person.address != null) {
@@ -286,7 +279,7 @@
                                         @if(person.relationsWithPerson != null) {
                                             @if(person.relationsWithPerson.allRelations.length > 0) {
                                                 @if(accesslevel > 1) {
-                                                <div class="tab-pane" id="relationer">
+                                                <div class="tab-pane" id="relationer@person.registerInformation.cprCitizen.socialSecurityNumber">
                                                 }
                                                     <div class="row">
                                                         <div class="col-md-12">
