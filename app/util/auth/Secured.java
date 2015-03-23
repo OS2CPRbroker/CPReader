@@ -45,7 +45,7 @@ public class Secured extends Security.Authenticator {
 
 	@Override
 	public final String getUsername(final Context ctx) {
-		if(getIsIntegratedAuthenticaton()){
+		if(IIntegratedAuthenticaton.class.isInstance(authenticationStrategy)){
 			IIntegratedAuthenticaton integratedAuthenticaton= (IIntegratedAuthenticaton) authenticationStrategy;
 			return integratedAuthenticaton.getUsername();
 		}
@@ -56,7 +56,7 @@ public class Secured extends Security.Authenticator {
 
 	@Override
 	public final Result onUnauthorized(final Context ctx) {
-		if(getIsIntegratedAuthenticaton()) {
+		if(IIntegratedAuthenticaton.class.isInstance(authenticationStrategy)) {
 			// Do nothing special - no access
 			return super.onUnauthorized(ctx);
 		}
@@ -67,13 +67,6 @@ public class Secured extends Security.Authenticator {
 
 	public static String getCurrntUsername() {
 		return new Secured().getUsername(Context.current());
-	}
-
-	public static Boolean getIsIntegratedAuthenticaton(){
-		if(IIntegratedAuthenticaton.class.isInstance(authenticationStrategy))
-			return true;
-		else
-			return false;
 	}
 
 }
