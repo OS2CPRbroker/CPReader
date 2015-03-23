@@ -28,6 +28,7 @@ nav.quicksearch_local = Lokal
 
 nav.help = Hjælp
 nav.logout_button = Log ud
+nav.cart = Vis kurv
 
 results.list.amountOfResults = Der er {0} resultater på søgningen:
 results.list.searchFailed = Fejl i søgningen
@@ -90,7 +91,7 @@ person.address.danishAddress.suite = Suite
 person.address.danishAddress.note = Note
 person.address.danishAddress.municipalityCode = Kommunekode
 person.address.danishAddress.streetCode = Vejkode
-person.address.danishAddress.streetBuildingIdentifier = nummer
+person.address.danishAddress.streetBuildingIdentifier = Nummer
 person.address.danishAddress.danishNote = Ekstranote
 person.address.danishAddress.politiDistrikt = Politidistrikt
 person.address.danishAddress.postDistrikt = Postdistrikt
