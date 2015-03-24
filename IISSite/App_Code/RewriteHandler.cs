@@ -32,6 +32,20 @@ public class RewriteHandler : IHttpHandler
         req.Method = context.Request.HttpMethod;
         req.AllowAutoRedirect = false; // Send redirect bach to browser           
 
+        CopyRequestHeaders(context, req);
+        AddAuthenticationCookies(context, req);
+        CopyRequestStream(context, req);
+
+        // Get response
+        var res = req.GetResponse() as HttpWebResponse;
+
+        CopyResponseHeaders(context, res);
+
+        CopyResponseStreamOrRedirect(context, res);
+    }
+
+    private static void CopyRequestHeaders(HttpContext context, System.Net.HttpWebRequest req)
+    {
         // Copy request headers
         foreach (var headerKey in context.Request.Headers.AllKeys)
         {
@@ -76,7 +90,10 @@ public class RewriteHandler : IHttpHandler
                     break;
             }
         }
+    }
 
+    private static void AddAuthenticationCookies(HttpContext context, System.Net.HttpWebRequest req)
+    {
         // Copy user identity to new cookie
         if (context.User != null && context.User.Identity != null)
         {
@@ -98,7 +115,10 @@ public class RewriteHandler : IHttpHandler
             var cookiesString = CookieParser.ToString(cookies.ToArray());
             req.Headers[HttpRequestHeader.Cookie] = cookiesString;
         }
-
+    }
+    
+    private static void CopyRequestStream(HttpContext context, System.Net.HttpWebRequest req)
+    {
         // Copy request content
         if (req.ContentLength > 0)
         {
@@ -109,10 +129,10 @@ public class RewriteHandler : IHttpHandler
                 reqStream.Write(reqBytes, 0, reqBytes.Length);
             }
         }
+    }
 
-        // Get response
-        var res = req.GetResponse() as HttpWebResponse;
-
+    private static void CopyResponseHeaders(HttpContext context, HttpWebResponse res)
+    {
         // Copy responbse headers
         foreach (var headerKey in res.Headers.AllKeys)
         {
@@ -159,7 +179,10 @@ public class RewriteHandler : IHttpHandler
                     break;
             }
         }
+    }
 
+    private static void CopyResponseStreamOrRedirect(HttpContext context, HttpWebResponse res)
+    {
         //Copy response data or redirect
         context.Response.StatusCode = (int)res.StatusCode;
         if (res.StatusCode == HttpStatusCode.SeeOther)
@@ -188,4 +211,5 @@ public class RewriteHandler : IHttpHandler
             }
         }
     }
+
 }
