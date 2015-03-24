@@ -39,9 +39,15 @@ public class RewriteHandler : IHttpHandler
         // Get response
         var res = req.GetResponse() as HttpWebResponse;
 
+        if (res.StatusCode == HttpStatusCode.SeeOther)
+        {
+            context.Response.Redirect(res.Headers["Location"]);
+            context.Response.End();
+            return;
+        }
         CopyResponseHeaders(context, res);
 
-        CopyResponseStreamOrRedirect(context, res);
+        CopyResponseStream(context, res);
     }
 
     private static void CopyRequestHeaders(HttpContext context, System.Net.HttpWebRequest req)
@@ -116,7 +122,7 @@ public class RewriteHandler : IHttpHandler
             req.Headers[HttpRequestHeader.Cookie] = cookiesString;
         }
     }
-    
+
     private static void CopyRequestStream(HttpContext context, System.Net.HttpWebRequest req)
     {
         // Copy request content
@@ -181,35 +187,27 @@ public class RewriteHandler : IHttpHandler
         }
     }
 
-    private static void CopyResponseStreamOrRedirect(HttpContext context, HttpWebResponse res)
+    private static void CopyResponseStream(HttpContext context, HttpWebResponse res)
     {
         //Copy response data or redirect
         context.Response.StatusCode = (int)res.StatusCode;
-        if (res.StatusCode == HttpStatusCode.SeeOther)
+        using (var resStream = res.GetResponseStream())
         {
-            context.Response.RedirectLocation = res.Headers["Location"];
-        }
-        else
-        {
-            using (var resStream = res.GetResponseStream())
+            if (string.IsNullOrEmpty(res.CharacterSet)) // Binary response (image)
             {
-                if (string.IsNullOrEmpty(res.CharacterSet)) // Binary response (image)
+                var resBytes = new byte[res.ContentLength];
+                resStream.Read(resBytes, 0, resBytes.Length);
+                context.Response.OutputStream.Write(resBytes, 0, resBytes.Length);
+            }
+            else
+            {
+                var enc = Encoding.GetEncoding(res.CharacterSet); // text response
+                using (var rd = new System.IO.StreamReader(resStream))
                 {
-                    var resBytes = new byte[res.ContentLength];
-                    resStream.Read(resBytes, 0, resBytes.Length);
-                    context.Response.OutputStream.Write(resBytes, 0, resBytes.Length);
-                }
-                else
-                {
-                    var enc = Encoding.GetEncoding(res.CharacterSet); // text response
-                    using (var rd = new System.IO.StreamReader(resStream))
-                    {
-                        var resString = rd.ReadToEnd();
-                        context.Response.Output.Write(resString);
-                    }
+                    var resString = rd.ReadToEnd();
+                    context.Response.Output.Write(resString);
                 }
             }
         }
     }
-
 }
