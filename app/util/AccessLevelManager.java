@@ -26,11 +26,11 @@ public abstract class AccessLevelManager {
             setCurrentAccessLevel(calculateAccessLevel(userName, groupNames));
         }
         // Now we are sure the value is stored
-        return Integer.parseInt(Cache.get("accesslevel").toString());
+        return Integer.parseInt(Context.current().session().get("accesslevel"));
     }
 
     public static void setCurrentAccessLevel(String accessLevel) {
-        Cache.set("accesslevel", accessLevel, 3600); // good for 2 hours
+        Context.current().session().put("accesslevel", accessLevel); // good for 2 hours
     }
 
     public static String calculateAccessLevel(String username, String[] groupnames)
