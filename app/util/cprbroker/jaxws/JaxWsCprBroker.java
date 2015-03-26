@@ -395,11 +395,7 @@ public class JaxWsCprBroker implements ICprBrokerAccessor {
                     LaesResultatType laesResultatType = soegListOutputType.getLaesResultat().get(i);
                     String uuid = soegListOutputType.getIdliste().getUUID().get(i);
 
-
-                    persons.add(getPerson(uuid, laesResultatType, soegListOutputType.getStandardRetur(), true));
-
-
-
+                    persons.add(getPerson(uuid, laesResultatType, soegListOutputType.getStandardRetur(), fetchRelations));
                 }
             }
         }
@@ -640,6 +636,7 @@ public class JaxWsCprBroker implements ICprBrokerAccessor {
             //region Relations
             // Getting the person information for each relation
             if (isGettingRelations) {
+                play.Logger.info("getting relations");
                 // Assigning person relations
                 IPersonRelationships newRelations = getAllPersonRelations(laesResultatType);
                 if (newRelations != null) {
