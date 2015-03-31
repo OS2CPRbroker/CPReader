@@ -35,6 +35,7 @@
 
 @import util.cprbroker.ERelationshipType;
 @import play.Play;
+@import play.api.Play.current;
 <div class="col-md-12">
  <div class="panel panel-default">
 	    <div class="panel-heading">
@@ -42,10 +43,6 @@
     <a href="/show/uuid/@relation.person.uuid/">
     }           
 		     
-
-
-
-
 
 
 	         <h3 class="panel-title">
@@ -60,39 +57,16 @@
 	         </h3>
 
            <p class="text-right">
-            @if(relation != null && relation.person.firstname != null && relation.person.lastname != null && relation.person.registerInformation.cprCitizen.socialSecurityNumber != null) {
+            @if(relation != null && relation.person.firstname != null && relation.person.lastname != null && relation.person.uuid() != null) {
               <div id="session" style="display: none;">
-              @*@session.put(relation.person.firstname+relation.person.lastname, relation.person.registerInformation.cprCitizen.socialSecurityNumber)
-
-              
-              @session.put(person.registerInformation.cprCitizen.socialSecurityNumber+"_cprnum", person.registerInformation.cprCitizen.socialSecurityNumber)
-              *@
-
-
-              @session.put(relation.person.registerInformation.cprCitizen.socialSecurityNumber+"_cprnum", relation.person.registerInformation.cprCitizen.socialSecurityNumber)
-
-              
-                @session.put(relation.person.registerInformation.cprCitizen.socialSecurityNumber+"_fname", relation.person.firstname)
-                @if(relation.person.middelname != null) {
-                    @session.put(relation.person.registerInformation.cprCitizen.socialSecurityNumber+"_mname", relation.person.middelname)
-                } else {
-                    @session.put(relation.person.registerInformation.cprCitizen.socialSecurityNumber+"_mname", "")
-                }
-                @session.put(relation.person.registerInformation.cprCitizen.socialSecurityNumber+"_lname", relation.person.lastname)
-
-
+                @session.put(relation.person.uuid()+"_uuid", relation.person.uuid())
+                @play.api.cache.Cache.set(relation.person.uuid(), relation.person);
               </div>
               @if(session.get("usecart") == "1") {
                 @cart(relation.person)
               }
             }
          </p>
-
-
-
-
-
-
 
 
 		 </div>

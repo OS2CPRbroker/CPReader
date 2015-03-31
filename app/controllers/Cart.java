@@ -43,10 +43,11 @@ import views.html.index;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Singleton;
-
+import util.cprbroker.IPerson;
 import java.awt.*;
 import java.awt.datatransfer.*;
 import java.io.*;
+import play.i18n.Messages;
 
 import util.Logger;
 
@@ -76,8 +77,6 @@ public class Cart extends Controller
 
     public Result view() 
     {
-
-        //logger.logInfo("test");
         // get cart items from cache
         List<List<String>> cartItems = (List<List<String>>) Cache.get("cartdata");
         if (cartItems == null)
@@ -87,11 +86,24 @@ public class Cart extends Controller
     	return ok(views.html.viewcart.render(cartItems.size(), cartItems));
     }
 
+    public int itemsInCart()
+    {
+        
+        List<List<String>> cartItems = (List<List<String>>) Cache.get("cartdata");
+
+        if(cartItems != null && cartItems.size()>0)
+        {
+            return cartItems.size();
+        }
+
+        return 0;
+    }
+
     public Result empty(String uri) 
     {
     	cartItems = new ArrayList<List<String>>();
         Cache.set("cartdata", cartItems, CART_CACHE_TIMEOUT);
-        flash("message", "Cart emptied.");
+        flash("message", Messages.get("cart.emptied"));
         Cache.set("numcartitems", cartItems.size(), CART_CACHE_TIMEOUT);
         // redirect to where we came from
         String[] segments = uri.split("/");
@@ -103,6 +115,7 @@ public class Cart extends Controller
     	Clipboard clipBoard = Toolkit.getDefaultToolkit().getSystemClipboard();
     	StringSelection copiedData = new StringSelection("");
     	StringBuilder stringBuilder = new StringBuilder();
+        
         // get cart items from cache
         List<List<String>> cartItems = (List<List<String>>) Cache.get("cartdata");
         int itemscopied = 0;
@@ -127,7 +140,9 @@ public class Cart extends Controller
                 Object o = t.getTransferData( DataFlavor.stringFlavor );
                 String data = (String)t.getTransferData( DataFlavor.stringFlavor );
             }
-            flash("message", itemscopied + " items copied to the clipboard.");
+            flash("message", itemscopied + " " + Messages.get("cart.copied"));
+
+
             //return ok(views.html.viewcart.render(cartItems.size(), cartItems));
             return redirect(uri);
         }
@@ -142,21 +157,27 @@ public class Cart extends Controller
     //public Result addItem(String firstname, String lastname, String uri)
     public Result addItem(String cprnum, String uri)
     {
-
         play.Logger.info("adding " + cprnum);
+
+
         boolean exists=false;
         List<String> personData = new ArrayList<String>();
-        
-        
-        if (session(cprnum+"_cprnum") != null)
+        IPerson person = (IPerson)Cache.get(cprnum);
+        if (person != null)
         {
+            String firstname=person.firstname();
+            String middlename="";
+            String lastname=person.lastname();
 
-            personData.add(session(cprnum+"_fname"));
-            personData.add(session(cprnum+"_mname"));
-            personData.add(session(cprnum+"_lname"));
-            personData.add(session(cprnum+"_cprnum"));
-
-            //logger.logInfo("ID FROM SESSION: " + session(firstname+lastname));
+            if (person.middelname() != null) {   
+                middlename = person.middelname();
+            }
+        
+            personData.add(firstname);
+            personData.add(middlename);
+            personData.add(lastname);
+            personData.add(person.registerInformation().cprCitizen().socialSecurityNumber());
+            personData.add(session(cprnum+"_uuid"));
 
             // get cart items from cache
             List<List<String>> cartItems = (List<List<String>>) Cache.get("cartdata");
@@ -169,7 +190,7 @@ public class Cart extends Controller
             // scan through and see if the person already exists
             for (int i = 0;  i < cartItems.size(); i++)
             {
-                String searchByCprNum = cartItems.get(i).get(3);
+                String searchByCprNum = cartItems.get(i).get(4);
                 if(searchByCprNum.equals(cprnum))
                 {
                     exists=true;
@@ -179,11 +200,11 @@ public class Cart extends Controller
             {
                 
                 cartItems.add( personData );
-                flash("message", session(cprnum+"_fname") + " " + session(cprnum+"_mname") + " " + session(cprnum+"_lname") + "has been added to the cart.");
+                flash("message", firstname + " " + middlename + " " + lastname + " " + Messages.get("cart.added"));
             }
             else
             {
-                flash("message", session(cprnum+"_fname") + " " + session(cprnum+"_mname") + " " + session(cprnum+"_lname") + "has aready been added to the cart.");
+                flash("message", firstname + " " + middlename + " " + lastname + " " + Messages.get("cart.exists"));
             }
             Cache.set("numcartitems", cartItems.size(), CART_CACHE_TIMEOUT);
             Cache.set("cartdata", cartItems, CART_CACHE_TIMEOUT);
@@ -191,7 +212,6 @@ public class Cart extends Controller
         else
         {
             play.Logger.info("problem adding " + cprnum);
-            //logger.logInfo("NO SUCH PERSON: " + session(firstname+lastname));
         }
         return redirect(uri);
     }
@@ -209,11 +229,11 @@ public class Cart extends Controller
      	for ( int i = 0;  i < cartItems.size(); i++)
      	{
      		
-            String searchByCprNum = cartItems.get(i).get(3);
-            if(searchByCprNum.equals(session(cprnum+"_cprnum")))
+            String searchByCprNum = cartItems.get(i).get(4);
+            if(searchByCprNum.equals(session(cprnum+"_uuid")))
             {
+                flash("message", cartItems.get(i).get(0) + " " + cartItems.get(i).get(1) + " "+ cartItems.get(i).get(2) + " " + Messages.get("cart.removed"));
                 cartItems.remove(i);
-                flash("message", session(cprnum+"_fname") + " " + session(cprnum+"_mname") + " "+ session(cprnum+"_lname") + " removed from the cart.");
             }
         }
         Cache.set("numcartitems", cartItems.size(), CART_CACHE_TIMEOUT);

@@ -72,7 +72,7 @@
                                     <tr>
                                     <td>@item(0) @item(1) @item(2)</td>
                                     <td>@item(3)</td>
-                                    <td><a href="@routes.Cart.removeItem(item(3), request.uri)">Remove</a></td>
+                                    <td><a href="@routes.Cart.removeItem(item(4), request.uri)">Remove</a></td>
                                     </tr>
                                 }
                             </tbody>
@@ -93,7 +93,7 @@
                     </div>
                 } else { 
                     <div class="col-md-8">
-                    There are currently no items in the cart
+                    @Messages("cart.noitems")
                     </div>
                 }
 

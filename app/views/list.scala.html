@@ -35,27 +35,30 @@
 @import util.cprbroker.EAddressType;
 @import util.Converters;
 @import play.Play;
+@import play.api.Play.current;
     @main("CPReader", searchInput) {
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                @if(persons != null) {
+        
 
-                    @Messages("results.list.amountOfResults", results) <strong>@searchInput.getQuery()</strong>
-                    @if(searchInput.getAddressQuery() != null && searchInput.getAddressQuery().length > 0) {
-                            &nbsp;@searchInput.getAddressQuery();
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                    @if(persons != null) {
+
+                        @Messages("results.list.amountOfResults", results) <strong>@searchInput.getQuery()</strong>
+                        @if(searchInput.getAddressQuery() != null && searchInput.getAddressQuery().length > 0) {
+                                &nbsp;@searchInput.getAddressQuery();
+                        }
+                    } else {
+                        @Messages("results.list.searchFailed", results)
                     }
-                } else {
-                    @Messages("results.list.searchFailed", results)
-                }
-                </h3>
+                    </h3>
+                </div>
             </div>
-        </div>
         
 
-        @partial_pagination(results, currentpage, location)
-        
+            @partial_pagination(results, currentpage, location)
+       
         <div class="list-group">
         @if(persons != null) {
             <div class="panel panel-default">
@@ -73,43 +76,147 @@
             </div>
 
             @for(person <- persons) {
-                <a href="#detailModal@person.registerInformation.cprCitizen.socialSecurityNumber" data-toggle="modal" class="list-group-item">
-                    @person.registerInformation.cprCitizen.socialSecurityNumber
-                    @if(person.firstname) {
-                        @person.firstname
-                    }
-                    @if(person.middelname) {
-                        @person.middelname
-                    }
-                    @if(person.lastname) {
-                        @person.lastname
-                    }
-                    @if(person.address != null && person.address.addressType == util.cprbroker.EAddressType.Danish) {
-                        <span class="text-muted">
-                            @if(person.address.danishAddress.streetName) {
-                                @person.address.danishAddress.streetName
+
+                <div class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-1">
+                            @person.registerInformation.cprCitizen.socialSecurityNumber
+                        </div>
+                        <div class="col-md-2">
+                            @if(person.firstname) {
+                                @person.firstname
                             }
-                            @if(person.address.danishAddress.streetBuilding) {
-                                @person.address.danishAddress.streetBuilding
+                            @if(person.middelname) {
+                                @person.middelname
                             }
-                            @if(person.address.danishAddress.floor) {
-                                @person.address.danishAddress.floor
+                            @if(person.lastname) {
+                                @person.lastname
                             }
-                            @if(person.address.danishAddress.suite) {
-                                @person.address.danishAddress.suite
+                        </div>
+                        <div class="col-md-4">
+                            @if(person.address != null && person.address.addressType == util.cprbroker.EAddressType.Danish) {
+                                <span class="text-muted">
+                                    @if(person.address.danishAddress.streetName) {
+                                        @person.address.danishAddress.streetName
+                                    }
+                                    @if(person.address.danishAddress.streetBuilding) {
+                                        @person.address.danishAddress.streetBuilding
+                                    }
+                                    @if(person.address.danishAddress.floor) {
+                                        @person.address.danishAddress.floor
+                                    }
+                                    @if(person.address.danishAddress.suite) {
+                                        @person.address.danishAddress.suite
+                                    }
+                                    @if(person.address.danishAddress.postCode) {
+                                        @person.address.danishAddress.postCode
+                                    }
+                                    @if(person.address.danishAddress.districtName) {
+                                        @person.address.danishAddress.districtName
+                                    }
+                                </span>
                             }
-                            @if(person.address.danishAddress.postCode) {
-                                @person.address.danishAddress.postCode
+                        </div>
+                        <div class="col-md-1">
+                        @if(person.tilstand.livStatusKode != null) {
+                                @person.tilstand.livStatusKode
+                        }
+                        </div>
+                        @if(accesslevel > 0) {
+                        <div class="col-md-2 text-right">
+                            <a href="#detailModal@person.uuid()" data-toggle="modal" ><span class="glyphicon glyphicon-user"></span> @Messages("person.viewdetails")</a>
+                        </div>
+                        <div class="col-md-2 text-right">
+                            @if(session.get("usecart") == "1") {  @cart(person) }
+                        </div>
+                        } else {
+                        <div class="col-md-4 text-right">
+                            @if(session.get("usecart") == "1") {  @cart(person) }
+                        </div>
+                        }
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+                @*
+                <div class="row">
+                    <div class="col-md-10">
+
+
+                        
+                        @if(accesslevel > 0) {
+                            <a href="#detailModal@person.uuid()" data-toggle="modal" class="list-group-item">
+                        } else {
+                            <div class="list-group-item">
+                        }
+
+
+                            @person.registerInformation.cprCitizen.socialSecurityNumber
+                            @if(person.firstname) {
+                                @person.firstname
                             }
-                            @if(person.address.danishAddress.districtName) {
-                                @person.address.danishAddress.districtName
+                            @if(person.middelname) {
+                                @person.middelname
                             }
-                        </span>
-                    }
-                </a>
+                            @if(person.lastname) {
+                                @person.lastname
+                            }
+
+                            @if(person.address != null && person.address.addressType == util.cprbroker.EAddressType.Danish) {
+                                <span class="text-muted">
+                                    @if(person.address.danishAddress.streetName) {
+                                        @person.address.danishAddress.streetName
+                                    }
+                                    @if(person.address.danishAddress.streetBuilding) {
+                                        @person.address.danishAddress.streetBuilding
+                                    }
+                                    @if(person.address.danishAddress.floor) {
+                                        @person.address.danishAddress.floor
+                                    }
+                                    @if(person.address.danishAddress.suite) {
+                                        @person.address.danishAddress.suite
+                                    }
+                                    @if(person.address.danishAddress.postCode) {
+                                        @person.address.danishAddress.postCode
+                                    }
+                                    @if(person.address.danishAddress.districtName) {
+                                        @person.address.danishAddress.districtName
+                                    }
+                                </span>
+                            }
+
+                        @if(accesslevel > 0) {   
+                            </a>
+                        } else {
+                            </div>
+                        }
+
+
+
+                    </div>
+
+                    <div class="col-md-2 list-group-item">
+                        @if(session.get("usecart") == "1") {  @cart(person) }
+                    </div>
+
+                    
+
+                </div>
+                *@
+
+
+
+
+
 
                 <!-- Modal HTML -->
-                <div id="detailModal@person.registerInformation.cprCitizen.socialSecurityNumber" class="modal fade">
+                <div id="detailModal@person.uuid()" class="modal fade">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -138,16 +245,20 @@
                                     <p class="text-right">
                                     <div id="session" style="display: none;">
 
-                                        @session.put(person.registerInformation.cprCitizen.socialSecurityNumber+"_cprnum", person.registerInformation.cprCitizen.socialSecurityNumber)
+                                        @session.put(person.uuid()+"_uuid", person.uuid())
+                                        @*
+                                            @session.put(person.uuid()+"_cprnum", person.registerInformation.cprCitizen.socialSecurityNumber)
 
-                                        @session.put(person.registerInformation.cprCitizen.socialSecurityNumber+"_fname", person.firstname)
+
+                                        @session.put(person.uuid()+"_fname", person.firstname)
                                         @if(person.middelname != null) {
-                                            @session.put(person.registerInformation.cprCitizen.socialSecurityNumber+"_mname", person.middelname)
+                                            @session.put(person.uuid()+"_mname", person.middelname)
                                         } else {
-                                            @session.put(person.registerInformation.cprCitizen.socialSecurityNumber+"_mname", "")
+                                            @session.put(person.uuid()+"_mname", "")
                                         }
-                                        @session.put(person.registerInformation.cprCitizen.socialSecurityNumber+"_lname", person.lastname)
-
+                                        @session.put(person.uuid()+"_lname", person.lastname)
+                                        *@
+                                        @play.api.cache.Cache.set(person.uuid(), person);
                                     </div>
                                     @if(session.get("usecart") == "1") {
                                         @cart(person)
@@ -172,11 +283,11 @@
                                     
                                     <ul class="nav nav-pills nav-justified">
                                         @if(accesslevel > 1) {
-                                            <li class="active"><a href="#generelt@person.registerInformation.cprCitizen.socialSecurityNumber" data-toggle="pill">Generelt</a></li>
-                                            <li><a href="#addresse@person.registerInformation.cprCitizen.socialSecurityNumber" data-toggle="pill">Adresse</a></li>
+                                            <li class="active"><a href="#generelt@person.uuid()" data-toggle="pill">Generelt</a></li>
+                                            <li><a href="#addresse@person.uuid()" data-toggle="pill">Adresse</a></li>
                                             @if(person.relationsWithPerson != null) {
                                                 @if(person.relationsWithPerson.allRelations.length > 0) {
-                                                    <li><a href="#relationer@person.registerInformation.cprCitizen.socialSecurityNumber" data-toggle="pill">Relationer</a></li>
+                                                    <li><a href="#relationer@person.uuid()" data-toggle="pill">Relationer</a></li>
                                                 }
                                             }
                                         }else{
@@ -196,7 +307,7 @@
 
 
                                         @if(accesslevel > 1) {
-                                            <div class="tab-pane active" id="generelt@person.registerInformation.cprCitizen.socialSecurityNumber">
+                                            <div class="tab-pane active" id="generelt@person.uuid()">
                                                 <div class="row">
                                                     <div class="col-md-7">
                                                         
@@ -278,7 +389,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="tab-pane" id="addresse@person.registerInformation.cprCitizen.socialSecurityNumber">
+                                            <div class="tab-pane" id="addresse@person.uuid()">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         @if(person.address != null) {
@@ -303,7 +414,7 @@
                                         @if(person.relationsWithPerson != null) {
                                             @if(person.relationsWithPerson.allRelations.length > 0) {
                                                 @if(accesslevel > 1) {
-                                                <div class="tab-pane" id="relationer@person.registerInformation.cprCitizen.socialSecurityNumber">
+                                                <div class="tab-pane" id="relationer@person.uuid()">
                                                 }
                                                     <div class="row">
                                                         <div class="col-md-12">
@@ -338,6 +449,7 @@
                         </div>
                     </div>
                 </div>
+
 
 
 
@@ -381,8 +493,8 @@
             }
         }
         </div>
-
-        @partial_pagination(results, currentpage, location)
-
+       
+            @partial_pagination(results, currentpage, location)
+       
 
     }

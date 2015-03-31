@@ -62,10 +62,12 @@ public class Search extends Controller {
 
     private static ICprBrokerAccessor cprBroker;
     private static int onlineCacheTimeout;
+    private static IConfiguration config;
 
     @Inject
     public Search(ICprBrokerAccessor newCprBroker, IConfiguration conf)
     {
+        config = conf;
         cprBroker = newCprBroker;
         onlineCacheTimeout = conf.getConfiguration().getInt("cprbroker.onlinecacheseconds");
     }
@@ -143,7 +145,7 @@ public class Search extends Controller {
         } 
         else
         {
-            return ok(list.render(persons, 0, page, path, searchInput, accessLevel));
+            return ok(list.render(persons, 1, page, path, searchInput, accessLevel));
         }
     }
 
@@ -177,7 +179,10 @@ public class Search extends Controller {
 
         // access level - add to person model
         Integer accessLevel = AccessLevelManager.getCurrentAccessLevel();
-        
+        if (accessLevel < 1)
+        {
+            return ok(views.html.access_denied.render(401, searchInput, "Access denied."));
+        }
         if (person == null) {
             return ok(show_error.render(503, searchInput));
         }
@@ -188,13 +193,13 @@ public class Search extends Controller {
             path = path.substring(0, path.indexOf("page") + 5);
             int page = 1;      
  
-            return ok(views.html.list.render(persons, 0, page, path, searchInput, accessLevel));
+            return ok(views.html.list.render(persons, 1, page, path, searchInput, accessLevel));
         } else {
             //TODO - A person wasn't found
             return ok(show_error.render(person.code(), searchInput));
         }
     }
-
+    /*
     @Security.Authenticated(Secured.class)
     public Result showPersonFull(String uuid) {
         // Logging the show request
@@ -219,6 +224,11 @@ public class Search extends Controller {
 
         // access level - add to person model
         Integer accessLevel = AccessLevelManager.getCurrentAccessLevel();
+
+        if (accessLevel < 1)
+        {
+            return ok(views.html.access_denied.render(401, searchInput, "Access denied."));
+        }
         if (person == null) {
             return ok(show_error.render(503, searchInput));
         }
@@ -232,7 +242,7 @@ public class Search extends Controller {
             return ok(show_error.render(person.code(), searchInput));
         }
     }
-
+    */
 
     @Security.Authenticated(Secured.class)
     public Result getUuidFromCpr() {
@@ -281,7 +291,22 @@ public class Search extends Controller {
         public SearchInput(String name, String address, Boolean online) {
             this.setQuery(name);
             this.setAddressQuery(address);
-            this.setOnline(online);
+
+            if (config.getConfiguration().getInt("search.type") == 1)
+            {   
+                play.Logger.info("OFFLINE SEARCH");
+                this.setOnline(false); // local            
+            }
+            else if (config.getConfiguration().getInt("search.type") == 2)
+            {
+                play.Logger.info("ONLINE SEARCH");
+                this.setOnline(true); // online
+            }
+            else
+            {
+                play.Logger.info("USE RADIO BUTTON VALUE: "+online);
+                this.setOnline(online); // use radio button value
+            }
         }
 
         @Required
@@ -319,9 +344,24 @@ public class Search extends Controller {
             setQuery(StringUtils.format("%s",controller.session("query")));
             setAddressQuery(StringUtils.format("%s", controller.session("addressQuery")));
 
-            String onlineS = controller.session("online");
-            if ("true".equals(onlineS))
-                setOnline(true);
+            if (config.getConfiguration().getInt("search.type") == 1)
+            {   
+                play.Logger.info("OFFLINE SEARCH");
+                this.setOnline(false); // local            
+            }
+            else if (config.getConfiguration().getInt("search.type") == 2)
+            {
+                play.Logger.info("ONLINE SEARCH");
+                this.setOnline(true); // online
+            }
+            else
+            {
+                String onlineS = controller.session("online");
+                if ("true".equals(onlineS))
+                    setOnline(true);
+            }
+
+            
         }
 
         public void saveToSession(Controller controller) {

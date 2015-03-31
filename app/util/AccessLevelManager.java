@@ -112,7 +112,15 @@ public abstract class AccessLevelManager {
                         if (play.Play.application().configuration().getString("cart.enabled").equals("true"))
                         {
                             // user specific cart access
-                            Context.current().session().put("usecart", "" + tokens[2]);
+                            if (Integer.parseInt(tokens[2]) < 3)
+                            {
+                                Context.current().session().put("usecart", "" + tokens[2]);
+                            }
+                            else
+                            {
+                                Context.current().session().put("usecart", "1");
+                            }
+
                         }
                     }
                 }

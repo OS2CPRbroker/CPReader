@@ -28,7 +28,23 @@ nav.quicksearch_local = Lokal
 
 nav.help = Hjælp
 nav.logout_button = Log ud
-nav.cart = Vis kurv
+
+# cart
+cart.view = Vis kurv
+cart.add= Tilføj til kurv
+cart.remove= Fjerne
+cart.copy= Kopier CPR-numre
+cart.empty= Tøm kurv
+cart.name= Navn
+cart.cprnumber= CPR-nummer
+cart.items = Varer
+cart.added= er blevet tilføjet til vognen .
+cart.exists= har aready blevet tilføjet til indkøbskurven .
+cart.removed= fjernet fra vognen .
+cart.copied= kopieret til klippebordet poster.
+cart.emptied= Kurv tømt .
+cart.noitems=Der er i øjeblikket ingen varer i kurven
+
 
 results.list.amountOfResults = Der er {0} resultater på søgningen:
 results.list.searchFailed = Fejl i søgningen
@@ -50,6 +66,7 @@ resultat.andenaddresse = Anden adresse
 person.true = Ja
 person.false = Nej
 person.registrationdate = Senest opdateret
+person.viewdetails = Se personen
 
 #------ EGENSKABER
 person.firstname = Fornavn

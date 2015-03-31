@@ -32,6 +32,7 @@
       </rollingPolicy>
   </appender>  
 
+<!--
   <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
     <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
       <driverClass>com.mysql.jdbc.Driver</driverClass>
@@ -40,7 +41,17 @@
         <password>mat</password>
       </connectionSource>
   </appender>
-  
+-->
+
+  <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+    <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+      <driverClass>com.microsoft.sqlserver.jdbc.SQLServerDriver</driverClass>
+        <url>jdbc:sqlserver://localhost:8889;databaseName=cprlogger;</url>
+        <user>mat</user>
+        <password>mat</password>
+    </connectionSource>
+  </appender>
+
 
   <logger name="play" level="INFO" />
   <logger name="application" level="INFO" />

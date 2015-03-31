@@ -33,6 +33,8 @@
 * ***** END LICENSE BLOCK ***** *@
 
 @(searchInput : Search.SearchInput)
+
+@import play.Play;
 <div class="navbar navbar-default">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -50,11 +52,17 @@
                 <input type="text" class="form-control" id="query2" placeholder="@Messages("nav.quicksearch_addresslaceholder")" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getAddressQuery()" />
 
                 <div class="navbar-form-online">
+                @if(Play.application().configuration().getInt("search.type") != 1 && Play.application().configuration().getInt("search.type") != 2) {
                     <input type="radio" name="online" id="online_false" value="false" @if(!searchInput.getOnline()){checked}>
                     <label for="online_false">@Messages("nav.quicksearch_local") &nbsp;&nbsp;</label>
                     <input type="radio" name="online" id="online_true" value="true" @if(searchInput.getOnline()){checked }>
-                    <label for="online_true"> @Messages("nav.quicksearch_online")</label>
+                    <label for="online_true"> @Messages("nav.quicksearch_online")</label> 
+                } 
+
+
+                    
                 </div>
+
                 <button id="quicksearchbutton" type="button" class="btn btn-default navbar-form-search">@Messages("nav.quicksearch_submit")</button>
             </div>
 
@@ -66,7 +74,7 @@
             @if(!util.auth.Secured.authenticationStrategy.isInstanceOf[util.auth.IIntegratedAuthenticaton]){
                 <li><a href="@routes.Signon.logout()">@Messages("nav.logout_button")</a></li>
             }
-            @*<li><a href="JavaScript:newPopup('@routes.Cart.view()');"><span class="glyphicon glyphicon-shopping-cart"></span>  @Messages("nav.cart")</a> </li>*@
+            @*<li><a href="JavaScript:newPopup('@routes.Cart.view()');"><span class="glyphicon glyphicon-shopping-cart"></span>  @Messages("cart.view")</a> </li>*@
             
             @if(session.get("usecart") == "1") {
             <li>@cartview()</li>

@@ -1,7 +1,7 @@
 
 @import play.api.Play.current
 
-<a href="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span>  @Messages("nav.cart")</a>
+<a href="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span>  @Messages("cart.view")</a>
 
 <!-- Modal HTML -->
 <div id="myModal" class="modal fade">
@@ -10,7 +10,7 @@
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">View Cart (@play.api.cache.Cache.get("numcartitems").getOrElse(0).asInstanceOf[Int] Items)</h4>
+                <h4 class="modal-title">@Messages("cart.view") (@play.api.cache.Cache.get("numcartitems").getOrElse(0).asInstanceOf[Int] @Messages("cart.items"))</h4>
             </div>
             
             <div class="modal-body">
@@ -19,8 +19,8 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                <th>Name</th>
-                                <th>CPR Number</th>
+                                <th>@Messages("cart.name")</th>
+                                <th>@Messages("cart.cprnumber")</th>
                                 <th></th>
                                 </tr>
                             </thead>
@@ -29,7 +29,7 @@
                                     <tr>
                                     <td>@item(0) @item(1) @item(2)</td>
                                     <td>@item(3)</td>
-                                    <td><a href="@routes.Cart.removeItem(item(3), request.uri)">Remove</a></td>
+                                    <td><a href="@routes.Cart.removeItem(item(4), request.uri)">@Messages("cart.remove")</a></td>
                                     </tr>
                                 }
                             </tbody>
@@ -42,10 +42,10 @@
                             
                             @if(play.api.cache.Cache.get("cartdata").getOrElse(null).asInstanceOf[List[List[String]]].length > 0) {
                             <div style="float: left;">
-                                <a href="@routes.Cart.copy(request.uri)"><span class="glyphicon glyphicon-file"></span> Copy CPR Numbers</a>
+                                <a href="@routes.Cart.copy(request.uri)"><span class="glyphicon glyphicon-file"></span> @Messages("cart.copy")</a>
                             </div>
                             <div style="float: right;">
-                                <a href="@routes.Cart.empty(request.uri)"><span class="glyphicon glyphicon-trash"></span> Empty Cart</a>
+                                <a href="@routes.Cart.empty(request.uri)"><span class="glyphicon glyphicon-trash"></span> @Messages("cart.empty")</a>
                             </div>
                             }
                             
@@ -53,7 +53,7 @@
                    
                 } else { 
                     
-                    There are currently no items in the cart
+                    @Messages("cart.noitems")
                     
                 }
             </div>

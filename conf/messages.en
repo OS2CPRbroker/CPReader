@@ -28,7 +28,22 @@ nav.quicksearch_local = Local
 
 nav.help = Help
 nav.logout_button = Log out
-nav.cart = View cart
+
+# cart
+cart.view = View cart
+cart.add= Add To Cart
+cart.remove= Remove
+cart.copy= Copy CPR Numbers
+cart.empty= Empty Cart
+cart.name= Name
+cart.cprnumber= CPR Number
+cart.items = Items
+cart.added= has been added to the cart.
+cart.exists= has aready been added to the cart.
+cart.removed= removed from the cart.
+cart.copied= items copied to the clipboard.
+cart.emptied= Cart emptied.
+cart.noitems=There are currently no items in the cart
 
 results.list.amountOfResults = Der er {0} resultater på søgningen:
 results.list.searchFailed = Fejl i søgningen
@@ -50,6 +65,7 @@ resultat.andenaddresse = Anden adresse
 person.true = Yes
 person.false = No
 person.registrationdate = Registration Date
+person.viewdetails = See person
 
 #------ EGENSKABER
 person.firstname = First Name
