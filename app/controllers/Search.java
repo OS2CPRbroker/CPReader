@@ -347,7 +347,7 @@ public class Search extends Controller {
             setQuery(StringUtils.format("%s",controller.session("query")));
             setAddressQuery(StringUtils.format("%s", controller.session("addressQuery")));
 
-            /*
+            
             if (config.getConfiguration().getInt("search.type") == 1)
             {   
                 play.Logger.info("OFFLINE SEARCH");
@@ -364,7 +364,7 @@ public class Search extends Controller {
                 if ("true".equals(onlineS))
                     setOnline(true);
             }
-            */
+            
             setOnline(true);
 
             
