@@ -32,7 +32,6 @@
       </rollingPolicy>
   </appender>  
 
-<!--
   <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
     <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
       <driverClass>com.mysql.jdbc.Driver</driverClass>
@@ -41,15 +40,15 @@
         <password>mat</password>
       </connectionSource>
   </appender>
--->
 
+<!--
   <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
     <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
       <driverClass>com.microsoft.sqlserver.jdbc.SQLServerDriver</driverClass>
         <url>jdbc:sqlserver://localhost\sqlexpress;databaseName=CPReaderLogs;user=mat;password=mat</url>
     </connectionSource>
   </appender>
-
+-->
 
   <logger name="play" level="INFO" />
   <logger name="application" level="INFO" />

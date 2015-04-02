@@ -16,7 +16,8 @@ import java.net.URL;
  */
 public abstract class AccessLevelManager {
     public static int getCurrentAccessLevel(){
-        if (Cache.get("accesslevel") == null)
+        //if (Cache.get("accesslevel") == null)
+        if (Context.current().session().get("accesslevel") == null)
         {
             String userName = Secured.getCurrntUsername();
             String[] groupNames = null;
@@ -27,6 +28,19 @@ public abstract class AccessLevelManager {
         }
         // Now we are sure the value is stored
         return Integer.parseInt(Context.current().session().get("accesslevel"));
+    }
+
+    public static void updateAccessLevel(String username)
+    {
+        Context.current().session().remove("accesslevel"); // invaidate current access level to force re-check
+        String[] groupNames = null;
+
+        if(IGroupAuthentication.class.isInstance(Secured.authenticationStrategy)){
+            groupNames = ((IGroupAuthentication)Secured.authenticationStrategy).getUserGroups(username);
+        }
+        setCurrentAccessLevel(calculateAccessLevel(username, groupNames));
+
+        play.Logger.info("ACCESS LEVEL UPDATED TO "+Integer.parseInt(Context.current().session().get("accesslevel")));
     }
 
     public static void setCurrentAccessLevel(String accessLevel) {

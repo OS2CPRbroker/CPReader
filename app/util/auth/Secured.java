@@ -38,6 +38,7 @@ import controllers.routes;
 import play.mvc.Result;
 import play.mvc.Security;
 import play.mvc.Http.Context;
+import util.AccessLevelManager;
 
 public class Secured extends Security.Authenticator {
 
@@ -47,6 +48,7 @@ public class Secured extends Security.Authenticator {
 	public final String getUsername(final Context ctx) {
 		if(IIntegratedAuthenticaton.class.isInstance(authenticationStrategy)){
 			IIntegratedAuthenticaton integratedAuthenticaton= (IIntegratedAuthenticaton) authenticationStrategy;
+
 			return integratedAuthenticaton.getUsername();
 		}
 		else {
@@ -66,7 +68,13 @@ public class Secured extends Security.Authenticator {
 	}
 
 	public static String getCurrntUsername() {
-		return new Secured().getUsername(Context.current());
+
+		String username = new Secured().getUsername(Context.current());
+		
+		AccessLevelManager.updateAccessLevel(username);
+
+   
+		return username;
 	}
 
 }

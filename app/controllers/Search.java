@@ -292,6 +292,7 @@ public class Search extends Controller {
             this.setQuery(name);
             this.setAddressQuery(address);
 
+
             if (config.getConfiguration().getInt("search.type") == 1)
             {   
                 play.Logger.info("OFFLINE SEARCH");
@@ -307,6 +308,8 @@ public class Search extends Controller {
                 play.Logger.info("USE RADIO BUTTON VALUE: "+online);
                 this.setOnline(online); // use radio button value
             }
+
+            this.setOnline(online);
         }
 
         @Required
@@ -344,6 +347,7 @@ public class Search extends Controller {
             setQuery(StringUtils.format("%s",controller.session("query")));
             setAddressQuery(StringUtils.format("%s", controller.session("addressQuery")));
 
+            /*
             if (config.getConfiguration().getInt("search.type") == 1)
             {   
                 play.Logger.info("OFFLINE SEARCH");
@@ -360,6 +364,8 @@ public class Search extends Controller {
                 if ("true".equals(onlineS))
                     setOnline(true);
             }
+            */
+            setOnline(true);
 
             
         }
