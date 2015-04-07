@@ -34,6 +34,7 @@
 
 import javax.inject.Singleton;
 
+import controllers.Search;
 import play.Application;
 import play.GlobalSettings;
 import play.Play;
@@ -121,6 +122,7 @@ public class Global extends GlobalSettings {
 		// Manual injection for Secured.Class.authenticationStrategy
         Secured.authenticationStrategy = injector.getInstance(IAuthentication.class);
         Converters.AddressParser = injector.getInstance(IAddressParser.class);
+		Search.config = injector.getInstance(IConfiguration.class);
 	}
 	
 	@Override

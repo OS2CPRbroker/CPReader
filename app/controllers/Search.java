@@ -62,7 +62,7 @@ public class Search extends Controller {
 
     private static ICprBrokerAccessor cprBroker;
     private static int onlineCacheTimeout;
-    private static IConfiguration config;
+    public static IConfiguration config;
 
     @Inject
     public Search(ICprBrokerAccessor newCprBroker, IConfiguration conf)
