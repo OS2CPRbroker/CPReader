@@ -77,6 +77,7 @@ public class DawaAddressParser implements IAddressParser {
 
                 AdresseType ret = new AdresseType();
                 DanskAdresseType danskAdresse = new DanskAdresseType();
+                danskAdresse.setPostDistriktTekst(postDistrict);
                 ret.setDanskAdresse(danskAdresse);
 
                 AddressCompleteType addressComplete = new AddressCompleteType();
@@ -92,6 +93,7 @@ public class DawaAddressParser implements IAddressParser {
                 addressPostal.setSuiteIdentifier(door);
                 addressPostal.setDistrictSubdivisionIdentifier(districtSubdivision);
                 addressPostal.setPostCodeIdentifier(postCode);
+                addressPostal.setDistrictName(postDistrict);
                 addressComplete.setAddressPostal(addressPostal);
 
                 return ret;

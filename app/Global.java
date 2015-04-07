@@ -41,6 +41,7 @@ import play.Play;
 import util.Converters;
 import util.addresses.DawaAddressParser;
 import util.addresses.IAddressParser;
+import util.addresses.RegexAddressParser;
 import util.auth.IAuthentication;
 import util.auth.Secured;
 import util.auth.TestAuthenticationStrategy;
@@ -97,6 +98,7 @@ public class Global extends GlobalSettings {
 				//bind(IAuthentication.class).to(WindowsAuthenticationStrategy.class);
 
                 bind(IAddressParser.class).to(DawaAddressParser.class);
+				//bind(IAddressParser.class).to(RegexAddressParser.class);
 
 	            bind(ICprBrokerAccessor.class)
             	.toProvider(new Provider<ICprBrokerAccessor>() {
