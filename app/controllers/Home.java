@@ -48,7 +48,7 @@ public class Home extends Controller {
     @Security.Authenticated(Secured.class)
     public Result index() {
         Search.SearchInput searchInput = new Search.SearchInput();
-        searchInput.fillFromSession(this);
+        searchInput.saveToSession(this);
         return ok(index.render(Form.form(Search.SearchInput.class), request().username(), searchInput));
     }
 
