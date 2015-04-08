@@ -27,3 +27,17 @@ div.modal-content {
     line-height: 20px;
     display: block;
 }
+#above-search-results .pagination {
+    float:left;
+    margin-top:0;
+    margin-right:20px;
+}
+#above-search-results .panel.panel-default {
+    float:left;
+}
+#above-search-results .panel.panel-default .panel-heading {
+    padding:8px 15px;
+}
+#search-result-list {
+    clear:both;
+}

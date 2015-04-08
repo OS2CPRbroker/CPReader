@@ -38,7 +38,9 @@
 @import play.api.Play.current;
     @main("CPReader", searchInput) {
 
-        
+
+        <div id="above-search-results">
+        @partial_pagination(results, currentpage, location)
 
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -55,11 +57,10 @@
                     </h3>
                 </div>
             </div>
+        </div>
         
 
-            @partial_pagination(results, currentpage, location)
-       
-        <div class="list-group">
+        <div class="list-group" id="search-result-list">
         @if(persons != null) {
             <div class="panel panel-default">
                 <div class="panel-heading">
