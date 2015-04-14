@@ -118,6 +118,11 @@ public class RewriteHandler : IHttpHandler
             var groupsCookie = new Cookie("") { Name = "usergroups", Value = string.Join(",", groupNames) };
             cookies.Add(groupsCookie);
 
+            // Authentication ticket
+            var ticket = TicketHandler.IssueTicket();
+            var ticketCookie = new Cookie("") { Name = "winauthticket", Value = ticket };
+            cookies.Add(ticketCookie);
+
             var cookiesString = CookieParser.ToString(cookies.ToArray());
             req.Headers[HttpRequestHeader.Cookie] = cookiesString;
         }

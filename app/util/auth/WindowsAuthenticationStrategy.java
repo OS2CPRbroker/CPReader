@@ -34,6 +34,10 @@
 package util.auth;
 
 import play.mvc.Http;
+import java.net.*;
+import java.io.*;
+
+import scala.Int;
 import util.StringUtils;
 
 import java.util.ArrayList;
@@ -52,12 +56,27 @@ public class WindowsAuthenticationStrategy implements IAuthentication ,IIntegrat
         String ret = null;
 
         Http.Context ctx = Http.Context.current();
-        Http.Cookie cookie = ctx.request().cookie("username");
+        Http.Cookie userCookie = ctx.request().cookie("username");
+        Http.Cookie ticketCookie = ctx.request().cookie("winauthticket");
 
-        if(cookie != null) {
-            ret = cookie.value();
-            ctx.session().put("username", ret);
+        if(userCookie != null && ticketCookie != null) {
+            // Validate ticket
+            try {
+                URL ticketUrl = new URL("http://cpreader/tickets?winAuthTicketId=" + ticketCookie.value());
+                HttpURLConnection yc = (HttpURLConnection)ticketUrl.openConnection();
+                yc.connect();
+                int responseCode = yc.getResponseCode();
+                if(responseCode == 200) {
+                    // No error, OK
+                    ret = userCookie.value();
+                }
+            }
+            catch (Exception ex){
+                return null;
+            }
         }
+        if(ret != null)
+            ctx.session().put("username", ret);
         return ret;
     }
 
