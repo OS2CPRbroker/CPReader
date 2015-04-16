@@ -32,7 +32,30 @@
 * ***** END LICENSE BLOCK ***** *@
 
 @(person: util.cprbroker.IPerson)
+
 <a href="@routes.Cart.addItem(person.uuid(), request.uri)"><span class="glyphicon glyphicon-plus"></span> @Messages("cart.add")</a>
+
+@*<a href="@controllers.Cart.addItem2(person.uuid(), request.uri)"><span class="glyphicon glyphicon-plus"></span> @Messages("cart.add") Alt</a>*@
+
+
+@*
+@if(person.middelname() != null) {
+<a href="#" OnClick="addToCart('@person.firstname()', '@person.middelname()', '@person.lastname()', '@person.registerInformation().cprCitizen().socialSecurityNumber()');" title="Add"><span class="glyphicon glyphicon-plus"></span> @Messages("cart.add")</a>
+} else {
+<a href="#" OnClick="addToCart('@person.firstname()', '', '@person.lastname()', '@person.registerInformation().cprCitizen().socialSecurityNumber()');" title="Add"><span class="glyphicon glyphicon-plus"></span> @Messages("cart.add")</a>	
+}*@
+
+@if(session.get("opencart") == "true"){
+  <script>
+	window.onload = function() {
+	  $('#cartModal').modal('show');
+	};
+	</script>
+} else {
+   
+}
+
+
 
 
 

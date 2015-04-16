@@ -1,58 +1,18 @@
-@* ***** BEGIN LICENSE BLOCK *****
- * Version: MPL 2.0/GPL 2.0/LGPL 2.1
- *
- * The contents of this file are subject to the Mozilla Public License
- * Version 2.0 (the "License"); you may not use this file except in
- * compliance with the License. You may obtain a copy of the License at
- * http://www.mozilla.org/MPL/
- *
- * Software distributed under the License is distributed on an "AS IS"basis,
- * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
- * for the specific language governing rights and limitations under the
- * License.
- *
- * Contributor(s):
- * Beemen Beshara
- * Søren Kirkegård
- *
- * The code is currently governed by OS2 - Offentligt digitaliserings-
- * fællesskab / http://www.os2web.dk .
- *
- * Alternatively, the contents of this file may be used under the terms of
- * either the GNU General Public License Version 2 or later (the "GPL"), or
- * the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
- * in which case the provisions of the GPL or the LGPL are applicable instead
- * of those above. If you wish to allow use of your version of this file only
- * under the terms of either the GPL or the LGPL, and not to allow others to
- * use your version of this file under the terms of the MPL, indicate your
- * decision by deleting the provisions above and replace them with the notice
- * and other provisions required by the GPL or the LGPL. If you do not delete
- * the provisions above, a recipient may use your version of this file under
- * the terms of any one of the MPL, the GPL or the LGPL.
- *
- * ***** END LICENSE BLOCK ***** *@
+function testCart()
+      {
+        
+        $( "#cart-table-rows" ).append( "<p>Test</p>" );
+        var url = "@{Cart.test}";
+        window.alert(url);
+        //window.location.replace(url);
+
  
-@(title: String,searchInput : Search.SearchInput)(content: Html)
-@import play.api.Play.current
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>@title</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
+      }
 
-    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-
-    <!-- Custom styles for this template -->
-    <link href="@routes.Assets.at("stylesheets/navbar.css")" rel="stylesheet">
-    
-    <link href="@routes.Assets.at("javascripts/jquery-ui-1.11.2.custom/jquery-ui.css")" rel="stylesheet">
-    <link href="@routes.Assets.at("stylesheets/modal.css")" rel="stylesheet">
-   
-     <script type="text/javascript">
+      function myFunction(a, b) {
+          return a * b;
+      }
+      
 
       // Popup window code
       function newPopup(url) 
@@ -66,7 +26,6 @@
           url,'Cart','resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=no, width='+w+', height='+h+', top='+top+', left='+left);
       }
 
-      /*
       function removeFromCart(num)
       {
         window.alert(num);
@@ -91,6 +50,7 @@
 
       function emptyCart()
       {
+
         var table = document.getElementById("cart-table-rows");
 
         while(table.rows.length>0)
@@ -130,7 +90,6 @@
           cell3.innerHTML = '<a href="#" OnClick="removeFromCart('+num+');" title="Remove">@Messages("cart.remove")</a>';
 
           updateCartContents();
-
         }
       }
 
@@ -141,17 +100,20 @@
 
         var table = document.getElementById("cart-table-rows");
         var exists = 0;
-       
+
         for (var r = 0, n = table.rows.length; r < n; r++)
         {
-            cachecontents+=table.rows[r].cells[0].innerHTML;
-            cachecontents+=table.rows[r].cells[1].innerHTML;
-
-            cachecontents+="<br>";
-
+            cachecontents+=table.rows[r].cells[1].innerHTML; 
         }
+
+        //cartfunct.innerHTML = cachecontents;
+        
+
+        //cartfunct.innerHTML = '@session.put("cartcontents","")';
+
+        window.alert(cachecontents);
+
       }
-      */
 
       function selectCPRNumbers() 
       { 
@@ -182,21 +144,3 @@
             textRange.select();
         }
       }
-    </script>
-  </head>
-
-  <body>
-    
-    <div class="container">
-    
-        @navbar(searchInput)
-    
-        @content
-        
-    </div> <!-- /container -->
-    
-    @helper.requireJs(core = routes.Assets.at("javascripts/require.js").url, module = routes.Assets.at("javascripts/main").url)
-
-  </body>
-
-</html>
