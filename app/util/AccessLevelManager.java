@@ -17,7 +17,8 @@ import java.net.URL;
 public abstract class AccessLevelManager {
     public static int getCurrentAccessLevel(){
         //if (Cache.get("accesslevel") == null)
-        if (Context.current().session().get("accesslevel") == null)
+        // Always check from current authentication
+        //if (Context.current().session().get("accesslevel") == null)
         {
             String userName = Secured.getCurrntUsername();
             String[] groupNames = null;
