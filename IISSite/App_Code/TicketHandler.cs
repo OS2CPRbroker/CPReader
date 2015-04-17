@@ -70,7 +70,7 @@ public class TicketHandler : IHttpHandler
             if (_Tickets.ContainsKey(ticket))
             {
                 var timestamp = _Tickets[ticket];
-                _Tickets.Remove(ticket);
+                //_Tickets.Remove(ticket);
                 return true;
             }
         }
