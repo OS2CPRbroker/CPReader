@@ -44,6 +44,8 @@ cart.removed= fjernet fra kurven.
 cart.copied= kopieret til klippebordet poster.
 cart.emptied= Kurv tømt .
 cart.noitems=Der er i øjeblikket ingen varer i kurven
+cart.select= Vælg CPR-numre
+cart.rightclick= Højreklik på de markerede numre til at kopiere
 
 
 results.list.amountOfResults = Der er {0} resultater på søgningen:

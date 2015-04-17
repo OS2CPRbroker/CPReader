@@ -40,3 +40,6 @@ GET 		/cart/remove/:cprnumber/:uri					             @controllers.Cart.removeItem
 GET 		/cart/view													 @controllers.Cart.view()
 GET 		/cart/empty/:uri											 @controllers.Cart.empty(uri : String)
 GET 		/cart/copy/:uri											     @controllers.Cart.copy(uri : String)
+
+GET 	   	/cart/test            				controllers.Cart.test()
+#GET     	/assets/javascripts/routes          @controllers.Cart.javascriptRoutes()

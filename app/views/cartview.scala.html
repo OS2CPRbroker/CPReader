@@ -1,10 +1,11 @@
 
 @import play.api.Play.current
 
-<a href="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span>  @Messages("cart.view")</a>
+<a href="#cartModal" data-backdrop="static" data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span>  @Messages("cart.view")</a>
+<span style="display: none;">@session.put("opencart", "false")</span>
 
 <!-- Modal HTML -->
-<div id="myModal" class="modal fade">
+    <div id="cartModal" class="modal static"> 
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -14,47 +15,107 @@
             </div>
             
             <div class="modal-body">
-                @if(play.api.cache.Cache.get("numcartitems").getOrElse(0).asInstanceOf[Int] > 0) {
-                    
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                <th>@Messages("cart.name")</th>
-                                <th>@Messages("cart.cprnumber")</th>
-                                <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                 @for(item <- play.api.cache.Cache.get("cartdata").getOrElse(null).asInstanceOf[List[List[String]]]){
-                                    <tr>
-                                    <td>@item(0) @item(1) @item(2)</td>
-                                    <td>@item(3)</td>
-                                    <td><a href="@routes.Cart.removeItem(item(4), request.uri)">@Messages("cart.remove")</a></td>
-                                    </tr>
-                                }
-                            </tbody>
-                            
-                        </table>
-                        </br>
-                        </br>
-                        <hr>
-                        <div>
-                            
-                            @if(play.api.cache.Cache.get("cartdata").getOrElse(null).asInstanceOf[List[List[String]]].length > 0) {
-                            <div style="float: left;">
-                                <a href="@routes.Cart.copy(request.uri)"><span class="glyphicon glyphicon-file"></span> @Messages("cart.copy")</a>
-                            </div>
-                            <div style="float: right;">
-                                <a href="@routes.Cart.empty(request.uri)"><span class="glyphicon glyphicon-trash"></span> @Messages("cart.empty")</a>
-                            </div>
-                            }
-                            
+                @*
+                <table id="cart-table" class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th>@Messages("cart.name")</th>
+                        <th>@Messages("cart.cprnumber")</th>
+                        <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-table-rows">
+                         
+                    </tbody>
+                </table>
+                </br>
+                </br>
+                
+                <div>
+                    <div class="row">
+                        <div class="col-md-12">
+                                <div id="copy-message" style="display: none">@Messages("cart.rightclick")</div>
                         </div>
-                   
-                } else { 
-                    
-                    @Messages("cart.noitems")
-                    
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-1">
+                            <div id="cart-nums" style="display: none"></div>
+                        </div>
+                    </div>
+
+                    <div id="select-nums" style="float: left; display: block">
+                        <a href="#" OnClick="selectCPRNumbers();" title="Copy"><span class="glyphicon glyphicon-file"></span> @Messages("cart.select")</a>  
+                        <!--<a href="@routes.Cart.copy(request.uri)"><span class="glyphicon glyphicon-file"></span> @Messages("cart.copy")</a>-->
+                    </div>
+
+                    <div style="float: right;"> 
+                        <a href="#" OnClick="emptyCart();" title="Copy"><span class="glyphicon glyphicon-trash"></span> @Messages("cart.empty")</a>
+                        <!--<a href="@routes.Cart.empty(request.uri)"><span class="glyphicon glyphicon-trash"></span> @Messages("cart.empty")</a>-->
+                    </div>                  
+                </div>
+                *@
+
+
+
+                
+                @if(play.api.cache.Cache.get("numcartitems").getOrElse(0).asInstanceOf[Int] > 0) {
+                    <table id="cart-table" class="table table-striped">
+                        <thead>
+                            <tr>
+                            <th>@Messages("cart.name")</th>
+                            <th>@Messages("cart.cprnumber")</th>
+                            <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-table-rows">
+                             @for(item <- play.api.cache.Cache.get("cartdata").getOrElse(null).asInstanceOf[List[List[String]]]){
+                                <tr>
+                                <td>@item(0) @item(1) @item(2)</td>
+                                <td>@item(3)</td>
+                                <td><a href="@routes.Cart.removeItem(item(4), request.uri)">@Messages("cart.remove")</a></td>
+                                
+                                <!--<td><a href="#" OnClick="removeFromCart('@item(3)');" title="Remove">@Messages("cart.remove")</a></td>-->
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    </br>
+                    </br>
+                    <hr>
+                    <div>   
+                    @if(play.api.cache.Cache.get("cartdata").getOrElse(null).asInstanceOf[List[List[String]]].length > 0) {
+                        <div class="row">
+                            <div class="col-md-12">
+                                    <div id="copy-message" style="display: none">@Messages("cart.rightclick")</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-1">
+                                <div id="cart-nums" style="display: none"> 
+                                    @for(item <- play.api.cache.Cache.get("cartdata").getOrElse(null).asInstanceOf[List[List[String]]]){
+                                        @item(3)<br>
+                                    }      
+                                </div>
+                            </div>
+                        </div>
+                        <div style="float: left;">
+                            <a href="#" OnClick="selectCPRNumbers();" title="Copy"><span class="glyphicon glyphicon-file"></span> @Messages("cart.select")</a>
+                            <!--<a href="@routes.Cart.copy(request.uri)"><span class="glyphicon glyphicon-file"></span> @Messages("cart.copy")</a>-->
+                        </div>
+
+                        <div style="float: right;">
+
+                            <!--<a href="#" OnClick="testCart();" title="Copy"><span class="glyphicon glyphicon-trash"></span> @Messages("cart.empty")</a>-->
+                            <!--<a href="#" OnClick="emptyCart();" title="Copy"><span class="glyphicon glyphicon-trash"></span> @Messages("cart.empty")</a>-->
+                            <a href="@routes.Cart.empty(request.uri)"><span class="glyphicon glyphicon-trash"></span> @Messages("cart.empty")</a>
+                        </div>
+                        }
+                        
+                    </div>
+                    } else { 
+                    @Messages("cart.noitems")    
                 }
             </div>
             <div class="modal-footer">

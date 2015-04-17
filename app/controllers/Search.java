@@ -84,7 +84,7 @@ public class Search extends Controller {
 
     @Security.Authenticated(Secured.class)
     public Result searchNameAndAddress(String name, String address, boolean online, int page) {
-
+        
         List<IPerson> persons = null;
         try {
 
@@ -155,6 +155,8 @@ public class Search extends Controller {
      */
     @Security.Authenticated(Secured.class)
     public Result showPerson(String uuid) {
+
+        
         // Logging the show request
         play.Logger.info(String.format( "At <%s> user <%s> requested to see uuid <%s>",
                 DateTime.now(),

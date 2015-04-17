@@ -88,6 +88,7 @@ require(["jquery", "bootstrap", "processQuery", "validate", "modolus11", "jquery
                 });
             }
         })
+
     }); //end ready
 });
 
