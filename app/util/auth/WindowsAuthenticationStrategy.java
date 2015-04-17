@@ -33,6 +33,8 @@
 
 package util.auth;
 
+import com.google.inject.Inject;
+import conf.IConfiguration;
 import play.mvc.Http;
 import java.net.*;
 import java.io.*;
@@ -46,6 +48,14 @@ import java.util.ArrayList;
  * Created by Beemen on 17/12/2014.
  */
 public class WindowsAuthenticationStrategy implements IAuthentication ,IIntegratedAuthenticaton, IGroupAuthentication {
+
+    @Inject
+    public WindowsAuthenticationStrategy(IConfiguration conf)
+    {
+        configuration = conf;
+    }
+    public IConfiguration configuration;
+
     @Override
     public IAuthenticationResponse authentication(String username, String password) {
         return new AuthenticationResponse(AuthResponseType.SUCCESS, "OK");
@@ -62,7 +72,10 @@ public class WindowsAuthenticationStrategy implements IAuthentication ,IIntegrat
         if(userCookie != null && ticketCookie != null) {
             // Validate ticket
             try {
-                URL ticketUrl = new URL("http://cpreader/tickets?winAuthTicketId=" + ticketCookie.value());
+                String url = configuration.getConfiguration().getString("winauth.url");
+                String paramName = configuration.getConfiguration().getString("winauth.parametername");
+
+                URL ticketUrl = new URL(url +  "?"+ paramName + "=" + ticketCookie.value());
                 HttpURLConnection yc = (HttpURLConnection)ticketUrl.openConnection();
                 yc.connect();
                 int responseCode = yc.getResponseCode();
