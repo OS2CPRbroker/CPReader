@@ -155,7 +155,7 @@ public class Search extends Controller {
      */
     @Security.Authenticated(Secured.class)
     public Result showPerson(String uuid) {
-
+        
         
         // Logging the show request
         play.Logger.info(String.format( "At <%s> user <%s> requested to see uuid <%s>",

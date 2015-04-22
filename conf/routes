@@ -35,8 +35,8 @@ GET         /assets/*file                                                control
 # Shopping cart
 #GET 		/cart/add/:firstname/:lastname/:uri						 	 @controllers.Cart.addItem(firstname : String, lastname : String, uri : String)
 #GET 		/cart/remove/:firstname/:lastname/:uri					     @controllers.Cart.removeItem(firstname : String, lastname : String, uri : String)
-GET 		/cart/add/:cprnumber/:uri						 	 		 @controllers.Cart.addItem(cprnumber : String, uri : String)
-GET 		/cart/remove/:cprnumber/:uri					             @controllers.Cart.removeItem(cprnumber : String, uri : String)
+GET 		/cart/add/:cprnumber/:uri/:showperson/:showcart				 @controllers.Cart.addItem(cprnumber : String, uri : String, showperson : String, showcart : Boolean)
+GET 		/cart/remove/:cprnumber/:uri				             	 @controllers.Cart.removeItem(cprnumber : String, uri : String)
 GET 		/cart/view													 @controllers.Cart.view()
 GET 		/cart/empty/:uri											 @controllers.Cart.empty(uri : String)
 GET 		/cart/copy/:uri											     @controllers.Cart.copy(uri : String)

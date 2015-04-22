@@ -31,46 +31,40 @@
  *
  * ***** END LICENSE BLOCK ***** *@
 
-@(relation: util.cprbroker.IRelationshipWithIPerson)
+@(relation: util.cprbroker.IRelationshipWithIPerson, person: util.cprbroker.IPerson)
 
 @import util.cprbroker.ERelationshipType;
 @import play.Play;
 @import play.api.Play.current;
 <div class="col-md-12">
- <div class="panel panel-default">
-	    <div class="panel-heading">
-    @if(relation.person.code == 200 || Play.application().configuration().getInt("cprbroker.accesslevel") > 0) {
-    <a href="/show/uuid/@relation.person.uuid/">
-    }           
-		     
+  <div class="panel panel-default">
+      <div class="panel-heading">
+        @if(relation.person.code == 200 || Play.application().configuration().getInt("cprbroker.accesslevel") > 0) {
+        <a href="/show/uuid/@relation.person.uuid/">
+        }           
+         <h3 class="panel-title">
+             <span class="glyphicon glyphicon-user"></span> @relation.relationshipType
+             @if(relation.person.code == 200) {
+                 @relation.person.registerInformation.cprCitizen.socialSecurityNumber
+	                 @if(relation.person.firstname) { @relation.person.firstname}
+	                 @if(relation.person.middelname) { @relation.person.middelname}
+	                 @if(relation.person.lastname) { @relation.person.lastname}
+             }	             
+         </h3>
 
-
-	         <h3 class="panel-title">
-	             <span class="glyphicon glyphicon-user"></span> @relation.relationshipType
-	             @if(relation.person.code == 200) {
-	                 @relation.person.registerInformation.cprCitizen.socialSecurityNumber
-		                 @if(relation.person.firstname) { @relation.person.firstname}
-		                 @if(relation.person.middelname) { @relation.person.middelname}
-		                 @if(relation.person.lastname) { @relation.person.lastname}
-
-	             }	             
-	         </h3>
-
-           <p class="text-right">
-            @if(relation != null && relation.person.firstname != null && relation.person.lastname != null && relation.person.uuid() != null) {
-              <div id="session" style="display: none;">
-                @session.put(relation.person.uuid()+"_uuid", relation.person.uuid())
-                @play.api.cache.Cache.set(relation.person.uuid(), relation.person);
-              </div>
-              @if(session.get("usecart") == "1") {
-                @cart(relation.person)
-              }
+         <p class="text-right">
+          @if(relation != null && relation.person.firstname != null && relation.person.lastname != null && relation.person.uuid() != null) {
+            <div id="session" style="display: none;">
+              @session.put(relation.person.uuid()+"_uuid", relation.person.uuid())
+              @play.api.cache.Cache.set(relation.person.uuid(), relation.person);
+            </div>
+            @if(session.get("usecart") == "1") {
+              @cart(relation.person, person.uuid(), false)
             }
+          }
          </p>
-
-
-		 </div>
-		 @if(relation.person.code == 200 || Play.application().configuration().getInt("cprbroker.accesslevel") > 0) {
+  	 </div>
+  	 @if(relation.person.code == 200 || Play.application().configuration().getInt("cprbroker.accesslevel") > 0) {
      </a>
      }
       @*
@@ -83,15 +77,9 @@
                }
 
           }
-          
          @tilstande(relation.person.tilstand)
          @virkning(relation.effect, true)
-         
-         
-
-
-
       </div>
       *@
- </div>
+  </div>
 </div>

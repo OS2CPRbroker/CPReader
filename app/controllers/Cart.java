@@ -216,10 +216,9 @@ public class Cart extends Controller
     }*/
 
     //public Result addItem(String firstname, String lastname, String uri)
-    public Result addItem(String cprnum, String uri)
+    public Result addItem(String cprnum, String uri, String showperson, boolean showcart)
     {
         play.Logger.info("adding " + cprnum);
-
 
         boolean exists=false;
         List<String> personData = new ArrayList<String>();
@@ -274,7 +273,27 @@ public class Cart extends Controller
         {
             play.Logger.info("problem adding " + cprnum);
         }
-        session("opencart", "false");
+        play.Logger.info("OPEN CART: " + showcart);
+        play.Logger.info("OPEN PERSON: " + showperson);
+        if (showcart)
+        {
+            session("opencart", "true");
+        }
+        else
+        {
+            session("opencart", "false");
+        }
+
+        if (showperson != null)
+        {
+            session("showperson", showperson);
+        }
+        else
+        {
+            session("showperson", "none");
+        }
+        //session(cprnum, "true");
+
         return redirect(uri);
     }
 

@@ -70,7 +70,7 @@
             @session.put(person.firstname+person.lastname, person.registerInformation.cprCitizen.socialSecurityNumber)
         </div>
         @if(session.get("usecart") == "1") {
-            @cart(person)
+            @cart(person, "none", false)
         }
         </p>
         
@@ -194,7 +194,7 @@
                                 <br/>
                                 @if(person.relationsWithPerson != null) {
                                     @for(r <- person.relationsWithPerson.allRelations) {
-                                        @relation(r)
+                                        @relation(r, person)
                                         
                                     }
                                 }

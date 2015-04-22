@@ -133,7 +133,7 @@
 
                                     </div>
                                     @if(session.get("usecart") == "1") {
-                                        @cart(person)
+                                        @cart(person, "none", false)
                                     }
                                     </p>
                                 </div>
@@ -286,7 +286,7 @@
                                                             <br/>
                                                             @if(person.relationsWithPerson != null) {
                                                                 @for(r <- person.relationsWithPerson.allRelations) {
-                                                                    @relation(r)
+                                                                    @relation(r, person)
                                                                     
                                                                 }
                                                             }
