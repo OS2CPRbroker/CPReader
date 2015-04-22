@@ -34,6 +34,7 @@
 package util;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -56,10 +57,11 @@ public class StringUtils {
 
     public static String join(CharSequence separator, Iterable<String> array) {
         String ret = "";
-        if (array.iterator().hasNext()) {
-            ret = array.iterator().next();
-            while (array.iterator().hasNext()){
-                ret += separator + array.iterator().next();
+        Iterator<String> iterator = array.iterator();
+        if (iterator.hasNext()) {
+            ret = iterator.next();
+            while (iterator.hasNext()){
+                ret += separator + iterator.next();
             }
         }
         return ret;
