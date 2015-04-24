@@ -121,7 +121,7 @@
 
                         @if(accesslevel > 0) {
                             <div class="col-md-3 text-left">
-                                <a href="#detailModal@person.uuid()" data-backdrop="static" data-toggle="modal" ><span class="glyphicon glyphicon-user"></span> @Messages("person.viewdetails")</a>
+                                <a href="#detailModal@person.uuid()" onclick="javascript:updateRelations('@person.uuid()')" data-backdrop="static" data-toggle="modal" ><span class="glyphicon glyphicon-user"></span> @Messages("person.viewdetails")</a>
                             
                             @if(person.relationsWithPerson != null) {
                                 @if(person.relationsWithPerson.allRelations.length > 0) {                                           
@@ -251,7 +251,7 @@
                 <!-- Modal HTML -->
                 <div id="detailModal@person.uuid()" class="modal static">
                     <div class="modal-dialog">
-                        <div class="modal-content">         
+                        <div id="content@person.uuid()" class="modal-content">  
                             <div class="modal-header">
                                 <div class="well">   
                                     <h4>             
@@ -568,6 +568,16 @@
         @partial_pagination(results, currentpage, location)
     }
 <script>
+    function updateRelations(uuid)
+    {
+        window.alert("Updating");
+
+        $.post('/search/update/'+uuid, {}, function (data) {
+            window.alert("Updated");
+            $('#content'+uuid).empty();
+            $('#content'+uuid).append(data);
+        });
+    }
     function hideParents(id)
     {
         document.getElementById(id).style.display = 'none';

@@ -282,6 +282,46 @@ public class Search extends Controller {
         }
     }
 
+    public Result updateRelations(String uuid) 
+    {
+        //return showPerson(uuid);
+        String content="person not found";
+        IPerson person = null;
+        try {
+            person = cprBroker.read(uuid);
+
+            // Logging the show request
+            play.Logger.info(session("username") + "'s request to CPRBroker responded, " + person.code() + " - " + person.message());
+        } catch (Exception ex) {
+            play.Logger.error(ex.toString());
+        }
+
+        SearchInput searchInput = new SearchInput();
+        searchInput.fillFromSession(this);
+
+        // access level - add to person model
+        Integer accessLevel = AccessLevelManager.getCurrentAccessLevel();
+
+        if (accessLevel < 1)
+        {
+            return ok(views.html.access_denied.render(401, searchInput, "Access denied."));
+        }
+        if (person == null) {
+            return ok(show_error.render(503, searchInput));
+        }
+
+       
+        if (person.code() == 200) { 
+                return ok(views.html.modalcontent.render(person, accessLevel));   
+
+        } else {
+            //TODO - A person wasn't found
+            return ok(show_error.render(person.code(), searchInput));
+        }
+        //play.Logger.info("UPDATE RELATIONS");
+        //return ok(content);
+    }
+
     public static class SearchInput {
 
         public SearchInput() {

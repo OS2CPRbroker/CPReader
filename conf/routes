@@ -15,6 +15,7 @@ GET         /logout                                                      control
 
 # Search
 POST        /search/cpr/                                                 @controllers.Search.getUuidFromCpr()
+POST        /search/update/:uuid                                              @controllers.Search.updateRelations(uuid : String)
 
 GET         /search/name/:name/address/:address/page/:page               @controllers.Search.searchNameAndAddress(name : String, address : String, online:Boolean ?= false, page : Int)
 GET         /search/name/:name/address/:address/online/page/:page        @controllers.Search.searchNameAndAddress(name : String, address : String, online:Boolean ?= true, page : Int)
