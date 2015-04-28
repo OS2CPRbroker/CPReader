@@ -31,21 +31,23 @@ nav.logout_button = Log out
 
 # cart
 cart.view = View cart
-cart.add= Add To Cart
-cart.remove= Remove
-cart.copy= Copy CPR Numbers
-cart.empty= Empty Cart
-cart.name= Name
-cart.cprnumber= CPR Number
+cart.add = Add To Cart
+cart.remove = Remove
+cart.copy = Copy CPR Numbers
+cart.empty = Empty Cart
+cart.name = Name
+cart.cprnumber = CPR Number
 cart.items = Items
-cart.added= has been added to the cart.
-cart.exists= has aready been added to the cart.
-cart.removed= removed from the cart.
-cart.copied= items copied to the clipboard.
-cart.emptied= Cart emptied.
-cart.noitems=There are currently no items in the cart
-cart.select= Select CPR Numbers
-cart.rightclick= Right click on the selected numbers to copy
+cart.added = has been added to the cart.
+cart.exists = has aready been added to the cart.
+cart.removed = removed from the cart.
+cart.copied = items copied to the clipboard.
+cart.emptied = Cart emptied.
+cart.noitems =There are currently no items in the cart
+cart.select = Select CPR Numbers
+cart.select.title = Select
+cart.rightclick = Right click on the selected numbers to copy
+cart.close = Close
 
 results.list.amountOfResults = Der er {0} resultater på søgningen:
 results.list.searchFailed = Fejl i søgningen

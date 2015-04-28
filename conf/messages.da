@@ -32,21 +32,22 @@ nav.logout_button = Log ud
 # cart
 cart.view = Vis kurv
 cart.add= Tilføj til kurv
-cart.remove= Fjerne
+cart.remove= Fjern
 cart.copy= Kopier CPR-numre
 cart.empty= Tøm kurv
 cart.name= Navn
 cart.cprnumber= CPR-nummer
-cart.items = Varer
-cart.added= er blevet tilføjet til kurven.
-cart.exists= har aready blevet tilføjet til kurven.
-cart.removed= fjernet fra kurven.
-cart.copied= kopieret til klippebordet poster.
-cart.emptied= Kurv tømt .
-cart.noitems=Der er i øjeblikket ingen varer i kurven
-cart.select= Vælg CPR-numre
-cart.rightclick= Højreklik på de markerede numre til at kopiere
-
+cart.items = Personer
+cart.added = er blevet tilføjet til kurven.
+cart.exists = har allerede blevet tilføjet til kurven.
+cart.removed = fjernet fra kurven.
+cart.copied = kopieret til klippebordet poster.
+cart.emptied = Kurv tømt .
+cart.noitems = Der er i øjeblikket ingen varer i kurven
+cart.select = Vælg CPR-numre
+cart.select.title = Vælg
+cart.rightclick = Højreklik på de markerede CPR-numre for at kopiere
+cart.close = Luk
 
 results.list.amountOfResults = Der er {0} resultater på søgningen:
 results.list.searchFailed = Fejl i søgningen
