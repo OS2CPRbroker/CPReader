@@ -508,7 +508,13 @@ public class JaxWsCprBroker implements ICprBrokerAccessor {
 
         //// Did the read return anything?
         //TODO Magic number removal (What status codes can it return?)
-        if (standardReturType.getStatusKode().intValue() == 200) {
+        int statusCode = standardReturType.getStatusKode().intValue();
+        boolean hasData = laesResultatType != null
+                && (laesResultatType.getFiltreretOejebliksbillede() != null || laesResultatType.getRegistrering() !=null);
+        if (
+                statusCode == 200 ||
+                (statusCode == 206 && hasData)
+                ) {
 
             // region Registration
             // Only if return is RegistreringType
