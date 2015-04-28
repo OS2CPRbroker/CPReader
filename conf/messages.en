@@ -20,7 +20,7 @@ error.required = Feltet {0} skal udfyldes
 
 # navbar
 nav.title = CPReader
-nav.quicksearch_placeholder = CPR eller efternavn
+nav.quicksearch_placeholder = CPR or name
 nav.quicksearch_addresslaceholder = Address
 nav.quicksearch_submit = Submit
 nav.quicksearch_online = Online
