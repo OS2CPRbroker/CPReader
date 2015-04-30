@@ -570,10 +570,10 @@
 <script>
     function updateRelations(uuid)
     {
-        window.alert("Updating");
+        //window.alert("Updating");
 
         $.post('/search/update/'+uuid, {}, function (data) {
-            window.alert("Updated");
+            //window.alert("Updated");
             $('#content'+uuid).empty();
             $('#content'+uuid).append(data);
         });
