@@ -4,7 +4,7 @@ define(["modolus11"], function(modolus11) {
 
 			var containsspecialcharacters = /\½|\§|\!|\"|\@|\#|\£|\¤|\$|\%|\&|\/|\{|\(|\[|\)|\]|\=|\}|\?|\+|\'|\`|\||\^|\~|\*|\_|\;|\:|\.|\+/;
 			var containsnumbers = /[0-9]/;
-			var containsletters = /[a-zA-Z]/;
+			var containsletters = /[a-zA-ZæÆøØåÅ]/;
 			var cprpattern = /[0-9]{6}-[0-9]/;
 
 			//reset the color
