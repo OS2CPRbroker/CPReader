@@ -12,7 +12,7 @@ define(["modolus11"], function(modolus11) {
 
 			//if the query has special characters
 			if (containsspecialcharacters.test(query)) {
-				queryfield.addClass('has-warning');
+				queryfield.parent().addClass('has-warning');
 				queryfield.attr('data-original-title', 'Bemærk');
 				queryfield.attr('data-content',
 						'Din søgning indeholder et eller flere specialtegn.')
@@ -21,7 +21,7 @@ define(["modolus11"], function(modolus11) {
 
 			//if the query contains numbers and letters
 			else if (containsnumbers.test(query) & containsletters.test(query)) {
-				queryfield.addClass('has-warning');
+				queryfield.parent().addClass('has-warning');
 				queryfield.attr('data-original-title', 'Bemærk');
 				queryfield
 						.attr('data-content',
@@ -35,25 +35,25 @@ define(["modolus11"], function(modolus11) {
 					& !containsspecialcharacters.test(query)) {
 				//if there is less than 6 numbers
 				if (query.length < 6) {
-					queryfield.addClass('has-warning');
+					queryfield.parent().addClass('has-warning');
 				}
 
 				//if there is more than 5 numbers, but less than 10
 				else if (query.length > 5 & query.length < 10) {
 					// validate that the first 6 numbers is a valid date
-					queryfield.addClass('has-warning');
+					queryfield.parent().addClass('has-warning');
 				}
 
 				else if (query.length > 5 & query.length < 11
 						& cprpattern.test(query)) {
 					// validate that the first 6 numbers is a valid date    	  
-					queryfield.addClass('has-warning');
+					queryfield.parent().addClass('has-warning');
 				}
 
 				//if there is more than 10 numbers
 				else if ((query.length > 10 & !cprpattern.test(query))
 						| (query.length > 11 & cprpattern.test(query))) {
-					queryfield.addClass('has-error');
+					queryfield.parent().addClass('has-error');
 					queryfield.attr('data-original-title', 'Bemærk');
 					queryfield
 							.attr('data-content',
@@ -68,14 +68,14 @@ define(["modolus11"], function(modolus11) {
 					// is the date 010165 or 010166
 					if (query.substring(0, 6) == '010165'
 							| query.substring(0, 6) == '010166') {
-						queryfield.addClass('has-success');
+						queryfield.parent().addClass('has-success');
 					} else if (!cprpattern.test(query) & modolus11.check(query)) {
-						queryfield.addClass('has-success');
+						queryfield.parent().addClass('has-success');
 					} else if (cprpattern.test(query)
 							& modolus11.check(query.replace("-", ""))) {
-						queryfield.addClass('has-success');
+						queryfield.parent().addClass('has-success');
 					} else {
-						queryfield.addClass('has-error');
+						queryfield.parent().addClass('has-error');
 						queryfield.attr('data-original-title', 'Bemærk');
 						queryfield.attr('data-content',
 								'Dette er ikke et gyldigt CPR nummer.')
@@ -85,7 +85,7 @@ define(["modolus11"], function(modolus11) {
 			}
 			// everything else is considered valid, 
 			else if (query.length > 0) {
-				queryfield.addClass('has-success');
+				queryfield.parent().addClass('has-success');
 			}
 		},
 
@@ -99,7 +99,7 @@ define(["modolus11"], function(modolus11) {
 
 			if (!pat.test(query)) {
 				//alert('not match');
-				queryfield.addClass('has-warning');
+				queryfield.parent().addClass('has-warning');
 				queryfield.attr('data-original-title', 'Bemærk');
 				queryfield.attr('data-content', 'Dette er en ugyldig adresse');
 				queryfield.popover('show');
@@ -110,9 +110,9 @@ define(["modolus11"], function(modolus11) {
 		},
 
 		clearValidation: function (queryfield) {
-			queryfield.removeClass('has-success');
-			queryfield.removeClass('has-error');
-			queryfield.removeClass('has-warning');
+			queryfield.parent().removeClass('has-success');
+			queryfield.parent().removeClass('has-error');
+			queryfield.parent().removeClass('has-warning');
 
 			queryfield.popover('destroy');
 		}

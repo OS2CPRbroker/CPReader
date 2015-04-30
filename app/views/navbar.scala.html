@@ -48,8 +48,8 @@
     <div class="navbar-collapse collapse">
         <form id="quicksearch" class="navbar-form navbar-left" role="search">
             <div class="form-group" id="querygroup">
-                <input type="text" class="form-control" id="query" placeholder="@Messages("nav.quicksearch_placeholder")" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getQuery()" />
-                <input type="text" class="form-control" id="query2" placeholder="@Messages("nav.quicksearch_addresslaceholder")" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getAddressQuery()" />
+                <span><input type="text" class="form-control" id="query" placeholder="@Messages("nav.quicksearch_placeholder")" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getQuery()" /></span>
+                <span><input type="text" class="form-control" id="query2" placeholder="@Messages("nav.quicksearch_addresslaceholder")" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getAddressQuery()" /></span>
 
                 <div class="navbar-form-online">
                 @if(Play.application().configuration().getInt("search.type") != 1 && Play.application().configuration().getInt("search.type") != 2) {
