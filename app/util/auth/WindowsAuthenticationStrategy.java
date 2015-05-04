@@ -71,21 +71,27 @@ public class WindowsAuthenticationStrategy implements IAuthentication ,IIntegrat
 
         if(userCookie != null && ticketCookie != null) {
             // Validate ticket
-            try {
-                String url = configuration.getConfiguration().getString("winauth.url");
-                String paramName = configuration.getConfiguration().getString("winauth.parametername");
+            Boolean validateTicket = configuration.getConfiguration().getBoolean("winauth.validateticket", false);
+            if(validateTicket) {
+                try {
+                    String url = configuration.getConfiguration().getString("winauth.url");
+                    String paramName = configuration.getConfiguration().getString("winauth.parametername");
 
-                URL ticketUrl = new URL(url +  "?"+ paramName + "=" + ticketCookie.value());
-                HttpURLConnection yc = (HttpURLConnection)ticketUrl.openConnection();
-                yc.connect();
-                int responseCode = yc.getResponseCode();
-                if(responseCode == 200) {
-                    // No error, OK
-                    ret = userCookie.value();
+                    URL ticketUrl = new URL(url + "?" + paramName + "=" + ticketCookie.value());
+                    HttpURLConnection yc = (HttpURLConnection) ticketUrl.openConnection();
+                    yc.connect();
+                    int responseCode = yc.getResponseCode();
+                    if (responseCode == 200) {
+                        // No error, OK
+                        ret = userCookie.value();
+                    }
+                }
+                catch (Exception ex) {
+                    return null;
                 }
             }
-            catch (Exception ex){
-                return null;
+            else{
+                ret = userCookie.value();
             }
         }
         if(ret != null)
