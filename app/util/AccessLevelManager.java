@@ -88,7 +88,7 @@ public abstract class AccessLevelManager {
             String line = "";
             while ((line = fileReader.readLine()) != null)
             {
-                if (line.isEmpty() || line.trim().equals("") || line.trim().equals("\n"))
+                if (line.isEmpty() || line.trim().equals("") || line.trim().equals("\n") || line.trim().startsWith("#"))
                 {
                     // skip it
                 }
