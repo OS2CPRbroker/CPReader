@@ -282,10 +282,13 @@ public class Search extends Controller {
         }
     }
 
-    public Result updateRelations(String uuid) 
+     public Result updateParents(String uuid, String uri) 
     {
-        //return showPerson(uuid);
+        play.Logger.info("UPDATE PARENTS ");
+        
         String content="person not found";
+        session("redirect", uri);
+
         IPerson person = null;
         try {
             person = cprBroker.read(uuid);
@@ -295,7 +298,49 @@ public class Search extends Controller {
         } catch (Exception ex) {
             play.Logger.error(ex.toString());
         }
+        SearchInput searchInput = new SearchInput();
+        searchInput.fillFromSession(this);
 
+        // access level - add to person model
+        Integer accessLevel = AccessLevelManager.getCurrentAccessLevel();
+
+        if (accessLevel < 1)
+        {
+            return ok(views.html.access_denied.render(401, searchInput, "Access denied."));
+        }
+        if (person == null) {
+            return ok(show_error.render(503, searchInput));
+        }
+
+       
+        if (person.code() == 200) { 
+                return ok(views.html.parentlist.render(person, accessLevel));   
+
+        } else {
+            //TODO - A person wasn't found
+            return ok(show_error.render(person.code(), searchInput));
+        }
+        //play.Logger.info("UPDATE RELATIONS");
+        //return ok(content);
+    }
+
+    public Result updateRelations(String uuid, String uri) 
+    {
+        play.Logger.info("UPDATE RELATIONS ");
+        
+        String content="person not found";
+        session("redirect", uri);
+
+        IPerson person = null;
+        try {
+            person = cprBroker.read(uuid);
+
+            // Logging the show request
+            play.Logger.info(session("username") + "'s request to CPRBroker responded, " + person.code() + " - " + person.message());
+        } catch (Exception ex) {
+            play.Logger.error(ex.toString());
+        }
+        play.Logger.info("UPDATE RELATIONS 2");
         SearchInput searchInput = new SearchInput();
         searchInput.fillFromSession(this);
 
@@ -320,6 +365,14 @@ public class Search extends Controller {
         }
         //play.Logger.info("UPDATE RELATIONS");
         //return ok(content);
+    }
+
+
+    public Result closeDetail()
+    {
+        play.Logger.info("CLOSE DETAIL ");
+        session("showperson", "none");
+        return ok("Closed");
     }
 
     public static class SearchInput {
@@ -351,7 +404,7 @@ public class Search extends Controller {
                 this.setOnline(online); // use radio button value
             }
 
-            this.setOnline(online);
+            //this.setOnline(online);
         }
 
         @Required

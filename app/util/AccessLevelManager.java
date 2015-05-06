@@ -104,14 +104,33 @@ public abstract class AccessLevelManager {
                         {
                             groupnames[i] = groupnames[i].replaceAll("\\s",""); // strip any white space
                             if (tokens[0].toLowerCase().equals(groupnames[i].toLowerCase()))
-                            {
-                                // we have a match, so return the access level
-                                accesslevel = tokens[1];
+                            {   
+                                if(tokens[1] != null)
+                                {
+                                    // we have a match, so return the access level
+                                    tokens[1] = tokens[1].replaceAll("\\s",""); // strip any white space
+                                    accesslevel = tokens[1];
+                                }
+                                else
+                                {
+                                    accesslevel = "0";
+                                }
+
+
+
                                 // set user cart usage
                                 if (play.Play.application().configuration().getString("cart.enabled").equals("true"))
                                 {
                                     // user specific cart access
-                                    Context.current().session().put("usecart", "" + tokens[2]);
+                                    if(tokens[2] != null)
+                                    {
+                                        tokens[2] = tokens[2].replaceAll("\\s",""); // strip any white space
+                                        Context.current().session().put("usecart", "" + tokens[2]);
+                                    }
+                                    else
+                                    {
+                                        Context.current().session().put("usecart", "1");
+                                    }
                                 }
                             }
                         }
@@ -120,16 +139,32 @@ public abstract class AccessLevelManager {
                     // check individual user level access (overrides group level access)
                     if (tokens[0].toLowerCase().equals(username.toLowerCase()))
                     {
-                        // we have a match, so return the access level
-                        accesslevel = tokens[1];
+                        if(tokens[1] != null)
+                        {
+                            // we have a match, so return the access level
+                            tokens[1] = tokens[1].replaceAll("\\s",""); // strip any white space
+                            accesslevel = tokens[1];
+                        }
+                        else
+                        {
+                            accesslevel = "0";
+                        }
 
                         // set user cart usage
                         if (play.Play.application().configuration().getString("cart.enabled").equals("true"))
                         {
-                            // user specific cart access
-                            if (Integer.parseInt(tokens[2]) < 3)
+                            if(tokens[2] != null)
                             {
-                                Context.current().session().put("usecart", "" + tokens[2]);
+                                tokens[2] = tokens[2].replaceAll("\\s",""); // strip any white space
+                                // user specific cart access
+                                if (Integer.parseInt(tokens[2]) < 3)
+                                {
+                                    Context.current().session().put("usecart", "" + tokens[2]);
+                                }
+                                else
+                                {
+                                    Context.current().session().put("usecart", "1");
+                                }
                             }
                             else
                             {

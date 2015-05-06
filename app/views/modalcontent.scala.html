@@ -41,7 +41,7 @@
             @play.api.cache.Cache.set(person.uuid(), person);
         </div>
         @if(session.get("usecart") == "1") {
-            @cart(person, person.uuid(), false)
+            @cart(person, person.uuid(), false, false, "none")
         }
         </p>
     </div>
@@ -69,20 +69,18 @@
                 }
             } else {
                 @if(person.relationsWithPerson != null) {
-                    @if(person.relationsWithPerson.allRelations.length > 0) {
-                                                                            
-                            @{showrelations = 0}
+                    @if(person.relationsWithPerson.allRelations.length > 0) {                                                        
+                        @{showrelations = 0}
 
-                            @for(r <- person.relationsWithPerson.allRelations) {
-                                @if(r.relationshipType.toString() == "Forældremyndighedsindehaver"){
-                                    @{showrelations = 1}
-                                } 
-                            }
-    
-                            @if(showrelations > 0) {
-                                <li class="active"><a href="#" data-toggle="pill">Relationer</a></li>
-                            }
+                        @for(r <- person.relationsWithPerson.allRelations) {
+                            @if(r.relationshipType.toString() == "Forældremyndighedsindehaver" || r.relationshipType.toString() == "Fader" || r.relationshipType.toString() == "Moder"){
+                                @{showrelations = 1}
+                            } 
+                        }
 
+                        @if(showrelations > 0) {
+                            <li class="active"><a href="#" data-toggle="pill">Relationer</a></li>
+                        }
                     }
                 }
             }       
@@ -194,11 +192,10 @@
                                         @if(accesslevel > 1) {
                                             @relation(r, person)
                                         } else {
-                                            @if(r.relationshipType.toString() == "Forældremyndighedsindehaver"){
+                                            @if(r.relationshipType.toString() == "Forældremyndighedsindehaver" || r.relationshipType.toString() == "Fader" || r.relationshipType.toString() == "Moder"){
                                                 @relation(r, person)
                                             }
-                                        }
-                                        
+                                        }  
                                     }
                                 }
                             </div>
@@ -212,5 +209,5 @@
     }
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button onclick="hideDetail()" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 </div>

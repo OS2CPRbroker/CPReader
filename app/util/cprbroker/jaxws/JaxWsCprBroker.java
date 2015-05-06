@@ -635,6 +635,7 @@ public class JaxWsCprBroker implements ICprBrokerAccessor {
 
             //region Relations
             // Getting the person information for each relation
+
             if (isGettingRelations) {
                 play.Logger.info("getting relations");
                 // Assigning person relations
@@ -679,7 +680,7 @@ public class JaxWsCprBroker implements ICprBrokerAccessor {
 
                     // Make the IPersonRelationshipsWithIPersons
                     for (int i = 0; i < relationshipPersons.size(); i++) {
-
+                        play.Logger.info("adding relation");
                         relationshipWithPersonBuilder = new RelationshipWithPerson.Builder();
 
                         relationshipWithPersonBuilder.relationship(allRelations.get(i));
