@@ -70,7 +70,7 @@ person.true = Ja
 person.false = Nej
 person.registrationdate = Senest opdateret
 person.viewdetails = Se personen
-person.showparents = Vis forældrer
+person.showparents = Forældre/værge
 
 #------ EGENSKABER
 person.firstname = Fornavn
