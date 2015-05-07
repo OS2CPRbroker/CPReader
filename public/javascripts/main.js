@@ -24,13 +24,13 @@ require(["jquery", "bootstrap", "processQuery", "validate", "modolus11", "jquery
             p.processQuery(query, query2, online);
         };
 
-        // handle submition routing
+        // handle submission routing
         $('#quicksearchbutton').click(function (event) {
             event.preventDefault();
             callProcessQuery($);
         });
 
-        // handle submition routing on enter as well
+        // handle submission routing on enter as well
         $('#query').keypress(function (event) {
             if (event.which == 13) {
                 event.preventDefault();
