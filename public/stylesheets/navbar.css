@@ -11,6 +11,9 @@ margin-bottom: 30px;
     padding-top: 2%;
     text-align: left;
 }
+.navbar-form-online-hidden {
+    display: none;
+}
 
 .navbar-form-search{
     float: right;

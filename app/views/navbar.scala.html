@@ -51,18 +51,18 @@
                 <span><input type="text" class="form-control" id="query" placeholder="@Messages("nav.quicksearch_placeholder")" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getQuery()" /></span>
                 <span><input type="text" class="form-control" id="query2" placeholder="@Messages("nav.quicksearch_addresslaceholder")" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getAddressQuery()" /></span>
 
-                <div class="navbar-form-online">
-                @if(Play.application().configuration().getInt("search.type") != 1 && Play.application().configuration().getInt("search.type") != 2) {
+                @if(Play.application().configuration().getInt("search.type") == 0 ) {
+                    <div class="navbar-form-online">
+                }
+                @if(Play.application().configuration().getInt("search.type") == 1 ||  Play.application().configuration().getInt("search.type") == 2) {
+                    <div class="navbar-form-online-hidden">
+                }
                     <input type="radio" name="online" id="online_false" value="false" @if(!searchInput.getOnline()){checked}>
                     <label for="online_false">@Messages("nav.quicksearch_local") &nbsp;&nbsp;</label>
                     <input type="radio" name="online" id="online_true" value="true" @if(searchInput.getOnline()){checked }>
                     <label for="online_true"> @Messages("nav.quicksearch_online")</label> 
-                } 
 
-
-                    
-                </div>
-
+                    </div>
                 <button id="quicksearchbutton" type="button" class="btn btn-default navbar-form-search">@Messages("nav.quicksearch_submit")</button>
             </div>
 

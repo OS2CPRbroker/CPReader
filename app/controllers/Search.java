@@ -61,6 +61,7 @@ import java.util.List;
 public class Search extends Controller {
 
     private static ICprBrokerAccessor cprBroker;
+    private static Boolean onlineCacheEnabled;
     private static int onlineCacheTimeout;
     public static IConfiguration config;
 
@@ -69,7 +70,8 @@ public class Search extends Controller {
     {
         config = conf;
         cprBroker = newCprBroker;
-        onlineCacheTimeout = conf.getConfiguration().getInt("cprbroker.onlinecacheseconds");
+        onlineCacheEnabled = conf.getConfiguration().getBoolean("cprbroker.onlinecacheenabled",false);
+        onlineCacheTimeout = conf.getConfiguration().getInt("cprbroker.onlinecacheseconds", 120);
     }
 
     String getSessionId() {
@@ -99,7 +101,7 @@ public class Search extends Controller {
             ));
 
             String key = String.format("session=%s;name=%s;address=%s", getSessionId(), name, address);
-            if (online) {
+            if (online && onlineCacheEnabled) {
                 Object o = Cache.get(key);
                 if (o != null)
                     persons = (List<IPerson>) o;
@@ -111,7 +113,7 @@ public class Search extends Controller {
                         online ? ESourceUsageOrder.ExternalOnly : ESourceUsageOrder.LocalOnly,
                         -1, -1);
             }
-            if (online) {
+            if (online && onlineCacheEnabled) {
                 // Temporarily store the results for a while
                 Cache.set(key, persons, onlineCacheTimeout);
             }
@@ -158,7 +160,7 @@ public class Search extends Controller {
         
         
         // Logging the show request
-        play.Logger.info(String.format( "At <%s> user <%s> requested to see uuid <%s>",
+        play.Logger.info(String.format("At <%s> user <%s> requested to see uuid <%s>",
                 DateTime.now(),
                 Secured.getCurrntUsername(),
                 uuid
@@ -380,31 +382,13 @@ public class Search extends Controller {
         public SearchInput() {
             this.setQuery("");
             this.setAddressQuery("");
-            this.setOnline(false);
+            this.setOnlineFromConfigOrValue(false);
         }
 
         public SearchInput(String name, String address, Boolean online) {
             this.setQuery(name);
             this.setAddressQuery(address);
-
-
-            if (config.getConfiguration().getInt("search.type") == 1)
-            {   
-                play.Logger.info("OFFLINE SEARCH");
-                this.setOnline(false); // local            
-            }
-            else if (config.getConfiguration().getInt("search.type") == 2)
-            {
-                play.Logger.info("ONLINE SEARCH");
-                this.setOnline(true); // online
-            }
-            else
-            {
-                play.Logger.info("USE RADIO BUTTON VALUE: "+online);
-                this.setOnline(online); // use radio button value
-            }
-
-            //this.setOnline(online);
+            this.setOnlineFromConfigOrValue(online);
         }
 
         @Required
@@ -436,6 +420,24 @@ public class Search extends Controller {
 
         public void setOnline(boolean value) {
             this.online = value;
+        }
+
+        public void setOnlineFromConfigOrValue(boolean value) {
+            if (config.getConfiguration().getInt("search.type") == 1)
+            {
+                play.Logger.info("OFFLINE SEARCH");
+                this.setOnline(false); // local
+            }
+            else if (config.getConfiguration().getInt("search.type") == 2)
+            {
+                play.Logger.info("ONLINE SEARCH");
+                this.setOnline(true); // online
+            }
+            else
+            {
+                play.Logger.info("USE RADIO BUTTON VALUE: "+online);
+                this.setOnline(value); // use radio button value
+            }
         }
 
         public void fillFromSession(Controller controller) {
