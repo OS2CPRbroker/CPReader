@@ -97,8 +97,8 @@ public class Global extends GlobalSettings {
 				// Use this for Windows authentication
 				//bind(IAuthentication.class).to(WindowsAuthenticationStrategy.class);
 
-                bind(IAddressParser.class).to(DawaAddressParser.class);
-				//bind(IAddressParser.class).to(RegexAddressParser.class);
+                //bind(IAddressParser.class).to(DawaAddressParser.class);
+				bind(IAddressParser.class).to(RegexAddressParser.class);
 
 	            bind(ICprBrokerAccessor.class)
             	.toProvider(new Provider<ICprBrokerAccessor>() {

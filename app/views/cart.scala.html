@@ -31,10 +31,13 @@
 *
 * ***** END LICENSE BLOCK ***** *@
 
-@(person: util.cprbroker.IPerson, showperson: String, showcart: Boolean)
+@(person: util.cprbroker.IPerson, showperson: String, showcart: Boolean, showparents: Boolean, expandid : String)
+
+<a href="@routes.Cart.addItem(person.uuid(), request.uri, showperson, showcart, showparents, expandid)"><span class="glyphicon glyphicon-plus"></span> @Messages("cart.add")</a>
 
 
-<a href="@routes.Cart.addItem(person.uuid(), request.uri, showperson, showcart)"><span class="glyphicon glyphicon-plus"></span> @Messages("cart.add")</a>
+
+
 
 
 @*<a href="@controllers.Cart.addItem2(person.uuid(), request.uri)"><span class="glyphicon glyphicon-plus"></span> @Messages("cart.add") Alt</a>*@

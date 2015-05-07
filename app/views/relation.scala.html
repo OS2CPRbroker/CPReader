@@ -59,7 +59,7 @@
               @play.api.cache.Cache.set(relation.person.uuid(), relation.person);
             </div>
             @if(session.get("usecart") == "1") {
-              @cart(relation.person, person.uuid(), false)
+              @cart(relation.person, person.uuid(), false, false, "none")
             }
           }
          </p>

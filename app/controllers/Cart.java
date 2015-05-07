@@ -154,69 +154,8 @@ public class Cart extends Controller
     	
     }
 
-    /*public static void addItem2(String cprnum, String uri)
-    {
-        play.Logger.info("adding " + cprnum);
-
-
-        boolean exists=false;
-        List<String> personData = new ArrayList<String>();
-        IPerson person = (IPerson)Cache.get(cprnum);
-        if (person != null)
-        {
-            String firstname=person.firstname();
-            String middlename="";
-            String lastname=person.lastname();
-
-            if (person.middelname() != null) {   
-                middlename = person.middelname();
-            }
-        
-            personData.add(firstname);
-            personData.add(middlename);
-            personData.add(lastname);
-            personData.add(person.registerInformation().cprCitizen().socialSecurityNumber());
-            personData.add(session(cprnum+"_uuid"));
-
-            // get cart items from cache
-            List<List<String>> cartItems = (List<List<String>>) Cache.get("cartdata");
-
-            if (cartItems == null)
-            {
-                cartItems = new ArrayList<List<String>>();
-            }
-
-            // scan through and see if the person already exists
-            for (int i = 0;  i < cartItems.size(); i++)
-            {
-                String searchByCprNum = cartItems.get(i).get(4);
-                if(searchByCprNum.equals(cprnum))
-                {
-                    exists=true;
-                }
-            }
-            if(!exists) 
-            {
-                
-                cartItems.add( personData );
-                flash("message", firstname + " " + middlename + " " + lastname + " " + Messages.get("cart.added"));
-            }
-            else
-            {
-                flash("message", firstname + " " + middlename + " " + lastname + " " + Messages.get("cart.exists"));
-            }
-            Cache.set("numcartitems", cartItems.size(), CART_CACHE_TIMEOUT);
-            Cache.set("cartdata", cartItems, CART_CACHE_TIMEOUT);
-        } 
-        else
-        {
-            play.Logger.info("problem adding " + cprnum);
-        }
-       
-    }*/
-
     //public Result addItem(String firstname, String lastname, String uri)
-    public Result addItem(String cprnum, String uri, String showperson, boolean showcart)
+    public Result addItem(String cprnum, String uri, String showperson, boolean showcart, boolean showparents, String expandid)
     {
         play.Logger.info("adding " + cprnum);
 
@@ -287,41 +226,38 @@ public class Cart extends Controller
         if (showperson != null)
         {
             session("showperson", showperson);
+            play.Logger.info("SHOW PERSON");
         }
         else
         {
             session("showperson", "none");
+            play.Logger.info("SHOW PERSON");
         }
-        //session(cprnum, "true");
 
-        return redirect(uri);
+        if(showparents)
+        {
+            session("showperson", "none");
+            play.Logger.info("showparents"+expandid+" shown");
+            //session("showparents"+expandid, "show");
+            session("showparents", expandid);
+        }
+        else
+        {
+            play.Logger.info("showparents"+expandid+" hidden");
+            //session("showparents"+expandid, "hide");
+            session("showparents", expandid);
+        }
+
+        // redirect to search
+        String redirect_uri = uri;
+    
+        if (session("redirect") != null)
+        {
+            redirect_uri = session("redirect");
+        }
+    
+        return redirect(redirect_uri);
     }
-
-
-    /*public static void removeItem2(String cprnum, String uri)
-    {
-        // get cart items from cache
-        cartItems = (List<List<String>>) Cache.get("cartdata");
-
-        if (cartItems == null)
-        {
-            cartItems = new ArrayList<List<String>>();
-        }
-
-        for ( int i = 0;  i < cartItems.size(); i++)
-        {
-            
-            String searchByCprNum = cartItems.get(i).get(4);
-            if(searchByCprNum.equals(session(cprnum+"_uuid")))
-            {
-                flash("message", cartItems.get(i).get(0) + " " + cartItems.get(i).get(1) + " "+ cartItems.get(i).get(2) + " " + Messages.get("cart.removed"));
-                cartItems.remove(i);
-            }
-        }
-        Cache.set("numcartitems", cartItems.size(), CART_CACHE_TIMEOUT);
-        Cache.set("cartdata", cartItems, CART_CACHE_TIMEOUT);
-        //return redirect(uri);
-    }*/
 
     public Result removeItem(String cprnum, String uri)
     {
@@ -354,17 +290,5 @@ public class Cart extends Controller
     {   
         return ok("Test ok");
     }
-    /*
-    public Result javascriptRoutes() 
-    {
-        response().setContentType("text/javascript");
-        //return ok("Test ok");
-
-        return ok(
-            Routes.javascriptRouter("jsRoutes",
-                controllers.routes.javascript.Cart.test()
-            )
-        );
-    }*/
  }
 
