@@ -75,49 +75,7 @@
                 
                 <div class="list-group-item">
                     <div class="row">
-                        <div class="col-md-1">
-                            @person.registerInformation.cprCitizen.socialSecurityNumber
-                        </div>
-                        <div class="col-md-3">
-                            @if(person.firstname) {
-                                @person.firstname
-                            }
-                            @if(person.middelname) {
-                                @person.middelname
-                            }
-                            @if(person.lastname) {
-                                @person.lastname
-                            }
-                        </div>
-                        <div class="col-md-2">
-                            @if(person.address != null && person.address.addressType == util.cprbroker.EAddressType.Danish) {
-                                <span class="text-muted">
-                                    @if(person.address.danishAddress.streetName) {
-                                        @person.address.danishAddress.streetName
-                                    }
-                                    @if(person.address.danishAddress.streetBuilding) {
-                                        @person.address.danishAddress.streetBuilding
-                                    }
-                                    @if(person.address.danishAddress.floor) {
-                                        @person.address.danishAddress.floor
-                                    }
-                                    @if(person.address.danishAddress.suite) {
-                                        @person.address.danishAddress.suite
-                                    }
-                                    @if(person.address.danishAddress.postCode) {
-                                        @person.address.danishAddress.postCode
-                                    }
-                                    @if(person.address.danishAddress.districtName) {
-                                        @person.address.danishAddress.districtName
-                                    }
-                                </span>
-                            }
-                        </div>
-                        <div class="col-md-1">
-                        @if(person.tilstand!=null && person.tilstand.livStatusKode != null) {
-                                @person.tilstand.livStatusKode
-                        }
-                        </div>
+                        @listperson(person,true)
 
                         @if(accesslevel > 0) {
                             <div class="col-md-3 text-left">
@@ -153,55 +111,7 @@
                             @for(r <- person.relationsWithPerson.allRelations) {
                                 @if(r.relationshipType.toString() == "Forældremyndighedsindehaver" || r.relationshipType.toString() == "Fader" || r.relationshipType.toString() == "Moder"){
                                     <div class="row">
-                                        <div class="col-md-1">
-                                            @*
-                                            @r.person.registerInformation.cprCitizen.socialSecurityNumber
-                                            *@
-                                        </div>
-                                        <div class="col-md-3">
-                                            @r.relationshipType.toString():
-                                            @if(r.person.firstname) {
-                                                @r.person.firstname
-                                            }
-                                            @if(r.person.middelname) {
-                                                @r.person.middelname
-                                            }
-                                            @if(r.person.lastname) {
-                                                @r.person.lastname
-                                            }
-                                        </div>
-                                        <div class="col-md-2">
-                                            @if(r.person.address != null && r.person.address.addressType == util.cprbroker.EAddressType.Danish) {
-                                                <span class="text-muted">
-                                                    @if(r.person.address.danishAddress.streetName) {
-                                                        @r.person.address.danishAddress.streetName
-                                                    }
-                                                    @if(r.person.address.danishAddress.streetBuilding) {
-                                                        @r.person.address.danishAddress.streetBuilding
-                                                    }
-                                                    @if(r.person.address.danishAddress.floor) {
-                                                        @r.person.address.danishAddress.floor
-                                                    }
-                                                    @if(r.person.address.danishAddress.suite) {
-                                                        @r.person.address.danishAddress.suite
-                                                    }
-                                                    @if(r.person.address.danishAddress.postCode) {
-                                                        @r.person.address.danishAddress.postCode
-                                                    }
-                                                    @if(r.person.address.danishAddress.districtName) {
-                                                        @r.person.address.danishAddress.districtName
-                                                    }
-                                                </span>
-                                            }
-                                        </div>
-                                        <div class="col-md-1">
-                                        @if(r.person.tilstand!=null && r.person.tilstand.livStatusKode != null) {
-                                                @r.person.tilstand.livStatusKode
-                                        }
-                                        </div>
-
-
-
+                                        @listperson(r.person(),false)
 
                                         @if(accesslevel > 0) {
                                             <div class="col-md-2 text-left">
