@@ -123,27 +123,6 @@
                             <div class="col-md-3 text-left">
 
                                 <a href="#detailModal@person.uuid()" onclick="javascript:updateRelations('@person.uuid()')" data-backdrop="static" data-toggle="modal" ><span class="glyphicon glyphicon-user"></span> @Messages("person.viewdetails")</a>
-                            
-                            @*
-                            @if(person.relationsWithPerson != null) {
-                                @if(person.relationsWithPerson.allRelations.length > 0) {                                           
-                                    @if(person.relationsWithPerson != null) {
-                                        @for(r <- person.relationsWithPerson.allRelations) {
-                                            @if(r.relationshipType.toString() == "Forældremyndighedsindehaver" || r.relationshipType.toString() == "Fader" || r.relationshipType.toString() == "Moder"){
-                                                @{showparents = 1}
-                                            } 
-                                        }
-                                    } 
-                                }
-                                @if(showparents > 0) {
-                                    
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="javascript:showParents('parents-row@person.uuid()', '@person.uuid()')"><span class="glyphicon glyphicon-user"></span> @Messages("person.showparents")</a>
-                                    
-                                    
-                                    
-                                }
-                            }*@
-
 
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="javascript:showParents('parents-row@person.uuid()', '@person.uuid()')"><span class="glyphicon glyphicon-user"></span> @Messages("person.showparents")</a>
                             </div>
@@ -497,16 +476,6 @@
                                     <p class="text-right">
                                     <div id="session" style="display: none;">
                                         @session.put(person.uuid()+"_uuid", person.uuid())
-                                        @*
-                                            @session.put(person.uuid()+"_cprnum", person.registerInformation.cprCitizen.socialSecurityNumber)
-                                            @session.put(person.uuid()+"_fname", person.firstname)
-                                            @if(person.middelname != null) {
-                                                @session.put(person.uuid()+"_mname", person.middelname)
-                                            } else {
-                                                @session.put(person.uuid()+"_mname", "")
-                                            }
-                                            @session.put(person.uuid()+"_lname", person.lastname)
-                                        *@
                                         @play.api.cache.Cache.set(person.uuid(), person);
                                     </div>
                                     @if(session.get("usecart") == "1") {
@@ -582,24 +551,16 @@
 <script>
     function hideDetail()
     {
-        //alert("Close");
         $.post('/search/closedetail', {}, function (data) {
-            //window.alert("Closed");
         });
     }
 
     function updateRelations(uuid)
     {
-
         $.post('/search/update/'+uuid+'/'+encodeURIComponent(window.location.href), {}, function (data) {
             $('#content'+uuid).empty();
             $('#content'+uuid).append(data);
         });
-        /*$.post('/search/update/'+uuid+'/'+window.location.href, {}, function (data) {
-            //window.alert("Updated");
-            $('#content'+uuid).empty();
-            $('#content'+uuid).append(data);
-        });*/
     }
 
     function hideParents(id)
@@ -609,42 +570,27 @@
 
     function showParents(id, uuid)
     {
-        //window.alert(id);
         $('[id^=parents-row]').slideUp("fast");
 
         if (document.getElementById(id).style.display === 'block' || document.getElementById(id).style.display === '')
         {
-            
             $("#"+id).slideUp("fast");
-            //$('#cart'+uuid).empty();     
-            //$('#cart'+uuid).append("&#64;cart(person, \"none\", false, false)");
         }
         else
         {
-           
-            
             $.post('/search/updateparents/'+uuid+'/'+encodeURIComponent(window.location.href), {}, function (data) {
                 if(data == "none")
                 {
                     window.alert("Not available");
-                    
-    }
+                }
                 else
                 {
                     //window.alert(data)
                     $('#parents-row'+uuid).empty();
                     $('#parents-row'+uuid).append(data);
                 }
-                
             });
-            
             $("#"+id).slideDown("fast");
-
-           
-            
-            //$('#cart'+uuid).empty();
-            //$('#cart'+uuid).append("&#64;cart(person, \"none\", false, true)");
         }
-
     }
 </script>
