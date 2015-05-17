@@ -62,20 +62,7 @@ public class Cart extends Controller
     private Logger logger = new Logger();
 
     @Security.Authenticated(Secured.class)
-    
-    /*public Result index() 
-    {
-        // get cart items from cache
-        List<List<String>> cartItems = (List<List<String>>) Cache.get("cartdata");
-
-        if (cartItems == null)
-        {
-            cartItems = new ArrayList<List<String>>();
-        }
-        return ok(views.html.viewcart.render(cartItems.size(), cartItems));
-    }*/
-
-    public Result view() 
+    public Result view()
     {
         // get cart items from cache
         cartItems = (List<List<String>>) Cache.get("cartdata");
@@ -86,20 +73,7 @@ public class Cart extends Controller
     	return ok(views.html.viewcart.render(cartItems.size(), cartItems));
     }
 
-    public int itemsInCart()
-    {
-        
-        cartItems = (List<List<String>>) Cache.get("cartdata");
-
-        if(cartItems != null && cartItems.size()>0)
-        {
-            return cartItems.size();
-        }
-
-        return 0;
-    }
-
-    public Result empty(String uri) 
+    public Result empty(String uri)
     {
     	cartItems = new ArrayList<List<String>>();
         Cache.set("cartdata", cartItems, CART_CACHE_TIMEOUT);
@@ -154,7 +128,6 @@ public class Cart extends Controller
     	
     }
 
-    //public Result addItem(String firstname, String lastname, String uri)
     public Result addItem(String cprnum, String uri, String showperson, boolean showcart, boolean showparents, String expandid)
     {
         play.Logger.info("adding " + cprnum);
@@ -285,10 +258,5 @@ public class Cart extends Controller
         
         return redirect(uri);
     }
-
-    public static Result test()
-    {   
-        return ok("Test ok");
-    }
- }
+}
 
