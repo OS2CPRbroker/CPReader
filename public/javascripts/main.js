@@ -95,11 +95,6 @@ require(["jquery", "bootstrap", "processQuery", "validate", "cart", "modolus11",
             addPerson(uuid);
         });
 
-        $('a[name=removeFromCartAnchor]').click(function(event){
-            var uuid = event.target.getAttribute('personuuid');
-            removePerson(uuid);
-        });
-
     }); //end ready
 });
 

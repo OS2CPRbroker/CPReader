@@ -38,6 +38,6 @@ GET         /assets/*file                                                control
 # Shopping cart
 GET         /cart/add/:uuid/                                             @controllers.Cart.addItem(uuid : String)
 GET         /cart/remove/:uuid/                                          @controllers.Cart.removeItem(uuid : String)
-GET         /cart/view													 @controllers.Cart.view()
-GET         /cart/empty											 @controllers.Cart.empty()
+GET         /cart/view/													 @controllers.Cart.view()
+GET         /cart/empty/                                                 @controllers.Cart.empty()
 GET         /cart/copy/:uri											     @controllers.Cart.copy(uri : String)

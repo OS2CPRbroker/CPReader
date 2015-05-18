@@ -2,11 +2,8 @@
 @(cartContents : util.Cart)
 
 @import play.api.Play.current
-<a href="#cartModal" data-backdrop="static" data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span>  @Messages("cart.view")</a>
-<span style="display: none;">@session.put("opencart", "false")</span>
-
     <!-- Modal HTML -->
-    <div id="cartModal" class="modal static"> 
+
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -62,7 +59,7 @@
                         </div>
 
                         <div style="float: right;">
-                            <a href="@routes.Cart.empty()"><span class="glyphicon glyphicon-trash"></span> @Messages("cart.empty")</a>
+                            <a href="#" name="clearCartAnchor" onclick="javascript:emptyCart()"><span class="glyphicon glyphicon-trash"></span> @Messages("cart.empty")</a>
                         </div>
                         }
                         
@@ -76,4 +73,3 @@
             </div>
         </div>
     </div>
-</div>
