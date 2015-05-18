@@ -74,7 +74,7 @@ public class Search extends Controller {
         onlineCacheTimeout = conf.getConfiguration().getInt("cprbroker.onlinecacheseconds", 120);
     }
 
-    String getSessionId() {
+    public static String getSessionId() {
         // Generate a unique id
         String uuid = session("uuid");
         if (uuid == null) {

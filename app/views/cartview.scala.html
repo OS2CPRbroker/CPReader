@@ -1,23 +1,24 @@
 
-@import play.api.Play.current
+@(cartContents : util.Cart)
 
+@import play.api.Play.current
 <a href="#cartModal" data-backdrop="static" data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span>  @Messages("cart.view")</a>
 <span style="display: none;">@session.put("opencart", "false")</span>
 
-<!-- Modal HTML -->
+    <!-- Modal HTML -->
     <div id="cartModal" class="modal static"> 
     <div class="modal-dialog">
         <div class="modal-content">
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">@Messages("cart.view") (@play.api.cache.Cache.get("numcartitems").getOrElse(0).asInstanceOf[Int] @Messages("cart.items"))</h4>
+                <h4 class="modal-title">@Messages("cart.view") (@cartContents.Persons.size() @Messages("cart.items"))</h4>
             </div>
             
             <div class="modal-body">
                 @flash.get("message")
 
-                @if(play.api.cache.Cache.get("numcartitems").getOrElse(0).asInstanceOf[Int] > 0) {
+                @if(cartContents.Persons.size() > 0) {
                     <table id="cart-table" class="table table-striped">
                         <thead>
                             <tr>
@@ -27,11 +28,11 @@
                             </tr>
                         </thead>
                         <tbody id="cart-table-rows">
-                             @for(item <- play.api.cache.Cache.get("cartdata").getOrElse(null).asInstanceOf[List[List[String]]]){
+                             @for(person <- cartContents.Persons){
                                 <tr>
-                                    <td>@item(0) @item(1) @item(2)</td>
-                                    <td>@item(3)</td>
-                                    <td><a href="@routes.Cart.removeItem(item(4), request.uri)">@Messages("cart.remove")</a></td>
+                                    <td>@person.firstName @person.middleName @person.lastName</td>
+                                    <td>@person.PNR</td>
+                                    <td><a href="#" personuuid=@(person.UUID) name='removeFromCartAnchor'>@Messages("cart.remove")</a></td>
                                 </tr>
                             }
                         </tbody>
@@ -40,7 +41,7 @@
                     </br>
                     <hr>
                     <div>   
-                    @if(play.api.cache.Cache.get("cartdata").getOrElse(null).asInstanceOf[List[List[String]]].length > 0) {
+                    @if(cartContents.Persons.size() > 0) {
                         <div class="row">
                             <div class="col-md-12">
                                     <div id="copy-message" style="display: none">@Messages("cart.rightclick")</div>
@@ -50,19 +51,18 @@
                         <div class="row">
                             <div class="col-md-1">
                                 <div id="cart-nums" style="display: none"> 
-                                    @for(item <- play.api.cache.Cache.get("cartdata").getOrElse(null).asInstanceOf[List[List[String]]]){
-                                        @item(3)<br>
+                                    @for(person <- cartContents.Persons){
+                                        @person.PNR<br>
                                     }      
                                 </div>
                             </div>
                         </div>
                         <div style="float: left;">
                             <a href="#" OnClick="selectCPRNumbers();" title="@Messages("cart.select.title")"><span class="glyphicon glyphicon-file"></span> @Messages("cart.select")</a>
-                            <!--<a href="@routes.Cart.copy(request.uri)"><span class="glyphicon glyphicon-file"></span> @Messages("cart.copy")</a>-->
                         </div>
 
                         <div style="float: right;">
-                            <a href="@routes.Cart.empty(request.uri)"><span class="glyphicon glyphicon-trash"></span> @Messages("cart.empty")</a>
+                            <a href="@routes.Cart.empty()"><span class="glyphicon glyphicon-trash"></span> @Messages("cart.empty")</a>
                         </div>
                         }
                         

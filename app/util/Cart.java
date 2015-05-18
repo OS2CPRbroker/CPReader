@@ -33,7 +33,7 @@ public class Cart {
     }
 
     public void saveToSession(){
-        Cache.set(cacheKey(), CART_CACHE_TIMEOUT);
+        Cache.set(cacheKey(), this);
     }
 
     public String add(String uuid){
@@ -42,10 +42,10 @@ public class Cart {
         {
             Cart.Person cartPerson = new Cart.Person(person);
             if(exists(uuid)){
-                Persons.add(cartPerson);
                 return String.format("%s %s",cartPerson, Messages.get("cart.exists"));
             }
             else{
+                Persons.add(cartPerson);
                 return String.format("%s %s",cartPerson, Messages.get("cart.added"));
             }
         }
@@ -63,15 +63,15 @@ public class Cart {
         return false;
     }
 
-    public Boolean remove(String uuid){
+    public String remove(String uuid){
         for(int i=0; i<Persons.size(); i++){
             if(uuid.equals(Persons.get(i).UUID))
             {
-                Persons.remove(i);
-                return true;
+                Person cartPerson = Persons.remove(i);
+                return String.format("%s %s", cartPerson , Messages.get("cart.removed"));
             }
         }
-        return false;
+        return String.format("%s %s",uuid, Messages.get("cart.notremoved"));
     }
 
     public void clear(){

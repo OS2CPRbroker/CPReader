@@ -33,7 +33,7 @@
 
 @(person: util.cprbroker.IPerson, showperson: String, showcart: Boolean, showparents: Boolean, expandid : String)
 
-<a href="@routes.Cart.addItem(person.uuid(), request.uri, showperson, showcart, showparents, expandid)" onclick="addToCart()"><span class="glyphicon glyphicon-plus"></span> @Messages("cart.add")</a>
+<a href="#" personuuid=@(person.uuid()) name='addToCartAnchor' ><span class="glyphicon glyphicon-plus"></span> @Messages("cart.add")</a>
 
 @if(session.get("opencart") == "true"){
   <script>

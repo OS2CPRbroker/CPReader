@@ -36,8 +36,8 @@ GET         /show/uuid/:uuid/                                            @contro
 GET         /assets/*file                                                controllers.Assets.at(path="/public", file)
 
 # Shopping cart
-GET 		/cart/add/:cprnumber/:uri/:showperson/:showcart				 @controllers.Cart.addItem(cprnumber : String, uri : String, showperson : String, showcart : Boolean, showparents: Boolean, expandid : String)
-GET 		/cart/remove/:cprnumber/:uri				             	 @controllers.Cart.removeItem(cprnumber : String, uri : String)
-GET 		/cart/view													 @controllers.Cart.view()
-GET 		/cart/empty/:uri											 @controllers.Cart.empty(uri : String)
-GET 		/cart/copy/:uri											     @controllers.Cart.copy(uri : String)
+GET         /cart/add/:uuid/                                             @controllers.Cart.addItem(uuid : String)
+GET         /cart/remove/:uuid/                                          @controllers.Cart.removeItem(uuid : String)
+GET         /cart/view													 @controllers.Cart.view()
+GET         /cart/empty											 @controllers.Cart.empty()
+GET         /cart/copy/:uri											     @controllers.Cart.copy(uri : String)

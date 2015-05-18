@@ -2,7 +2,8 @@ require.config({
     paths: {
         'jquery': 'jquery-1.11.1/jquery-1.11.1.min',
         'bootstrap': 'bootstrap-3.3.1-dist/dist/js/bootstrap.min',
-        'jqueryui': 'jquery-ui-1.11.2.custom/jquery-ui'
+        'jqueryui': 'jquery-ui-1.11.2.custom/jquery-ui',
+        'cart': 'cart'
     },
     shim: {
         'bootstrap': ['jquery'],
@@ -10,7 +11,7 @@ require.config({
     }
 });
 
-require(["jquery", "bootstrap", "processQuery", "validate", "modolus11", "jqueryui"], function ($, b, p, v, m, ui) {
+require(["jquery", "bootstrap", "processQuery", "validate", "cart", "modolus11", "jqueryui"], function ($, b, p, v, c, m, ui) {
 
     // wait for the document to be ready
     $(function () {
@@ -87,7 +88,17 @@ require(["jquery", "bootstrap", "processQuery", "validate", "modolus11", "jquery
                     }
                 });
             }
-        })
+        });
+
+        $('a[name=addToCartAnchor]').click(function(event){
+            var uuid = event.target.getAttribute('personuuid');
+            addPerson(uuid);
+        });
+
+        $('a[name=removeFromCartAnchor]').click(function(event){
+            var uuid = event.target.getAttribute('personuuid');
+            removePerson(uuid);
+        });
 
     }); //end ready
 });

@@ -77,10 +77,12 @@
             @*<li><a href="JavaScript:newPopup('@routes.Cart.view()');"><span class="glyphicon glyphicon-shopping-cart"></span>  @Messages("cart.view")</a> </li>*@
             
             @if(session.get("usecart") == "1") {
-            <li>@cartview()</li>
+            <li>
+                @cartview(util.Cart.fromSession())
+            </li>
             }
         </ul>
         
     </div> <!--/.nav-collapse -->
 </div>
-@flash.get("message")
+<span id="message"></span>

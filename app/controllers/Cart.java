@@ -65,24 +65,17 @@ public class Cart extends Controller
     public Result view()
     {
         // get cart items from cache
-        cartItems = (List<List<String>>) Cache.get("cartdata");
-        if (cartItems == null)
-        {
-            cartItems = new ArrayList<List<String>>();
-        }
-    	return ok(views.html.viewcart.render(cartItems.size(), cartItems));
+        util.Cart cart = util.Cart.fromSession();
+        return ok(views.html.cartview.render(cart));
     }
 
-    public Result empty(String uri)
+    public Result empty()
     {
-    	cartItems = new ArrayList<List<String>>();
-        Cache.set("cartdata", cartItems, CART_CACHE_TIMEOUT);
-        flash("message", Messages.get("cart.emptied"));
-        Cache.set("numcartitems", cartItems.size(), CART_CACHE_TIMEOUT);
-        // redirect to where we came from
-        String[] segments = uri.split("/");
-        session("opencart", "true");
-        return redirect(uri);
+    	play.Logger.info("clearing cart");
+        util.Cart cart = util.Cart.fromSession();
+        cart.clear();
+        cart.saveToSession();
+        return ok();
     }
 
     public Result copy(String uri) throws UnsupportedFlavorException, IOException 
@@ -125,138 +118,24 @@ public class Cart extends Controller
         {
             return ok("Nothing to copy");
         }
-    	
     }
 
-    public Result addItem(String cprnum, String uri, String showperson, boolean showcart, boolean showparents, String expandid)
+    public Result addItem(String uuid)
     {
-        play.Logger.info("adding " + cprnum);
-
-        boolean exists=false;
-        List<String> personData = new ArrayList<String>();
-        IPerson person = (IPerson)Cache.get(cprnum);
-        if (person != null)
-        {
-            String firstname=person.firstname();
-            String middlename="";
-            String lastname=person.lastname();
-
-            if (person.middelname() != null) {   
-                middlename = person.middelname();
-            }
-        
-            personData.add(firstname);
-            personData.add(middlename);
-            personData.add(lastname);
-            personData.add(person.registerInformation().cprCitizen().socialSecurityNumber());
-            personData.add(session(cprnum+"_uuid"));
-
-            // get cart items from cache
-            List<List<String>> cartItems = (List<List<String>>) Cache.get("cartdata");
-
-            if (cartItems == null)
-            {
-                cartItems = new ArrayList<List<String>>();
-            }
-
-            // scan through and see if the person already exists
-            for (int i = 0;  i < cartItems.size(); i++)
-            {
-                String searchByCprNum = cartItems.get(i).get(4);
-                if(searchByCprNum.equals(cprnum))
-                {
-                    exists=true;
-                }
-            }
-            if(!exists) 
-            {
-                
-                cartItems.add( personData );
-                flash("message", firstname + " " + middlename + " " + lastname + " " + Messages.get("cart.added"));
-            }
-            else
-            {
-                flash("message", firstname + " " + middlename + " " + lastname + " " + Messages.get("cart.exists"));
-            }
-            Cache.set("numcartitems", cartItems.size(), CART_CACHE_TIMEOUT);
-            Cache.set("cartdata", cartItems, CART_CACHE_TIMEOUT);
-        } 
-        else
-        {
-            play.Logger.info("problem adding " + cprnum);
-        }
-        play.Logger.info("OPEN CART: " + showcart);
-        play.Logger.info("OPEN PERSON: " + showperson);
-        if (showcart)
-        {
-            session("opencart", "true");
-        }
-        else
-        {
-            session("opencart", "false");
-        }
-
-        if (showperson != null)
-        {
-            session("showperson", showperson);
-            play.Logger.info("SHOW PERSON");
-        }
-        else
-        {
-            session("showperson", "none");
-            play.Logger.info("SHOW PERSON");
-        }
-
-        if(showparents)
-        {
-            session("showperson", "none");
-            play.Logger.info("showparents"+expandid+" shown");
-            //session("showparents"+expandid, "show");
-            session("showparents", expandid);
-        }
-        else
-        {
-            play.Logger.info("showparents"+expandid+" hidden");
-            //session("showparents"+expandid, "hide");
-            session("showparents", expandid);
-        }
-
-        // redirect to search
-        String redirect_uri = uri;
-    
-        if (session("redirect") != null)
-        {
-            redirect_uri = session("redirect");
-        }
-    
-        return redirect(redirect_uri);
+        play.Logger.info("adding " + uuid);
+        util.Cart cart = util.Cart.fromSession();
+        String ret = cart.add(uuid);
+        cart.saveToSession();
+        return ok(ret);
     }
 
-    public Result removeItem(String cprnum, String uri)
+    public Result removeItem(String uuid)
     {
-        // get cart items from cache
-        cartItems = (List<List<String>>) Cache.get("cartdata");
-
-        if (cartItems == null)
-        {
-            cartItems = new ArrayList<List<String>>();
-        }
-
-     	for ( int i = 0;  i < cartItems.size(); i++)
-     	{
-     		
-            String searchByCprNum = cartItems.get(i).get(4);
-            if(searchByCprNum.equals(session(cprnum+"_uuid")))
-            {
-                flash("message", cartItems.get(i).get(0) + " " + cartItems.get(i).get(1) + " "+ cartItems.get(i).get(2) + " " + Messages.get("cart.removed"));
-                cartItems.remove(i);
-            }
-        }
-        Cache.set("numcartitems", cartItems.size(), CART_CACHE_TIMEOUT);
-        Cache.set("cartdata", cartItems, CART_CACHE_TIMEOUT);
-        session("opencart", "true");
-        
-        return redirect(uri);
+        play.Logger.info("removing " + uuid);
+        util.Cart cart = util.Cart.fromSession();
+        String ret = cart.remove(uuid);
+        cart.saveToSession();
+        return ok(ret.toString());
     }
 }
 

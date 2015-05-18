@@ -41,6 +41,7 @@ cart.items = Personer
 cart.added = er blevet tilføjet til kurven.
 cart.exists = har allerede blevet tilføjet til kurven.
 cart.removed = fjernet fra kurven.
+cart.notremoved = fjernet ikke fra kurven.
 cart.copied = kopieret til klippebordet poster.
 cart.emptied = Kurv tømt .
 cart.noitems = Der er i øjeblikket ingen varer i kurven

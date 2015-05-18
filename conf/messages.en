@@ -41,6 +41,7 @@ cart.items = Items
 cart.added = has been added to the cart.
 cart.exists = has aready been added to the cart.
 cart.removed = removed from the cart.
+cart.notremoved = was not removed from the cart.
 cart.copied = items copied to the clipboard.
 cart.emptied = Cart emptied.
 cart.noitems =There are currently no items in the cart
