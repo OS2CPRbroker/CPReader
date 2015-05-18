@@ -1,5 +1,5 @@
 
-        function addPerson (uuid) {
+        function addPersonToCart (uuid) {
             var ret = $.get(
                 '/cart/add/' + uuid + '/',
                 function(data){
@@ -9,11 +9,10 @@
             );
         }
 
-        function removePerson(uuid){
+        function removePersonFromCart(uuid){
             var ret = $.get(
                 '/cart/remove/' + uuid + '/',
                 function(data){
-                    showMessage(data);
                     refreshCartContents();
                 }
             );
@@ -23,7 +22,6 @@
             var ret = $.get(
                 '/cart/empty/',
                 function(data){
-                    showMessage(data);
                     refreshCartContents();
                 }
             );

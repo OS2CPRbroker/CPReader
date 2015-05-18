@@ -29,7 +29,7 @@
                                 <tr>
                                     <td>@person.firstName @person.middleName @person.lastName</td>
                                     <td>@person.PNR</td>
-                                    <td><a href="#" personuuid=@(person.UUID) name='removeFromCartAnchor'>@Messages("cart.remove")</a></td>
+                                    <td><a href="#" onclick=@("javascript:removePersonFromCart('" + person.UUID + "')")>@Messages("cart.remove")</a></td>
                                 </tr>
                             }
                         </tbody>

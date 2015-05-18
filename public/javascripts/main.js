@@ -90,11 +90,6 @@ require(["jquery", "bootstrap", "processQuery", "validate", "cart", "modolus11",
             }
         });
 
-        $('a[name=addToCartAnchor]').click(function(event){
-            var uuid = event.target.getAttribute('personuuid');
-            addPerson(uuid);
-        });
-
     }); //end ready
 });
 
