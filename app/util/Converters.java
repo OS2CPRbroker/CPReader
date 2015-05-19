@@ -150,6 +150,8 @@ public class Converters {
 
         NavnStrukturType navnStrukturType = ToNavnStrukturType(name);
         AdresseType addressObject = ToAddressType(address);
+        if(navnStrukturType == null && addressObject == null)
+            return null;
 
         SoegAttributListeType soegAttributListeType = new SoegAttributListeType();
 
