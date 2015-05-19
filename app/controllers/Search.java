@@ -284,13 +284,10 @@ public class Search extends Controller {
         }
     }
 
-     public Result updateParents(String uuid, String uri) 
+     public Result updateParents(String uuid)
     {
-        play.Logger.info("UPDATE PARENTS ");
+        play.Logger.info("UPDATE PARENTS: " + uuid);
         
-        String content="person not found";
-        session("redirect", uri);
-
         IPerson person = null;
         try {
             person = cprBroker.read(uuid);
@@ -322,8 +319,6 @@ public class Search extends Controller {
             //TODO - A person wasn't found
             return ok(show_error.render(person.code(), searchInput));
         }
-        //play.Logger.info("UPDATE RELATIONS");
-        //return ok(content);
     }
 
     public Result updateRelations(String uuid, String uri) 

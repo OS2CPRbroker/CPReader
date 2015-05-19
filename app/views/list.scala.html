@@ -69,28 +69,24 @@
                 </div>
             </div>
             @for(person <- persons) {
-                @{showparents = 0}
-                
+
                 <div class="list-group-item">
                     <div class="row">
-                        @listperson(person,true)
+                        @listperson(person,true,"")
 
                         @if(accesslevel > 0) {
                             <div class="col-md-3 text-left">
-
                                 <a href="#detailModal@person.uuid()" onclick="javascript:updateRelations('@person.uuid()')" data-backdrop="static" data-toggle="modal" ><span class="glyphicon glyphicon-user"></span> @Messages("person.viewdetails")</a>
-
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="javascript:showParents('parents-row@person.uuid()', '@person.uuid()')"><span class="glyphicon glyphicon-user"></span> @Messages("person.showparents")</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="#"  onclick="javascript:showParents(event,'@person.uuid()')"
+                                    @if(person.relationsWithPerson()!=null){loaded='true'}
+                                    @if(person.relationsWithPerson()==null){loaded='false'}
+                                ><span class="glyphicon glyphicon-user"></span> @Messages("person.showparents")</a>
                             </div>
-                            @if(showparents > 0) {
-                                <div class="col-md-2 text-right">
-                                    @if(session.get("usecart") == "1") {  <div id="cart@person.uuid()">@cart(person, "none", false, false, "none")</div> }
-                                </div>
-                            } else {
-                                <div class="col-md-2 text-right">
-                                    @if(session.get("usecart") == "1") {  <div id="cart@person.uuid()">@cart(person, "none", false, false, "none")</div> }
-                                </div>
-                            }
+
+                            <div class="col-md-2 text-right">
+                                @if(session.get("usecart") == "1") {  <div id="cart@person.uuid()">@cart(person, "none", false, false, "none")</div> }
+                            </div>
                         } else {
                             <div class="col-md-5 text-right">
                                 @if(session.get("usecart") == "1") {  <div id="cart@person.uuid()">@cart(person, "none", false, false, "none")</div> }
@@ -104,52 +100,20 @@
                     @********************************************************************************************************************@
                     <div id="parents-row@person.uuid()">
                         
-
-                        @if(person.relationsWithPerson != null) {
-                            @for(r <- person.relationsWithPerson.allRelations) {
-                                @if(r.relationshipType.toString() == "Forældremyndighedsindehaver" || r.relationshipType.toString() == "Fader" || r.relationshipType.toString() == "Moder"){
-                                    <div class="row">
-                                        @listperson(r.person(),false)
-
-                                        @if(accesslevel > 0) {
-                                            <div class="col-md-2 text-left">
-                                                <a href="/show/uuid/@r.person.uuid/"><span class="glyphicon glyphicon-user"></span> @Messages("person.viewdetails")</a>
-                                                @*<a href="#detailModal@r.person.uuid()" data-backdrop="static" data-toggle="modal" ><span class="glyphicon glyphicon-user"></span> @Messages("person.viewdetails")</a>*@
-                                            </div>
-                                            
-                                            <div class="col-md-3 text-right">
-                                                @if(session.get("usecart") == "1") {  <div id="cart@r.person.uuid()">@cart(r.person, "none", false, true, person.uuid())</div> }
-                                            </div>
-                                        } else {
-                                            <div class="col-md-5 text-right">
-                                                @if(session.get("usecart") == "1") {  <div id="cart@r.person.uuid()">@cart(r.person, "none", false, true, person.uuid())</div> }
-                                            </div>
-                                        }
-
-
-                                    </div>
-                                }   
-                            }
-                        }
-                        
+                        @parentlist(person, accesslevel)
                     </div>
-
-                    
-                   
-                    <script>           
+                    <script>
                       document.getElementById("parents-row@person.uuid()").style.display = 'none';       
                     </script>
 
 
                     @***** force show parents row ******@
-                    
-
                     @if(session.get("showparents@person.uuid") == "show") {
                         <script>
                             document.getElementById("parents-row@person.uuid()").style.display = 'block';
                         </script>
                     } else {
-                        
+
                     }
                     @***********************************@
 
@@ -272,34 +236,5 @@
         });
     }
 
-    function hideParents(id)
-    {
-        $("#"+id).slideUp("fast");
-    }
 
-    function showParents(id, uuid)
-    {
-        $('[id^=parents-row]').slideUp("fast");
-
-        if (document.getElementById(id).style.display === 'block' || document.getElementById(id).style.display === '')
-        {
-            $("#"+id).slideUp("fast");
-        }
-        else
-        {
-            $.post('/search/updateparents/'+uuid+'/'+encodeURIComponent(window.location.href), {}, function (data) {
-                if(data == "none")
-                {
-                    window.alert("Not available");
-                }
-                else
-                {
-                    //window.alert(data)
-                    $('#parents-row'+uuid).empty();
-                    $('#parents-row'+uuid).append(data);
-                }
-            });
-            $("#"+id).slideDown("fast");
-        }
-    }
 </script>

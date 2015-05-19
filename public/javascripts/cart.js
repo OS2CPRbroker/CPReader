@@ -47,3 +47,39 @@
             var msgSpan= $('#message');
             msgSpan.text(msgText);
         }
+
+
+        function showParents(event, uuid)
+        {
+            var parentsAnchor = event.target;
+            var parentsDivId = '#parents-row'+uuid;
+            var parentsDiv = $(parentsDivId);
+
+            if(parentsDiv[0].style.display === 'block' || parentsDiv[0].style.display == '')
+            {
+                parentsDiv.slideUp("fast");
+            }
+            else // Show
+            {
+                if(parentsAnchor.attributes.loaded.value == 'false')
+                {
+                    $.post('/search/updateparents/'+uuid+'/', {}, function (data) {
+                        if(data == "none")
+                        {
+                            window.alert("Not available");
+                        }
+                        else
+                        {
+                            parentsAnchor.attributes.loaded.value  = 'true';
+                            parentsDiv.empty();
+                            parentsDiv.append(data);
+                            parentsDiv.slideDown("fast");
+                        }
+                    });
+                }
+                else
+                {
+                    parentsDiv.slideDown("fast");
+                }
+            }
+        }

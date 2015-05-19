@@ -31,7 +31,7 @@
 *
 * ***** END LICENSE BLOCK ***** *@
 
-@(person: util.cprbroker.IPerson, showPnr: Boolean)
+@(person: util.cprbroker.IPerson, showPnr: Boolean, preNameText: String)
 
 <div class="col-md-1">
   @if(showPnr) {
@@ -39,6 +39,7 @@
   }
 </div>
   <div class="col-md-3">
+    @preNameText
     @if(person.firstname) {
     @person.firstname
 }

@@ -10,56 +10,7 @@
             
             @play.api.cache.Cache.set(r.person.uuid(), r.person)
             <div class="row">
-                <div class="col-md-1">
-                    @*
-                    @r.person.registerInformation.cprCitizen.socialSecurityNumber
-                    *@
-                </div>
-                <div class="col-md-3">
-                    @r.relationshipType.toString():
-                    @if(r.person.firstname) {
-                        @r.person.firstname
-                    }
-                    @if(r.person.middelname) {
-                        @r.person.middelname
-                    }
-                    @if(r.person.lastname) {
-                        @r.person.lastname
-                    }
-                </div>
-                <div class="col-md-2">
-                    @if(r.person.address != null && r.person.address.addressType == util.cprbroker.EAddressType.Danish) {
-                        <span class="text-muted">
-                            @if(r.person.address.danishAddress.streetName) {
-                                @r.person.address.danishAddress.streetName
-                            }
-                            @if(r.person.address.danishAddress.streetBuilding) {
-                                @r.person.address.danishAddress.streetBuilding
-                            }
-                            @if(r.person.address.danishAddress.floor) {
-                                @r.person.address.danishAddress.floor
-                            }
-                            @if(r.person.address.danishAddress.suite) {
-                                @r.person.address.danishAddress.suite
-                            }
-                            @if(r.person.address.danishAddress.postCode) {
-                                @r.person.address.danishAddress.postCode
-                            }
-                            @if(r.person.address.danishAddress.districtName) {
-                                @r.person.address.danishAddress.districtName
-                            }
-                        </span>
-                    }
-                </div>
-                <div class="col-md-1">
-                @if(r.person.tilstand!=null && r.person.tilstand.livStatusKode != null) {
-                        @r.person.tilstand.livStatusKode
-                }
-                </div>
-
-
-
-
+                @listperson(r.person(), false, r.relationshipType.toString()+":" )
                 @if(accesslevel > 0) {
                     <div class="col-md-2 text-left">
                         <a href="/show/uuid/@r.person.uuid/"><span class="glyphicon glyphicon-user"></span> @Messages("person.viewdetails")</a>
@@ -73,8 +24,6 @@
                         @if(session.get("usecart") == "1") {  <div id="cart@r.person.uuid()">@cart(r.person, "none", false, true, person.uuid())</div> }
                     </div>
                 }
-
-
             </div>
         }   
     }
