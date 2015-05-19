@@ -31,7 +31,7 @@
             var htmlRet = $.get(
                 '/cart/view/',
                 function(data){
-                    var cartModalDiv = $('#cartModal');
+                    var cartModalDiv = $('#cartViewModalBody');
                     cartModalDiv.empty();
                     cartModalDiv.append(data);
 

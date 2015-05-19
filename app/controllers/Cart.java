@@ -66,7 +66,7 @@ public class Cart extends Controller
     {
         // get cart items from cache
         util.Cart cart = util.Cart.fromSession();
-        return ok(views.html.cartview.render(cart));
+        return ok(views.html.cartviewbody.render(cart));
     }
 
     public Result empty()
