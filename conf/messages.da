@@ -72,6 +72,7 @@ person.false = Nej
 person.registrationdate = Senest opdateret
 person.viewdetails = Se personen
 person.showparents = Forældre/værge
+person.noparents = (Ingen informationer)
 
 #------ EGENSKABER
 person.firstname = Fornavn

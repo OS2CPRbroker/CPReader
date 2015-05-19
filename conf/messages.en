@@ -72,6 +72,7 @@ person.false = No
 person.registrationdate = Registration Date
 person.viewdetails = See person
 person.showparents = See parents
+person.noparents = (No information)
 
 #------ EGENSKABER
 person.firstname = First Name
