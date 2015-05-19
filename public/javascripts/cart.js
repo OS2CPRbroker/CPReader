@@ -28,7 +28,8 @@
         }
 
         function refreshCartContents(){
-            var htmlRet = $.get(
+            // Refresh div element
+            $.get(
                 '/cart/view/',
                 function(data){
                     var cartModalDiv = $('#cartViewModalBody');
@@ -39,6 +40,15 @@
                         var uuid = event.target.getAttribute('personuuid');
                         removePerson(uuid);
                     });
+                }
+            );
+            // Refresh count
+            $.get(
+                '/cart/count/',
+                function(data){
+                    var cartCountSpan = $('span[name="cartCount"]');
+                    cartCountSpan.empty();
+                    cartCountSpan.append(data);
                 }
             );
         }

@@ -78,7 +78,10 @@
             
             @if(session.get("usecart") == "1") {
             <li>
-                <a href="#cartModal" data-backdrop="static" data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span>  @Messages("cart.view")</a>
+                <a href="#cartModal" data-backdrop="static" data-toggle="modal">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                    @Messages("cart.view")
+                    (<span name="cartCount">@controllers.Cart.countTextString()</span>)</a>
                 <span style="display: none;">@session.put("opencart", "false")</span>
                 <div id="cartModal" class="modal static">
                     @cartview(util.Cart.fromSession())

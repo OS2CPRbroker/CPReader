@@ -69,6 +69,17 @@ public class Cart extends Controller
         return ok(views.html.cartviewbody.render(cart));
     }
 
+    public static String countTextString()
+    {
+        return String.format("%d", util.Cart.fromSession().Persons.size());
+    }
+    @Security.Authenticated(Secured.class)
+    public static Result countText()
+    {
+        return ok(countTextString());
+    }
+
+    @Security.Authenticated(Secured.class)
     public Result empty()
     {
     	play.Logger.info("clearing cart");
@@ -78,48 +89,7 @@ public class Cart extends Controller
         return ok();
     }
 
-    public Result copy(String uri) throws UnsupportedFlavorException, IOException 
-    {
-    	Clipboard clipBoard = Toolkit.getDefaultToolkit().getSystemClipboard();
-    	StringSelection copiedData = new StringSelection("");
-    	StringBuilder stringBuilder = new StringBuilder();
-        
-        // get cart items from cache
-        cartItems = (List<List<String>>) Cache.get("cartdata");
-        int itemscopied = 0;
-        if (cartItems != null)
-        {
-        	for ( int i = 0;  i < cartItems.size(); i++)
-         	{
-         		// copy one number per line
-         		stringBuilder.append(cartItems.get(i).get(3)+"\n");
-                itemscopied++;
-         	}
-
-         	String finalString = stringBuilder.toString();
-
-    		copiedData = new StringSelection(finalString);	
-            clipBoard.setContents(copiedData, copiedData);
-
-            Transferable t = clipBoard.getContents( null );
-
-            if ( t.isDataFlavorSupported(DataFlavor.stringFlavor) )
-            {
-                Object o = t.getTransferData( DataFlavor.stringFlavor );
-                String data = (String)t.getTransferData( DataFlavor.stringFlavor );
-            }
-            flash("message", itemscopied + " " + Messages.get("cart.copied"));
-
-
-            //return ok(views.html.viewcart.render(cartItems.size(), cartItems));
-            return redirect(uri);
-        }
-        else
-        {
-            return ok("Nothing to copy");
-        }
-    }
-
+    @Security.Authenticated(Secured.class)
     public Result addItem(String uuid)
     {
         play.Logger.info("adding " + uuid);
@@ -129,6 +99,7 @@ public class Cart extends Controller
         return ok(ret);
     }
 
+    @Security.Authenticated(Secured.class)
     public Result removeItem(String uuid)
     {
         play.Logger.info("removing " + uuid);

@@ -17,7 +17,7 @@ GET         /logout                                                      control
 POST        /search/cpr/                                                 @controllers.Search.getUuidFromCpr()
 POST        /search/update/:uuid/:uri                                    @controllers.Search.updateRelations(uuid : String, uri : String)
 POST        /search/updateparents/:uuid/                                 @controllers.Search.updateParents(uuid : String)
-POST 		/search/closedetail											 @controllers.Search.closeDetail()
+POST        /search/closedetail                                          @controllers.Search.closeDetail()
 
 GET         /search/name/:name/address/:address/page/:page               @controllers.Search.searchNameAndAddress(name : String, address : String, online:Boolean ?= false, page : Int)
 GET         /search/name/:name/address/:address/online/page/:page        @controllers.Search.searchNameAndAddress(name : String, address : String, online:Boolean ?= true, page : Int)
@@ -38,6 +38,6 @@ GET         /assets/*file                                                control
 # Shopping cart
 GET         /cart/add/:uuid/                                             @controllers.Cart.addItem(uuid : String)
 GET         /cart/remove/:uuid/                                          @controllers.Cart.removeItem(uuid : String)
-GET         /cart/view/													 @controllers.Cart.view()
+GET         /cart/view/                                                  @controllers.Cart.view()
+GET         /cart/count/                                                 controllers.Cart.countText()
 GET         /cart/empty/                                                 @controllers.Cart.empty()
-GET         /cart/copy/:uri											     @controllers.Cart.copy(uri : String)
