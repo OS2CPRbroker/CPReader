@@ -182,11 +182,6 @@ public class Search extends Controller {
         //searchInput.fillFromSession(this);
 
         // access level - add to person model
-        Integer accessLevel = AccessLevelManager.getCurrentAccessLevel();
-        if (accessLevel < 1)
-        {
-            return ok(views.html.access_denied.render(401, searchInput, "Access denied."));
-        }
         if (person == null) {
             return ok(show_error.render(503, searchInput));
         }
@@ -195,8 +190,9 @@ public class Search extends Controller {
             persons.add(person);
             String path = request().path();
             path = path.substring(0, path.indexOf("page") + 5);
-            int page = 1;      
- 
+            int page = 1;
+            Integer accessLevel = AccessLevelManager.getCurrentAccessLevel();
+
             return ok(views.html.list.render(persons, 1, page, path, searchInput, accessLevel));
         } else {
             //TODO - A person wasn't found
