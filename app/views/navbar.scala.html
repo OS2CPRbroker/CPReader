@@ -49,7 +49,7 @@
         <form id="quicksearch" class="navbar-form navbar-left" role="search">
             <div class="form-group" id="querygroup">
                 <span><input type="text" class="form-control" id="query" placeholder="@Messages("nav.quicksearch_placeholder")" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getQuery()" /></span>
-                <span><input type="text" class="form-control" id="query2" placeholder="@Messages("nav.quicksearch_addresslaceholder")" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getAddressQuery()" /></span>
+                <span><input type="text" class="form-control" id="addressQuery" placeholder="@Messages("nav.quicksearch_addresslaceholder")" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getAddressQuery()" /></span>
 
                 @if(Play.application().configuration().getInt("search.type") == 0 ) {
                     <div class="navbar-form-online">

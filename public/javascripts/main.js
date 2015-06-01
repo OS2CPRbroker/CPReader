@@ -20,9 +20,9 @@ require(["jquery", "bootstrap", "processQuery", "validate", "cart", "modolus11",
 
         var callProcessQuery = function () {
             var query = $('#query').val(); //get the content of the input field
-            var query2 = $('#query2').val(); //get the content of the input field
+            var addressQuery = $('#addressQuery').val(); //get the content of the input field
             var online = ($("input[name=online]:checked").val() == "true");
-            p.processQuery(query, query2, online);
+            p.processQuery(query, addressQuery, online);
         };
 
         // handle submission routing
@@ -39,7 +39,7 @@ require(["jquery", "bootstrap", "processQuery", "validate", "cart", "modolus11",
             }
         });
 
-        $('#query2').keypress(function (event) {
+        $('#addressQuery').keypress(function (event) {
             if (event.which == 13) {
                 event.preventDefault();
                 callProcessQuery($);
@@ -56,14 +56,14 @@ require(["jquery", "bootstrap", "processQuery", "validate", "cart", "modolus11",
         });
 
         // validate incomming input
-        $('#query2').keyup(function (event) {
-            var queryfield = $('#query2'); // the query input field
+        $('#addressQuery').keyup(function (event) {
+            var queryfield = $('#addressQuery'); // the query input field
             var query = queryfield.val(); // value of the input field
 
             //v.validateAddressQuery(queryfield, query);
         });
 
-        $('#query2').autocomplete({
+        $('#addressQuery').autocomplete({
 
             minLength: 1,
             delay: 100,

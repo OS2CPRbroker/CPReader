@@ -1,6 +1,6 @@
 define(function () {
     return {
-        processQuery: function (query, query2, online) {
+        processQuery: function (query, addressQuery, online) {
 
             var cpr = /\b[0-9]{9,10}$/; // a cpr consists of exactly 10 numbers
             var cprpattern = /[0-9]{5,6}-[0-9]{4}$/; // or 10 numbers with a - between 6th and 7th char
@@ -27,9 +27,9 @@ define(function () {
                     queryExists = true;
                     redirectLocation += '/name/' + query;
                 }
-                if (query2.length > 0) {
+                if (addressQuery.length > 0) {
                     queryExists = true;
-                    redirectLocation += '/address/' + query2;
+                    redirectLocation += '/address/' + addressQuery;
                 }
                 if (online)
                     redirectLocation += '/online'
