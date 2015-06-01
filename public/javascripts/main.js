@@ -19,48 +19,37 @@ require(["jquery", "bootstrap", "processQuery", "validate", "cart", "modolus11",
         $('#query').focus();
 
         var callProcessQuery = function () {
-            var query = $('#query').val(); //get the content of the input field
-            var addressQuery = $('#addressQuery').val(); //get the content of the input field
-            var online = ($("input[name=online]:checked").val() == "true");
-            p.processQuery(query, addressQuery, online);
+            p.processQuery();
         };
-
         // handle submission routing
         $('#quicksearchbutton').click(function (event) {
             event.preventDefault();
-            callProcessQuery($);
+            callProcessQuery();
         });
 
         // handle submission routing on enter as well
         $('#query').keypress(function (event) {
             if (event.which == 13) {
                 event.preventDefault();
-                callProcessQuery($);
+                callProcessQuery();
             }
         });
 
         $('#addressQuery').keypress(function (event) {
             if (event.which == 13) {
                 event.preventDefault();
-                callProcessQuery($);
+                callProcessQuery();
             }
         });
 
         // validate incomming input
         $('#query').keyup(function (event) {
-            var queryfield = $('#query'); // the query input field
-            var query = queryfield.val(); // value of the input field
-            var querygroup = $('#querygroup'); // form-group wrapping input
-
-            v.validateQuery(queryfield, query, querygroup);
+            v.validateQuery();
         });
 
         // validate incomming input
         $('#addressQuery').keyup(function (event) {
-            var queryfield = $('#addressQuery'); // the query input field
-            var query = queryfield.val(); // value of the input field
-
-            //v.validateAddressQuery(queryfield, query);
+            v.validateAddressQuery();
         });
 
         $('#addressQuery').autocomplete({
@@ -88,6 +77,10 @@ require(["jquery", "bootstrap", "processQuery", "validate", "cart", "modolus11",
                     }
                 });
             }
+        });
+
+        $('input[type=radio][name=online]').change(function() {
+            v.validateAddressQuery();
         });
 
     }); //end ready

@@ -1,6 +1,9 @@
 define(["modolus11"], function(modolus11) {
 	return {
-		validateQuery : function(queryfield, query, querygroup) {
+		validateQuery : function() {
+
+			var queryfield = $('#query');
+			var query = queryfield.val();
 
 			var containsspecialcharacters = /\½|\§|\!|\"|\@|\#|\£|\¤|\$|\%|\&|\/|\{|\(|\[|\)|\]|\=|\}|\?|\+|\'|\`|\||\^|\~|\*|\_|\;|\:|\.|\+/;
 			var containsnumbers = /[0-9]/;
@@ -89,24 +92,28 @@ define(["modolus11"], function(modolus11) {
 			}
 		},
 
-		validateAddressQuery: function (queryfield, query) {
-			this.clearValidation(queryfield);
+		validateAddressQuery: function () {
+			var addressQueryField = $('#addressQuery');
+			var addressQuery = addressQueryField.val().trim();
+			var online = ($("input[name=online]:checked").val() == "true");
 
-			var pat = /([^0-9]+)((\s+)|(\s*[,;\.]{1}\s*))([0-9]+[\w[^0-9]*)((\s+)|(\s*[,;\.]{1}\s*))(([0-9]{1,2})?(\.)?(sal)?((\s+)|(\s*[,;\.]{1}\s*)))?(([a-zA-Z]+)((\s+)|(\s*[,;\.]{1}\s*)))?([0-9]{4})((\s+)|(\s*[,;\.]{1}\s*))([\w[^0-9]+)/;
-			//alert(pat);
-			if(query.length == 0)
-				return;
+			this.clearValidation(addressQueryField);
 
-			if (!pat.test(query)) {
-				//alert('not match');
-				queryfield.parent().addClass('has-warning');
-				queryfield.attr('data-original-title', 'Bemærk');
-				queryfield.attr('data-content', 'Dette er en ugyldig adresse');
-				queryfield.popover('show');
+			if(online)
+			{
+				if(addressQuery.length == 0)
+				{
+					addressQueryField.parent().addClass('has-warning');
+					addressQueryField.attr('data-original-title', 'Bemærk');
+					addressQueryField.attr('data-content', 'You must provide an address when searching online');
+					addressQueryField.popover('show');
+				}
 			}
-			else {
+		},
 
-			}
+		validateQueries : function () {
+			this.validateQuery();
+			this.validateAddressQuery();
 		},
 
 		clearValidation: function (queryfield) {
