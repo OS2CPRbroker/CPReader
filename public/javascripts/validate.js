@@ -3,6 +3,7 @@ define(["modolus11"], function(modolus11) {
 		validateQuery : function() {
 
 			var queryfield = $('#query');
+			var addressQueryField = $('#addressQuery');
 			var query = queryfield.val();
 
 			var containsspecialcharacters = /\½|\§|\!|\"|\@|\#|\£|\¤|\$|\%|\&|\/|\{|\(|\[|\)|\]|\=|\}|\?|\+|\'|\`|\||\^|\~|\*|\_|\;|\:|\.|\+/;
@@ -10,8 +11,9 @@ define(["modolus11"], function(modolus11) {
 			var containsletters = /[a-zA-ZæÆøØåÅ]/;
 			var cprpattern = /[0-9]{6}-[0-9]/;
 
-			//reset the color
+			//reset the colors
 			this.clearValidation(queryfield);
+			this.setPnrMode(false);
 
 			//if the query has special characters
 			if (containsspecialcharacters.test(query)) {
@@ -36,6 +38,9 @@ define(["modolus11"], function(modolus11) {
 			//if the query has only numbers
 			else if (containsnumbers.test(query) & !containsletters.test(query)
 					& !containsspecialcharacters.test(query)) {
+				// Disable address & online inputs
+				this.setPnrMode(true);
+
 				//if there is less than 6 numbers
 				if (query.length < 6) {
 					queryfield.parent().addClass('has-warning');
@@ -99,7 +104,7 @@ define(["modolus11"], function(modolus11) {
 
 			this.clearValidation(addressQueryField);
 
-			if(online)
+			if(online && ! addressQueryField.attr('disabled'))
 			{
 				if(addressQuery.length == 0)
 				{
@@ -114,6 +119,11 @@ define(["modolus11"], function(modolus11) {
 		validateQueries : function () {
 			this.validateQuery();
 			this.validateAddressQuery();
+		},
+
+		setPnrMode: function (isPnrMode){
+			$('#addressQuery').attr('disabled', isPnrMode);
+			$("input[name=online]").attr('disabled', isPnrMode);
 		},
 
 		clearValidation: function (queryfield) {
