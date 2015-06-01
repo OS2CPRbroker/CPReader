@@ -55,7 +55,6 @@
          <p class="text-right">
           @if(relation != null && relation.person.firstname != null && relation.person.lastname != null && relation.person.uuid() != null) {
             <div id="session" style="display: none;">
-              @session.put(relation.person.uuid()+"_uuid", relation.person.uuid())
               @play.api.cache.Cache.set(relation.person.uuid(), relation.person);
             </div>
             @if(session.get("usecart") == "1") {

@@ -61,7 +61,6 @@
                     }
                     <p class="text-right">
                 <div id="session" style="display: none;">
-                    @session.put(person.uuid()+"_uuid", person.uuid())
 
                     @play.api.cache.Cache.set(person.uuid(), person);
                 </div>

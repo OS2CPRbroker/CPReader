@@ -27,17 +27,6 @@
         }
         <p class="text-right">
         <div id="session" style="display: none;">
-            @session.put(person.uuid()+"_uuid", person.uuid())
-            @*
-                @session.put(person.uuid()+"_cprnum", person.registerInformation.cprCitizen.socialSecurityNumber)
-                @session.put(person.uuid()+"_fname", person.firstname)
-                @if(person.middelname != null) {
-                    @session.put(person.uuid()+"_mname", person.middelname)
-                } else {
-                    @session.put(person.uuid()+"_mname", "")
-                }
-                @session.put(person.uuid()+"_lname", person.lastname)
-            *@
             @play.api.cache.Cache.set(person.uuid(), person);
         </div>
         @if(session.get("usecart") == "1") {
