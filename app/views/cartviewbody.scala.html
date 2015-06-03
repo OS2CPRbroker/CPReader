@@ -28,6 +28,12 @@
         <hr>
         <div>
         @if(cartContents.Persons.size() > 0) {
+            <span id="spnCartIE">
+                <div>
+                    <a href="#" onclick="copyCprNumbers();" title="" ><span class="glyphicon glyphicon-file"></span> @Messages("cart.copy")</a>
+                </div>
+            </span>
+            <span id="spnCartNonIE">
             <div class="row">
                 <div class="col-md-12">
                     <div id="copy-message" style="display: none">@Messages("cart.rightclick")</div>
@@ -37,15 +43,23 @@
             <div class="row">
                 <div class="col-md-1">
                     <div id="cart-nums" style="display: none">
-                    @for(person <- cartContents.Persons){
-                        @person.PNR<br>
-                        }
+                        @* to be filled with javascript*@
                     </div>
                 </div>
             </div>
             <div style="float: left;">
                 <a href="#" OnClick="selectCPRNumbers();" title="@Messages("cart.select.title")"><span class="glyphicon glyphicon-file"></span> @Messages("cart.select")</a>
             </div>
+            </span>
+            <script>
+                if(window.clipboardData){
+                    document.getElementById('spnCartNonIE' ).style.display = 'none';
+                }
+                else{
+                document.getElementById('spnCartIE' ).style.display = 'none';
+                }
+
+            </script>
 
             <div style="float: right;">
                 <a href="#" name="clearCartAnchor" onclick="javascript:emptyCart()"><span class="glyphicon glyphicon-trash"></span> @Messages("cart.empty")</a>
