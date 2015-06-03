@@ -3,7 +3,7 @@
 
 @import play.api.Play.current
 
-    @flash.get("message")
+    <span id="cartMessage"><br/></span>
     @if(cartContents.Persons.size() > 0) {
         <table id="cart-table" class="table table-striped">
             <thead>
@@ -31,6 +31,7 @@
             <span id="spnCartIE">
                 <div>
                     <a href="#" onclick="copyCprNumbers();" title="" ><span class="glyphicon glyphicon-file"></span> @Messages("cart.copy")</a>
+                    <span style="display: none" id="spnCprNumbersCopied" txt="@Messages("cart.copied")"></span>
                 </div>
             </span>
             <span id="spnCartNonIE">
