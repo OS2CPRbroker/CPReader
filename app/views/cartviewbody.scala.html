@@ -30,7 +30,7 @@
         @if(cartContents.Persons.size() > 0) {
             <span id="spnCartIE">
                 <div>
-                    <a href="#" onclick="copyCprNumbers();" title="" ><span class="glyphicon glyphicon-file"></span> @Messages("cart.copy")</a>
+                    <a href="" onclick='copyCprNumbers(); return false;' title="" ><span class="glyphicon glyphicon-file"></span> @Messages("cart.copy")</a>
                     <span style="display: none" id="spnCprNumbersCopied" txt="@Messages("cart.copied")"></span>
                 </div>
             </span>
