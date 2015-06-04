@@ -10,8 +10,8 @@
                 var addressQuery = addressQueryField.val();
                 var online = ($("input[name=online]:checked").val() == "true");
 
-                //Validation disabled because control does not wait until validation is complete
-                //v.validateQueries();
+                //TODO: Shall validation be disabled because control does not wait until validation is complete
+                v.validateQueries();
                 var valid = !queryField.parent().hasClass('has-error') && !queryField.parent().hasClass('has-warning');
                 if(!addressQueryField.attr('disabled') || !addressQueryField.attr('disabled') == 'false'){
                     valid &= !addressQueryField.parent().hasClass('has-error') && !addressQueryField.parent().hasClass('has-warning');
