@@ -12,7 +12,7 @@ define(["modolus11"], function(modolus11) {
 
 			//reset the colors
 			this.clearValidation(queryfield);
-			this.setPnrMode(false);
+			var pnrMode = false;
 
 			//if the query has special characters
 			if (containsspecialcharacters.test(query)) {
@@ -38,7 +38,7 @@ define(["modolus11"], function(modolus11) {
 			else if (containsnumbers.test(query) & !containsletters.test(query)
 					& !containsspecialcharacters.test(query)) {
 				// Disable address & online inputs
-				this.setPnrMode(true);
+				pnrMode = true;
 
 				//if there is less than 6 numbers
 				if (query.length < 6) {
@@ -94,6 +94,9 @@ define(["modolus11"], function(modolus11) {
 			else if (query.length > 0) {
 				queryfield.parent().addClass('has-success');
 			}
+
+			// Finally, set PNR mode
+			this.setPnrMode(pnrMode);
 		},
 
 		validateAddressQuery: function () {
@@ -145,6 +148,11 @@ define(["modolus11"], function(modolus11) {
 		setPnrMode: function (isPnrMode){
 			$('#addressQuery').attr('disabled', isPnrMode);
 			$("input[name=online]").attr('disabled', isPnrMode);
+			if(isPnrMode){
+				this.clearValidation($('#addressQuery'));
+			} else {
+				this.validateAddressQuery();
+			}
 		},
 
 		clearValidation: function (queryfield) {
