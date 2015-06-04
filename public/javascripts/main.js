@@ -83,6 +83,9 @@ require(["jquery", "bootstrap", "processQuery", "validate", "cart", "modolus11",
             v.validateAddressQuery();
         });
 
+        // Disable AJAX Caching to ensure cart actions reach the server in IE 
+        $.ajaxSetup({ cache: false });
+
     }); //end ready
 });
 

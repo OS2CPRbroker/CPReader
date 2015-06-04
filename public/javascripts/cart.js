@@ -1,6 +1,6 @@
 
         function addPersonToCart (uuid) {
-            var ret = $.get(
+            $.get(
                 '/cart/add/' + uuid + '/',
                 function(data){
                     showMessage(data);
@@ -10,7 +10,7 @@
         }
 
         function removePersonFromCart(uuid){
-            var ret = $.get(
+            $.get(
                 '/cart/remove/' + uuid + '/',
                 function(data){
                     refreshCartContents();
@@ -19,7 +19,7 @@
         }
 
         function emptyCart() {
-            var ret = $.get(
+            $.get(
                 '/cart/empty/',
                 function(data){
                     refreshCartContents();
@@ -27,29 +27,22 @@
             );
         }
 
-        function refreshCartContents(){
+        function refreshCartContents()
+        {
             // Refresh div element
-            $.get(
+            $('#cartViewModalBody').load(
                 '/cart/view/',
+                null,
                 function(data){
-                    var cartModalDiv = $('#cartViewModalBody');
-                    cartModalDiv.empty();
-                    cartModalDiv.append(data);
-
                     $('a[name=removeFromCartAnchor]').click(function(event){
                         var uuid = event.target.getAttribute('personuuid');
                         removePerson(uuid);
                     });
                 }
-            );
+            )
             // Refresh count
-            $.get(
-                '/cart/count/',
-                function(data){
-                    var cartCountSpan = $('span[name="cartCount"]');
-                    cartCountSpan.empty();
-                    cartCountSpan.append(data);
-                }
+            $('span[name="cartCount"]').load(
+                '/cart/count/'
             );
         }
 
