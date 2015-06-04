@@ -124,16 +124,16 @@ function showParents(event, uuid)
                     }
                     else
                     {
-                        parentsAnchor.attributes.loaded.value  = 'true';
-
-                        $('#addToCartAnchor').click(function(event){
+                        $('a[name=addToCartAnchor]').click(function(event){
                             var uuid = event.target.getAttribute('uuid');
                             addPersonToCart(uuid);
                         });
 
+                        parentsAnchor.attributes.loaded.value  = 'true';
                         parentsDiv.slideDown("fast");
                     }
-            });
+                }
+            );
         }
         else
         {
