@@ -136,13 +136,16 @@ function setCartButtonEvents(){
     $('a[name=addToCartAnchor]').click(function(event){
         var uuid = event.target.getAttribute('uuid');
         addPersonToCart(uuid);
+        return false;
     });
     $('a[name=removeFromCartAnchor]').click(function(event){
         var uuid = event.target.getAttribute('uuid');
         removePersonFromCart(uuid);
+        return false;
     });
 
     $('a[name=clearCartAnchor]').click(function(event){
         emptyCart();
+        return false;
     });
 }
