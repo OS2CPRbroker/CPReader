@@ -678,7 +678,7 @@ public class JaxWsCprBroker implements ICprBrokerAccessor {
                     IUuids uuidsFromRelations = new Uuids(200, "", relationUuids);
 
                     // Get all the persons with those uuids
-                    List<IPerson> relationshipPersons = list(uuidsFromRelations, ESourceUsageOrder.LocalOnly);
+                    List<IPerson> relationshipPersons = list(uuidsFromRelations, ESourceUsageOrder.LocalThenExternal);
 
 
                     RelationshipWithPerson.Builder relationshipWithPersonBuilder;
