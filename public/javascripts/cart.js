@@ -114,18 +114,25 @@ function showParents(event, uuid)
     {
         if(parentsAnchor.attributes.loaded.value == 'false')
         {
-            $.post('/search/updateparents/'+uuid+'/', {}, function (data) {
-                if(data == "none")
-                {
-                    window.alert("Not available");
-                }
-                else
-                {
-                    parentsAnchor.attributes.loaded.value  = 'true';
-                    parentsDiv.empty();
-                    parentsDiv.append(data);
-                    parentsDiv.slideDown("fast");
-                }
+            parentsDiv.load(
+                '/search/updateparents/'+uuid+'/',
+                null,
+                function (data) {
+                    if(data == "none")
+                    {
+                        window.alert("Not available");
+                    }
+                    else
+                    {
+                        parentsAnchor.attributes.loaded.value  = 'true';
+
+                        $('#addToCartAnchor').click(function(event){
+                            var uuid = event.target.getAttribute('uuid');
+                            addPersonToCart(uuid);
+                        });
+
+                        parentsDiv.slideDown("fast");
+                    }
             });
         }
         else
