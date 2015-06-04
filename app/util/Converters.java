@@ -35,6 +35,7 @@
 
 import dk.oio.rep.itst_dk.xml.schemas._2006._01._17.PersonNameStructureType;
 import oio.sagdok.person._1_0.*;
+import util.addresses.DawaAddressParser;
 import util.addresses.IAddressParser;
 import util.cprbroker.*;
 import java.util.ArrayList;
@@ -46,6 +47,9 @@ public class Converters {
 
 
     public static IAddressParser AddressParser;
+    public static boolean isDawaAddressParser(){
+        return AddressParser instanceof DawaAddressParser;
+    }
 
     public AdresseType ToAddressType(String addressString) {
         if (addressString != null && !addressString.trim().isEmpty()) {
