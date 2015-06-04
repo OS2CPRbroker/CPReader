@@ -93,6 +93,7 @@ require(["jquery", "bootstrap", "processQuery", "validate", "cart", "modolus11",
 
         // Disable AJAX Caching to ensure cart actions reach the server in IE 
         $.ajaxSetup({ cache: false });
+        setCartButtonEvents();
 
     }); //end ready
 });

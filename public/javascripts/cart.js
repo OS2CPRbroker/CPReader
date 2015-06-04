@@ -34,14 +34,7 @@ function refreshCartContents()
         '/cart/view/',
         null,
         function(data){
-            $('a[name=removeFromCartAnchor]').click(function(event){
-                var uuid = event.target.getAttribute('uuid');
-                removePersonFromCart(uuid);
-            });
-
-            $('a[name=clearCartAnchor]').click(function(event){
-                emptyCart();
-            });
+            setCartButtonEvents();
         }
     )
     // Refresh count
@@ -124,11 +117,7 @@ function showParents(event, uuid)
                     }
                     else
                     {
-                        $('a[name=addToCartAnchor]').click(function(event){
-                            var uuid = event.target.getAttribute('uuid');
-                            addPersonToCart(uuid);
-                        });
-
+                        setCartButtonEvents();
                         parentsAnchor.attributes.loaded.value  = 'true';
                         parentsDiv.slideDown("fast");
                     }
@@ -140,4 +129,20 @@ function showParents(event, uuid)
             parentsDiv.slideDown("fast");
         }
     }
+}
+
+function setCartButtonEvents(){
+
+    $('a[name=addToCartAnchor]').click(function(event){
+        var uuid = event.target.getAttribute('uuid');
+        addPersonToCart(uuid);
+    });
+    $('a[name=removeFromCartAnchor]').click(function(event){
+        var uuid = event.target.getAttribute('uuid');
+        removePersonFromCart(uuid);
+    });
+
+    $('a[name=clearCartAnchor]').click(function(event){
+        emptyCart();
+    });
 }
