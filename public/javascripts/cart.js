@@ -38,6 +38,10 @@ function refreshCartContents()
                 var uuid = event.target.getAttribute('uuid');
                 removePersonFromCart(uuid);
             });
+
+            $('a[name=clearCartAnchor]').click(function(event){
+                emptyCart();
+            });
         }
     )
     // Refresh count
