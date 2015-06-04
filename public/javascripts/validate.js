@@ -99,33 +99,15 @@ define(["modolus11"], function(modolus11) {
 			this.setPnrMode(pnrMode);
 		},
 
-		validateAddressQuery: function () {
+		validateAddressQuery: function (doneCallBack) {
+
 			var addressQueryField = $('#addressQuery');
 			var addressQuery = addressQueryField.val().trim();
 			var validateDawa = addressQueryField.attr('validateDawa');
 			this.clearValidation(addressQueryField);
 
-			// Invalid addresses
-			if(validateDawa == 'true')
-			{
-				$.ajax({
-					url:		document.location.protocol + '//dawa.aws.dk/adresser/autocomplete',
-					type: 		"GET",
-					dataType: 	"jsonp",
-					data: 		{q: addressQuery, maxantal: 1},
-					//async: 		false,
-					success: 	function (data) {
-									if(data.length == 0){
-										addressQueryField.parent().addClass('has-warning');
-										addressQueryField.attr('data-original-title', 'Bemærk');
-										addressQueryField.attr('data-content', addressQueryField.attr('invalidAddressText'));
-										addressQueryField.popover('show');
-									}
-								},
-					error: 		function (textStatus) {
-									alert("Der kunne ikke hentes data fra AWS API'et. Serveren returnerede følgende:\n'" + textStatus + "'\n\nAdresseforslag virker derfor ikke pt.");
-								}
-				});
+			if(!doneCallBack){
+				doneCallBack = function(){};
 			}
 
 			// Prohibit name only search
@@ -138,11 +120,39 @@ define(["modolus11"], function(modolus11) {
 					addressQueryField.popover('show');
 				}
 			}
+
+			// Invalid addresses
+			if(validateDawa == 'true')
+			{
+				$.ajax({
+					url:		document.location.protocol + '//dawa.aws.dk/adresser/autocomplete',
+					type: 		"GET",
+					dataType: 	"jsonp",
+					data: 		{q: addressQuery, maxantal: 1},
+					//async: 		false,
+					success: 	function (data) {
+						if(data.length == 0){
+							addressQueryField.parent().addClass('has-warning');
+							addressQueryField.attr('data-original-title', 'Bemærk');
+							addressQueryField.attr('data-content', addressQueryField.attr('invalidAddressText'));
+							addressQueryField.popover('show');
+						}
+						doneCallBack();
+					},
+					error: 		function (textStatus) {
+						alert("Der kunne ikke hentes data fra AWS API'et. Serveren returnerede følgende:\n'" + textStatus + "'\n\nAdresseforslag virker derfor ikke pt.");
+					}
+				});
+			}
+			else
+			{
+				doneCallBack();
+			}
 		},
 
-		validateQueries : function () {
+		validateQueries : function (doneCallBack) {
 			this.validateQuery();
-			this.validateAddressQuery();
+			this.validateAddressQuery(doneCallBack);
 		},
 
 		setPnrMode: function (isPnrMode){
