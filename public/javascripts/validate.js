@@ -102,11 +102,11 @@ define(["modolus11"], function(modolus11) {
 		validateAddressQuery: function () {
 			var addressQueryField = $('#addressQuery');
 			var addressQuery = addressQueryField.val().trim();
-			var allowInvalidAddress = false;
+			var validateDawa = addressQueryField.attr('validateDawa');
 			this.clearValidation(addressQueryField);
 
 			// Invalid addresses
-			if(!allowInvalidAddress)
+			if(validateDawa == 'true')
 			{
 				$.ajax({
 					url:		document.location.protocol + '//dawa.aws.dk/adresser/autocomplete',
@@ -118,7 +118,7 @@ define(["modolus11"], function(modolus11) {
 									if(data.length == 0){
 										addressQueryField.parent().addClass('has-warning');
 										addressQueryField.attr('data-original-title', 'Bemærk');
-										addressQueryField.attr('data-content', 'This is an invalid address and cannot be used');
+										addressQueryField.attr('data-content', addressQueryField.attr('invalidAddressText'));
 										addressQueryField.popover('show');
 									}
 								},
@@ -134,7 +134,7 @@ define(["modolus11"], function(modolus11) {
 				if (addressQuery.length == 0) {
 					addressQueryField.parent().addClass('has-warning');
 					addressQueryField.attr('data-original-title', 'Bemærk');
-					addressQueryField.attr('data-content', 'You must provide an address when searching online');
+					addressQueryField.attr('data-content', addressQueryField.attr('addressRequiredText'));
 					addressQueryField.popover('show');
 				}
 			}

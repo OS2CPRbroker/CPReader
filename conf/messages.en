@@ -25,6 +25,8 @@ nav.quicksearch_addresslaceholder = Address
 nav.quicksearch_submit = Submit
 nav.quicksearch_online = Online
 nav.quicksearch_local = Local
+nav.quicksearch.invalidaddress = Invalid address
+nav.quicksearch.addressrequired = You must provide an address when searching online
 
 nav.help = Help
 nav.logout_button = Log out

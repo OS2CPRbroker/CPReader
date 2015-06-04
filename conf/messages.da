@@ -25,6 +25,8 @@ nav.quicksearch_addresslaceholder = Adresse
 nav.quicksearch_submit = Søg
 nav.quicksearch_online = Online
 nav.quicksearch_local = Lokal
+nav.quicksearch.invalidaddress = Ugyldig adresse
+nav.quicksearch.addressrequired = Du skal skriv en adresse hvis du vil at søge online
 
 nav.help = Hjælp
 nav.logout_button = Log ud
