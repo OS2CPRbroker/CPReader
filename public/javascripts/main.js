@@ -42,13 +42,21 @@ require(["jquery", "bootstrap", "processQuery", "validate", "cart", "modolus11",
             }
         });
 
-        // validate incomming input
+        // validate name or PNR
         $('#query').keyup(function (event) {
             v.validateQuery();
         });
+        $('#query').change(function (event) {
+            v.validateQuery();
+        });
 
-        // validate incomming input
+        // validate address
         $('#addressQuery').keyup(function (event) {
+            if (event.which != 13) {
+                v.validateAddressQuery();
+            }
+        });
+        $('#addressQuery').change(function (event) {
             v.validateAddressQuery();
         });
 

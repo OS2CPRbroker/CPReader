@@ -3,7 +3,6 @@ define(["modolus11"], function(modolus11) {
 		validateQuery : function() {
 
 			var queryfield = $('#query');
-			var addressQueryField = $('#addressQuery');
 			var query = queryfield.val();
 
 			var containsspecialcharacters = /\½|\§|\!|\"|\@|\#|\£|\¤|\$|\%|\&|\/|\{|\(|\[|\)|\]|\=|\}|\?|\+|\'|\`|\||\^|\~|\*|\_|\;|\:|\.|\+/;
@@ -100,14 +99,36 @@ define(["modolus11"], function(modolus11) {
 		validateAddressQuery: function () {
 			var addressQueryField = $('#addressQuery');
 			var addressQuery = addressQueryField.val().trim();
-			var online = ($("input[name=online]:checked").val() == "true");
-
+			var allowInvalidAddress = false;
 			this.clearValidation(addressQueryField);
 
-			if(online && ! addressQueryField.attr('disabled'))
+			// Invalid addresses
+			if(!allowInvalidAddress)
 			{
-				if(addressQuery.length == 0)
-				{
+				$.ajax({
+					url:		document.location.protocol + '//dawa.aws.dk/adresser/autocomplete',
+					type: 		"GET",
+					dataType: 	"jsonp",
+					data: 		{q: addressQuery, maxantal: 1},
+					//async: 		false,
+					success: 	function (data) {
+									if(data.length == 0){
+										addressQueryField.parent().addClass('has-warning');
+										addressQueryField.attr('data-original-title', 'Bemærk');
+										addressQueryField.attr('data-content', 'This is an invalid address and cannot be used');
+										addressQueryField.popover('show');
+									}
+								},
+					error: 		function (textStatus) {
+									alert("Der kunne ikke hentes data fra AWS API'et. Serveren returnerede følgende:\n'" + textStatus + "'\n\nAdresseforslag virker derfor ikke pt.");
+								}
+				});
+			}
+
+			// Prohibit name only search
+			var online = ($("input[name=online]:checked").val() == "true");
+			if (online && !addressQueryField.attr('disabled')) {
+				if (addressQuery.length == 0) {
 					addressQueryField.parent().addClass('has-warning');
 					addressQueryField.attr('data-original-title', 'Bemærk');
 					addressQueryField.attr('data-content', 'You must provide an address when searching online');
