@@ -34,10 +34,9 @@
 @(person: util.cprbroker.IPerson, accesslevel: Integer)
 @import play.api.Play.current;
 @import util.cprbroker.EAddressType;var showrelations=0;
-
-<div id="detailModal@person.uuid()" class="modal static">
+<div id="detailModal@person.uuid()" class="modal static"  role="dialog">
     <div class="modal-dialog">
-        <div id="content@person.uuid()" class="modal-content">
+        <div id="content@person.uuid()" class="modal-content" >
             @modalcontent(person,accesslevel)
         </div>
     </div>

@@ -15,9 +15,9 @@ GET         /logout                                                      control
 
 # Search
 POST        /search/cpr/                                                 @controllers.Search.getUuidFromCpr()
-POST        /search/update/:uuid/:uri                                    @controllers.Search.updateRelations(uuid : String, uri : String)
-GET        /search/updateparents/:uuid/                                 @controllers.Search.updateParents(uuid : String)
-POST        /search/closedetail                                          @controllers.Search.closeDetail()
+GET        /search/update/:uuid/                                         @controllers.Search.updatePerson(uuid : String)
+GET        /search/updateparents/:uuid/                                  @controllers.Search.updateParents(uuid : String)
+POST       /search/closedetail                                           @controllers.Search.closeDetail()
 
 GET         /search/name/:name/address/:address/page/:page               @controllers.Search.searchNameAndAddress(name : String, address : String, online:Boolean ?= false, page : Int)
 GET         /search/name/:name/address/:address/online/page/:page        @controllers.Search.searchNameAndAddress(name : String, address : String, online:Boolean ?= true, page : Int)

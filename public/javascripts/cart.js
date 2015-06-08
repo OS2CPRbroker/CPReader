@@ -137,12 +137,40 @@ function hideDetail()
     });
 }
 
-function updateRelations(uuid)
+function showPersonDetails(event, uuid)
 {
-    $.post('/search/update/'+uuid+'/'+encodeURIComponent(window.location.href), {}, function (data) {
-        $('#content'+uuid).empty();
-        $('#content'+uuid).append(data);
-    });
+    var detailsAnchor = event.target;
+    var detailModalDiv = $('#detailModal'+uuid);
+    var contentDiv = $('#content'+uuid);
+
+
+    var showFunc = function(){
+        detailModalDiv.modal({keyboard:true, backdrop: 'static'});
+    };
+
+    if(detailsAnchor.attributes.loaded.value == 'false')
+    {
+        contentDiv.load(
+            '/search/update/'+uuid+'/',
+            null,
+            function (data) {
+                if(data == "none")
+                {
+                    window.alert("Not available");
+                }
+                else
+                {
+                    setCartButtonEvents();
+                    detailsAnchor.attributes.loaded.value  = 'true';
+                    showFunc();
+                }
+            }
+        );
+    }
+    else
+    {
+        showFunc();
+    }
 }
 
 function setCartButtonEvents(){

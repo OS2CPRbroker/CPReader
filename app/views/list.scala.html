@@ -76,8 +76,15 @@
 
                         @if(accesslevel > 0) {
                             <div class="col-md-3 text-left">
-                                <a href="#detailModal@person.uuid()" onclick="javascript:updateRelations('@person.uuid()')" data-backdrop="static" data-toggle="modal" ><span class="glyphicon glyphicon-user"></span> @Messages("person.viewdetails")</a>
+                                @* Button to show person details *@
+                                <a href="#" onclick="javascript:showPersonDetails(event,'@person.uuid()')"
+                                    data-backdrop="static" data-toggle="modal"
+                                    @if(person.relationsWithPerson()!=null){loaded='true'}
+                                    @if(person.relationsWithPerson()==null){loaded='false'}
+                                ><span class="glyphicon glyphicon-user"></span> @Messages("person.viewdetails")</a>
+
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                @* Button to show person parents and custody holders *@
                                 <a href="#"  onclick="javascript:showParents(event,'@person.uuid()')"
                                     @if(person.relationsWithPerson()!=null){loaded='true'}
                                     @if(person.relationsWithPerson()==null){loaded='false'}
@@ -94,8 +101,8 @@
                         }
                         
                     </div>  
-                    
-                    @********************************************************************************************************************@   
+
+                    @********************************************************************************************************************@
                     @**************** SHOW PARENTS / CUSTODY HOLDERS ********************************************************************@
                     @********************************************************************************************************************@
                     <div id="parents-row@person.uuid()">
@@ -115,8 +122,6 @@
                     } else {
 
                     }
-                    @***********************************@
-
 
                     @********************************************************************************************************************@   
                     @**************** END SHOW PARENTS / CUSTODY HOLDERS ****************************************************************@

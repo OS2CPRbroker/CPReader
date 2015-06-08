@@ -280,7 +280,8 @@ public class Search extends Controller {
         }
     }
 
-     public Result updateParents(String uuid)
+    @Security.Authenticated(Secured.class)
+    public Result updateParents(String uuid)
     {
         play.Logger.info("UPDATE PARENTS: " + uuid);
         
@@ -317,12 +318,10 @@ public class Search extends Controller {
         }
     }
 
-    public Result updateRelations(String uuid, String uri) 
+    @Security.Authenticated(Secured.class)
+    public Result updatePerson(String uuid)
     {
-        play.Logger.info("UPDATE RELATIONS ");
-        
-        String content="person not found";
-        session("redirect", uri);
+        play.Logger.info("UPDATE person: " + uuid);
 
         IPerson person = null;
         try {
@@ -333,7 +332,6 @@ public class Search extends Controller {
         } catch (Exception ex) {
             play.Logger.error(ex.toString());
         }
-        play.Logger.info("UPDATE RELATIONS 2");
         SearchInput searchInput = new SearchInput();
         searchInput.fillFromSession(this);
 
@@ -348,16 +346,14 @@ public class Search extends Controller {
             return ok(show_error.render(503, searchInput));
         }
 
-       
-        if (person.code() == 200) { 
+
+        if (person.code() == 200) {
                 return ok(views.html.modalcontent.render(person, accessLevel));   
 
         } else {
             //TODO - A person wasn't found
             return ok(show_error.render(person.code(), searchInput));
         }
-        //play.Logger.info("UPDATE RELATIONS");
-        //return ok(content);
     }
 
 
