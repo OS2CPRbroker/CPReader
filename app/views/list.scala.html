@@ -224,16 +224,3 @@
         </div>
         @partial_pagination(results, currentpage, location)
     }
-
-<script>
-
-    function updateRelations(uuid)
-    {
-        $.post('/search/update/'+uuid+'/'+encodeURIComponent(window.location.href), {}, function (data) {
-            $('#content'+uuid).empty();
-            $('#content'+uuid).append(data);
-        });
-    }
-
-
-</script>

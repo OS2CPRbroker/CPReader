@@ -131,6 +131,20 @@ function showParents(event, uuid)
     }
 }
 
+function hideDetail()
+{
+    $.post('/search/closedetail', {}, function (data) {
+    });
+}
+
+function updateRelations(uuid)
+{
+    $.post('/search/update/'+uuid+'/'+encodeURIComponent(window.location.href), {}, function (data) {
+        $('#content'+uuid).empty();
+        $('#content'+uuid).append(data);
+    });
+}
+
 function setCartButtonEvents(){
 
     $('a[name=addToCartAnchor]').click(function(event){
