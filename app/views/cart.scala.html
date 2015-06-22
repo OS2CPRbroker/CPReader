@@ -33,8 +33,16 @@
 
 @(person: util.cprbroker.IPerson, showperson: String, showcart: Boolean, showparents: Boolean, expandid : String)
 
-<a href="#" name="addToCartAnchor" uuid='@(person.uuid())' ><span class="glyphicon glyphicon-plus"></span> @Messages("cart.add")</a>
-
+	@if(
+		conf.ConfigWrapper.cartAllowNonBornPersons()
+		|| (person.tilstand() !=null && person.tilstand().livStatusKode() == util.cprbroker.ELifeStatusType.FOEDT)
+	){
+		<a href="#" name="addToCartAnchor" uuid='@(person.uuid())'><span class="glyphicon glyphicon-plus"></span> @Messages("cart.add")</a>
+	} else	{
+		<a>
+		<span class="link-disabled"><span class="glyphicon glyphicon-plus"></span>@Messages("cart.add")</span>
+		</a>
+	}
 @if(session.get("opencart") == "true"){
   <script>
 	window.onload = function() {
