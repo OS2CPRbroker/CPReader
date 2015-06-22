@@ -180,6 +180,7 @@ function setCartButtonEvents(){
         addPersonToCart(uuid);
         return false;
     });
+
     $('a[name=removeFromCartAnchor]').click(function(event){
         var uuid = event.target.getAttribute('uuid');
         removePersonFromCart(uuid);
