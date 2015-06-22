@@ -10,7 +10,7 @@
             
             @play.api.cache.Cache.set(r.person.uuid(), r.person)
             <div class="row">
-                @listperson(r.person(), false, r.relationshipType.toString()+":" )
+                @listperson(r.person(), true, r.relationshipType.toString()+":" )
                 @{parentCount = parentCount + 1}
                 @if(accesslevel > 0) {
                     <div class="col-md-2 text-left">
