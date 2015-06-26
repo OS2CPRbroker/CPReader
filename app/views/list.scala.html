@@ -76,13 +76,14 @@
 
                         @if(accesslevel > 0) {
                             <div class="col-md-3 text-left">
-                                @* Button to show person details *@
-                                <a href="#" onclick="javascript:showPersonDetails(event,'@person.uuid()')"
-                                    data-backdrop="static" data-toggle="modal"
-                                    @if(person.relationsWithPerson()!=null){loaded='true'}
-                                    @if(person.relationsWithPerson()==null){loaded='false'}
-                                ><span class="glyphicon glyphicon-user"></span> @Messages("person.viewdetails")</a>
-
+                                @if(accesslevel > 1) {
+                                    @* Button to show person details *@
+                                    <a href="#" onclick="javascript:showPersonDetails(event,'@person.uuid()')"
+                                        data-backdrop="static" data-toggle="modal"
+                                        @if(person.relationsWithPerson()!=null){loaded='true'}
+                                        @if(person.relationsWithPerson()==null){loaded='false'}
+                                    ><span class="glyphicon glyphicon-user"></span> @Messages("person.viewdetails")</a>
+                                }
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 @* Button to show person parents and custody holders *@
                                 <a href="#"  onclick="javascript:showParents(event,'@person.uuid()')"
