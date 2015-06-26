@@ -175,18 +175,21 @@ function showPersonDetails(event, uuid)
 
 function setCartButtonEvents(){
 
+    $('a[name=addToCartAnchor]').unbind('click');
     $('a[name=addToCartAnchor]').click(function(event){
         var uuid = event.target.getAttribute('uuid');
         addPersonToCart(uuid);
         return false;
     });
 
+    $('a[name=removeFromCartAnchor]').unbind('click');
     $('a[name=removeFromCartAnchor]').click(function(event){
         var uuid = event.target.getAttribute('uuid');
         removePersonFromCart(uuid);
         return false;
     });
 
+    $('a[name=clearCartAnchor]').unbind('click');
     $('a[name=clearCartAnchor]').click(function(event){
         emptyCart();
         return false;
