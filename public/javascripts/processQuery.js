@@ -6,8 +6,8 @@
                 var queryField = $('#query');
                 var addressQueryField = $('#addressQuery');
 
-                var query = queryField.val();
-                var addressQuery = addressQueryField.val();
+                var query = queryField.val().trim();
+                var addressQuery = addressQueryField.val().trim();
                 var online = ($("input[name=online]:checked").val() == "true");
 
                 var validationDoneCallBack = function(){
