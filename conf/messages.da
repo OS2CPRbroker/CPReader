@@ -33,26 +33,26 @@ nav.logout_button = Log ud
 
 # cart
 cart.view = Vis kurv
-cart.add= Tilføj til kurv
+cart.add= Føj til kurv
 cart.remove= Fjern
 cart.copy= Kopier CPR-numre
 cart.empty= Tøm kurv
 cart.name= Navn
 cart.cprnumber= CPR-nummer
 cart.items = Personer
-cart.added = er blevet tilføjet til kurven.
-cart.exists = er allerede tilføjet til kurven.
+cart.added = er blevet føjet til kurven.
+cart.exists = er allerede føjet til kurven.
 cart.removed = fjernet fra kurven.
-cart.notremoved = fjernet ikke fra kurven.
+cart.notremoved = ikke fjernet fra kurven.
 cart.copied = kopieret til klippebordet.
-cart.emptied = Kurv tømt .
-cart.noitems = Der er i øjeblikket ingen varer i kurven
+cart.emptied = Kurv tømt.
+cart.noitems = Der er i øjeblikket ingen CPR-numre i kurven
 cart.select = Vælg CPR-numre
 cart.select.title = Vælg
 cart.rightclick = Højreklik på de markerede CPR-numre for at kopiere
 cart.close = Luk
 
-results.list.amountOfResults = Der er {0} resultater på søgningen:
+results.list.amountOfResults = Der er {0} resultater i søgningen:
 results.list.searchFailed = Fejl i søgningen
 results.list.online_desc_1 = Liste over søgeresultater fra søgning online
 results.list.online_desc_2 = Listen indeholder søgeresultater fra CPR Registret. Du kan klikke på et søgeresultat og se flere detaljer om personen.
