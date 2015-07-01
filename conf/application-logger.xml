@@ -1,73 +1,73 @@
 <configuration>
+
+    <conversionRule conversionWord="coloredLevel" converterClass="play.api.Logger$ColoredLevel" />
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${application.home}/logs/application.log</file>
+        <encoder>
+            <pattern>%date - [%level] - from %logger in %thread %n%message%n%xException%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>logs/application.%d{yyyy-MM-dd}.log</FileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%coloredLevel %logger{15} - %message%n%xException{5}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- This file appender is used to output aggregated performance statistics -->
+    <appender name="perf4jFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${application.home}/logs/perf4j.log</File>
+        <encoder>
+            <Pattern>%date - [%level] - from %logger in %thread %n%message%n%xException%n</Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>logs/perf4j.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Uncomment to use MySQL database -->
+    <!--
+    <appender name="MySqlDB" class="ch.qos.logback.classic.db.DBAppender">
+        <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+            <driverClass>com.mysql.jdbc.Driver</driverClass>
+            <url>jdbc:mysql://localhost:8889/cprlogger</url>
+            <user>mat</user>
+            <password>mat</password>
+        </connectionSource>
+    </appender>
+  -->
     
-  <conversionRule conversionWord="coloredLevel" converterClass="play.api.Logger$ColoredLevel" />
-  
-  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-     <file>${application.home}/logs/application.log</file>
-     <encoder>
-       <pattern>%date - [%level] - from %logger in %thread %n%message%n%xException%n</pattern>
-     </encoder>
-     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-        <FileNamePattern>logs/application.%d{yyyy-MM-dd}.log</FileNamePattern>
-    </rollingPolicy>
-   </appender>
-
-  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-    <encoder>
-      <pattern>%coloredLevel %logger{15} - %message%n%xException{5}</pattern>
-    </encoder>
-  </appender>
-
-
-  <!-- This file appender is used to output aggregated performance statistics -->
-  <appender name="perf4jFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-      <File>${application.home}/logs/perf4j.log</File>
-      <encoder>
-          <Pattern>%date - [%level] - from %logger in %thread %n%message%n%xException%n</Pattern>
-      </encoder>
-      <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-          <FileNamePattern>logs/perf4j.%d{yyyy-MM-dd}.log</FileNamePattern>
-          <!-- keep 30 days' worth of history -->
-          <maxHistory>30</maxHistory>
-      </rollingPolicy>
-  </appender>  
-
-  <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
-    <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
-      <driverClass>com.mysql.jdbc.Driver</driverClass>
-        <url>jdbc:mysql://localhost:8889/cprlogger</url>
-        <user>mat</user>
-        <password>mat</password>
-      </connectionSource>
-  </appender>
-
-<!--
-  <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+  <!-- Uncomment to log to a SQL Server database -->
+  <!--
+  <appender name="SqlServerDB" class="ch.qos.logback.classic.db.DBAppender">
     <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
       <driverClass>com.microsoft.sqlserver.jdbc.SQLServerDriver</driverClass>
-        <url>jdbc:sqlserver://localhost\sqlexpress;databaseName=CPReaderLogs;user=mat;password=mat</url>
+        <url>jdbc:sqlserver://localhost\sqlexpress;databaseName=CPReaderLogs;user=usr;password=pwd</url>
     </connectionSource>
   </appender>
--->
+  -->
 
-  <logger name="play" level="INFO" />
-  <logger name="application" level="INFO" />
-  <logger name="org.perf4j.TimingLogger" additivity="false" level="INFO" >
-    <appender-ref ref="perf4jFileAppender"/>
-  </logger>
+    <logger name="play" level="INFO" />
+    <logger name="application" level="INFO" />
+    <logger name="org.perf4j.TimingLogger" additivity="false" level="INFO" >
+        <appender-ref ref="perf4jFileAppender"/>
+    </logger>
 
-  <root level="INFO">
-       <appender-ref ref="DB" />
-  </root>
+    <root level="INFO">
+        <!-- Uncomment to log to a MySQL Server database -->
+        <appender-ref ref="MySqlDB" />
+        <!-- Uncomment to log to a SQL Server database -->
+        <appender-ref ref="SqlServerDB" />
+    </root>
 
-  <root level="ERROR">
-      <appender-ref ref="STDOUT" />
-      <appender-ref ref="FILE" />
-  </root>
-  
-  
-  
-
-    
-  
+    <root level="ERROR">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
 </configuration>
