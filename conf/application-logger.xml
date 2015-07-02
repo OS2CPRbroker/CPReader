@@ -8,7 +8,8 @@
             <pattern>%date - [%level] - from %logger in %thread %n%message%n%xException%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>logs/application.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!-- For some reason, the main file gets overwritten if you restart the application before the rollong event has occured -->
+            <FileNamePattern>${application.home}/logs/application.%d{yyyy-MM-dd HH}-00.log</FileNamePattern>
         </rollingPolicy>
     </appender>
 
@@ -31,7 +32,7 @@
         </rollingPolicy>
     </appender>
 
-    <!-- Uncomment to use MySQL database -->
+    <!-- Uncomment & edit to use MySQL database -->
     <!--
     <appender name="MySqlDB" class="ch.qos.logback.classic.db.DBAppender">
         <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
@@ -42,9 +43,9 @@
         </connectionSource>
     </appender>
   -->
-    
-  <!-- Uncomment to log to a SQL Server database -->
-  <!--
+
+    <!-- Uncomment & edit to log to a SQL Server database -->
+    <!--
   <appender name="SqlServerDB" class="ch.qos.logback.classic.db.DBAppender">
     <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
       <driverClass>com.microsoft.sqlserver.jdbc.SQLServerDriver</driverClass>
@@ -53,19 +54,31 @@
   </appender>
   -->
 
+    <!-- Logs created by the play framework core -->
     <logger name="play" level="INFO" />
+
+    <!-- Logs created by the application (CPReader in this case)-->
     <logger name="application" level="INFO" />
+
+    <!-- Logs created by the perf4j.TimingLogger -->
     <logger name="org.perf4j.TimingLogger" additivity="false" level="INFO" >
         <appender-ref ref="perf4jFileAppender"/>
     </logger>
 
+    <!-- Targets (appenders) for all info (and higher) logs-->
     <root level="INFO">
+
         <!-- Uncomment to log to a MySQL Server database -->
-        <appender-ref ref="MySqlDB" />
+        <!--<appender-ref ref="MySqlDB" />-->
+
         <!-- Uncomment to log to a SQL Server database -->
-        <appender-ref ref="SqlServerDB" />
+        <!--<appender-ref ref="SqlServerDB" />-->
+
+        <!-- Comment to disable file-based logging -->
+        <appender-ref ref="FILE"></appender-ref>
     </root>
 
+    <!-- Targets (appenders) for all error(and higher) logs -->
     <root level="ERROR">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
