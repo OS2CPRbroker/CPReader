@@ -45,14 +45,14 @@
   -->
 
     <!-- Uncomment & edit to log to a SQL Server database -->
-    <!--
+    
   <appender name="SqlServerDB" class="ch.qos.logback.classic.db.DBAppender">
     <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
       <driverClass>com.microsoft.sqlserver.jdbc.SQLServerDriver</driverClass>
-        <url>jdbc:sqlserver://localhost\sqlexpress;databaseName=CPReaderLogs;user=usr;password=pwd</url>
+        <url>jdbc:sqlserver://sqlserver;databaseName=CPReaderLogs;user=mat;password=mat</url>
     </connectionSource>
   </appender>
-  -->
+  
 
     <!-- Logs created by the play framework core -->
     <logger name="play" level="INFO" />
@@ -72,7 +72,7 @@
         <!--<appender-ref ref="MySqlDB" />-->
 
         <!-- Uncomment to log to a SQL Server database -->
-        <!--<appender-ref ref="SqlServerDB" />-->
+        <appender-ref ref="SqlServerDB" />
 
         <!-- Comment to disable file-based logging -->
         <appender-ref ref="FILE"></appender-ref>

@@ -142,7 +142,7 @@ public class Search extends Controller {
                 toIndex = persons.size();
 
             List<IPerson> subPersons = persons.subList(fromIndex, toIndex);
-
+ok()
             return ok(list.render(subPersons, persons.size(), page, path, searchInput, accessLevel));
         } 
         else

@@ -92,10 +92,10 @@ public class Global extends GlobalSettings {
 		        //bind(IUnboundidConnection.class).to(UnboundidConnection.class);
 
 				// Use this for test/test authentication
-	        	bind(IAuthentication.class).to(TestAuthenticationStrategy.class);
+	        	//bind(IAuthentication.class).to(TestAuthenticationStrategy.class);
 
 				// Use this for Windows authentication
-				//bind(IAuthentication.class).to(WindowsAuthenticationStrategy.class);
+				bind(IAuthentication.class).to(WindowsAuthenticationStrategy.class);
 
                 //bind(IAddressParser.class).to(DawaAddressParser.class);
 				bind(IAddressParser.class).to(RegexAddressParser.class);
