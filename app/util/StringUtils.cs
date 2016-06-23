@@ -31,39 +31,37 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util;
+using System;
+using System.Collections.Generic;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+namespace util
+{
 
-/**
- * Created by Beemen on 14/11/2014.
- */
-public class StringUtils {
-    public static String TrimZerosOnLeft(String string) {
-        if (string != null)
-            return string.replaceAll("\\A0+", "");
-        return string;
-    }
-
-    public static String format(String format, Object... args) {
-        List<Object> args2 = new ArrayList<Object>();
-        for (int i = 0; i < args.length; i++) {
-            args2.add((args[i] == null) ? "" : args[i]);
+    /**
+     * Created by Beemen on 14/11/2014.
+     */
+    public class StringUtils
+    {
+        public static String TrimZerosOnLeft(string str)
+        {
+            if (str != null)
+                return str.Replace("\\A0+", "");
+            return str;
         }
-        return String.format(format, args2.toArray());
-    }
 
-    public static String join(CharSequence separator, Iterable<String> array) {
-        String ret = "";
-        Iterator<String> iterator = array.iterator();
-        if (iterator.hasNext()) {
-            ret = iterator.next();
-            while (iterator.hasNext()){
-                ret += separator + iterator.next();
+        public static String format(string format, params Object[] args)
+        {
+            List<Object> args2 = new List<Object>();
+            for (int i = 0; i < args.Length; i++)
+            {
+                args2.Add((args[i] == null) ? "" : args[i]);
             }
+            return String.Format(format, args2.ToArray());
         }
-        return ret;
+
+        public static String join(string separator, IEnumerable<string> array)
+        {
+            return string.Join(separator, array);
+        }
     }
 }
