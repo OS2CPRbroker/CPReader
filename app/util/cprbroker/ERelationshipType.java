@@ -31,30 +31,34 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util.cprbroker;
+namespace util.cprbroker
+{
 
-public enum ERelationshipType {
-	erstatingAf("Erstatning af"),
-	erstatingFor("Erstatning for"), 
-	fader("Fader"),
-	moder("Moder"),
-	foraeldremyndighedsindehaver("Forældremyndighedsindehaver"),
-	retligHandleevneVaergeForPersonen("Retlig handleevne værge for personen"),		
-	aegtefaelle("Ægtefælle"),
-	registreretPartner("Registeret partner"),		
-	boern("Barn"),
-	foraeldremydighedsboern("Forældremyndighedsbarn"),
-	retligHandleevneVaergemaalsindehaver("Retlig handleevne værgemåls indehaver"),
-	bopaelssamling("Bopæls samling");
-
-	private final String prettyName;
-	
-	private ERelationshipType(String prettyName) {
-		this.prettyName = prettyName;
-	}
-	
-	@Override
-	public String toString() {
-		return prettyName;
-	}
+    public enum ERelationshipType
+    {
+        [Description("Erstatning af")]
+        erstatingAf,
+        [Description("Erstatning for")]
+        erstatingFor,
+        [Description("Fader")]
+        fader,
+        [Description("Moder")]
+        moder,
+        [Description("Forældremyndighedsindehaver")]
+        foraeldremyndighedsindehaver,
+        [Description("Retlig handleevne værge for personen")]
+        retligHandleevneVaergeForPersonen,
+        [Description("Ægtefælle")]
+        aegtefaelle,
+        [Description("Registeret partner")]
+        registreretPartner,
+        [Description("Barn")]
+        boern,
+        [Description("Forældremyndighedsbarn")]
+        foraeldremydighedsboern,
+        [Description("Retlig handleevne værgemåls indehaver")]
+        retligHandleevneVaergemaalsindehaver,
+        [Description("Bopæls samling")]
+        bopaelssamling
+    }
 }

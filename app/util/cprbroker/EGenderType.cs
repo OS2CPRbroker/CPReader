@@ -30,28 +30,50 @@
  * the terms of any one of the MPL, the GPL or the LGPL.
  *
  * ***** END LICENSE BLOCK ***** */
+using System;
+using System.Reflection;
 
-package util.cprbroker;
+namespace util.cprbroker
+{
+    public enum EGenderType
+    {
+        [Description("Mand")]
+        MALE,
 
-public interface IRelationship {
-/*
-		// PersonRelationType
-		p1.get(0).getCommentText();
-		p1.get(0).getReferenceID().getURNIdentifikator();
-		p1.get(0).getReferenceID().getUUID();
-		p1.get(0).getVirkning();
-		
-		// PersonFlerRelationType
-		p2.get(0).getCommentText();
-		p2.get(0).getReferenceID().getURNIdentifikator();
-		p2.get(0).getReferenceID().getUUID();
-		p2.get(0).getVirkning();
- */
-	
-	String comment();
-	String referenceUrn();
-	String referenceUuid();
-	IVirkning effect();
-	ERelationshipType relationshipType();
-	
+        [Description("Kvinde")]
+        FEMALE,
+
+        [Description("Ukendt")]
+        UNDEFINED,
+
+    }
+
+    public class Description : Attribute
+    {
+        // TODO: Use this class when calling enum.ToString()
+
+        public string Text;
+
+        public Description(string text)
+        {
+            Text = text;
+        }
+
+        static string GetDescription(Enum en)
+        {
+            Type type = en.GetType();
+
+            MemberInfo[] memInfo = type.GetMember(en.ToString());
+
+            if (memInfo != null && memInfo.Length > 0)
+            {
+                object[] attrs = memInfo[0].GetCustomAttributes(typeof(Description),
+                                                                false);
+                if (attrs != null && attrs.Length > 0)
+                    return ((Description)attrs[0]).Text;
+            }
+
+            return en.ToString();
+        }
+    }
 }

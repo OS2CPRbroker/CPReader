@@ -31,36 +31,39 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util.cprbroker;
-/**
- * Interface for wrapping the KontaktKanal CPR Broker-response
- * 
- * CAVEAT! Currently CPR Broker NEVER returns these information.
- * 
- * @author Søren Kirkegård
- *
- */
-public interface IContact {
+using System;
 
-	/**
-  			attributes.getKontaktKanal().getAndenKontaktKanal().getKontaktKanalTekst();
-			attributes.getKontaktKanal().getAndenKontaktKanal().getNoteTekst();
-			attributes.getKontaktKanal().getBegraensetAnvendelseTekst();
-			attributes.getKontaktKanal().getEmailAddressIdentifier();
-			attributes.getKontaktKanal().getNoteTekst();
-			attributes.getKontaktKanal().getTelefon().getTelephoneNumberIdentifier();
-			attributes.getKontaktKanal().getTelefon().isKanBrugesTilSmsIndikator();
+namespace util.cprbroker
+{
+    public interface IPerson : IStandardResponse, IPersonAttributes
+    {
 
+        /**
+         * 
+         * @return uuid for the person
+         */
+        String uuid();
 
-	 **/
-	
-	String limitedUsageText();
-	String email();
-	String noteText();
-	String phone();
-	Boolean isPhoneAbleToRecieveSms();
-	String otherContactText();
-	String otherContactNoteText();
-	
-	
+        ITidspunkt tidspunkt();
+
+        IRegisterInformation registerInformation();
+
+        IAddress address();
+
+        String[] postalLabel();
+
+        IAddress otherAddress();
+
+        IContact contact();
+
+        IContact nextOfKinContact();
+
+        IVirkning effect();
+
+        IPersonRelationships relations();
+
+        IPersonRelationshipsWithIPerson relationsWithPerson();
+
+        ITilstand tilstand();
+    }
 }

@@ -31,17 +31,26 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util.cprbroker;
+namespace util.cprbroker
 
-public interface IWorldAddress extends IAddress {
-	
-	String countryIdentificationCode();
-	String locationDescriptionText();
-	String postalAddressFirstLineText();
-	String postalAddressSecondLineText();
-	String postalAddressThirdLineText();
-	String postalAddressFourthLineText();
-	String postalAddressFifthLineText();
-	Boolean isUkendtAdresseIndikator();
-
+{
+    public enum EMaritalStatusType
+    {
+        [Description("Ugift")]
+        UGIFT,
+        [Description("Gift")]
+        GIFT,
+        [Description("Skilt")]
+        SKILT,
+        [Description("Separeret")]
+        SEPARERET,
+        [Description("Enke")]
+        ENKE,
+        [Description("Registeret partner")]
+        REGISTRERET_PARTNER,
+        [Description("Ophævet partnerskab")]
+        OPHAEVET_PARTNERSKAB,
+        [Description("Længstlevende")]
+        LAENGSTLEVENDE
+    }
 }

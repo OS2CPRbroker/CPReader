@@ -31,35 +31,10 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util.cprbroker;
-
-public interface IPerson extends IStandardResponse, IPersonAttributes {
-	
-	/**
-	 * 
-	 * @return uuid for the person
-	 */
-	String uuid();
-	
-	ITidspunkt tidspunkt();
-	
-	IRegisterInformation registerInformation();
-	
-	IAddress address();
-
-	String[] postalLabel();
-
-	IAddress otherAddress();
-	
-	IContact contact();
-	
-	IContact nextOfKinContact();
-	
-	IVirkning effect();
-	
-	IPersonRelationships relations();
-	
-	IPersonRelationshipsWithIPerson relationsWithPerson();
-	
-	ITilstand tilstand();
+namespace util.cprbroker
+{
+    public interface IRelationshipWithIPerson : IRelationship
+    {
+        IPerson person();
+    }
 }

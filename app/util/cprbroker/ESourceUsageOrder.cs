@@ -31,14 +31,18 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util.cprbroker;
-
-/**
- * Interface to mimic the IStandartReturType of CPR Broker
- * @author Søren Kirkegård
- *
- */
-public interface IStandardResponse {
-	String message();
-	int code();
+namespace util.cprbroker
+{
+    /**
+     * Enum used to select the datasource usage from the
+     * CPR Broker on the calls that can take that parameter
+     * @author Søren Kirkegård
+     *
+     */
+    public enum ESourceUsageOrder
+    {
+        LocalOnly,
+        LocalThenExternal,
+        ExternalOnly
+    }
 }

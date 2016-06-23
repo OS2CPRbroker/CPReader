@@ -12,6 +12,7 @@
  * License.
  *
  * Contributor(s):
+ * Beemen Beshara
  * Søren Kirkegård
  *
  * The code is currently governed by OS2 - Offentligt digitaliserings-
@@ -30,23 +31,43 @@
  * the terms of any one of the MPL, the GPL or the LGPL.
  *
  * ***** END LICENSE BLOCK ***** */
+using System;
+using System.Collections.Generic;
 
-package util.cprbroker;
+namespace util.cprbroker
+{
 
-public enum ELifeStatusType {
-	FORSVUNDET("Forsvundet"),
-	DOED("Død"),
-	FOEDT("Født"),
-	PRENATAL("Prenatal");
+    /**
+     * Interface for accessing the CPR Broker
+     *
+     * @author Beemen Beshara
+     * @author Søren Kirkegård
+     *
+     */
+    public interface ICprBrokerAccessor
+    {
 
-	private final String prettyString;
-	
-	private ELifeStatusType(final String prettyString) {
-		this.prettyString = prettyString;
-	}
-	
-	@Override
-	public String toString() {
-		return prettyString;
-	}
+        /**
+         * Get UUID from a CPR number
+         * @param cprNumber
+         * @return Uuid for the cprNumber
+         */
+        IUuid getUuid(String cprNumber);
+
+        /**
+         * Get a person from a UUID
+         * @param uuid
+         * @return An implementation of the IPersonReturnType
+         */
+        IPerson read(String uuid);
+
+        //TODO Add methods for SEARCH
+        IUuids search(String firstname, String middlename, String lastname, int maxResults, int startIndex);
+
+        List<IPerson> searchList(String name, String address, ESourceUsageOrder sourceUsageOrder, int maxResults, int startIndex);
+
+        //TODO Add methods for list
+        List<IPerson> list(IUuids uuids, ESourceUsageOrder sourceUsageOrder);
+
+    }
 }

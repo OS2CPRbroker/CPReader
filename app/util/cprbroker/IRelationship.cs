@@ -12,7 +12,6 @@
  * License.
  *
  * Contributor(s):
- * Beemen Beshara
  * Søren Kirkegård
  *
  * The code is currently governed by OS2 - Offentligt digitaliserings-
@@ -32,39 +31,32 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util.cprbroker;
+using System;
 
-import java.util.List;
+namespace util.cprbroker
+{
 
-/**
- * Interface for accessing the CPR Broker
- *
- * @author Beemen Beshara
- * @author Søren Kirkegård
- *
- */
-public interface ICprBrokerAccessor {
+    public interface IRelationship
+    {
+        /*
+                // PersonRelationType
+                p1.get(0).getCommentText();
+                p1.get(0).getReferenceID().getURNIdentifikator();
+                p1.get(0).getReferenceID().getUUID();
+                p1.get(0).getVirkning();
 
-	/**
-	 * Get UUID from a CPR number
-	 * @param cprNumber
-	 * @return Uuid for the cprNumber
-	 */
-	IUuid getUuid(final String cprNumber);
+                // PersonFlerRelationType
+                p2.get(0).getCommentText();
+                p2.get(0).getReferenceID().getURNIdentifikator();
+                p2.get(0).getReferenceID().getUUID();
+                p2.get(0).getVirkning();
+         */
 
-	/**
-	 * Get a person from a UUID
-	 * @param uuid
-	 * @return An implementation of the IPersonReturnType
-	 */
-	IPerson read(final String uuid);
-	
-	//TODO Add methods for SEARCH
-	IUuids search(final String firstname, final String middlename, final String lastname, int maxResults, int startIndex);
+        String comment();
+        String referenceUrn();
+        String referenceUuid();
+        IVirkning effect();
+        ERelationshipType relationshipType();
 
-	List<IPerson> searchList(String name, String address, ESourceUsageOrder sourceUsageOrder, int maxResults, int startIndex);
-	
-	//TODO Add methods for list
-	List<IPerson> list(final IUuids uuids, final ESourceUsageOrder sourceUsageOrder);
-
+    }
 }

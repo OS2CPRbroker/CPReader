@@ -31,15 +31,18 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util.cprbroker;
+using System;
 
-public interface IAddress {
+namespace util.cprbroker
+{
+    public interface IAddress
+    {
+        EAddressType addressType();
 
-	EAddressType addressType();
-	
-	IDanishAddress danishAddress();
-	IGreenlandicAddress greenlandicAddress();
-	IWorldAddress worldAddress();
-	
-	String note();
+        IDanishAddress danishAddress();
+        IGreenlandicAddress greenlandicAddress();
+        IWorldAddress worldAddress();
+
+        String note();
+    }
 }

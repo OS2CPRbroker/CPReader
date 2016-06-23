@@ -12,6 +12,7 @@
  * License.
  *
  * Contributor(s):
+ * Beemen Beshara
  * Søren Kirkegård
  *
  * The code is currently governed by OS2 - Offentligt digitaliserings-
@@ -31,27 +32,20 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util.cprbroker;
+namespace util.cprbroker
+{
+    /**
+     * Type interface
+     * @author Søren Kirkegård
+     *
+     */
+    public interface IRegisterInformation
+    {
+        ICprCitizenRegisterInformation cprCitizen();
 
-public enum EMaritalStatusType {
+        IVirkning virkning();
 
-	UGIFT("Ugift"),
-	GIFT("Gift"),
-	SKILT("Skilt"),
-	SEPARERET("Separeret"),
-	ENKE("Enke"),
-	REGISTRERET_PARTNER("Registeret partner"),
-	OPHAEVET_PARTNERSKAB("Ophævet partnerskab"),
-	LAENGSTLEVENDE("Længstlevende");
-	
-	private final String prettyString;
-	
-	private EMaritalStatusType(String prettyString) {
-		this.prettyString = prettyString;
-	}
-	
-	@Override
-	public String toString() {
-		return prettyString;
-	}
+        //TODO implement isCprCitizen, isUnknownCitizen, isForeignCitizen
+        //	   implement unknownCitizen, foreignCitizen
+    }
 }

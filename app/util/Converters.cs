@@ -35,6 +35,8 @@ using System;
 using System.Collections.Generic;
 using cpreader.PartService;
 using System.Text.RegularExpressions;
+using util.cprbroker;
+using util.addresses;
 
 namespace util
 {
@@ -53,9 +55,10 @@ namespace util
 
         public AdresseType ToAddressType(String addressString)
         {
-            if (addressString != null && !addressString.trim().isEmpty())
+            addressString = string.Format("{0}", addressString);
+            if (!string.IsNullOrEmpty(addressString))
             {
-                return this.AddressParser.ToAddressType(addressString);
+                return AddressParser.ToAddressType(addressString);
             }
             return null;
         }
@@ -84,7 +87,7 @@ namespace util
                 var middleNames = new List<string>();
                 for (int i = 1; i < arr.Length - 1; i++)
                 {
-                    middleNames.add(arr[i]);
+                    middleNames.Add(arr[i]);
                 }
                 middleName = StringUtils.join(" ", middleNames);
             }
@@ -128,19 +131,19 @@ namespace util
 
                 switch (person.address().addressType())
                 {
-                    case Danish:
+                    case EAddressType.Danish:
                         IDanishAddress danishAddress = address.danishAddress();
                         addressString = StringUtils.format("{0} {1} {2} {3}", danishAddress.streetName(), danishAddress.streetBuildingIdentifier(), danishAddress.floor(), danishAddress.suite()) + newLine
                                 + StringUtils.format("{0}", danishAddress.districtSubdivision()) + newLine
                                 + StringUtils.format("{0} {1}", danishAddress.postCode(), danishAddress.postDistrikt());
                         break;
-                    case Greenlandic:
+                    case EAddressType.Greenlandic:
                         IGreenlandicAddress greenlandicAddress = address.greenlandicAddress();
                         addressString = StringUtils.format("{0} {1} {2} {3}", greenlandicAddress.streetName(), greenlandicAddress.streetBuilding(), greenlandicAddress.floor(), greenlandicAddress.suite()) + newLine
                                 + StringUtils.format("{0}", greenlandicAddress.districtSubdivision()) + newLine
                                 + StringUtils.format("{0} {1}", greenlandicAddress.postCode(), greenlandicAddress.districtName());
                         break;
-                    case World:
+                    case EAddressType.World:
                         IWorldAddress worldAddress = address.worldAddress();
                         addressString = string.Format("{0}", worldAddress.postalAddressFirstLineText()) + newLine
                                 + StringUtils.format("{0}", worldAddress.postalAddressSecondLineText()) + newLine

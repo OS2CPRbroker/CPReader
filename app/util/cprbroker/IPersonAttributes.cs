@@ -31,9 +31,30 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util.cprbroker;
+using System;
 
-public interface IRelationshipWithIPerson extends IRelationship {
-	
-	IPerson person();
+namespace util.cprbroker
+{
+
+    public interface IPersonAttributes
+    {
+        String firstname();
+
+        String middelname();
+
+        String lastname();
+
+        String callname();
+
+        String nameForAddressing();
+
+        EGenderType gender();
+
+        DateTime birthdate();
+
+        String birthplace();
+
+        String birthRegisteringAuthority();
+
+    }
 }

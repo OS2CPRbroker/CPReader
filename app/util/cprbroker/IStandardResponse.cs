@@ -31,29 +31,19 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util.cprbroker;
+using System;
 
-import org.joda.time.DateTime;
+namespace util.cprbroker
+{
 
-public interface IPersonAttributes {
-
-	
-	String firstname();
-	
-	String middelname();
-	
-	String lastname();
-	
-	String callname();
-	
-	String nameForAddressing();
-	
-	EGenderType gender();
-	
-	DateTime birthdate();
-		
-	String birthplace();
-	
-	String birthRegisteringAuthority();
-
+    /**
+     * Interface to mimic the IStandartReturType of CPR Broker
+     * @author Søren Kirkegård
+     *
+     */
+    public interface IStandardResponse
+    {
+        String message();
+        int code();
+    }
 }

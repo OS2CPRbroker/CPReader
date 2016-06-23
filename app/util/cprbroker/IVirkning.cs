@@ -12,7 +12,7 @@
  * License.
  *
  * Contributor(s):
- * Beemen Beshara
+ * Søren Kirkegård
  *
  * The code is currently governed by OS2 - Offentligt digitaliserings-
  * fællesskab / http://www.os2web.dk .
@@ -31,10 +31,35 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util.addresses;
+using System;
 
-import oio.sagdok.person._1_0.AdresseType;
+namespace util.cprbroker
+{
+    /**
+     * Wrapper for a CPR Broker Virkning response
+     * @author Søren Kirkegård
+     *
+     */
+    public interface IVirkning
+    {
+        /**************************************************************************************
+        // TODO implement these
+        attributes.getVirkning().getAktoerRef().getURNIdentifikator();
+        attributes.getVirkning().getAktoerRef().getUUID();
+        attributes.getVirkning().getCommentText();
+        attributes.getVirkning().getFraTidspunkt().getTidsstempelDatoTid();
+        attributes.getVirkning().getFraTidspunkt().isGraenseIndikator();
+        attributes.getVirkning().getTilTidspunkt().getTidsstempelDatoTid();
+        attributes.getVirkning().getTilTidspunkt().isGraenseIndikator();
 
-public interface IAddressParser{
-    AdresseType ToAddressType(String addressString);
+        ******************************************************************************************/
+
+        String aktoerRefUrn();
+        String aktoerRefUuid();
+        String kommentar();
+        DateTime fraTidspunkt();
+        Boolean isFraTidspunktGraenseIndikator();
+        DateTime tilTidspunkt();
+        Boolean isTilTidspunktGraenseIndikator();
+    }
 }
