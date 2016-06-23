@@ -54,7 +54,7 @@ namespace controllers
         {
             // get cart items from cache
             util.Cart cart = util.Cart.fromSession();
-            return View("cartviewbody", cart));
+            return View("cartviewbody", cart);
         }
 
         public static String countTextString()

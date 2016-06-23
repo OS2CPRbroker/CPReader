@@ -180,7 +180,7 @@
     <Compile Include="app\controllers\Search.cs" />
     <Content Include="app\controllers\Signon.java" />
     <Content Include="app\Global.java" />
-    <Content Include="app\util\AccessLevelManager.java" />
+    <Compile Include="app\util\AccessLevelManager.cs" />
     <Compile Include="app\util\addresses\DawaAddressParser.cs" />
     <Compile Include="app\util\addresses\IAddressParser.cs" />
     <Compile Include="app\util\addresses\RegexAddressParser.cs" />
