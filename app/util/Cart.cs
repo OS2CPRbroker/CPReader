@@ -50,11 +50,11 @@ namespace util
                 Cart.Person cartPerson = new Cart.Person(person);
                 if (exists(uuid))
                 {
-                    return String.Format("{0} {1}", cartPerson, Messages.get("cart.exists"));
+                    return String.Format("{0} {1}", cartPerson, cpreader.Properties.Resources.cart_exists);
                 }
                 else {
                     Persons.Add(cartPerson);
-                    return String.Format("{0} {1}", cartPerson, Messages.get("cart.added"));
+                    return String.Format("{0} {1}", cartPerson, cpreader.Properties.Resources.cart_added);
                 }
             }
             else {
@@ -81,10 +81,10 @@ namespace util
                 {
                     Person cartPerson = Persons[i];
                     Persons.RemoveAt(i);
-                    return String.Format("{0} {1}", cartPerson, Messages.get("cart.removed"));
+                    return String.Format("{0} {1}", cartPerson, cpreader.Properties.Resources.cart_removed);
                 }
             }
-            return String.Format("{0} {1}", uuid, Messages.get("cart.notremoved"));
+            return String.Format("{0} {1}", uuid, cpreader.Properties.Resources.cart_notremoved);
         }
 
         public void clear()

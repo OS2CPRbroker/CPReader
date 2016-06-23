@@ -1,0 +1,922 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="login_pagetitle" xml:space="preserve">
+    <value>CPReader - Log på</value>
+  </data>
+  <data name="login_title" xml:space="preserve">
+    <value>Indtast venligst dine oplysninger</value>
+  </data>
+  <data name="login_submit" xml:space="preserve">
+    <value>Log på</value>
+  </data>
+  <data name="error_503" xml:space="preserve">
+    <value>Der findes ingen informationer om den pågældende person i CPR Brokeren.</value>
+  </data>
+  <data name="logout_succesful" xml:space="preserve">
+    <value>Du er nu logget ud</value>
+  </data>
+  <data name="login_not_authorized" xml:space="preserve">
+    <value>Du har ikke tilladelse til at benytte applikationen</value>
+  </data>
+  <data name="login_unexpected_error" xml:space="preserve">
+    <value>Applikationen havde en uventet fejl</value>
+  </data>
+  <data name="login_invalid_credientials" xml:space="preserve">
+    <value>Forkert brugernavn eller adgangskode</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="error_required" xml:space="preserve">
+    <value>Feltet {0} skal udfyldes</value>
+  </data>
+  <data name="nav_title" xml:space="preserve">
+    <value>CPReader</value>
+  </data>
+  <data name="nav_quicksearch_placeholder" xml:space="preserve">
+    <value>CPR or name</value>
+  </data>
+  <data name="nav_quicksearch_addresslaceholder" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="nav_quicksearch_submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="nav_quicksearch_online" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="nav_quicksearch_local" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="nav_quicksearch_invalidaddress" xml:space="preserve">
+    <value>Invalid address</value>
+  </data>
+  <data name="nav_quicksearch_addressrequired" xml:space="preserve">
+    <value>You must provide an address when searching online</value>
+  </data>
+  <data name="nav_help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="nav_logout_button" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="cart_view" xml:space="preserve">
+    <value>View cart</value>
+  </data>
+  <data name="cart_add" xml:space="preserve">
+    <value>Add To Cart</value>
+  </data>
+  <data name="cart_remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="cart_copy" xml:space="preserve">
+    <value>Copy CPR Numbers</value>
+  </data>
+  <data name="cart_empty" xml:space="preserve">
+    <value>Empty Cart</value>
+  </data>
+  <data name="cart_name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="cart_cprnumber" xml:space="preserve">
+    <value>CPR Number</value>
+  </data>
+  <data name="cart_items" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="cart_added" xml:space="preserve">
+    <value>has been added to the cart.</value>
+  </data>
+  <data name="cart_exists" xml:space="preserve">
+    <value>has aready been added to the cart.</value>
+  </data>
+  <data name="cart_removed" xml:space="preserve">
+    <value>removed from the cart.</value>
+  </data>
+  <data name="cart_notremoved" xml:space="preserve">
+    <value>was not removed from the cart.</value>
+  </data>
+  <data name="cart_copied" xml:space="preserve">
+    <value>items copied to the clipboard.</value>
+  </data>
+  <data name="cart_emptied" xml:space="preserve">
+    <value>Cart emptied.</value>
+  </data>
+  <data name="cart_noitems" xml:space="preserve">
+    <value>There are currently no items in the cart</value>
+  </data>
+  <data name="cart_select" xml:space="preserve">
+    <value>Select CPR Numbers</value>
+  </data>
+  <data name="cart_select_title" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="cart_rightclick" xml:space="preserve">
+    <value>Right click on the selected numbers to copy</value>
+  </data>
+  <data name="cart_close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="results_list_amountOfResults" xml:space="preserve">
+    <value>Der er {0} resultater på søgningen:</value>
+  </data>
+  <data name="results_list_searchFailed" xml:space="preserve">
+    <value>Fejl i søgningen</value>
+  </data>
+  <data name="results_list_online_desc_1" xml:space="preserve">
+    <value>Liste over søgeresultater fra søgning online</value>
+  </data>
+  <data name="results_list_online_desc_2" xml:space="preserve">
+    <value>Listen indeholder søgeresultater fra CPR Registret. Du kan klikke på et søgeresultat og se flere detaljer om personen.</value>
+  </data>
+  <data name="results_list_online_desc_3" xml:space="preserve">
+    <value>Klik på et søgeresultat vil desuden resultere i, at personen fremover vil optræde i lokale søgninger.</value>
+  </data>
+  <data name="results_list_local_desc_1" xml:space="preserve">
+    <value>Liste over søgeresultater fra søgning lokalt</value>
+  </data>
+  <data name="results_list_local_desc_2" xml:space="preserve">
+    <value>Listen indeholder kun søgeresultater fra den lokale database og ikke alle CPR Registrets data.</value>
+  </data>
+  <data name="results_list_local_desc_3" xml:space="preserve">
+    <value>Ønsker du at søge bredt i CPR Registret, skal du vælge 'online'.</value>
+  </data>
+  <data name="resultat_egenskaber" xml:space="preserve">
+    <value>Egenskaber</value>
+  </data>
+  <data name="resultat_tilstande" xml:space="preserve">
+    <value>Tilstande</value>
+  </data>
+  <data name="resultat_registeroplysninger" xml:space="preserve">
+    <value>Registeroplysninger</value>
+  </data>
+  <data name="resultat_postaddresse" xml:space="preserve">
+    <value>Postadresse</value>
+  </data>
+  <data name="resultat_andenaddresse" xml:space="preserve">
+    <value>Anden adresse</value>
+  </data>
+  <data name="person_true" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="person_false" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="person_registrationdate" xml:space="preserve">
+    <value>Registration Date</value>
+  </data>
+  <data name="person_viewdetails" xml:space="preserve">
+    <value>See person</value>
+  </data>
+  <data name="person_showparents" xml:space="preserve">
+    <value>See parents</value>
+  </data>
+  <data name="person_noparents" xml:space="preserve">
+    <value>(No information)</value>
+  </data>
+  <data name="person_firstname" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="person_middelname" xml:space="preserve">
+    <value>Middle Name</value>
+  </data>
+  <data name="person_lastname" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="person_callname" xml:space="preserve">
+    <value>Call Name</value>
+  </data>
+  <data name="person_nameForAddressing" xml:space="preserve">
+    <value>Addressing Name</value>
+  </data>
+  <data name="person_gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="person_birthdate" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="person_birthplace" xml:space="preserve">
+    <value>Birth Palce</value>
+  </data>
+  <data name="person_birthRegisteringAuthority" xml:space="preserve">
+    <value>Fødereg. myndighed</value>
+  </data>
+  <data name="person_tilstand_civilStatusKode" xml:space="preserve">
+    <value>Civil Status</value>
+  </data>
+  <data name="person_tilstand_livStatusKode" xml:space="preserve">
+    <value>Life Status</value>
+  </data>
+  <data name="person_registerInformation_cprCitizen_socialSecurityNumber" xml:space="preserve">
+    <value>CPR Number</value>
+  </data>
+  <data name="person_registerInformation_cprCitizen_socialSecurityNumberActive" xml:space="preserve">
+    <value>CPR Number Active</value>
+  </data>
+  <data name="person_registerInformation_cprCitizen_personNationalityCode" xml:space="preserve">
+    <value>Nationality Code</value>
+  </data>
+  <data name="person_registerInformation_cprCitizen_isMemberOfTheChurch" xml:space="preserve">
+    <value>Member Of Church?</value>
+  </data>
+  <data name="person_registerInformation_cprCitizen_isResearcherProtected" xml:space="preserve">
+    <value>Researcher Protected?</value>
+  </data>
+  <data name="person_registerInformation_cprCitizen_isNameAddressProtected" xml:space="preserve">
+    <value>Name Address Protected?</value>
+  </data>
+  <data name="person_registerInformation_cprCitizen_isPhoneNumberProtected" xml:space="preserve">
+    <value>Phone Number Protected?</value>
+  </data>
+  <data name="person_address_danishAddress_countryIdentificationCode" xml:space="preserve">
+    <value>Country ID Code</value>
+  </data>
+  <data name="person_address_danishAddress_districtName" xml:space="preserve">
+    <value>By</value>
+  </data>
+  <data name="person_address_danishAddress_districtSubdivision" xml:space="preserve">
+    <value>Subdivision</value>
+  </data>
+  <data name="person_address_danishAddress_floor" xml:space="preserve">
+    <value>Floor</value>
+  </data>
+  <data name="person_address_danishAddress_mailSubLocaltion" xml:space="preserve">
+    <value>Mail Sub Location</value>
+  </data>
+  <data name="person_address_danishAddress_postCode" xml:space="preserve">
+    <value>Post Code</value>
+  </data>
+  <data name="person_address_danishAddress_postOfficeBox" xml:space="preserve">
+    <value>PO Box</value>
+  </data>
+  <data name="person_address_danishAddress_streetName" xml:space="preserve">
+    <value>Street Name</value>
+  </data>
+  <data name="person_address_danishAddress_streetBuilding" xml:space="preserve">
+    <value>Building</value>
+  </data>
+  <data name="person_address_danishAddress_streetNameForAddressing" xml:space="preserve">
+    <value>Addressing Name</value>
+  </data>
+  <data name="person_address_danishAddress_suite" xml:space="preserve">
+    <value>Suite</value>
+  </data>
+  <data name="person_address_danishAddress_note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="person_address_danishAddress_municipalityCode" xml:space="preserve">
+    <value>Municipality Code</value>
+  </data>
+  <data name="person_address_danishAddress_streetCode" xml:space="preserve">
+    <value>Street Code</value>
+  </data>
+  <data name="person_address_danishAddress_streetBuildingIdentifier" xml:space="preserve">
+    <value>Building ID</value>
+  </data>
+  <data name="person_address_danishAddress_danishNote" xml:space="preserve">
+    <value>Danish Note</value>
+  </data>
+  <data name="person_address_danishAddress_politiDistrikt" xml:space="preserve">
+    <value>Politidistrikt</value>
+  </data>
+  <data name="person_address_danishAddress_postDistrikt" xml:space="preserve">
+    <value>Postdistrikt</value>
+  </data>
+  <data name="person_address_danishAddress_skoleDistrikt" xml:space="preserve">
+    <value>Skoledistrikt</value>
+  </data>
+  <data name="person_address_danishAddress_socialDistrikt" xml:space="preserve">
+    <value>Socialdistrikt</value>
+  </data>
+  <data name="person_address_danishAddress_sogneDistrikt" xml:space="preserve">
+    <value>Sognedistrikt</value>
+  </data>
+  <data name="person_address_danishAddress_valgkredsDistrikt" xml:space="preserve">
+    <value>Valgdistrikt</value>
+  </data>
+  <data name="person_address_danishAddress_isSpecielVejkode" xml:space="preserve">
+    <value>Specielvejkode</value>
+  </data>
+  <data name="person_address_danishAddress_isUkendtAdresse" xml:space="preserve">
+    <value>Ukendt adresse</value>
+  </data>
+  <data name="person_address_greenlandicAddress_streetName" xml:space="preserve">
+    <value>Gadenavn</value>
+  </data>
+  <data name="person_address_greenlandicAddress_streetNameForAddressing" xml:space="preserve">
+    <value>Adresseforadressering</value>
+  </data>
+  <data name="person_address_greenlandicAddress_streetBuilding" xml:space="preserve">
+    <value>Gadenummer</value>
+  </data>
+  <data name="person_address_greenlandicAddress_floor" xml:space="preserve">
+    <value>Etage</value>
+  </data>
+  <data name="person_address_greenlandicAddress_suite" xml:space="preserve">
+    <value>Suite</value>
+  </data>
+  <data name="person_address_greenlandicAddress_districtSubdivision" xml:space="preserve">
+    <value>Forstad</value>
+  </data>
+  <data name="person_address_greenlandicAddress_postCode" xml:space="preserve">
+    <value>Postnummer</value>
+  </data>
+  <data name="person_address_greenlandicAddress_districtName" xml:space="preserve">
+    <value>By</value>
+  </data>
+  <data name="person_address_greenlandicAddress_countryIdentificationCode" xml:space="preserve">
+    <value>Landekode</value>
+  </data>
+  <data name="person_address_greenlandicAddress_municipalityCode" xml:space="preserve">
+    <value>Kommunekode</value>
+  </data>
+  <data name="person_address_greenlandicAddress_streetCode" xml:space="preserve">
+    <value>Vejkode</value>
+  </data>
+  <data name="person_address_greenlandicAddress_isSpecielVejkode" xml:space="preserve">
+    <value>Specielvejkode</value>
+  </data>
+  <data name="person_address_greenlandicAddress_isUkendtAdresse" xml:space="preserve">
+    <value>Ukendt adresse</value>
+  </data>
+  <data name="person_address_greenlandicAddress_note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="person_address_worldAddress_postalAddressFirstLineText" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="person_address_worldAddress_postalAddressSecondLineText" xml:space="preserve">
+    <value>
+    </value>
+  </data>
+  <data name="person_address_worldAddress_postalAddressThirdLineText" xml:space="preserve">
+    <value>
+    </value>
+  </data>
+  <data name="person_address_worldAddress_postalAddressFourthLineText" xml:space="preserve">
+    <value>
+    </value>
+  </data>
+  <data name="person_address_worldAddress_postalAddressFifthLineText" xml:space="preserve">
+    <value>
+    </value>
+  </data>
+  <data name="person_address_worldAddress_isUkendtAdresseIndikator" xml:space="preserve">
+    <value>Ukendt adresse</value>
+  </data>
+  <data name="person_address_worldAddress_locationDescriptionText" xml:space="preserve">
+    <value>Beskrivelse</value>
+  </data>
+  <data name="person_address_worldAddress_note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="person_otherAddress_worldAddress_locationDescriptionText" xml:space="preserve">
+    <value>Beskrivelse</value>
+  </data>
+  <data name="person_otherAddress_worldAddress_postalAddressFirstLineText" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="person_otherAddress_worldAddress_postalAddressSecondLineText" xml:space="preserve">
+    <value>
+    </value>
+  </data>
+  <data name="person_otherAddress_worldAddress_postalAddressThirdLineText" xml:space="preserve">
+    <value>
+    </value>
+  </data>
+  <data name="person_otherAddress_worldAddress_postalAddressFourthLineText" xml:space="preserve">
+    <value>
+    </value>
+  </data>
+  <data name="person_otherAddress_worldAddress_postalAddressFifthLineText" xml:space="preserve">
+    <value>
+    </value>
+  </data>
+  <data name="person_otherAddress_worldAddress_isUkendtAdresseIndikator" xml:space="preserve">
+    <value>Ukendt adresse</value>
+  </data>
+  <data name="person_otherAddress_worldAddress_note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="login_pagetitle" xml:space="preserve">
+    <value>CPReader - Log på</value>
+  </data>
+  <data name="login_title" xml:space="preserve">
+    <value>Indtast venligst dine oplysninger</value>
+  </data>
+  <data name="login_submit" xml:space="preserve">
+    <value>Log på</value>
+  </data>
+  <data name="error_503" xml:space="preserve">
+    <value>Der findes ingen informationer om den pågældende person i CPR Brokeren.</value>
+  </data>
+  <data name="logout_succesful" xml:space="preserve">
+    <value>Du er nu logget ud</value>
+  </data>
+  <data name="login_not_authorized" xml:space="preserve">
+    <value>Du har ikke tilladelse til at benytte applikationen</value>
+  </data>
+  <data name="login_unexpected_error" xml:space="preserve">
+    <value>Applikationen havde en uventet fejl</value>
+  </data>
+  <data name="login_invalid_credientials" xml:space="preserve">
+    <value>Forkert brugernavn eller adgangskode</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="error_required" xml:space="preserve">
+    <value>Feltet {0} skal udfyldes</value>
+  </data>
+  <data name="nav_title" xml:space="preserve">
+    <value>CPReader</value>
+  </data>
+  <data name="nav_quicksearch_placeholder" xml:space="preserve">
+    <value>CPR or name</value>
+  </data>
+  <data name="nav_quicksearch_addresslaceholder" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="nav_quicksearch_submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="nav_quicksearch_online" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="nav_quicksearch_local" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="nav_quicksearch_invalidaddress" xml:space="preserve">
+    <value>Invalid address</value>
+  </data>
+  <data name="nav_quicksearch_addressrequired" xml:space="preserve">
+    <value>You must provide an address when searching online</value>
+  </data>
+  <data name="nav_help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="nav_logout_button" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="cart_view" xml:space="preserve">
+    <value>View cart</value>
+  </data>
+  <data name="cart_add" xml:space="preserve">
+    <value>Add To Cart</value>
+  </data>
+  <data name="cart_remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="cart_copy" xml:space="preserve">
+    <value>Copy CPR Numbers</value>
+  </data>
+  <data name="cart_empty" xml:space="preserve">
+    <value>Empty Cart</value>
+  </data>
+  <data name="cart_name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="cart_cprnumber" xml:space="preserve">
+    <value>CPR Number</value>
+  </data>
+  <data name="cart_items" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="cart_added" xml:space="preserve">
+    <value>has been added to the cart.</value>
+  </data>
+  <data name="cart_exists" xml:space="preserve">
+    <value>has aready been added to the cart.</value>
+  </data>
+  <data name="cart_removed" xml:space="preserve">
+    <value>removed from the cart.</value>
+  </data>
+  <data name="cart_notremoved" xml:space="preserve">
+    <value>was not removed from the cart.</value>
+  </data>
+  <data name="cart_copied" xml:space="preserve">
+    <value>items copied to the clipboard.</value>
+  </data>
+  <data name="cart_emptied" xml:space="preserve">
+    <value>Cart emptied.</value>
+  </data>
+  <data name="cart_noitems" xml:space="preserve">
+    <value>There are currently no items in the cart</value>
+  </data>
+  <data name="cart_select" xml:space="preserve">
+    <value>Select CPR Numbers</value>
+  </data>
+  <data name="cart_select_title" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="cart_rightclick" xml:space="preserve">
+    <value>Right click on the selected numbers to copy</value>
+  </data>
+  <data name="cart_close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="results_list_amountOfResults" xml:space="preserve">
+    <value>Der er {0} resultater på søgningen:</value>
+  </data>
+  <data name="results_list_searchFailed" xml:space="preserve">
+    <value>Fejl i søgningen</value>
+  </data>
+  <data name="results_list_online_desc_1" xml:space="preserve">
+    <value>Liste over søgeresultater fra søgning online</value>
+  </data>
+  <data name="results_list_online_desc_2" xml:space="preserve">
+    <value>Listen indeholder søgeresultater fra CPR Registret. Du kan klikke på et søgeresultat og se flere detaljer om personen.</value>
+  </data>
+  <data name="results_list_online_desc_3" xml:space="preserve">
+    <value>Klik på et søgeresultat vil desuden resultere i, at personen fremover vil optræde i lokale søgninger.</value>
+  </data>
+  <data name="results_list_local_desc_1" xml:space="preserve">
+    <value>Liste over søgeresultater fra søgning lokalt</value>
+  </data>
+  <data name="results_list_local_desc_2" xml:space="preserve">
+    <value>Listen indeholder kun søgeresultater fra den lokale database og ikke alle CPR Registrets data.</value>
+  </data>
+  <data name="results_list_local_desc_3" xml:space="preserve">
+    <value>Ønsker du at søge bredt i CPR Registret, skal du vælge 'online'.</value>
+  </data>
+  <data name="resultat_egenskaber" xml:space="preserve">
+    <value>Egenskaber</value>
+  </data>
+  <data name="resultat_tilstande" xml:space="preserve">
+    <value>Tilstande</value>
+  </data>
+  <data name="resultat_registeroplysninger" xml:space="preserve">
+    <value>Registeroplysninger</value>
+  </data>
+  <data name="resultat_postaddresse" xml:space="preserve">
+    <value>Postadresse</value>
+  </data>
+  <data name="resultat_andenaddresse" xml:space="preserve">
+    <value>Anden adresse</value>
+  </data>
+  <data name="person_true" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="person_false" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="person_registrationdate" xml:space="preserve">
+    <value>Registration Date</value>
+  </data>
+  <data name="person_viewdetails" xml:space="preserve">
+    <value>See person</value>
+  </data>
+  <data name="person_showparents" xml:space="preserve">
+    <value>See parents</value>
+  </data>
+  <data name="person_noparents" xml:space="preserve">
+    <value>(No information)</value>
+  </data>
+  <data name="person_firstname" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="person_middelname" xml:space="preserve">
+    <value>Middle Name</value>
+  </data>
+  <data name="person_lastname" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="person_callname" xml:space="preserve">
+    <value>Call Name</value>
+  </data>
+  <data name="person_nameForAddressing" xml:space="preserve">
+    <value>Addressing Name</value>
+  </data>
+  <data name="person_gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="person_birthdate" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="person_birthplace" xml:space="preserve">
+    <value>Birth Palce</value>
+  </data>
+  <data name="person_birthRegisteringAuthority" xml:space="preserve">
+    <value>Fødereg. myndighed</value>
+  </data>
+  <data name="person_tilstand_civilStatusKode" xml:space="preserve">
+    <value>Civil Status</value>
+  </data>
+  <data name="person_tilstand_livStatusKode" xml:space="preserve">
+    <value>Life Status</value>
+  </data>
+  <data name="person_registerInformation_cprCitizen_socialSecurityNumber" xml:space="preserve">
+    <value>CPR Number</value>
+  </data>
+  <data name="person_registerInformation_cprCitizen_socialSecurityNumberActive" xml:space="preserve">
+    <value>CPR Number Active</value>
+  </data>
+  <data name="person_registerInformation_cprCitizen_personNationalityCode" xml:space="preserve">
+    <value>Nationality Code</value>
+  </data>
+  <data name="person_registerInformation_cprCitizen_isMemberOfTheChurch" xml:space="preserve">
+    <value>Member Of Church?</value>
+  </data>
+  <data name="person_registerInformation_cprCitizen_isResearcherProtected" xml:space="preserve">
+    <value>Researcher Protected?</value>
+  </data>
+  <data name="person_registerInformation_cprCitizen_isNameAddressProtected" xml:space="preserve">
+    <value>Name Address Protected?</value>
+  </data>
+  <data name="person_registerInformation_cprCitizen_isPhoneNumberProtected" xml:space="preserve">
+    <value>Phone Number Protected?</value>
+  </data>
+  <data name="person_address_danishAddress_countryIdentificationCode" xml:space="preserve">
+    <value>Country ID Code</value>
+  </data>
+  <data name="person_address_danishAddress_districtName" xml:space="preserve">
+    <value>By</value>
+  </data>
+  <data name="person_address_danishAddress_districtSubdivision" xml:space="preserve">
+    <value>Subdivision</value>
+  </data>
+  <data name="person_address_danishAddress_floor" xml:space="preserve">
+    <value>Floor</value>
+  </data>
+  <data name="person_address_danishAddress_mailSubLocaltion" xml:space="preserve">
+    <value>Mail Sub Location</value>
+  </data>
+  <data name="person_address_danishAddress_postCode" xml:space="preserve">
+    <value>Post Code</value>
+  </data>
+  <data name="person_address_danishAddress_postOfficeBox" xml:space="preserve">
+    <value>PO Box</value>
+  </data>
+  <data name="person_address_danishAddress_streetName" xml:space="preserve">
+    <value>Street Name</value>
+  </data>
+  <data name="person_address_danishAddress_streetBuilding" xml:space="preserve">
+    <value>Building</value>
+  </data>
+  <data name="person_address_danishAddress_streetNameForAddressing" xml:space="preserve">
+    <value>Addressing Name</value>
+  </data>
+  <data name="person_address_danishAddress_suite" xml:space="preserve">
+    <value>Suite</value>
+  </data>
+  <data name="person_address_danishAddress_note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="person_address_danishAddress_municipalityCode" xml:space="preserve">
+    <value>Municipality Code</value>
+  </data>
+  <data name="person_address_danishAddress_streetCode" xml:space="preserve">
+    <value>Street Code</value>
+  </data>
+  <data name="person_address_danishAddress_streetBuildingIdentifier" xml:space="preserve">
+    <value>Building ID</value>
+  </data>
+  <data name="person_address_danishAddress_danishNote" xml:space="preserve">
+    <value>Danish Note</value>
+  </data>
+  <data name="person_address_danishAddress_politiDistrikt" xml:space="preserve">
+    <value>Politidistrikt</value>
+  </data>
+  <data name="person_address_danishAddress_postDistrikt" xml:space="preserve">
+    <value>Postdistrikt</value>
+  </data>
+  <data name="person_address_danishAddress_skoleDistrikt" xml:space="preserve">
+    <value>Skoledistrikt</value>
+  </data>
+  <data name="person_address_danishAddress_socialDistrikt" xml:space="preserve">
+    <value>Socialdistrikt</value>
+  </data>
+  <data name="person_address_danishAddress_sogneDistrikt" xml:space="preserve">
+    <value>Sognedistrikt</value>
+  </data>
+  <data name="person_address_danishAddress_valgkredsDistrikt" xml:space="preserve">
+    <value>Valgdistrikt</value>
+  </data>
+  <data name="person_address_danishAddress_isSpecielVejkode" xml:space="preserve">
+    <value>Specielvejkode</value>
+  </data>
+  <data name="person_address_danishAddress_isUkendtAdresse" xml:space="preserve">
+    <value>Ukendt adresse</value>
+  </data>
+  <data name="person_address_greenlandicAddress_streetName" xml:space="preserve">
+    <value>Gadenavn</value>
+  </data>
+  <data name="person_address_greenlandicAddress_streetNameForAddressing" xml:space="preserve">
+    <value>Adresseforadressering</value>
+  </data>
+  <data name="person_address_greenlandicAddress_streetBuilding" xml:space="preserve">
+    <value>Gadenummer</value>
+  </data>
+  <data name="person_address_greenlandicAddress_floor" xml:space="preserve">
+    <value>Etage</value>
+  </data>
+  <data name="person_address_greenlandicAddress_suite" xml:space="preserve">
+    <value>Suite</value>
+  </data>
+  <data name="person_address_greenlandicAddress_districtSubdivision" xml:space="preserve">
+    <value>Forstad</value>
+  </data>
+  <data name="person_address_greenlandicAddress_postCode" xml:space="preserve">
+    <value>Postnummer</value>
+  </data>
+  <data name="person_address_greenlandicAddress_districtName" xml:space="preserve">
+    <value>By</value>
+  </data>
+  <data name="person_address_greenlandicAddress_countryIdentificationCode" xml:space="preserve">
+    <value>Landekode</value>
+  </data>
+  <data name="person_address_greenlandicAddress_municipalityCode" xml:space="preserve">
+    <value>Kommunekode</value>
+  </data>
+  <data name="person_address_greenlandicAddress_streetCode" xml:space="preserve">
+    <value>Vejkode</value>
+  </data>
+  <data name="person_address_greenlandicAddress_isSpecielVejkode" xml:space="preserve">
+    <value>Specielvejkode</value>
+  </data>
+  <data name="person_address_greenlandicAddress_isUkendtAdresse" xml:space="preserve">
+    <value>Ukendt adresse</value>
+  </data>
+  <data name="person_address_greenlandicAddress_note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="person_address_worldAddress_postalAddressFirstLineText" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="person_address_worldAddress_postalAddressSecondLineText" xml:space="preserve">
+    <value>
+    </value>
+  </data>
+  <data name="person_address_worldAddress_postalAddressThirdLineText" xml:space="preserve">
+    <value>
+    </value>
+  </data>
+  <data name="person_address_worldAddress_postalAddressFourthLineText" xml:space="preserve">
+    <value>
+    </value>
+  </data>
+  <data name="person_address_worldAddress_postalAddressFifthLineText" xml:space="preserve">
+    <value>
+    </value>
+  </data>
+  <data name="person_address_worldAddress_isUkendtAdresseIndikator" xml:space="preserve">
+    <value>Ukendt adresse</value>
+  </data>
+  <data name="person_address_worldAddress_locationDescriptionText" xml:space="preserve">
+    <value>Beskrivelse</value>
+  </data>
+  <data name="person_address_worldAddress_note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="person_otherAddress_worldAddress_locationDescriptionText" xml:space="preserve">
+    <value>Beskrivelse</value>
+  </data>
+  <data name="person_otherAddress_worldAddress_postalAddressFirstLineText" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="person_otherAddress_worldAddress_postalAddressSecondLineText" xml:space="preserve">
+    <value>
+    </value>
+  </data>
+  <data name="person_otherAddress_worldAddress_postalAddressThirdLineText" xml:space="preserve">
+    <value>
+    </value>
+  </data>
+  <data name="person_otherAddress_worldAddress_postalAddressFourthLineText" xml:space="preserve">
+    <value>
+    </value>
+  </data>
+  <data name="person_otherAddress_worldAddress_postalAddressFifthLineText" xml:space="preserve">
+    <value>
+    </value>
+  </data>
+  <data name="person_otherAddress_worldAddress_isUkendtAdresseIndikator" xml:space="preserve">
+    <value>Ukendt adresse</value>
+  </data>
+  <data name="person_otherAddress_worldAddress_note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+</root>
