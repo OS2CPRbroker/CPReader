@@ -59,7 +59,7 @@ namespace controllers
 
         public static String countTextString()
         {
-            return String.format("{0}", util.Cart.fromSession().Persons.size());
+            return String.Format("{0}", util.Cart.fromSession().Persons.Count);
         }
 
         public ActionResult countText()
