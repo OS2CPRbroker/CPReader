@@ -193,7 +193,7 @@
     <Content Include="app\util\auth\unboundid\IUnboundidConnection.java" />
     <Content Include="app\util\auth\WindowsAuthenticationStrategy.java" />
     <Content Include="app\util\Cart.java" />
-    <Content Include="app\util\Converters.java" />
+    <Compile Include="app\util\Converters.cs" />
     <Content Include="app\util\cprbroker\EAddressType.java" />
     <Content Include="app\util\cprbroker\EGenderType.java" />
     <Content Include="app\util\cprbroker\ELifeStatusType.java" />
