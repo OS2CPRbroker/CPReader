@@ -148,6 +148,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="app\util\DisplayState.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -229,7 +230,6 @@
     <Content Include="app\util\cprbroker\models\Uuids.java" />
     <Content Include="app\util\cprbroker\models\Virkning.java" />
     <Content Include="app\util\cprbroker\models\WorldAddress.java" />
-    <Content Include="app\util\DisplayState.java" />
     <Content Include="app\util\Logger.java" />
     <Content Include="app\util\Program.java" />
     <Compile Include="app\util\StringUtils.cs" />
