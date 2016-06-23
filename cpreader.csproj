@@ -176,7 +176,7 @@
     <Content Include="app\conf\IValidable.java" />
     <Content Include="app\conf\PlayConfiguration.java" />
     <Content Include="app\controllers\Cart.java" />
-    <Content Include="app\controllers\Home.java" />
+    <Compile Include="app\controllers\Home.cs" />
     <Compile Include="app\controllers\Search.cs" />
     <Content Include="app\controllers\Signon.java" />
     <Content Include="app\Global.java" />

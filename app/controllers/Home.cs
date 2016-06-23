@@ -31,25 +31,24 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package controllers;
+using System;
+using System.Web.Mvc;
 
-import play.data.Form;
-import play.mvc.Controller;
-import play.mvc.Result;
-import play.mvc.Security;
-import util.auth.Secured;
-import views.html.index;
+namespace controllers
+{
 
-/**
- * Created by Beemen on 22/12/2014.
- */
-public class Home extends Controller {
+    /**
+     * Created by Beemen on 22/12/2014.
+     */
+    public class Home : Controller
+    {
 
-    @Security.Authenticated(Secured.class)
-    public Result index() {
-        Search.SearchInput searchInput = new Search.SearchInput();
-        searchInput.saveToSession(this);
-        return ok(index.render(Form.form(Search.SearchInput.class), request().username(), searchInput));
+        public ActionResult index()
+        {
+            Search.SearchInput searchInput = new Search.SearchInput();
+            searchInput.saveToSession(this);
+            return View("index", new Tuple<string, Search.SearchInput>(User.Identity.Name, searchInput));
+        }
+
     }
-
 }
