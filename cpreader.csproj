@@ -150,7 +150,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="app\util\cprbroker\ERelationshipType.cs" />
     <Compile Include="app\util\DisplayState.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -160,6 +159,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Service References\PartService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -173,7 +177,7 @@
     <Content Include="app\conf\PlayConfiguration.java" />
     <Content Include="app\controllers\Cart.java" />
     <Content Include="app\controllers\Home.java" />
-    <Content Include="app\controllers\Search.java" />
+    <Compile Include="app\controllers\Search.cs" />
     <Content Include="app\controllers\Signon.java" />
     <Content Include="app\Global.java" />
     <Content Include="app\util\AccessLevelManager.java" />
@@ -201,7 +205,8 @@
     <Compile Include="app\util\cprbroker\EMaritalStatusType.cs" />
     <Compile Include="app\util\cprbroker\ESourceUsageOrder.cs" />
     <Compile Include="app\util\cprbroker\IAddress.cs" />
-    <Content Include="app\util\cprbroker\IBuilder.java" />
+    <Compile Include="app\util\cprbroker\ERelationshipType.cs" />
+    <Compile Include="app\util\cprbroker\IBuilder.cs" />
     <Compile Include="app\util\cprbroker\IContact.cs" />
     <Compile Include="app\util\cprbroker\ICprBrokerAccessor.cs" />
     <Compile Include="app\util\cprbroker\ICprCitizenRegisterInformation.cs" />
@@ -340,6 +345,10 @@
     <None Include="app\part\part.wsdl" />
     <Content Include="app\util\.DS_Store" />
     <Content Include="app\views\.DS_Store" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />

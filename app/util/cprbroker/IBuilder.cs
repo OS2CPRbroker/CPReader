@@ -31,8 +31,11 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util.cprbroker;
+namespace util.cprbroker
 
-public interface IBuilder<T> {
-	T build();
+{
+    public interface IBuilder<T>
+    {
+        T build();
+    }
 }

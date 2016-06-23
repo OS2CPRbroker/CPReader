@@ -70,6 +70,5 @@ namespace util.cprbroker
         List<IRelationship> retligHandleevneVaergemaalsindehaver();
         List<IRelationship> getRelationshipsOfType(ERelationshipType relationshipType);
 
-
     }
 }
