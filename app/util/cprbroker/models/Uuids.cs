@@ -31,50 +31,57 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util.cprbroker.models;
+using System;
+using System.Collections.Generic;
+namespace util.cprbroker.models
+{
 
-import util.cprbroker.ERelationshipType;
-import util.cprbroker.IPerson;
-import util.cprbroker.IRelationship;
-import util.cprbroker.IRelationshipWithIPerson;
-import util.cprbroker.IVirkning;
 
-public class RelationshipWithPerson implements IRelationshipWithIPerson {
 
-	private final IRelationship relationship;
-	private final IPerson person;
+
+
+
+
+public class Uuids : IUuids {
+
+	public List<String> _uuids;
+	public String _message;
+	public int _code;
 	
-	public static class Builder{
-		private IRelationship relationship;
-		private IPerson person;
+	public Uuids(int newCode, String newMessage, List<String> newUuids) {
 		
-		public IRelationshipWithIPerson build() { return new RelationshipWithPerson(this); }
-		
-		public Builder person(IPerson newPerson) { person = newPerson; return this;}
-		public Builder relationship(IRelationship newRelationship) { relationship = newRelationship; return this; }
+		_uuids = defensiveCopyOfValues(newUuids);
+		_message = newMessage;
+		_code = newCode;
 	}
 	
-	private RelationshipWithPerson(Builder builder) {
-		relationship = builder.relationship;
-		person = builder.person;
+	
+	public String message() { return _message; }
+
+	
+	public int code() {	return _code; }
+
+	
+	public List<String> values() { return _uuids; }
+	
+	/**
+	 * helper method to make the class immutable
+	 * @param referencedValues String representations of Uuids
+	 * @return  of a copy of the referencedValues
+	 */
+	private List<String> defensiveCopyOfValues(List<String> referencedValues) {
+		
+		List<String> copy = new List<String>();
+		
+		if(referencedValues != null) {
+			foreach(String uuid  in referencedValues) {
+				copy.Add(uuid);
+			}			
+		}
+		
+		return (copy);
 	}
 	
-	@Override
-	public String comment() { return relationship.comment(); }
-
-	@Override
-	public String referenceUrn() { return relationship.referenceUrn(); }
-
-	@Override
-	public String referenceUuid() { return relationship.referenceUuid(); }
-
-	@Override
-	public IVirkning effect() {	return relationship.effect(); }
-
-	@Override
-	public ERelationshipType relationshipType() { return relationship.relationshipType(); }
-
-	@Override
-	public IPerson person() { return person; }
+}
 
 }

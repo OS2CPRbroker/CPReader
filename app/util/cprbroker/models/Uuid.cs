@@ -31,41 +31,61 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util.cprbroker.models;
+using System;
+using System.Collections.Generic;
+namespace util.cprbroker.models
+{
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 
-import util.cprbroker.IPersonRelationshipsWithIPerson;
-import util.cprbroker.IRelationshipWithIPerson;
 
-public class PersonRelationshipsWithPerson implements IPersonRelationshipsWithIPerson {
-
-	private final List<IRelationshipWithIPerson> relations;
+public class Uuid : IUuid {
 	
-	public PersonRelationshipsWithPerson(
-			List<IRelationshipWithIPerson> newRelations) {
-		
-		relations = defensiveCopyOfValues(newRelations);
-	}
+	public String _uuid;
+	public String _message;
+	public int _code;
 	
-	@Override
-	public List<IRelationshipWithIPerson> allRelations() { return relations; }
-
+	// Lazy initialized, cached hashCode
+	public int _hashCode;
 	
 	/**
-	 * helper method to make the class immutable
-	 * @param newRelations IRelationshipWithIPerson representations
-	 * @return Collections.unmodifiableList of a copy of the referencedValues
+	 * 
+	 * @param newUuid String representation of a hyphenated Guid with a length of 36
+	 * @param newCode CPR Broker status code
+	 * @param newMessage CPR Broker message
+	 * @throws IllegaArgumentException Throws if newUuid length != 36
 	 */
-	private List<IRelationshipWithIPerson> defensiveCopyOfValues(List<IRelationshipWithIPerson> newRelations) {
-		List<IRelationshipWithIPerson> copy = new LinkedList<IRelationshipWithIPerson>();
-		
-		for(IRelationshipWithIPerson relationWithPerson : newRelations) {
-			copy.add(relationWithPerson);
-		}
-		
-		return Collections.unmodifiableList(copy);
+	public Uuid(String newUuid, int newCode, String newMessage) {
+		//TODO make a pattern match instead!
+		if(newUuid.Length != 36) throw new ArgumentException("A uuid must be a String representation of a hyphenated Guid with a length of 36");
+		_uuid = newUuid;
+		_message = newMessage;
+		_code = newCode;
 	}
+
+	
+	public String message() {
+		return _message;
+	}
+
+	
+	public int code() {
+		return _code;
+	}
+
+	
+	public String value() {
+		return _uuid;
+	}
+	
+	
+	public String toString() {
+		return _uuid;
+	}
+	
+	
+	
+
+
+}
+
 }

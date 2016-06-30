@@ -31,59 +31,46 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util.cprbroker.models;
+using System;
+using System.Collections.Generic;
+namespace util.cprbroker.models
+{
 
-import util.cprbroker.ERelationshipType;
-import util.cprbroker.IRelationship;
-import util.cprbroker.IVirkning;
 
-public class Relationship implements IRelationship {
 
-	private final String comment;
-	private final String referenceUrn;
-	private final String referenceUuid;
-	private final IVirkning effect;
-	private final ERelationshipType type;
+
+
+
+
+
+public class PersonRelationshipsWithPerson : IPersonRelationshipsWithIPerson {
+
+	public List<IRelationshipWithIPerson> _relations;
 	
-	public static class Builder{
+	public PersonRelationshipsWithPerson(
+			List<IRelationshipWithIPerson> newRelations) {
 		
-		private String comment;
-		private String referenceUrn;
-		private String referenceUuid;
-		private IVirkning effect;
-		private ERelationshipType type;
-		
-		public IRelationship build() { return new Relationship(this); }
-		
-		public Builder comment(String newComment) { comment = newComment; return this; }
-		public Builder referenceUrn(String newUrn) { referenceUrn = newUrn; return this; }
-		public Builder referenceUuid(String newUuid) { referenceUuid = newUuid; return this; }
-		public Builder effect(IVirkning newEffect) { effect = newEffect; return this; }
-		public Builder type(ERelationshipType newType) { type = newType; return this; }
-		
+		_relations = defensiveCopyOfValues(newRelations);
 	}
 	
-	private Relationship(Builder builder) {
-		comment = builder.comment;
-		referenceUrn = builder.referenceUrn;
-		referenceUuid = builder.referenceUuid;
-		effect = builder.effect;
-		type = builder.type;
+	
+	public List<IRelationshipWithIPerson> allRelations() { return _relations; }
+
+	
+	/**
+	 * helper method to make the class immutable
+	 * @param newRelations IRelationshipWithIPerson representations
+	 * @return  of a copy of the referencedValues
+	 */
+	private List<IRelationshipWithIPerson> defensiveCopyOfValues(List<IRelationshipWithIPerson> newRelations) {
+		List<IRelationshipWithIPerson> copy = new List<IRelationshipWithIPerson>();
+		
+		foreach(IRelationshipWithIPerson relationWithPerson  in newRelations) {
+			copy.Add(relationWithPerson);
+		}
+		
+		return (copy);
 	}
-	
-	@Override
-	public String comment() { return comment; }
-
-	@Override
-	public String referenceUrn() { return referenceUrn; }
-
-	@Override
-	public String referenceUuid() {	return referenceUuid; }
-
-	@Override
-	public IVirkning effect() { return effect; }
-	
-	@Override
-	public ERelationshipType relationshipType() { return type;}
+}
 
 }

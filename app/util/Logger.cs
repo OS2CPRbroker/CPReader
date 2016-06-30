@@ -28,10 +28,16 @@ namespace play
             return true;
         }
 
+        public static void debug(string msg)
+        {
+
+        }
+
         public static void info(string msg)
         {
 
         }
+
         public bool logInfo(String message)
         {
             return true;

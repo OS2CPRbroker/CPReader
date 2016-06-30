@@ -23,5 +23,26 @@
     <Setting Name="cart_enabled" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="cprbroker_ssl" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="cprbroker_endpoint" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="cprbroker_applicationtoken" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="cprbroker_usertoken" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="cprbroker_accesslevel" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="cprbroker_fetchrelations" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="cpreader_PartService_Part" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:1551/services/part.asmx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

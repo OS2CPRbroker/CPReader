@@ -174,10 +174,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Service References\PartService\Reference.cs">
+    <Compile Include="Web References\PartService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
+      <DependentUpon>Reference.map</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -236,22 +236,22 @@
     <Compile Include="app\util\cprbroker\IUuids.cs" />
     <Compile Include="app\util\cprbroker\IVirkning.cs" />
     <Compile Include="app\util\cprbroker\IWorldAddress.cs" />
-    <Content Include="app\util\cprbroker\jaxws\JaxWsCprBroker.java" />
-    <Content Include="app\util\cprbroker\models\Contact.java" />
-    <Content Include="app\util\cprbroker\models\CprCitizenData.java" />
-    <Content Include="app\util\cprbroker\models\DanishAddress.java" />
-    <Content Include="app\util\cprbroker\models\GreenlandicAddress.java" />
-    <Content Include="app\util\cprbroker\models\Person.java" />
-    <Content Include="app\util\cprbroker\models\PersonRelationships.java" />
-    <Content Include="app\util\cprbroker\models\PersonRelationshipsWithPerson.java" />
-    <Content Include="app\util\cprbroker\models\Relationship.java" />
-    <Content Include="app\util\cprbroker\models\RelationshipWithPerson.java" />
-    <Content Include="app\util\cprbroker\models\Tidspunkt.java" />
-    <Content Include="app\util\cprbroker\models\Tilstand.java" />
-    <Content Include="app\util\cprbroker\models\Uuid.java" />
-    <Content Include="app\util\cprbroker\models\Uuids.java" />
-    <Content Include="app\util\cprbroker\models\Virkning.java" />
-    <Content Include="app\util\cprbroker\models\WorldAddress.java" />
+    <Compile Include="app\util\cprbroker\jaxws\JaxWsCprBroker.cs" />
+    <Compile Include="app\util\cprbroker\models\Contact.cs" />
+    <Compile Include="app\util\cprbroker\models\CprCitizenData.cs" />
+    <Compile Include="app\util\cprbroker\models\DanishAddress.cs" />
+    <Compile Include="app\util\cprbroker\models\GreenlandicAddress.cs" />
+    <Compile Include="app\util\cprbroker\models\Person.cs" />
+    <Compile Include="app\util\cprbroker\models\PersonRelationships.cs" />
+    <Compile Include="app\util\cprbroker\models\PersonRelationshipsWithPerson.cs" />
+    <Compile Include="app\util\cprbroker\models\Relationship.cs" />
+    <Compile Include="app\util\cprbroker\models\RelationshipWithPerson.cs" />
+    <Compile Include="app\util\cprbroker\models\Tidspunkt.cs" />
+    <Compile Include="app\util\cprbroker\models\Tilstand.cs" />
+    <Compile Include="app\util\cprbroker\models\Uuid.cs" />
+    <Compile Include="app\util\cprbroker\models\Uuids.cs" />
+    <Compile Include="app\util\cprbroker\models\Virkning.cs" />
+    <Compile Include="app\util\cprbroker\models\WorldAddress.cs" />
     <Compile Include="app\util\Logger.cs" />
     <Content Include="app\util\Program.java" />
     <Compile Include="app\util\StringUtils.cs" />
@@ -374,66 +374,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <None Include="Service References\PartService\configuration91.svcinfo" />
-    <None Include="Service References\PartService\configuration.svcinfo" />
-    <Content Include="Service References\PartService\cpreader.PartService.GetUuidArrayOutputType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.GetUuidArrayResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.GetUuidOutputType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.GetUuidResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.LaesOutputType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.ListOutputType1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.ListPeriodResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.ListResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.ListSnapshotResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.QualityHeader.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.ReadPeriodResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.ReadResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.ReadSnapshotResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.RefreshReadResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.SearchListResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.SearchResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.SoegListOutputType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\PartService\cpreader.PartService.SoegOutputType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Service References\PartService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -447,7 +387,29 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <None Include="Service References\PartService\Part.wsdl" />
+    <Content Include="Web References\PartService\GetUuidArrayOutputType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\PartService\GetUuidOutputType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\PartService\LaesOutputType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\PartService\ListOutputType1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\PartService\Part.wsdl" />
+    <Content Include="Web References\PartService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\PartService\SoegListOutputType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\PartService\SoegOutputType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -461,9 +423,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\PartService\" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.da.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.da.Designer.cs</LastGenOutput>
@@ -474,6 +433,22 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="C:\MagentaWorkspace\cprbroker.doc\Final\Service Description\Part.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\PartService\</RelPath>
+      <UpdateFromURL>C:\MagentaWorkspace\cprbroker.doc\Final\Service Description\Part.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>cpreader_PartService_Part</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

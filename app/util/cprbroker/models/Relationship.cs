@@ -31,52 +31,64 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package util.cprbroker.models;
+using System;
+using System.Collections.Generic;
+namespace util.cprbroker.models
+{
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 
-import util.cprbroker.IUuids;
 
-public class Uuids implements IUuids {
 
-	private final List<String> uuids;
-	private final String message;
-	private final int code;
+
+public class Relationship : IRelationship {
+
+	public String _comment;
+	public String _referenceUrn;
+	public String _referenceUuid;
+	public IVirkning _effect;
+	public ERelationshipType _type;
 	
-	public Uuids(final int newCode, final String newMessage, final List<String> newUuids) {
+	public class Builder{
 		
-		uuids = defensiveCopyOfValues(newUuids);
-		message = newMessage;
-		code = newCode;
+		public String _comment;
+		public String _referenceUrn;
+		public String _referenceUuid;
+		public IVirkning _effect;
+		public ERelationshipType _type;
+		
+		public IRelationship build() { return new Relationship(this); }
+		
+		public Builder comment(String newComment) { _comment = newComment; return this; }
+		public Builder referenceUrn(String newUrn) { _referenceUrn = newUrn; return this; }
+		public Builder referenceUuid(String newUuid) { _referenceUuid = newUuid; return this; }
+		public Builder effect(IVirkning newEffect) { _effect = newEffect; return this; }
+		public Builder type(ERelationshipType newType) { _type = newType; return this; }
+		
 	}
 	
-	@Override
-	public String message() { return message; }
-
-	@Override
-	public int code() {	return code; }
-
-	@Override
-	public List<String> values() { return uuids; }
-	
-	/**
-	 * helper method to make the class immutable
-	 * @param referencedValues String representations of Uuids
-	 * @return Collections.unmodifiableList of a copy of the referencedValues
-	 */
-	private List<String> defensiveCopyOfValues(List<String> referencedValues) {
-		
-		List<String> copy = new LinkedList<String>();
-		
-		if(referencedValues != null) {
-			for(String uuid : referencedValues) {
-				copy.add(uuid);
-			}			
-		}
-		
-		return Collections.unmodifiableList(copy);
+	private Relationship(Builder builder) {
+		_comment = builder._comment;
+		_referenceUrn = builder._referenceUrn;
+		_referenceUuid = builder._referenceUuid;
+		_effect = builder._effect;
+		_type = builder._type;
 	}
 	
+	
+	public String comment() { return _comment; }
+
+	
+	public String referenceUrn() { return _referenceUrn; }
+
+	
+	public String referenceUuid() {	return _referenceUuid; }
+
+	
+	public IVirkning effect() { return _effect; }
+	
+	
+	public ERelationshipType relationshipType() { return _type;}
+
+}
+
 }

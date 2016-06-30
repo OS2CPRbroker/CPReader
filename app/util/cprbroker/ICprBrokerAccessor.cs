@@ -62,12 +62,12 @@ namespace util.cprbroker
         IPerson read(String uuid);
 
         //TODO Add methods for SEARCH
-        IUuids search(String firstname, String middlename, String lastname, int maxResults, int startIndex);
+        //IUuids search(String firstname, String middlename, String lastname, int maxResults, int startIndex);
 
         List<IPerson> searchList(String name, String address, ESourceUsageOrder sourceUsageOrder, int maxResults, int startIndex);
 
         //TODO Add methods for list
-        List<IPerson> list(IUuids uuids, ESourceUsageOrder sourceUsageOrder);
+        //List<IPerson> list(IUuids uuids, ESourceUsageOrder sourceUsageOrder);
 
     }
 }
