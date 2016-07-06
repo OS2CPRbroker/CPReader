@@ -256,7 +256,7 @@
     <Content Include="app\util\Program.java" />
     <Compile Include="app\util\StringUtils.cs" />
     <Content Include="app\views\access_denied.scala.html" />
-    <Content Include="app\views\booleanfield.scala.html" />
+    <Content Include="Views\Shared\booleanfield.cshtml" />
     <Content Include="app\views\cart.scala.html" />
     <Content Include="app\views\cartview.scala.html" />
     <Content Include="app\views\cartviewbody.scala.html" />
@@ -430,7 +430,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>

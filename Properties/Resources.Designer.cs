@@ -22,7 +22,7 @@ namespace cpreader.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace cpreader.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("cpreader.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace cpreader.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Add To Cart.
         /// </summary>
-        internal static string cart_add {
+        public static string cart_add {
             get {
                 return ResourceManager.GetString("cart_add", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to has been added to the cart..
         /// </summary>
-        internal static string cart_added {
+        public static string cart_added {
             get {
                 return ResourceManager.GetString("cart_added", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
-        internal static string cart_close {
+        public static string cart_close {
             get {
                 return ResourceManager.GetString("cart_close", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to items copied to the clipboard..
         /// </summary>
-        internal static string cart_copied {
+        public static string cart_copied {
             get {
                 return ResourceManager.GetString("cart_copied", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Copy CPR Numbers.
         /// </summary>
-        internal static string cart_copy {
+        public static string cart_copy {
             get {
                 return ResourceManager.GetString("cart_copy", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to CPR Number.
         /// </summary>
-        internal static string cart_cprnumber {
+        public static string cart_cprnumber {
             get {
                 return ResourceManager.GetString("cart_cprnumber", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cart emptied..
         /// </summary>
-        internal static string cart_emptied {
+        public static string cart_emptied {
             get {
                 return ResourceManager.GetString("cart_emptied", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Empty Cart.
         /// </summary>
-        internal static string cart_empty {
+        public static string cart_empty {
             get {
                 return ResourceManager.GetString("cart_empty", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to has aready been added to the cart..
         /// </summary>
-        internal static string cart_exists {
+        public static string cart_exists {
             get {
                 return ResourceManager.GetString("cart_exists", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Items.
         /// </summary>
-        internal static string cart_items {
+        public static string cart_items {
             get {
                 return ResourceManager.GetString("cart_items", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        internal static string cart_name {
+        public static string cart_name {
             get {
                 return ResourceManager.GetString("cart_name", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to There are currently no items in the cart.
         /// </summary>
-        internal static string cart_noitems {
+        public static string cart_noitems {
             get {
                 return ResourceManager.GetString("cart_noitems", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to was not removed from the cart..
         /// </summary>
-        internal static string cart_notremoved {
+        public static string cart_notremoved {
             get {
                 return ResourceManager.GetString("cart_notremoved", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
-        internal static string cart_remove {
+        public static string cart_remove {
             get {
                 return ResourceManager.GetString("cart_remove", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to removed from the cart..
         /// </summary>
-        internal static string cart_removed {
+        public static string cart_removed {
             get {
                 return ResourceManager.GetString("cart_removed", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Right click on the selected numbers to copy.
         /// </summary>
-        internal static string cart_rightclick {
+        public static string cart_rightclick {
             get {
                 return ResourceManager.GetString("cart_rightclick", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Select CPR Numbers.
         /// </summary>
-        internal static string cart_select {
+        public static string cart_select {
             get {
                 return ResourceManager.GetString("cart_select", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Select.
         /// </summary>
-        internal static string cart_select_title {
+        public static string cart_select_title {
             get {
                 return ResourceManager.GetString("cart_select_title", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to View cart.
         /// </summary>
-        internal static string cart_view {
+        public static string cart_view {
             get {
                 return ResourceManager.GetString("cart_view", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Der findes ingen informationer om den pågældende person i CPR Brokeren..
         /// </summary>
-        internal static string error_503 {
+        public static string error_503 {
             get {
                 return ResourceManager.GetString("error_503", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Feltet {0} skal udfyldes.
         /// </summary>
-        internal static string error_required {
+        public static string error_required {
             get {
                 return ResourceManager.GetString("error_required", resourceCulture);
             }
@@ -252,7 +252,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Forkert brugernavn eller adgangskode.
         /// </summary>
-        internal static string login_invalid_credientials {
+        public static string login_invalid_credientials {
             get {
                 return ResourceManager.GetString("login_invalid_credientials", resourceCulture);
             }
@@ -261,7 +261,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Du har ikke tilladelse til at benytte applikationen.
         /// </summary>
-        internal static string login_not_authorized {
+        public static string login_not_authorized {
             get {
                 return ResourceManager.GetString("login_not_authorized", resourceCulture);
             }
@@ -270,7 +270,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to CPReader - Log på.
         /// </summary>
-        internal static string login_pagetitle {
+        public static string login_pagetitle {
             get {
                 return ResourceManager.GetString("login_pagetitle", resourceCulture);
             }
@@ -279,7 +279,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Log på.
         /// </summary>
-        internal static string login_submit {
+        public static string login_submit {
             get {
                 return ResourceManager.GetString("login_submit", resourceCulture);
             }
@@ -288,7 +288,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Indtast venligst dine oplysninger.
         /// </summary>
-        internal static string login_title {
+        public static string login_title {
             get {
                 return ResourceManager.GetString("login_title", resourceCulture);
             }
@@ -297,7 +297,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Applikationen havde en uventet fejl.
         /// </summary>
-        internal static string login_unexpected_error {
+        public static string login_unexpected_error {
             get {
                 return ResourceManager.GetString("login_unexpected_error", resourceCulture);
             }
@@ -306,7 +306,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Du er nu logget ud.
         /// </summary>
-        internal static string logout_succesful {
+        public static string logout_succesful {
             get {
                 return ResourceManager.GetString("logout_succesful", resourceCulture);
             }
@@ -315,7 +315,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
-        internal static string nav_help {
+        public static string nav_help {
             get {
                 return ResourceManager.GetString("nav_help", resourceCulture);
             }
@@ -324,7 +324,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Log out.
         /// </summary>
-        internal static string nav_logout_button {
+        public static string nav_logout_button {
             get {
                 return ResourceManager.GetString("nav_logout_button", resourceCulture);
             }
@@ -333,7 +333,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
-        internal static string nav_quicksearch_addresslaceholder {
+        public static string nav_quicksearch_addresslaceholder {
             get {
                 return ResourceManager.GetString("nav_quicksearch_addresslaceholder", resourceCulture);
             }
@@ -342,7 +342,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You must provide an address when searching online.
         /// </summary>
-        internal static string nav_quicksearch_addressrequired {
+        public static string nav_quicksearch_addressrequired {
             get {
                 return ResourceManager.GetString("nav_quicksearch_addressrequired", resourceCulture);
             }
@@ -351,7 +351,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Invalid address.
         /// </summary>
-        internal static string nav_quicksearch_invalidaddress {
+        public static string nav_quicksearch_invalidaddress {
             get {
                 return ResourceManager.GetString("nav_quicksearch_invalidaddress", resourceCulture);
             }
@@ -360,7 +360,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Local.
         /// </summary>
-        internal static string nav_quicksearch_local {
+        public static string nav_quicksearch_local {
             get {
                 return ResourceManager.GetString("nav_quicksearch_local", resourceCulture);
             }
@@ -369,7 +369,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Online.
         /// </summary>
-        internal static string nav_quicksearch_online {
+        public static string nav_quicksearch_online {
             get {
                 return ResourceManager.GetString("nav_quicksearch_online", resourceCulture);
             }
@@ -378,7 +378,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to CPR or name.
         /// </summary>
-        internal static string nav_quicksearch_placeholder {
+        public static string nav_quicksearch_placeholder {
             get {
                 return ResourceManager.GetString("nav_quicksearch_placeholder", resourceCulture);
             }
@@ -387,7 +387,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Submit.
         /// </summary>
-        internal static string nav_quicksearch_submit {
+        public static string nav_quicksearch_submit {
             get {
                 return ResourceManager.GetString("nav_quicksearch_submit", resourceCulture);
             }
@@ -396,7 +396,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to CPReader.
         /// </summary>
-        internal static string nav_title {
+        public static string nav_title {
             get {
                 return ResourceManager.GetString("nav_title", resourceCulture);
             }
@@ -405,7 +405,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
-        internal static string password {
+        public static string password {
             get {
                 return ResourceManager.GetString("password", resourceCulture);
             }
@@ -414,7 +414,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Country ID Code.
         /// </summary>
-        internal static string person_address_danishAddress_countryIdentificationCode {
+        public static string person_address_danishAddress_countryIdentificationCode {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_countryIdentificationCode", resourceCulture);
             }
@@ -423,7 +423,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Danish Note.
         /// </summary>
-        internal static string person_address_danishAddress_danishNote {
+        public static string person_address_danishAddress_danishNote {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_danishNote", resourceCulture);
             }
@@ -432,7 +432,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to By.
         /// </summary>
-        internal static string person_address_danishAddress_districtName {
+        public static string person_address_danishAddress_districtName {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_districtName", resourceCulture);
             }
@@ -441,7 +441,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Subdivision.
         /// </summary>
-        internal static string person_address_danishAddress_districtSubdivision {
+        public static string person_address_danishAddress_districtSubdivision {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_districtSubdivision", resourceCulture);
             }
@@ -450,7 +450,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Floor.
         /// </summary>
-        internal static string person_address_danishAddress_floor {
+        public static string person_address_danishAddress_floor {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_floor", resourceCulture);
             }
@@ -459,7 +459,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Specielvejkode.
         /// </summary>
-        internal static string person_address_danishAddress_isSpecielVejkode {
+        public static string person_address_danishAddress_isSpecielVejkode {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_isSpecielVejkode", resourceCulture);
             }
@@ -468,7 +468,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Ukendt adresse.
         /// </summary>
-        internal static string person_address_danishAddress_isUkendtAdresse {
+        public static string person_address_danishAddress_isUkendtAdresse {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_isUkendtAdresse", resourceCulture);
             }
@@ -477,7 +477,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Mail Sub Location.
         /// </summary>
-        internal static string person_address_danishAddress_mailSubLocaltion {
+        public static string person_address_danishAddress_mailSubLocaltion {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_mailSubLocaltion", resourceCulture);
             }
@@ -486,7 +486,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Municipality Code.
         /// </summary>
-        internal static string person_address_danishAddress_municipalityCode {
+        public static string person_address_danishAddress_municipalityCode {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_municipalityCode", resourceCulture);
             }
@@ -495,7 +495,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
-        internal static string person_address_danishAddress_note {
+        public static string person_address_danishAddress_note {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_note", resourceCulture);
             }
@@ -504,7 +504,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Politidistrikt.
         /// </summary>
-        internal static string person_address_danishAddress_politiDistrikt {
+        public static string person_address_danishAddress_politiDistrikt {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_politiDistrikt", resourceCulture);
             }
@@ -513,7 +513,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Post Code.
         /// </summary>
-        internal static string person_address_danishAddress_postCode {
+        public static string person_address_danishAddress_postCode {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_postCode", resourceCulture);
             }
@@ -522,7 +522,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Postdistrikt.
         /// </summary>
-        internal static string person_address_danishAddress_postDistrikt {
+        public static string person_address_danishAddress_postDistrikt {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_postDistrikt", resourceCulture);
             }
@@ -531,7 +531,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to PO Box.
         /// </summary>
-        internal static string person_address_danishAddress_postOfficeBox {
+        public static string person_address_danishAddress_postOfficeBox {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_postOfficeBox", resourceCulture);
             }
@@ -540,7 +540,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Skoledistrikt.
         /// </summary>
-        internal static string person_address_danishAddress_skoleDistrikt {
+        public static string person_address_danishAddress_skoleDistrikt {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_skoleDistrikt", resourceCulture);
             }
@@ -549,7 +549,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Socialdistrikt.
         /// </summary>
-        internal static string person_address_danishAddress_socialDistrikt {
+        public static string person_address_danishAddress_socialDistrikt {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_socialDistrikt", resourceCulture);
             }
@@ -558,7 +558,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Sognedistrikt.
         /// </summary>
-        internal static string person_address_danishAddress_sogneDistrikt {
+        public static string person_address_danishAddress_sogneDistrikt {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_sogneDistrikt", resourceCulture);
             }
@@ -567,7 +567,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Building.
         /// </summary>
-        internal static string person_address_danishAddress_streetBuilding {
+        public static string person_address_danishAddress_streetBuilding {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_streetBuilding", resourceCulture);
             }
@@ -576,7 +576,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Building ID.
         /// </summary>
-        internal static string person_address_danishAddress_streetBuildingIdentifier {
+        public static string person_address_danishAddress_streetBuildingIdentifier {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_streetBuildingIdentifier", resourceCulture);
             }
@@ -585,7 +585,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Street Code.
         /// </summary>
-        internal static string person_address_danishAddress_streetCode {
+        public static string person_address_danishAddress_streetCode {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_streetCode", resourceCulture);
             }
@@ -594,7 +594,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Street Name.
         /// </summary>
-        internal static string person_address_danishAddress_streetName {
+        public static string person_address_danishAddress_streetName {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_streetName", resourceCulture);
             }
@@ -603,7 +603,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Addressing Name.
         /// </summary>
-        internal static string person_address_danishAddress_streetNameForAddressing {
+        public static string person_address_danishAddress_streetNameForAddressing {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_streetNameForAddressing", resourceCulture);
             }
@@ -612,7 +612,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Suite.
         /// </summary>
-        internal static string person_address_danishAddress_suite {
+        public static string person_address_danishAddress_suite {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_suite", resourceCulture);
             }
@@ -621,7 +621,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Valgdistrikt.
         /// </summary>
-        internal static string person_address_danishAddress_valgkredsDistrikt {
+        public static string person_address_danishAddress_valgkredsDistrikt {
             get {
                 return ResourceManager.GetString("person_address_danishAddress_valgkredsDistrikt", resourceCulture);
             }
@@ -630,7 +630,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Landekode.
         /// </summary>
-        internal static string person_address_greenlandicAddress_countryIdentificationCode {
+        public static string person_address_greenlandicAddress_countryIdentificationCode {
             get {
                 return ResourceManager.GetString("person_address_greenlandicAddress_countryIdentificationCode", resourceCulture);
             }
@@ -639,7 +639,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to By.
         /// </summary>
-        internal static string person_address_greenlandicAddress_districtName {
+        public static string person_address_greenlandicAddress_districtName {
             get {
                 return ResourceManager.GetString("person_address_greenlandicAddress_districtName", resourceCulture);
             }
@@ -648,7 +648,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Forstad.
         /// </summary>
-        internal static string person_address_greenlandicAddress_districtSubdivision {
+        public static string person_address_greenlandicAddress_districtSubdivision {
             get {
                 return ResourceManager.GetString("person_address_greenlandicAddress_districtSubdivision", resourceCulture);
             }
@@ -657,7 +657,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Etage.
         /// </summary>
-        internal static string person_address_greenlandicAddress_floor {
+        public static string person_address_greenlandicAddress_floor {
             get {
                 return ResourceManager.GetString("person_address_greenlandicAddress_floor", resourceCulture);
             }
@@ -666,7 +666,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Specielvejkode.
         /// </summary>
-        internal static string person_address_greenlandicAddress_isSpecielVejkode {
+        public static string person_address_greenlandicAddress_isSpecielVejkode {
             get {
                 return ResourceManager.GetString("person_address_greenlandicAddress_isSpecielVejkode", resourceCulture);
             }
@@ -675,7 +675,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Ukendt adresse.
         /// </summary>
-        internal static string person_address_greenlandicAddress_isUkendtAdresse {
+        public static string person_address_greenlandicAddress_isUkendtAdresse {
             get {
                 return ResourceManager.GetString("person_address_greenlandicAddress_isUkendtAdresse", resourceCulture);
             }
@@ -684,7 +684,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Kommunekode.
         /// </summary>
-        internal static string person_address_greenlandicAddress_municipalityCode {
+        public static string person_address_greenlandicAddress_municipalityCode {
             get {
                 return ResourceManager.GetString("person_address_greenlandicAddress_municipalityCode", resourceCulture);
             }
@@ -693,7 +693,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
-        internal static string person_address_greenlandicAddress_note {
+        public static string person_address_greenlandicAddress_note {
             get {
                 return ResourceManager.GetString("person_address_greenlandicAddress_note", resourceCulture);
             }
@@ -702,7 +702,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Postnummer.
         /// </summary>
-        internal static string person_address_greenlandicAddress_postCode {
+        public static string person_address_greenlandicAddress_postCode {
             get {
                 return ResourceManager.GetString("person_address_greenlandicAddress_postCode", resourceCulture);
             }
@@ -711,7 +711,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Gadenummer.
         /// </summary>
-        internal static string person_address_greenlandicAddress_streetBuilding {
+        public static string person_address_greenlandicAddress_streetBuilding {
             get {
                 return ResourceManager.GetString("person_address_greenlandicAddress_streetBuilding", resourceCulture);
             }
@@ -720,7 +720,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Vejkode.
         /// </summary>
-        internal static string person_address_greenlandicAddress_streetCode {
+        public static string person_address_greenlandicAddress_streetCode {
             get {
                 return ResourceManager.GetString("person_address_greenlandicAddress_streetCode", resourceCulture);
             }
@@ -729,7 +729,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Gadenavn.
         /// </summary>
-        internal static string person_address_greenlandicAddress_streetName {
+        public static string person_address_greenlandicAddress_streetName {
             get {
                 return ResourceManager.GetString("person_address_greenlandicAddress_streetName", resourceCulture);
             }
@@ -738,7 +738,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Adresseforadressering.
         /// </summary>
-        internal static string person_address_greenlandicAddress_streetNameForAddressing {
+        public static string person_address_greenlandicAddress_streetNameForAddressing {
             get {
                 return ResourceManager.GetString("person_address_greenlandicAddress_streetNameForAddressing", resourceCulture);
             }
@@ -747,7 +747,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Suite.
         /// </summary>
-        internal static string person_address_greenlandicAddress_suite {
+        public static string person_address_greenlandicAddress_suite {
             get {
                 return ResourceManager.GetString("person_address_greenlandicAddress_suite", resourceCulture);
             }
@@ -756,7 +756,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Ukendt adresse.
         /// </summary>
-        internal static string person_address_worldAddress_isUkendtAdresseIndikator {
+        public static string person_address_worldAddress_isUkendtAdresseIndikator {
             get {
                 return ResourceManager.GetString("person_address_worldAddress_isUkendtAdresseIndikator", resourceCulture);
             }
@@ -765,7 +765,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Beskrivelse.
         /// </summary>
-        internal static string person_address_worldAddress_locationDescriptionText {
+        public static string person_address_worldAddress_locationDescriptionText {
             get {
                 return ResourceManager.GetString("person_address_worldAddress_locationDescriptionText", resourceCulture);
             }
@@ -774,7 +774,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
-        internal static string person_address_worldAddress_note {
+        public static string person_address_worldAddress_note {
             get {
                 return ResourceManager.GetString("person_address_worldAddress_note", resourceCulture);
             }
@@ -784,7 +784,7 @@ namespace cpreader.Properties {
         ///   Looks up a localized string similar to 
         ///    .
         /// </summary>
-        internal static string person_address_worldAddress_postalAddressFifthLineText {
+        public static string person_address_worldAddress_postalAddressFifthLineText {
             get {
                 return ResourceManager.GetString("person_address_worldAddress_postalAddressFifthLineText", resourceCulture);
             }
@@ -793,7 +793,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Adresse.
         /// </summary>
-        internal static string person_address_worldAddress_postalAddressFirstLineText {
+        public static string person_address_worldAddress_postalAddressFirstLineText {
             get {
                 return ResourceManager.GetString("person_address_worldAddress_postalAddressFirstLineText", resourceCulture);
             }
@@ -803,7 +803,7 @@ namespace cpreader.Properties {
         ///   Looks up a localized string similar to 
         ///    .
         /// </summary>
-        internal static string person_address_worldAddress_postalAddressFourthLineText {
+        public static string person_address_worldAddress_postalAddressFourthLineText {
             get {
                 return ResourceManager.GetString("person_address_worldAddress_postalAddressFourthLineText", resourceCulture);
             }
@@ -813,7 +813,7 @@ namespace cpreader.Properties {
         ///   Looks up a localized string similar to 
         ///    .
         /// </summary>
-        internal static string person_address_worldAddress_postalAddressSecondLineText {
+        public static string person_address_worldAddress_postalAddressSecondLineText {
             get {
                 return ResourceManager.GetString("person_address_worldAddress_postalAddressSecondLineText", resourceCulture);
             }
@@ -823,7 +823,7 @@ namespace cpreader.Properties {
         ///   Looks up a localized string similar to 
         ///    .
         /// </summary>
-        internal static string person_address_worldAddress_postalAddressThirdLineText {
+        public static string person_address_worldAddress_postalAddressThirdLineText {
             get {
                 return ResourceManager.GetString("person_address_worldAddress_postalAddressThirdLineText", resourceCulture);
             }
@@ -832,7 +832,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Birth Date.
         /// </summary>
-        internal static string person_birthdate {
+        public static string person_birthdate {
             get {
                 return ResourceManager.GetString("person_birthdate", resourceCulture);
             }
@@ -841,7 +841,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Birth Palce.
         /// </summary>
-        internal static string person_birthplace {
+        public static string person_birthplace {
             get {
                 return ResourceManager.GetString("person_birthplace", resourceCulture);
             }
@@ -850,7 +850,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Fødereg. myndighed.
         /// </summary>
-        internal static string person_birthRegisteringAuthority {
+        public static string person_birthRegisteringAuthority {
             get {
                 return ResourceManager.GetString("person_birthRegisteringAuthority", resourceCulture);
             }
@@ -859,7 +859,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Call Name.
         /// </summary>
-        internal static string person_callname {
+        public static string person_callname {
             get {
                 return ResourceManager.GetString("person_callname", resourceCulture);
             }
@@ -868,7 +868,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
-        internal static string person_false {
+        public static string person_false {
             get {
                 return ResourceManager.GetString("person_false", resourceCulture);
             }
@@ -877,7 +877,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to First Name.
         /// </summary>
-        internal static string person_firstname {
+        public static string person_firstname {
             get {
                 return ResourceManager.GetString("person_firstname", resourceCulture);
             }
@@ -886,7 +886,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Gender.
         /// </summary>
-        internal static string person_gender {
+        public static string person_gender {
             get {
                 return ResourceManager.GetString("person_gender", resourceCulture);
             }
@@ -895,7 +895,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Last Name.
         /// </summary>
-        internal static string person_lastname {
+        public static string person_lastname {
             get {
                 return ResourceManager.GetString("person_lastname", resourceCulture);
             }
@@ -904,7 +904,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Middle Name.
         /// </summary>
-        internal static string person_middelname {
+        public static string person_middelname {
             get {
                 return ResourceManager.GetString("person_middelname", resourceCulture);
             }
@@ -913,7 +913,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Addressing Name.
         /// </summary>
-        internal static string person_nameForAddressing {
+        public static string person_nameForAddressing {
             get {
                 return ResourceManager.GetString("person_nameForAddressing", resourceCulture);
             }
@@ -922,7 +922,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to (No information).
         /// </summary>
-        internal static string person_noparents {
+        public static string person_noparents {
             get {
                 return ResourceManager.GetString("person_noparents", resourceCulture);
             }
@@ -931,7 +931,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Ukendt adresse.
         /// </summary>
-        internal static string person_otherAddress_worldAddress_isUkendtAdresseIndikator {
+        public static string person_otherAddress_worldAddress_isUkendtAdresseIndikator {
             get {
                 return ResourceManager.GetString("person_otherAddress_worldAddress_isUkendtAdresseIndikator", resourceCulture);
             }
@@ -940,7 +940,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Beskrivelse.
         /// </summary>
-        internal static string person_otherAddress_worldAddress_locationDescriptionText {
+        public static string person_otherAddress_worldAddress_locationDescriptionText {
             get {
                 return ResourceManager.GetString("person_otherAddress_worldAddress_locationDescriptionText", resourceCulture);
             }
@@ -949,7 +949,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
-        internal static string person_otherAddress_worldAddress_note {
+        public static string person_otherAddress_worldAddress_note {
             get {
                 return ResourceManager.GetString("person_otherAddress_worldAddress_note", resourceCulture);
             }
@@ -959,7 +959,7 @@ namespace cpreader.Properties {
         ///   Looks up a localized string similar to 
         ///    .
         /// </summary>
-        internal static string person_otherAddress_worldAddress_postalAddressFifthLineText {
+        public static string person_otherAddress_worldAddress_postalAddressFifthLineText {
             get {
                 return ResourceManager.GetString("person_otherAddress_worldAddress_postalAddressFifthLineText", resourceCulture);
             }
@@ -968,7 +968,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Adresse.
         /// </summary>
-        internal static string person_otherAddress_worldAddress_postalAddressFirstLineText {
+        public static string person_otherAddress_worldAddress_postalAddressFirstLineText {
             get {
                 return ResourceManager.GetString("person_otherAddress_worldAddress_postalAddressFirstLineText", resourceCulture);
             }
@@ -978,7 +978,7 @@ namespace cpreader.Properties {
         ///   Looks up a localized string similar to 
         ///    .
         /// </summary>
-        internal static string person_otherAddress_worldAddress_postalAddressFourthLineText {
+        public static string person_otherAddress_worldAddress_postalAddressFourthLineText {
             get {
                 return ResourceManager.GetString("person_otherAddress_worldAddress_postalAddressFourthLineText", resourceCulture);
             }
@@ -988,7 +988,7 @@ namespace cpreader.Properties {
         ///   Looks up a localized string similar to 
         ///    .
         /// </summary>
-        internal static string person_otherAddress_worldAddress_postalAddressSecondLineText {
+        public static string person_otherAddress_worldAddress_postalAddressSecondLineText {
             get {
                 return ResourceManager.GetString("person_otherAddress_worldAddress_postalAddressSecondLineText", resourceCulture);
             }
@@ -998,7 +998,7 @@ namespace cpreader.Properties {
         ///   Looks up a localized string similar to 
         ///    .
         /// </summary>
-        internal static string person_otherAddress_worldAddress_postalAddressThirdLineText {
+        public static string person_otherAddress_worldAddress_postalAddressThirdLineText {
             get {
                 return ResourceManager.GetString("person_otherAddress_worldAddress_postalAddressThirdLineText", resourceCulture);
             }
@@ -1007,7 +1007,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Member Of Church?.
         /// </summary>
-        internal static string person_registerInformation_cprCitizen_isMemberOfTheChurch {
+        public static string person_registerInformation_cprCitizen_isMemberOfTheChurch {
             get {
                 return ResourceManager.GetString("person_registerInformation_cprCitizen_isMemberOfTheChurch", resourceCulture);
             }
@@ -1016,7 +1016,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Name Address Protected?.
         /// </summary>
-        internal static string person_registerInformation_cprCitizen_isNameAddressProtected {
+        public static string person_registerInformation_cprCitizen_isNameAddressProtected {
             get {
                 return ResourceManager.GetString("person_registerInformation_cprCitizen_isNameAddressProtected", resourceCulture);
             }
@@ -1025,7 +1025,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Phone Number Protected?.
         /// </summary>
-        internal static string person_registerInformation_cprCitizen_isPhoneNumberProtected {
+        public static string person_registerInformation_cprCitizen_isPhoneNumberProtected {
             get {
                 return ResourceManager.GetString("person_registerInformation_cprCitizen_isPhoneNumberProtected", resourceCulture);
             }
@@ -1034,7 +1034,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Researcher Protected?.
         /// </summary>
-        internal static string person_registerInformation_cprCitizen_isResearcherProtected {
+        public static string person_registerInformation_cprCitizen_isResearcherProtected {
             get {
                 return ResourceManager.GetString("person_registerInformation_cprCitizen_isResearcherProtected", resourceCulture);
             }
@@ -1043,7 +1043,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Nationality Code.
         /// </summary>
-        internal static string person_registerInformation_cprCitizen_personNationalityCode {
+        public static string person_registerInformation_cprCitizen_personNationalityCode {
             get {
                 return ResourceManager.GetString("person_registerInformation_cprCitizen_personNationalityCode", resourceCulture);
             }
@@ -1052,7 +1052,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to CPR Number.
         /// </summary>
-        internal static string person_registerInformation_cprCitizen_socialSecurityNumber {
+        public static string person_registerInformation_cprCitizen_socialSecurityNumber {
             get {
                 return ResourceManager.GetString("person_registerInformation_cprCitizen_socialSecurityNumber", resourceCulture);
             }
@@ -1061,7 +1061,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to CPR Number Active.
         /// </summary>
-        internal static string person_registerInformation_cprCitizen_socialSecurityNumberActive {
+        public static string person_registerInformation_cprCitizen_socialSecurityNumberActive {
             get {
                 return ResourceManager.GetString("person_registerInformation_cprCitizen_socialSecurityNumberActive", resourceCulture);
             }
@@ -1070,7 +1070,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Registration Date.
         /// </summary>
-        internal static string person_registrationdate {
+        public static string person_registrationdate {
             get {
                 return ResourceManager.GetString("person_registrationdate", resourceCulture);
             }
@@ -1079,7 +1079,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to See parents.
         /// </summary>
-        internal static string person_showparents {
+        public static string person_showparents {
             get {
                 return ResourceManager.GetString("person_showparents", resourceCulture);
             }
@@ -1088,7 +1088,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Civil Status.
         /// </summary>
-        internal static string person_tilstand_civilStatusKode {
+        public static string person_tilstand_civilStatusKode {
             get {
                 return ResourceManager.GetString("person_tilstand_civilStatusKode", resourceCulture);
             }
@@ -1097,7 +1097,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Life Status.
         /// </summary>
-        internal static string person_tilstand_livStatusKode {
+        public static string person_tilstand_livStatusKode {
             get {
                 return ResourceManager.GetString("person_tilstand_livStatusKode", resourceCulture);
             }
@@ -1106,7 +1106,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
-        internal static string person_true {
+        public static string person_true {
             get {
                 return ResourceManager.GetString("person_true", resourceCulture);
             }
@@ -1115,7 +1115,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to See person.
         /// </summary>
-        internal static string person_viewdetails {
+        public static string person_viewdetails {
             get {
                 return ResourceManager.GetString("person_viewdetails", resourceCulture);
             }
@@ -1124,7 +1124,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Anden adresse.
         /// </summary>
-        internal static string resultat_andenaddresse {
+        public static string resultat_andenaddresse {
             get {
                 return ResourceManager.GetString("resultat_andenaddresse", resourceCulture);
             }
@@ -1133,7 +1133,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Egenskaber.
         /// </summary>
-        internal static string resultat_egenskaber {
+        public static string resultat_egenskaber {
             get {
                 return ResourceManager.GetString("resultat_egenskaber", resourceCulture);
             }
@@ -1142,7 +1142,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Postadresse.
         /// </summary>
-        internal static string resultat_postaddresse {
+        public static string resultat_postaddresse {
             get {
                 return ResourceManager.GetString("resultat_postaddresse", resourceCulture);
             }
@@ -1151,7 +1151,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Registeroplysninger.
         /// </summary>
-        internal static string resultat_registeroplysninger {
+        public static string resultat_registeroplysninger {
             get {
                 return ResourceManager.GetString("resultat_registeroplysninger", resourceCulture);
             }
@@ -1160,7 +1160,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Tilstande.
         /// </summary>
-        internal static string resultat_tilstande {
+        public static string resultat_tilstande {
             get {
                 return ResourceManager.GetString("resultat_tilstande", resourceCulture);
             }
@@ -1169,7 +1169,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Der er {0} resultater på søgningen:.
         /// </summary>
-        internal static string results_list_amountOfResults {
+        public static string results_list_amountOfResults {
             get {
                 return ResourceManager.GetString("results_list_amountOfResults", resourceCulture);
             }
@@ -1178,7 +1178,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Liste over søgeresultater fra søgning lokalt.
         /// </summary>
-        internal static string results_list_local_desc_1 {
+        public static string results_list_local_desc_1 {
             get {
                 return ResourceManager.GetString("results_list_local_desc_1", resourceCulture);
             }
@@ -1187,7 +1187,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Listen indeholder kun søgeresultater fra den lokale database og ikke alle CPR Registrets data..
         /// </summary>
-        internal static string results_list_local_desc_2 {
+        public static string results_list_local_desc_2 {
             get {
                 return ResourceManager.GetString("results_list_local_desc_2", resourceCulture);
             }
@@ -1196,7 +1196,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Ønsker du at søge bredt i CPR Registret, skal du vælge &apos;online&apos;..
         /// </summary>
-        internal static string results_list_local_desc_3 {
+        public static string results_list_local_desc_3 {
             get {
                 return ResourceManager.GetString("results_list_local_desc_3", resourceCulture);
             }
@@ -1205,7 +1205,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Liste over søgeresultater fra søgning online.
         /// </summary>
-        internal static string results_list_online_desc_1 {
+        public static string results_list_online_desc_1 {
             get {
                 return ResourceManager.GetString("results_list_online_desc_1", resourceCulture);
             }
@@ -1214,7 +1214,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Listen indeholder søgeresultater fra CPR Registret. Du kan klikke på et søgeresultat og se flere detaljer om personen..
         /// </summary>
-        internal static string results_list_online_desc_2 {
+        public static string results_list_online_desc_2 {
             get {
                 return ResourceManager.GetString("results_list_online_desc_2", resourceCulture);
             }
@@ -1223,7 +1223,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Klik på et søgeresultat vil desuden resultere i, at personen fremover vil optræde i lokale søgninger..
         /// </summary>
-        internal static string results_list_online_desc_3 {
+        public static string results_list_online_desc_3 {
             get {
                 return ResourceManager.GetString("results_list_online_desc_3", resourceCulture);
             }
@@ -1232,7 +1232,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Fejl i søgningen.
         /// </summary>
-        internal static string results_list_searchFailed {
+        public static string results_list_searchFailed {
             get {
                 return ResourceManager.GetString("results_list_searchFailed", resourceCulture);
             }
@@ -1241,7 +1241,7 @@ namespace cpreader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
-        internal static string username {
+        public static string username {
             get {
                 return ResourceManager.GetString("username", resourceCulture);
             }
