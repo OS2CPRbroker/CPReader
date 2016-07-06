@@ -278,7 +278,7 @@
     <Content Include="app\views\person.scala.html" />
     <Content Include="Views\Shared\relation.cshtml" />
     <Content Include="app\views\show_error.scala.html" />
-    <Content Include="app\views\textfield.scala.html" />
+    <Content Include="Views\Shared\textfield.cshtml" />
     <Content Include="Views\Shared\tilstande.cshtml" />
     <Content Include="Views\Shared\virkning.cshtml" />
     <Content Include="Views\Shared\worldaddress.cshtml" />

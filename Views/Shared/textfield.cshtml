@@ -30,13 +30,17 @@
 * the terms of any one of the MPL, the GPL or the LGPL.
 *
 * ***** END LICENSE BLOCK ***** *@
-@(titleKey: String, value: Object)
-@if(value != null && value.toString().length > 0) {
+@model Tuple<String, Object>
+@{ 
+    var titleKey = Model.Item1;
+    var value = Model.Item2;
+}
+@if (value != null && value.ToString().Length > 0) {
 
-	
-	
+
+
     <dl class="dl-horizontal">
-        <dt>@Messages(titleKey)</dt>
+        <dt>@Messages.ResourceManager.GetString(titleKey)</dt>
         <dd>@value </dd>
     </dl>
 }
