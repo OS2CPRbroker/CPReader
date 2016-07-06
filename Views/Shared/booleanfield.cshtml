@@ -36,16 +36,16 @@
     var condition = Model.Item1;
     var titleKey = Model.Item2;
     var value = Model.Item3;
+    
 
-    var Messages = new Func<string, string>(key => cpreader.Properties.Resources.ResourceManager.GetString(key));
 }
 @if (condition) {
     <dl class="dl-horizontal">
-        <dt>@Messages(titleKey)</dt>
+        <dt>@Messages.ResourceManager.GetString(titleKey)</dt>
         <dd>@if(value) {
-            @Messages("person.true")
+            @Messages.person_true
         } else {
-            @Messages("person.false")</dd>
+            @Messages.person_false</dd>
         }
     </dl>
 }
