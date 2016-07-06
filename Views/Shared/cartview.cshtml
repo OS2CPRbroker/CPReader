@@ -1,0 +1,27 @@
+
+@model Tuple<util.Cart>
+
+@{
+    var cartContents = @Model.Item1;
+}
+
+<!-- Modal HTML -->
+
+<div class="modal-dialog">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">@Messages.cart_view (<span name="cartCount">@cartContents.Persons.Count</span> @Messages.cart_items)</h4>
+        </div>
+
+        <div class="modal-body">
+            <span id="cartViewModalBody">
+                @Html.Partial("cartviewbody", Model);
+            </span>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">@Messages.cart_close</button>
+        </div>
+    </div>
+</div>

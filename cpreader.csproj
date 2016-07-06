@@ -159,15 +159,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.da.Designer.cs">
-      <DependentUpon>Resources.da.resx</DependentUpon>
+    <Compile Include="Properties\Messages.da.Designer.cs">
+      <DependentUpon>Messages.da.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Include="Properties\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
+      <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -258,7 +258,7 @@
     <Content Include="app\views\access_denied.scala.html" />
     <Content Include="Views\Shared\booleanfield.cshtml" />
     <Content Include="Views\Shared\cart.cshtml" />
-    <Content Include="app\views\cartview.scala.html" />
+    <None Include="Views\Shared\cartview.cshtml" />
     <Content Include="app\views\cartviewbody.scala.html" />
     <Content Include="app\views\danishaddress.scala.html" />
     <Content Include="app\views\detailmodal.scala.html" />
@@ -424,14 +424,14 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.da.resx">
+    <EmbeddedResource Include="Properties\Messages.da.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.da.Designer.cs</LastGenOutput>
+      <LastGenOutput>Messages.da.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Include="Properties\Messages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
