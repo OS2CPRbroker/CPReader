@@ -257,7 +257,7 @@
     <Compile Include="app\util\StringUtils.cs" />
     <Content Include="app\views\access_denied.scala.html" />
     <Content Include="Views\Shared\booleanfield.cshtml" />
-    <Content Include="app\views\cart.scala.html" />
+    <Content Include="Views\Shared\cart.cshtml" />
     <Content Include="app\views\cartview.scala.html" />
     <Content Include="app\views\cartviewbody.scala.html" />
     <Content Include="app\views\danishaddress.scala.html" />
@@ -357,7 +357,7 @@
     <Content Include="app\views\.DS_Store" />
     <Content Include="conf\routes" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

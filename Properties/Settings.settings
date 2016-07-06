@@ -44,5 +44,8 @@
     <Setting Name="cpreader_PartService_Part" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://localhost:1551/services/part.asmx</Value>
     </Setting>
+    <Setting Name="cartAllowNonBornPersons" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
