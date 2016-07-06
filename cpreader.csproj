@@ -355,6 +355,7 @@
     <None Include="app\part\part.wsdl" />
     <Content Include="app\util\.DS_Store" />
     <Content Include="app\views\.DS_Store" />
+    <Content Include="conf\routes" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
