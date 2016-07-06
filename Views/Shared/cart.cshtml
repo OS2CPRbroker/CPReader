@@ -39,23 +39,21 @@
     var showcart = Model.Item3;
     var showparents = Model.Item4;
     var expandid = Model.Item5;
-
-    var Messages = new Func<string, string>(key => cpreader.Properties.Resources.ResourceManager.GetString(key));
 }
 @if (
-                       cpreader.Properties.Settings.Default.cartAllowNonBornPersons
-                        || (person.tilstand() != null && person.tilstand().livStatusKode() == util.cprbroker.ELifeStatusType.FOEDT)
-                    )
+                               cpreader.Properties.Settings.Default.cartAllowNonBornPersons
+                                || (person.tilstand() != null && person.tilstand().livStatusKode() == util.cprbroker.ELifeStatusType.FOEDT)
+                            )
 {
-    <a href="#" name="addToCartAnchor" uuid='@(person.uuid())'><span class="glyphicon glyphicon-plus"></span> @Messages("cart.add")</a>
+    <a href="#" name="addToCartAnchor" uuid='@(person.uuid())'><span class="glyphicon glyphicon-plus"></span> @Messages.cart_add</a>
 }
 else {
     <a>
-        <span class="link-disabled"><span class="glyphicon glyphicon-plus"></span>@Messages("cart.add")</span>
+        <span class="link-disabled"><span class="glyphicon glyphicon-plus"></span>@Messages.cart_add</span>
     </a>
 }
 
-@if (System.Web.HttpContext.Current.Session["opencart"] == "true")
+@if (System.Web.HttpContext.Current.Session["opencart"] as string == "true")
 {
     <script>
         window.onload = function () {
