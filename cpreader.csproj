@@ -279,7 +279,7 @@
     <Content Include="Views\Shared\relation.cshtml" />
     <Content Include="app\views\show_error.scala.html" />
     <Content Include="app\views\textfield.scala.html" />
-    <Content Include="app\views\tilstande.scala.html" />
+    <Content Include="Views\Shared\tilstande.cshtml" />
     <Content Include="Views\Shared\virkning.cshtml" />
     <Content Include="Views\Shared\worldaddress.cshtml" />
     <Content Include="Content\bootstrap-theme.css" />
