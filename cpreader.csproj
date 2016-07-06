@@ -276,7 +276,7 @@
     <Content Include="app\views\parentmodal.scala.html" />
     <Content Include="app\views\partial_pagination.scala.html" />
     <Content Include="app\views\person.scala.html" />
-    <Content Include="app\views\relation.scala.html" />
+    <Content Include="Views\Shared\relation.cshtml" />
     <Content Include="app\views\show_error.scala.html" />
     <Content Include="app\views\textfield.scala.html" />
     <Content Include="app\views\tilstande.scala.html" />
