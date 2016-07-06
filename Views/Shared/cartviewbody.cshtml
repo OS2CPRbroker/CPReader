@@ -1,0 +1,78 @@
+
+@model Tuple<util.Cart>
+@{
+    var cartContents = Model.Item1;
+}
+
+<span id="cartMessage"><br /></span>
+@if (cartContents.Persons.Count > 0)
+{
+    <table id="cart-table" class="table table-striped">
+        <thead>
+            <tr>
+                <th>@Messages.cart_name</th>
+                <th>@Messages.cart_cprnumber</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="cart-table-rows">
+            @foreach (var person in cartContents.Persons)
+            {
+                <tr>
+                    <td>@person.firstName @person.middleName @person.lastName</td>
+                    <td>@person.PNR</td>
+                    <td><a name="removeFromCartAnchor" href="#" uuid='@person.UUID'>@Messages.cart_remove</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </br>
+    </br>
+    <hr>
+    <div>
+        @if (cartContents.Persons.Count > 0)
+        {
+            <span id="spnCartIE">
+                <div>
+                    <a href="" onclick='copyCprNumbers(); return false;' title=""><span class="glyphicon glyphicon-file"></span> @Messages.cart_copy</a>
+                    <span style="display: none" id="spnCprNumbersCopied" txt="@Messages.cart_copied"></span>
+                </div>
+            </span>
+            <span id="spnCartNonIE">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="copy-message" style="display: none">@Messages.cart_rightclick</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-1">
+                        <div id="cart-nums" style="display: none">
+                            @* to be filled with javascript*@
+                        </div>
+                    </div>
+                </div>
+                <div style="float: left;">
+                    <a href="#" OnClick="selectCPRNumbers();" title="@Messages.cart_select_title"><span class="glyphicon glyphicon-file"></span> @Messages("cart.select")</a>
+                </div>
+            </span>
+            <script>
+                if (window.clipboardData) {
+                    document.getElementById('spnCartNonIE').style.display = 'none';
+                }
+                else {
+                    document.getElementById('spnCartIE').style.display = 'none';
+                }
+
+            </script>
+
+            <div style="float: right;">
+                <a href="#" name="clearCartAnchor"><span class="glyphicon glyphicon-trash"></span> @Messages.cart_empty</a>
+            </div>
+        }
+
+    </div>
+}
+else {
+    @Messages.cart_noitems
+}

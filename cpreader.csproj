@@ -259,7 +259,7 @@
     <Content Include="Views\Shared\booleanfield.cshtml" />
     <Content Include="Views\Shared\cart.cshtml" />
     <None Include="Views\Shared\cartview.cshtml" />
-    <Content Include="app\views\cartviewbody.scala.html" />
+    <Content Include="Views\Shared\cartviewbody.cshtml" />
     <Content Include="app\views\danishaddress.scala.html" />
     <Content Include="app\views\detailmodal.scala.html" />
     <Content Include="app\views\glyphiconokban.scala.html" />
