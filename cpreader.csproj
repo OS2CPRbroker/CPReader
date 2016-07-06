@@ -264,12 +264,12 @@
     <Content Include="app\views\detailmodal.scala.html" />
     <Content Include="app\views\glyphiconokban.scala.html" />
     <Content Include="app\views\greenlandicaddress.scala.html" />
-    <Content Include="app\views\index.scala.html" />
+    <Content Include="Views\Shared\index.cshtml" />
     <Content Include="app\views\list.scala.html" />
     <Content Include="app\views\listperson.scala.html" />
     <Content Include="app\views\listsingle.scala.html" />
     <Content Include="app\views\login.scala.html" />
-    <Content Include="app\views\main.scala.html" />
+    <Content Include="Views\Shared\main.cshtml" />
     <Content Include="app\views\modalcontent.scala.html" />
     <Content Include="app\views\navbar.scala.html" />
     <Content Include="app\views\parentlist.scala.html" />

@@ -32,8 +32,12 @@
  *
  * ***** END LICENSE BLOCK ***** *@
  
-@(title: String,searchInput : Search.SearchInput)(content: Html)
-@import play.api.Play.current
+@model Tuple<String,controllers.Search.SearchInput>
+@{ 
+    var title = Model.Item1;
+    var searchInput = Model.Item2;
+}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -44,13 +48,13 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
 
-    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+    <link rel="shortcut icon" type="image/png" href="/public/images/favicon.png">
 
     <!-- Custom styles for this template -->
-    <link href="@routes.Assets.at("stylesheets/navbar.css")" rel="stylesheet">
+    <link href="/public/stylesheets/navbar.css" rel="stylesheet">
     
-    <link href="@routes.Assets.at("javascripts/jquery-ui-1.11.2.custom/jquery-ui.css")" rel="stylesheet">
-    <link href="@routes.Assets.at("stylesheets/modal.css")" rel="stylesheet">
+    <link href="/public/javascripts/jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet">
+    <link href="/public/stylesheets/modal.css" rel="stylesheet">
    
   </head>
 
@@ -58,13 +62,13 @@
     
     <div class="container">
     
-        @navbar(searchInput)
+      @Html.Partial("navbar", new Tuple<controllers.Search.SearchInput>(searchInput))
     
-        @content
+      @RenderBody()
         
     </div> <!-- /container -->
     
-    @helper.requireJs(core = routes.Assets.at("javascripts/require.js").url, module = routes.Assets.at("javascripts/main").url)
+    @helper.requireJs(core = routes.Assets.at("/public/javascripts/require.js").url, module = routes.Assets.at("/public/javascripts/main").url)
 
   </body>
 
