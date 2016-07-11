@@ -31,7 +31,12 @@
  *
  * ***** END LICENSE BLOCK ***** *@
 
-@(results: Int, currentpage: Int, location: String)
+@model Tuple<int,int,string>
+@{
+    var results = Model.Item1;
+    var currentpage = Model.Item2;
+    var location = Model.Item3;
+}
 
 @if(results > 0) {
      <ul class="pagination">
@@ -42,8 +47,9 @@
            <li><a href="@location@(currentpage - 1)">&laquo;</a></li>
         }
         
-        @for(index <- 1 to (Math.ceil(results/10.0).toInt)) {
-            <li @if(index == currentpage) {class="active"}><a href="@location@index">@index <span class="sr-only">(current)</span></a></li>    
+        @for(int index = 1; index <= ((int)Math.Ceiling(results/10.0)); index ++)
+        {
+            <li @if(index == currentpage) {class='active'}><a href="@location@index">@index <span class="sr-only">(current)</span></a></li>    
         }
         @if(results > 10 && results > (currentpage * 10)) {
             <li id="next"><a href="@location@(currentpage + 1)">&raquo;</a></li>    

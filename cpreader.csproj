@@ -274,7 +274,6 @@
     <Content Include="Views\Shared\navbar.cshtml" />
     <None Include="Views\Shared\parentlist.cshtml" />
     <Content Include="app\views\parentmodal.scala.html" />
-    <Content Include="app\views\partial_pagination.scala.html" />
     <Content Include="app\views\person.scala.html" />
     <Content Include="Views\Shared\relation.cshtml" />
     <Content Include="app\views\show_error.scala.html" />
@@ -400,6 +399,7 @@
     <Content Include="Web References\PartService\ListOutputType1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
+    <Content Include="Views\Shared\partial_pagination.cshtml" />
     <None Include="Web References\PartService\Part.wsdl" />
     <Content Include="Web References\PartService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
