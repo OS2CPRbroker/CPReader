@@ -1,0 +1,44 @@
+@model Tuple<util.cprbroker.IPerson, int>
+@{ 
+    var person = Model.Item1;
+    var accesslevel = Model.Item2;
+    var parentCount = 0;
+}
+
+@if(person.relationsWithPerson() != null) {
+    @foreach(var r in person.relationsWithPerson().allRelations()) {
+        @if(r.relationshipType() == ERelationshipType.foraeldremyndighedsindehaver || r.relationshipType() == ERelationshipType.fader || r.relationshipType() == ERelationshipType.moder){
+            
+            @HttpContext.Current.Cache[r.person().uuid()] = r.person();
+            <div class="row">
+
+                @Html.Partial("listperson", new Tuple<IPerson, bool, string>(r.person(), true, r.relationshipType().ToString()+":" ))
+                
+                @{parentCount = parentCount + 1;}
+                @if(accesslevel > 1) {
+                    <div class="col-md-2 text-left">
+                        <a href="/show/uuid/@r.person().uuid()/"><span class="glyphicon glyphicon-user"></span> @Messages.person_viewdetails</a>
+                    </div>
+                    
+                    <div class="col-md-3 text-right">
+                        @if(HttpContext.Current.Session["usecart"] as string == "1") {  <div id="cart@r.person.uuid()">@Html.Partial("cart", new Tuple<IPerson,string,bool,bool,string>(r.person(), "none", false, true, person.uuid()))</div> }
+                    </div>
+                } else {
+                    <div class="col-md-5 text-right">
+                        @if(HttpContext.Current.Session["usecart"] as string == "1") {  <div id="cart@r.person.uuid()">@Html.Partial("cart", new Tuple<IPerson,string,bool,bool,string>(r.person, "none", false, true, person.uuid()))</div> }
+                    </div>
+                }
+            </div>
+        }   
+    }
+    @if(parentCount == 0){
+        <div class="row">
+            <div class="col-md-3">@Messages.person_noparents)
+        </div>
+        </div>
+    }
+} else {
+    <div class="row">
+        Data not available
+    </div>
+}

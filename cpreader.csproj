@@ -272,7 +272,7 @@
     <Content Include="Views\Shared\main.cshtml" />
     <Content Include="app\views\modalcontent.scala.html" />
     <Content Include="app\views\navbar.scala.html" />
-    <Content Include="app\views\parentlist.scala.html" />
+    <None Include="Views\Shared\parentlist.cshtml" />
     <Content Include="app\views\parentmodal.scala.html" />
     <Content Include="app\views\partial_pagination.scala.html" />
     <Content Include="app\views\person.scala.html" />
