@@ -32,9 +32,11 @@
 *
 * ***** END LICENSE BLOCK ***** *@
 
-@(searchInput : Search.SearchInput)
+@model Tuple<controllers.Search.SearchInput>
 
-@import play.Play;
+@{
+    var searchInput = Model.Item1;
+}
 <div class="navbar navbar-default">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -42,54 +44,54 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">@Messages("nav.title")</a>
+        <a class="navbar-brand" href="/">@Messages.nav_title</a>
     </div>
 
     <div class="navbar-collapse collapse">
         <form id="quicksearch" class="navbar-form navbar-left" role="search">
             <div class="form-group" id="querygroup">
-                <span><input type="text" class="form-control" id="query" placeholder="@Messages("nav.quicksearch_placeholder")" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getQuery()" /></span>
+                <span><input type="text" class="form-control" id="query" placeholder="@Messages.nav_quicksearch_placeholder" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getQuery()" /></span>
                 <span>
                     <input type="text" class="form-control" id="addressQuery"
-                        placeholder="@Messages("nav.quicksearch_addresslaceholder")" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getAddressQuery()"
-                        invalidAddressText = '@Messages("nav.quicksearch.invalidaddress")' addressRequiredText='@Messages("nav.quicksearch.addressrequired")'
+                        placeholder="@Messages.nav_quicksearch_addresslaceholder" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getAddressQuery()"
+                        invalidAddressText = '@Messages.nav_quicksearch_invalidaddress' addressRequiredText='@Messages.nav_quicksearch_addressrequired'
                         validateDawa = '@util.Converters.isDawaAddressParser()'
                     />
                 </span>
 
-                @if(Play.application().configuration().getInt("search.type") == 0 ) {
+                @if(Settings.Default.search_type == 0 ) {
                     <div class="navbar-form-online">
                 }
-                @if(Play.application().configuration().getInt("search.type") == 1 ||  Play.application().configuration().getInt("search.type") == 2) {
+                @if(Settings.Default.search_type == 1 ||  Settings.Default.search_type == 2) {
                     <div class="navbar-form-online-hidden">
                 }
                     <input type="radio" name="online" id="online_false" value="false" @if(!searchInput.getOnline()){checked}>
-                    <label for="online_false">@Messages("nav.quicksearch_local") &nbsp;&nbsp;</label>
+                    <label for="online_false">@Messages.nav_quicksearch_local &nbsp;&nbsp;</label>
                     <input type="radio" name="online" id="online_true" value="true" @if(searchInput.getOnline()){checked }>
-                    <label for="online_true"> @Messages("nav.quicksearch_online")</label> 
+                    <label for="online_true"> @Messages.nav_quicksearch_online</label> 
 
                     </div>
-                <button id="quicksearchbutton" type="button" class="btn btn-default navbar-form-search">@Messages("nav.quicksearch_submit")</button>
+                <button id="quicksearchbutton" type="button" class="btn btn-default navbar-form-search">@Messages.nav_quicksearch_submit</button>
             </div>
 
         </form>
 
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/">@Messages("nav.help")</a> </li>
-            <li><span id="currentUsername">@util.auth.Secured.getCurrntUsername()</span></li>
-            @if(!util.auth.Secured.authenticationStrategy.isInstanceOf[util.auth.IIntegratedAuthenticaton]){
+            <li><a href="/">@Messages.nav_help</a> </li>
+            <li><span id="currentUsername">@User.Identity.Name</span></li>
+            @*@if(!util.auth.Secured.authenticationStrategy.isInstanceOf[util.auth.IIntegratedAuthenticaton]){
                 <li><a href="@routes.Signon.logout()">@Messages("nav.logout_button")</a></li>
-            }
+            }*@
 
-            @if(session.get("usecart") == "1") {
+            @if(HttpContext.Current.Session["usecart"] as string == "1") {
             <li>
                 <a href="#cartModal" data-backdrop="static" data-toggle="modal">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
-                    @Messages("cart.view")
+                    @Messages.cart_view
                     (<span name="cartCount">@controllers.Cart.countTextString()</span>)</a>
-                <span style="display: none;">@session.put("opencart", "false")</span>
+                <span style="display: none;">@HttpContext.Current.Session["opencart"] = "false"</span>
                 <div id="cartModal" class="modal static">
-                    @cartview(util.Cart.fromSession())
+                    @Html.Partial("cartview", new Tuple<util.Cart>(util.Cart.fromSession()))
                 </div>
             </li>
             }
