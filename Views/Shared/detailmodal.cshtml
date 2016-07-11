@@ -31,13 +31,15 @@
 *
 * ***** END LICENSE BLOCK ***** *@
 
-@(person: util.cprbroker.IPerson, accesslevel: Integer)
-@import play.api.Play.current;
-@import util.cprbroker.EAddressType;var showrelations=0;
+@model Tuple<util.cprbroker.IPerson, int>
+@{
+    var person = Model.Item1;
+    var accesslevel = Model.Item2;
+}
 <div id="detailModal@person.uuid()" class="modal static"  role="dialog">
     <div class="modal-dialog">
         <div id="content@person.uuid()" class="modal-content" >
-            @modalcontent(person,accesslevel)
+            @Html.Partial("modalcontent", new Tuple<IPerson,int>(person, accesslevel))
         </div>
     </div>
 </div>
