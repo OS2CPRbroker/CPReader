@@ -264,7 +264,6 @@
     <Content Include="app\views\glyphiconokban.scala.html" />
     <Content Include="app\views\greenlandicaddress.scala.html" />
     <Content Include="Views\Shared\index.cshtml" />
-    <Content Include="app\views\listperson.scala.html" />
     <Content Include="app\views\listsingle.scala.html" />
     <Content Include="app\views\login.scala.html" />
     <Content Include="Views\Shared\main.cshtml" />
@@ -272,6 +271,7 @@
     <Content Include="app\views\navbar.scala.html" />
     <Content Include="Views\Shared\detailmodal.cshtml" />
     <Content Include="Views\Shared\list.cshtml" />
+    <Content Include="Views\Shared\listperson.cshtml" />
     <None Include="Views\Shared\parentlist.cshtml" />
     <Content Include="app\views\parentmodal.scala.html" />
     <Content Include="app\views\partial_pagination.scala.html" />

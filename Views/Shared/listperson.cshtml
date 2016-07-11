@@ -31,51 +31,55 @@
 *
 * ***** END LICENSE BLOCK ***** *@
 
-@(person: util.cprbroker.IPerson, showPnr: Boolean, preNameText: String)
-
+@model Tuple<util.cprbroker.IPerson, Boolean, String>
+@{ 
+    var person = Model.Item1;
+    var showPnr = Model.Item2;
+    var preNameText = Model.Item3;
+}
 <div class="col-md-1">
-  @if(showPnr) {
-    @person.registerInformation.cprCitizen.socialSecurityNumber
+  @if (showPnr) {
+    @person.registerInformation().cprCitizen().socialSecurityNumber()
   }
 </div>
   <div class="col-md-3">
     @preNameText
-    @if(person.firstname) {
-    @person.firstname
+    @if(!string.IsNullOrEmpty(person.firstname())) {
+    @person.firstname()
 }
-@if(person.middelname) {
-  @person.middelname
+@if(!string.IsNullOrEmpty(person.middelname())) {
+  @person.middelname()
 }
-@if(person.lastname) {
-  @person.lastname
+@if(!string.IsNullOrEmpty(person.lastname())) {
+  @person.lastname()
 }
 </div>
 <div class="col-md-2">
-  @if(person.address != null && person.address.addressType == util.cprbroker.EAddressType.Danish) {
+  @if(person.address() != null && person.address().addressType() == util.cprbroker.EAddressType.Danish) {
   <span class="text-muted">
-    @if(person.address.danishAddress.streetName) {
-      @person.address.danishAddress.streetName
+    @if(!string.IsNullOrEmpty(person.address().danishAddress().streetName())) {
+      @person.address().danishAddress().streetName()
     }
-  @if(person.address.danishAddress.streetBuilding) {
-    @person.address.danishAddress.streetBuilding
+  @if(!string.IsNullOrEmpty(person.address().danishAddress().streetBuilding())) {
+    @person.address().danishAddress().streetBuilding()
   }
-  @if(person.address.danishAddress.floor) {
-    @person.address.danishAddress.floor
+  @if(!string.IsNullOrEmpty(person.address().danishAddress().floor())) {
+    @person.address().danishAddress().floor()
   }
-  @if(person.address.danishAddress.suite) {
-    @person.address.danishAddress.suite
+  @if(!string.IsNullOrEmpty(person.address().danishAddress().suite())) {
+    @person.address().danishAddress().suite()
   }
-  @if(person.address.danishAddress.postCode) {
-    @person.address.danishAddress.postCode
+  @if(!string.IsNullOrEmpty(person.address().danishAddress().postCode())) {
+    @person.address().danishAddress().postCode()
   }
-  @if(person.address.danishAddress.districtName) {
-    @person.address.danishAddress.districtName
+  @if(!string.IsNullOrEmpty(person.address().danishAddress().districtName())) {
+    @person.address().danishAddress().districtName()
   }
   </span>
 }
 </div>
 <div class="col-md-1">
-  @if(person.tilstand!=null && person.tilstand.livStatusKode != null) {
-    @person.tilstand.livStatusKode
+  @if(person.tilstand() !=null && person.tilstand().livStatusKode() != null) {
+    @person.tilstand().livStatusKode()
   }
 </div>
