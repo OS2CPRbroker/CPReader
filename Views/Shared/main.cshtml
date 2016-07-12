@@ -32,7 +32,7 @@
  *
  * ***** END LICENSE BLOCK ***** *@
  
-@model Tuple<String,controllers.Search.SearchInput>
+@model Tuple<String, SearchController.SearchInput>
 @{ 
     var title = Model.Item1;
     var searchInput = Model.Item2;
@@ -44,7 +44,8 @@
     <title>@title</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" >
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
+      <meta charset="utf-8" />    
     <!-- Bootstrap -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
 
@@ -62,13 +63,14 @@
     
     <div class="container">
     
-      @Html.Partial("navbar", new Tuple<controllers.Search.SearchInput>(searchInput))
+      @Html.Partial("navbar", new Tuple<SearchController.SearchInput>(searchInput))
     
       @RenderBody()
         
     </div> <!-- /container -->
     
-    @helper.requireJs(core = routes.Assets.at("/public/javascripts/require.js").url, module = routes.Assets.at("/public/javascripts/main").url)
+    @*@helper.requireJs(core = routes.Assets.at("/public/javascripts/require.js").url, module = routes.Assets.at("/public/javascripts/main").url)*@
+      <script type="text/javascript" data-main="/assets/javascripts/main" src="/assets/javascripts/require.js"></script>
 
   </body>
 

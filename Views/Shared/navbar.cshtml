@@ -32,7 +32,7 @@
 *
 * ***** END LICENSE BLOCK ***** *@
 
-@model Tuple<controllers.Search.SearchInput>
+@model Tuple<SearchController.SearchInput>
 
 @{
     var searchInput = Model.Item1;
@@ -60,15 +60,15 @@
                 </span>
 
                 @if(Settings.Default.search_type == 0 ) {
-                    <div class="navbar-form-online">
+                    Html.Raw("<div class=\"navbar-form-online\">");
                 }
                 @if(Settings.Default.search_type == 1 ||  Settings.Default.search_type == 2) {
-                    <div class="navbar-form-online-hidden">
+                    Html.Raw("<div class=\"navbar-form-online-hidden\">");
                 }
-                    <input type="radio" name="online" id="online_false" value="false" @if(!searchInput.getOnline()){checked}>
+                    <input type="radio" name="online" id="online_false" value="false" @if(!searchInput.getOnline()){ Html.Raw("checked"); }>
                     <label for="online_false">@Messages.nav_quicksearch_local &nbsp;&nbsp;</label>
-                    <input type="radio" name="online" id="online_true" value="true" @if(searchInput.getOnline()){checked }>
-                    <label for="online_true"> @Messages.nav_quicksearch_online</label> 
+                    <input type="radio" name="online" id="online_true" value="true" @if(searchInput.getOnline()){Html.Raw("checked");}>
+                    <label for="online_true"> @Messages.nav_quicksearch_online</label>
 
                     </div>
                 <button id="quicksearchbutton" type="button" class="btn btn-default navbar-form-search">@Messages.nav_quicksearch_submit</button>
@@ -88,7 +88,7 @@
                 <a href="#cartModal" data-backdrop="static" data-toggle="modal">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                     @Messages.cart_view
-                    (<span name="cartCount">@controllers.Cart.countTextString()</span>)</a>
+                    (<span name="cartCount">@CartController.countTextString()</span>)</a>
                 <span style="display: none;">@HttpContext.Current.Session["opencart"] = "false"</span>
                 <div id="cartModal" class="modal static">
                     @Html.Partial("cartview", new Tuple<util.Cart>(util.Cart.fromSession()))
