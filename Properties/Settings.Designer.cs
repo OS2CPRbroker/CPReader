@@ -158,5 +158,32 @@ namespace cpreader.Properties {
                 return ((bool)(this["cartAllowNonBornPersons"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string cpreader_PartService_Part_username {
+            get {
+                return ((string)(this["cpreader_PartService_Part_username"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string cpreader_PartService_Part_password {
+            get {
+                return ((string)(this["cpreader_PartService_Part_password"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string cpreader_PartService_Part_domain {
+            get {
+                return ((string)(this["cpreader_PartService_Part_domain"]));
+            }
+        }
     }
 }

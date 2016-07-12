@@ -37,6 +37,7 @@ using System.Collections.Generic;
 using System.Linq;
 using cpreader.PartService;
 using util.cprbroker.models;
+using cpreader.Properties;
 
 namespace util.cprbroker.jaxws
 {
@@ -145,12 +146,24 @@ namespace util.cprbroker.jaxws
          */
         private Part getService(ESourceUsageOrder sourceUsageOrder)
         {
-            return new cpreader.PartService.Part()
+            var ret = new cpreader.PartService.Part()
             {
                 Url = endpoint,
                 ApplicationHeaderValue = new ApplicationHeader() { ApplicationToken = applicationToken, UserToken = userToken },
-                SourceUsageOrderHeaderValue = new SourceUsageOrderHeader { SourceUsageOrder = (SourceUsageOrder)(int)sourceUsageOrder }
+                SourceUsageOrderHeaderValue = new SourceUsageOrderHeader { SourceUsageOrder = (SourceUsageOrder)(int)sourceUsageOrder },
             };
+            if(!string.IsNullOrEmpty(Settings.Default.cpreader_PartService_Part_username))
+            {
+                ret.Credentials = new System.Net.NetworkCredential(
+                    Settings.Default.cpreader_PartService_Part_username, 
+                    Settings.Default.cpreader_PartService_Part_password, 
+                    Settings.Default.cpreader_PartService_Part_domain);
+            }
+            else
+            {
+                ret.UseDefaultCredentials = true;
+            }
+            return ret;
         }
 
         public IUuid getUuid(String cprNumber)

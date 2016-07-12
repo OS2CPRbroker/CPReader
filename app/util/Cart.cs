@@ -3,6 +3,7 @@ using System.Web;
 using System.Net;
 using System.Collections.Generic;
 using util.cprbroker;
+using cpreader.Properties;
 
 namespace util
 {
@@ -50,11 +51,11 @@ namespace util
                 Cart.Person cartPerson = new Cart.Person(person);
                 if (exists(uuid))
                 {
-                    return String.Format("{0} {1}", cartPerson, cpreader.Properties.Resources.cart_exists);
+                    return String.Format("{0} {1}", cartPerson, Messages.cart_exists);
                 }
                 else {
                     Persons.Add(cartPerson);
-                    return String.Format("{0} {1}", cartPerson, cpreader.Properties.Resources.cart_added);
+                    return String.Format("{0} {1}", cartPerson, Messages.cart_added);
                 }
             }
             else {
@@ -81,10 +82,10 @@ namespace util
                 {
                     Person cartPerson = Persons[i];
                     Persons.RemoveAt(i);
-                    return String.Format("{0} {1}", cartPerson, cpreader.Properties.Resources.cart_removed);
+                    return String.Format("{0} {1}", cartPerson, Messages.cart_removed);
                 }
             }
-            return String.Format("{0} {1}", uuid, cpreader.Properties.Resources.cart_notremoved);
+            return String.Format("{0} {1}", uuid, Messages.cart_notremoved);
         }
 
         public void clear()
