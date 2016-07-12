@@ -1,4 +1,4 @@
-@* ***** BEGIN LICENSE BLOCK *****
+﻿@* ***** BEGIN LICENSE BLOCK *****
  * Version: MPL 2.0/GPL 2.0/LGPL 2.1
  *
  * The contents of this file are subject to the Mozilla Public License
@@ -70,7 +70,7 @@
     </div> <!-- /container -->
     
     @*@helper.requireJs(core = routes.Assets.at("/public/javascripts/require.js").url, module = routes.Assets.at("/public/javascripts/main").url)*@
-      <script type="text/javascript" data-main="/assets/javascripts/main" src="/assets/javascripts/require.js"></script>
+      <script type="text/javascript" data-main="/public/javascripts/main" src="~/Scripts/require.js"></script>
 
   </body>
 
