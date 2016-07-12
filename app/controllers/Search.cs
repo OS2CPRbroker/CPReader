@@ -51,9 +51,9 @@ namespace cpreader.Controllers
         private static int onlineCacheTimeout;
         //public static IConfiguration config;
 
-        public SearchController(ICprBrokerAccessor newCprBroker)
+        public SearchController()
         {
-            cprBroker = newCprBroker;
+            cprBroker = new util.cprbroker.jaxws.JaxWsCprBroker();
             onlineCacheEnabled = cpreader.Properties.Settings.Default.cprbroker_onlinecacheenabled;
             onlineCacheTimeout = cpreader.Properties.Settings.Default.cprbroker_onlinecacheseconds;
         }
@@ -138,11 +138,11 @@ namespace cpreader.Controllers
 
                 List<IPerson> subPersons = persons.Take(toIndex).Skip(fromIndex).ToList();
 
-                return View(new Tuple<List<IPerson>, int, int, string, SearchInput, int>(subPersons, persons.Count, page, path, searchInput, accessLevel));
+                return View("list", new list_viewModel(subPersons, persons.Count, page, path, searchInput, accessLevel));
             }
             else
             {
-                return View(new Tuple<List<IPerson>, int, int, string, SearchInput, int>(persons, 1, page, path, searchInput, accessLevel));
+                return View("list", new list_viewModel(persons, 1, page, path, searchInput, accessLevel));
             }
         }
 
@@ -483,6 +483,12 @@ namespace cpreader.Controllers
                 controller.Session["online"] = onlineS;
             }
 
+        }
+
+        public class list_viewModel : Tuple<List<util.cprbroker.IPerson>, int, int, string, SearchInput, int>
+        {
+            public list_viewModel(List<util.cprbroker.IPerson> i1, int i2, int i3, string i4, SearchInput i5, int i6) : base(i1, i2, i3, i4, i5, i6)
+            { }
         }
 
     }

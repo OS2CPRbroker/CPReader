@@ -142,16 +142,6 @@ namespace cpreader.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:1551/services/part.asmx")]
-        public string cpreader_PartService_Part {
-            get {
-                return ((string)(this["cpreader_PartService_Part"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool cartAllowNonBornPersons {
             get {
@@ -162,27 +152,27 @@ namespace cpreader.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string cpreader_PartService_Part_username {
+        public string cprbroker_username {
             get {
-                return ((string)(this["cpreader_PartService_Part_username"]));
+                return ((string)(this["cprbroker_username"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string cpreader_PartService_Part_password {
+        public string cprbroker_password {
             get {
-                return ((string)(this["cpreader_PartService_Part_password"]));
+                return ((string)(this["cprbroker_password"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string cpreader_PartService_Part_domain {
+        public string cprbroker_domain {
             get {
-                return ((string)(this["cpreader_PartService_Part_domain"]));
+                return ((string)(this["cprbroker_domain"]));
             }
         }
     }

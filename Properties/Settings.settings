@@ -41,19 +41,16 @@
     <Setting Name="cprbroker_fetchrelations" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="cpreader_PartService_Part" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:1551/services/part.asmx</Value>
-    </Setting>
     <Setting Name="cartAllowNonBornPersons" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="cpreader_PartService_Part_username" Type="System.String" Scope="Application">
+    <Setting Name="cprbroker_username" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="cpreader_PartService_Part_password" Type="System.String" Scope="Application">
+    <Setting Name="cprbroker_password" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="cpreader_PartService_Part_domain" Type="System.String" Scope="Application">
+    <Setting Name="cprbroker_domain" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

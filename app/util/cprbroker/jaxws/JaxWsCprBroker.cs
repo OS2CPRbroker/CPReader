@@ -152,12 +152,12 @@ namespace util.cprbroker.jaxws
                 ApplicationHeaderValue = new ApplicationHeader() { ApplicationToken = applicationToken, UserToken = userToken },
                 SourceUsageOrderHeaderValue = new SourceUsageOrderHeader { SourceUsageOrder = (SourceUsageOrder)(int)sourceUsageOrder },
             };
-            if(!string.IsNullOrEmpty(Settings.Default.cpreader_PartService_Part_username))
+            if(!string.IsNullOrEmpty(Settings.Default.cprbroker_username))
             {
                 ret.Credentials = new System.Net.NetworkCredential(
-                    Settings.Default.cpreader_PartService_Part_username, 
-                    Settings.Default.cpreader_PartService_Part_password, 
-                    Settings.Default.cpreader_PartService_Part_domain);
+                    Settings.Default.cprbroker_username, 
+                    Settings.Default.cprbroker_password, 
+                    Settings.Default.cprbroker_domain);
             }
             else
             {
