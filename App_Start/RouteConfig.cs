@@ -19,7 +19,7 @@ namespace cpreader
 
             //# Home page
             //            GET / @controllers.Home.index()
-            routes.MapRoute("index", "", new { controller = "home", action = "index" });
+            routes.MapRoute("index", "", new { controller = "Home", action = "index" });
 
             //# Enable webjar based resources to be returned - used in development
             //#GET 	/webjars/*file  			controllers.WebJarAssets.at(file)

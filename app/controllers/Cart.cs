@@ -36,14 +36,14 @@ using System.Collections.Generic;
 using play;
 using System.Net;
 
-namespace controllers
+namespace cpreader.Controllers
 {
 
     /**
      * Created by Mat Howlett on 24/02/2015.
      */
 
-    public class Cart : Controller
+    public class CartController : Controller
     {
 
         private List<List<String>> cartItems = null; //new ArrayList<List<String>>();

@@ -34,20 +34,20 @@
 using System;
 using System.Web.Mvc;
 
-namespace controllers
+namespace cpreader.Controllers
 {
 
     /**
      * Created by Beemen on 22/12/2014.
      */
-    public class Home : Controller
+    public class HomeController : Controller
     {
 
         public ActionResult index()
         {
-            Search.SearchInput searchInput = new Search.SearchInput();
+            SearchController.SearchInput searchInput = new SearchController.SearchInput();
             searchInput.saveToSession(this);
-            return View("index", new Tuple<string, Search.SearchInput>(User.Identity.Name, searchInput));
+            return View("index", new Tuple<string, SearchController.SearchInput>(User.Identity.Name, searchInput));
         }
 
     }

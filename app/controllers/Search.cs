@@ -40,10 +40,10 @@ using System.Linq;
 using System.Collections.Generic;
 using util;
 
-namespace controllers
+namespace cpreader.Controllers
 {
 
-    public class Search : Controller
+    public class SearchController : Controller
     {
 
         private static ICprBrokerAccessor cprBroker;
@@ -51,7 +51,7 @@ namespace controllers
         private static int onlineCacheTimeout;
         //public static IConfiguration config;
 
-        public Search(ICprBrokerAccessor newCprBroker)
+        public SearchController(ICprBrokerAccessor newCprBroker)
         {
             cprBroker = newCprBroker;
             onlineCacheEnabled = cpreader.Properties.Settings.Default.cprbroker_onlinecacheenabled;

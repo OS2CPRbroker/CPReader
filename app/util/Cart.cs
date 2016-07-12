@@ -23,7 +23,7 @@ namespace util
 
         public static String cacheKey()
         {
-            return controllers.Search.getSessionId() + "-cart";
+            return cpreader.Controllers.SearchController.getSessionId() + "-cart";
         }
 
         public static Cart fromSession()
