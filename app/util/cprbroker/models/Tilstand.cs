@@ -59,9 +59,9 @@ namespace util.cprbroker.models
 
             public ITilstand build() { return new Tilstand(this); }
 
-            public Builder civilStatusKode(String newKode) { _civilStatusKode = (EMaritalStatusType)Enum.Parse(typeof(EMaritalStatusType), newKode); return this; }
+            public Builder civilStatusKode(String newKode) { _civilStatusKode = (EMaritalStatusType)Enum.Parse(typeof(EMaritalStatusType), newKode, true); return this; }
             public Builder civilTilstandsVirkning(IVirkning virkning) { _civilTilstandsVirkning = virkning; return this; }
-            public Builder livStatusKode(String newKode) { _livStatusKode = (ELifeStatusType)Enum.Parse(typeof(ELifeStatusType), newKode); return this; }
+            public Builder livStatusKode(String newKode) { _livStatusKode = (ELifeStatusType)Enum.Parse(typeof(ELifeStatusType), newKode, true); return this; }
             public Builder livTilstandsVirkning(IVirkning virkning) { _livTilstandsVirkning = virkning; return this; }
 
 

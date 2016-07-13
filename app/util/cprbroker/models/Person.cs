@@ -182,7 +182,7 @@ namespace util.cprbroker.models
 
             public Builder gender(String newGender)
             {
-                _gender = (EGenderType)Enum.Parse(typeof(EGenderType), newGender);
+                _gender = (EGenderType)Enum.Parse(typeof(EGenderType), newGender, true);
                 return this;
             }
 
