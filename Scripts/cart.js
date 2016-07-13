@@ -12,7 +12,7 @@ function addPersonToCart (uuid) {
 function removePersonFromCart(uuid){
     $.get(
         '/cart/remove/' + uuid + '/',
-        function(data){
+        function (data) {
             refreshCartContents();
         }
     );
@@ -149,7 +149,6 @@ function showPersonDetails(event, uuid)
     };
     if(detailsAnchor.attributes.loaded.value == 'false')
     {
-        alert(contentDiv.length)
         contentDiv.load(
             '/search/update/'+uuid+'/',
             null,

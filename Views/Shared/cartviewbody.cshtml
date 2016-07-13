@@ -21,7 +21,7 @@
                 <tr>
                     <td>@person.firstName @person.middleName @person.lastName</td>
                     <td>@person.PNR</td>
-                    <td><a name="removeFromCartAnchor" href="#" uuid='@person.UUID'>@Messages.cart_remove</a></td>
+                    <td><a name="removeFromCartAnchor" href="#" uuid='@(person.UUID)'>@Messages.cart_remove</a></td>
                 </tr>
             }
         </tbody>
@@ -32,12 +32,12 @@
     <div>
         @if (cartContents.Persons.Count > 0)
         {
-            <span id="spnCartIE">
+            <div id="spnCartIE">
                 <div>
                     <a href="" onclick='copyCprNumbers(); return false;' title=""><span class="glyphicon glyphicon-file"></span> @Messages.cart_copy</a>
                     <span style="display: none" id="spnCprNumbersCopied" txt="@Messages.cart_copied"></span>
                 </div>
-            </span>
+            </div>
             <div id="spnCartNonIE">
                 <div class="row">
                     <div class="col-md-12">

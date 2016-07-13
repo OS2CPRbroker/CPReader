@@ -54,7 +54,7 @@ namespace cpreader.Controllers
         {
             // get cart items from cache
             util.Cart cart = util.Cart.fromSession();
-            return View("cartviewbody", cart);
+            return PartialView("cartviewbody", new Tuple<util.Cart>(cart));
         }
 
         public static String countTextString()
