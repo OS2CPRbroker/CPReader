@@ -147,9 +147,9 @@ function showPersonDetails(event, uuid)
     var showFunc = function(){
         detailModalDiv.modal({keyboard:true, backdrop: 'static'});
     };
-
     if(detailsAnchor.attributes.loaded.value == 'false')
     {
+        alert(contentDiv.length)
         contentDiv.load(
             '/search/update/'+uuid+'/',
             null,

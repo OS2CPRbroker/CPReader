@@ -142,11 +142,11 @@ namespace util.cprbroker.jaxws
                 ApplicationHeaderValue = new ApplicationHeader() { ApplicationToken = applicationToken, UserToken = userToken },
                 SourceUsageOrderHeaderValue = new SourceUsageOrderHeader { SourceUsageOrder = (SourceUsageOrder)(int)sourceUsageOrder },
             };
-            if(!string.IsNullOrEmpty(Settings.Default.cprbroker_username))
+            if (!string.IsNullOrEmpty(Settings.Default.cprbroker_username))
             {
                 ret.Credentials = new System.Net.NetworkCredential(
-                    Settings.Default.cprbroker_username, 
-                    Settings.Default.cprbroker_password, 
+                    Settings.Default.cprbroker_username,
+                    Settings.Default.cprbroker_password,
                     Settings.Default.cprbroker_domain);
             }
             else
@@ -1013,41 +1013,41 @@ namespace util.cprbroker.jaxws
                 List<IRelationship> tmpRelationship;
 
                 // Add PersonRelation
-                tmpRelationship = getPersonRelation(personRelations.Aegtefaelle.ToList(), ERelationshipType.aegtefaelle);
+                tmpRelationship = getPersonRelation(personRelations.Aegtefaelle, ERelationshipType.aegtefaelle);
                 relationsBuilder.aegtefaelle(tmpRelationship);
 
-                tmpRelationship = getPersonRelation(personRelations.ErstatningAf.ToList(), ERelationshipType.erstatingAf);
+                tmpRelationship = getPersonRelation(personRelations.ErstatningAf, ERelationshipType.erstatingAf);
                 relationsBuilder.erstatingAf(tmpRelationship);
 
-                tmpRelationship = getPersonRelation(personRelations.Fader.ToList(), ERelationshipType.fader);
+                tmpRelationship = getPersonRelation(personRelations.Fader, ERelationshipType.fader);
                 relationsBuilder.fader(tmpRelationship);
 
-                tmpRelationship = getPersonRelation(personRelations.Foraeldremyndighedsindehaver.ToList(), ERelationshipType.foraeldremyndighedsindehaver);
+                tmpRelationship = getPersonRelation(personRelations.Foraeldremyndighedsindehaver, ERelationshipType.foraeldremyndighedsindehaver);
                 relationsBuilder.foraeldremyndighedsindehaver(tmpRelationship);
 
-                tmpRelationship = getPersonRelation(personRelations.Moder.ToList(), ERelationshipType.moder);
+                tmpRelationship = getPersonRelation(personRelations.Moder, ERelationshipType.moder);
                 relationsBuilder.moder(tmpRelationship);
 
-                tmpRelationship = getPersonRelation(personRelations.RegistreretPartner.ToList(), ERelationshipType.registreretPartner);
+                tmpRelationship = getPersonRelation(personRelations.RegistreretPartner, ERelationshipType.registreretPartner);
                 relationsBuilder.registreretPartner(tmpRelationship);
 
-                tmpRelationship = getPersonRelation(personRelations.RetligHandleevneVaergeForPersonen.ToList(), ERelationshipType.retligHandleevneVaergeForPersonen);
+                tmpRelationship = getPersonRelation(personRelations.RetligHandleevneVaergeForPersonen, ERelationshipType.retligHandleevneVaergeForPersonen);
                 relationsBuilder.retligHandleevneVaergeForPersonen(tmpRelationship);
 
                 // Add PersonFlerRelation
-                tmpRelationship = getPersonFlerRelation(personRelations.Boern.ToList(), ERelationshipType.boern);
+                tmpRelationship = getPersonFlerRelation(personRelations.Boern, ERelationshipType.boern);
                 relationsBuilder.boern(tmpRelationship);
 
-                tmpRelationship = getPersonFlerRelation(personRelations.Bopaelssamling.ToList(), ERelationshipType.bopaelssamling);
+                tmpRelationship = getPersonFlerRelation(personRelations.Bopaelssamling, ERelationshipType.bopaelssamling);
                 relationsBuilder.bopaelssamling(tmpRelationship);
 
-                tmpRelationship = getPersonFlerRelation(personRelations.ErstatningFor.ToList(), ERelationshipType.erstatingFor);
+                tmpRelationship = getPersonFlerRelation(personRelations.ErstatningFor, ERelationshipType.erstatingFor);
                 relationsBuilder.erstatingFor(tmpRelationship);
 
-                tmpRelationship = getPersonFlerRelation(personRelations.Foraeldremyndighedsboern.ToList(), ERelationshipType.foraeldremydighedsboern);
+                tmpRelationship = getPersonFlerRelation(personRelations.Foraeldremyndighedsboern, ERelationshipType.foraeldremydighedsboern);
                 relationsBuilder.foraeldremydighedsboern(tmpRelationship);
 
-                tmpRelationship = getPersonFlerRelation(personRelations.RetligHandleevneVaergemaalsindehaver.ToList(), ERelationshipType.retligHandleevneVaergemaalsindehaver);
+                tmpRelationship = getPersonFlerRelation(personRelations.RetligHandleevneVaergemaalsindehaver, ERelationshipType.retligHandleevneVaergemaalsindehaver);
                 relationsBuilder.retligHandleevneVaergemaalsindehaver(tmpRelationship);
 
                 // return the relations to the person
@@ -1057,12 +1057,10 @@ namespace util.cprbroker.jaxws
             return null;
         }
 
-        private List<IRelationship> getPersonFlerRelation(List<PersonFlerRelationType> relations, ERelationshipType type)
+        private List<IRelationship> getPersonFlerRelation(PersonFlerRelationType[] relations, ERelationshipType type)
         {
-
-            if (relations.FirstOrDefault() != null)
+            if (relations != null && relations.FirstOrDefault() != null)
             {
-
                 // Make a new list
                 List<IRelationship> list = new List<IRelationship>();
 
@@ -1096,10 +1094,9 @@ namespace util.cprbroker.jaxws
             return null;
         }
 
-        private List<IRelationship> getPersonRelation(List<PersonRelationType> relations, ERelationshipType type)
+        private List<IRelationship> getPersonRelation(PersonRelationType[] relations, ERelationshipType type)
         {
-
-            if (relations.FirstOrDefault() != null)
+            if (relations != null && relations.FirstOrDefault() != null)
             {
 
                 // Make a new list

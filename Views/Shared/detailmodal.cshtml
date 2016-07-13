@@ -36,9 +36,9 @@
     var person = Model.Item1;
     var accesslevel = Model.Item2;
 }
-<div id="detailModal@person.uuid()" class="modal static"  role="dialog">
+<div id="detailModal@(person.uuid())" class="modal static"  role="dialog">
     <div class="modal-dialog">
-        <div id="content@person.uuid()" class="modal-content" >
+        <div id="content@(person.uuid())" class="modal-content" >
             @Html.Partial("modalcontent", new Tuple<IPerson,int>(person, accesslevel))
         </div>
     </div>

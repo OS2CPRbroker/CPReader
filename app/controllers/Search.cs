@@ -350,21 +350,21 @@ namespace cpreader.Controllers
 
             if (accessLevel < 1)
             {
-                return View("access_denied", new Tuple<int, SearchInput, string>(401, searchInput, "Access denied."));
+                return PartialView("access_denied", new Tuple<int, SearchInput, string>(401, searchInput, "Access denied."));
             }
             if (person == null)
             {
-                return View("show_error", new Tuple<int, SearchInput>(503, searchInput));
+                return PartialView("show_error", new Tuple<int, SearchInput>(503, searchInput));
             }
 
             if (person.code() == 200)
             {
-                return View("modalcontent", new Tuple<IPerson, int>(person, accessLevel));
+                return PartialView("modalcontent", new Tuple<IPerson, int>(person, accessLevel));
 
             }
             else {
                 //TODO - A person wasn't found
-                return View("show_error", new Tuple<int, SearchInput>(person.code(), searchInput));
+                return PartialView("show_error", new Tuple<int, SearchInput>(person.code(), searchInput));
             }
         }
 

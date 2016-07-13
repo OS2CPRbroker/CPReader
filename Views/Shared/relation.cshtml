@@ -31,7 +31,7 @@
     *
     * ***** END LICENSE BLOCK ***** *@
 
-@model Tuple<util.cprbroker.IRelationshipWithIPerson, util.cprbroker.IPerson>
+@model Tuple<IRelationshipWithIPerson, IPerson>
 
 @{
     var relation = Model.Item1;
@@ -41,41 +41,49 @@
 <div class="col-md-12">
     <div class="panel panel-default">
         <div class="panel-heading">
-            @if (relation.person().code() == 200 || cpreader.Properties.Settings.Default.cprbroker_accesslevel > 0)
+            @if (relation.person().code() == 200 || Settings.Default.cprbroker_accesslevel > 0)
             {
-                <a href="/show/uuid/@relation.person().uuid()/">
+                @: <a href="/show/uuid/@(relation.person().uuid())/">
+            }
+            <h3 class="panel-title">
+                <span class="glyphicon glyphicon-user"></span> 
+                @relation.relationshipType()
+                @if (relation.person().code() == 200)
+                {
+                    @relation.person().registerInformation().cprCitizen().socialSecurityNumber()
+                    if (!string.IsNullOrEmpty(relation.person().firstname()))
+                    { 
+                        @relation.person().firstname()
                     }
-                    <h3 class="panel-title">
-                        <span class="glyphicon glyphicon-user"></span> @relation.relationshipType()
-                        @if (relation.person().code() == 200)
-                        {
-                            @relation.person().registerInformation().cprCitizen().socialSecurityNumber()
-                            @if (!string.IsNullOrEmpty(relation.person().firstname()))
-                            { @relation.person().firstname()}
-                            @if (!string.IsNullOrEmpty(relation.person().middelname()))
-                            { @relation.person().middelname()}
-                            @if (!string.IsNullOrEmpty(relation.person().lastname()))
-                            { @relation.person().lastname()}
-                        }
-                    </h3>
-
-                    <p class="text-right">
-                        @if (relation != null && relation.person().firstname() != null && relation.person().lastname() != null && relation.person().uuid() != null)
-                        {
-                            <div id="session" style="display: none;">
-                                @System.Web.HttpContext.Current.Cache[relation.person().uuid()]= relation.person;
-                            </div>
-                                @if (System.Web.HttpContext.Current.Session["usecart"] as string == "1")
-                                {
-                                    Html.RenderPartial("cart", new Tuple<IPerson, string, bool, bool, string>(relation.person(), person.uuid(), false, false, "none"));
-                                }
-                        }
-                    </p>
-            </div>
-                @if (relation.person().code() == 200 || Settings.Default.cprbroker_accesslevel > 0) {
-     </a>
+                    if (!string.IsNullOrEmpty(relation.person().middelname()))
+                    { 
+                        @relation.person().middelname()
+                    }
+                    if (!string.IsNullOrEmpty(relation.person().lastname()))
+                    { 
+                        @relation.person().lastname()
+                    }
                 }
-                @*
+            </h3>
+
+            <p class="text-right">
+                @if (relation != null && relation.person().firstname() != null && relation.person().lastname() != null && relation.person().uuid() != null)
+                {
+                    <div id="session" style="display: none;">
+                        @HttpContext.Current.Cache[relation.person().uuid()]= relation.person;
+                    </div>
+                    if (System.Web.HttpContext.Current.Session["usecart"] as string == "1")
+                    {
+                        Html.Partial("cart", new Tuple<IPerson>(relation.person()));
+                    }
+                }
+            </p>
+        </div>
+        @if (relation.person().code() == 200 || Settings.Default.cprbroker_accesslevel > 0)
+        {
+            @: </a>
+        }
+        @*
                     <div class="panel-body">
                        @if(relation.person.code != 200) {
                              @if(Play.application().configuration().getInt("cprbroker.accesslevel") > 0) {
@@ -88,6 +96,6 @@
                        @tilstande(relation.person.tilstand)
                        @virkning(relation.effect, true)
                     </div>
-                *@
-            </div>
-        </div>
+        *@
+    </div>
+</div>
