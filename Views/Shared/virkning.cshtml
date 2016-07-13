@@ -39,19 +39,34 @@
 
 @if (virkning != null)
 {
-    @if (virkning.fraTidspunkt() != null || virkning.tilTidspunkt() != null)
+    if (virkning.fraTidspunkt() != null || virkning.tilTidspunkt() != null)
     {
         <span class="glyphicon glyphicon-time"></span>
     }
-    @if (virkning.fraTidspunkt() != null)
-    {@virkning.fraTidspunkt().ToString("dd.MM.yy HH:mm")}
-    @if (isVirkning && virkning.tilTidspunkt() != null)
+    if (virkning.fraTidspunkt() != null)
+    {
+        @virkning.fraTidspunkt().Value.ToString("dd.MM.yy HH:mm")
+    }
+    if (isVirkning && virkning.tilTidspunkt() != null)
     {
         <span class="glyphicon glyphicon-arrow-right"></span>
-        if (virkning.tilTidspunkt() != null)
-        {@virkning.tilTidspunkt().ToString("dd.MM.yy HH:mm")}
-        if (virkning.kommentar() != null) {<br/>@virkning.kommentar()}
-        if(virkning.aktoerRefUrn()) {<br/>@virkning.aktoerRefUrn()}
-        if(virkning.aktoerRefUuid() != null) {<br/>@virkning.aktoerRefUuid()}
+        if (virkning.tilTidspunkt() != new DateTime())
+        {
+            @virkning.tilTidspunkt().Value.ToString("dd.MM.yy HH:mm")
+        }
+        if (!string.IsNullOrEmpty(virkning.kommentar()))
+        {
+            <br/>
+            @virkning.kommentar()
+        }
+        if(!string.IsNullOrEmpty(virkning.aktoerRefUrn()))
+        {
+            <br/>
+            @virkning.aktoerRefUrn()
+        }
+        if(!string.IsNullOrEmpty(virkning.aktoerRefUuid())) {
+            <br/>
+            @virkning.aktoerRefUuid()
+        }
     }
 }

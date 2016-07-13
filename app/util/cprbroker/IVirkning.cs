@@ -57,9 +57,7 @@ namespace util.cprbroker
         String aktoerRefUrn();
         String aktoerRefUuid();
         String kommentar();
-        DateTime fraTidspunkt();
-        Boolean isFraTidspunktGraenseIndikator();
-        DateTime tilTidspunkt();
-        Boolean isTilTidspunktGraenseIndikator();
+        DateTime? fraTidspunkt();
+        DateTime? tilTidspunkt();
     }
 }

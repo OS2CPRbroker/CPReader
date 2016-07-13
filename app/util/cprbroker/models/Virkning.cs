@@ -47,11 +47,9 @@ public class Virkning : IVirkning {
 	public String _actorUrn;
 	public String _actorUuid;
 	public String _comment;
-	public DateTime _effectiveFromDate;
-	public Boolean _isEffectiveFromLimit;
-	public DateTime _effectiveToDate;
-	public Boolean _isEffectiveToLimit;
-
+	public DateTime? _effectiveFromDate;
+	public DateTime? _effectiveToDate;
+	
 	public class Builder {
 		
 		public Builder() {}
@@ -59,10 +57,8 @@ public class Virkning : IVirkning {
 		public String _actorUrn;
 		public String _actorUuid;
 		public String _comment;
-		public DateTime _effectiveFromDate;
-		public Boolean _isEffectiveFromLimit;
-		public DateTime _effectiveToDate;
-		public Boolean _isEffectiveToLimit;
+		public DateTime? _effectiveFromDate;
+		public DateTime? _effectiveToDate;
 		
 		public IVirkning build() { return new Virkning(this); }
 		
@@ -71,9 +67,7 @@ public class Virkning : IVirkning {
 		public Builder actorUuid(String newUuid) { _actorUuid = newUuid; return this; }
 		public Builder comment(String newComment) { _comment = newComment; return this; }
 		public Builder effectiveFromDate(DateTime newDate) { _effectiveFromDate = newDate; return this; }
-		public Builder isEffectiveFromLimit(Boolean isLimit) { _isEffectiveFromLimit = isLimit; return this; }
 		public Builder effectiveToDate(DateTime newDate) { _effectiveToDate = newDate; return this; }
-		public Builder isEffectiveToLimit(Boolean isLimit) { _isEffectiveToLimit = isLimit; return this; }
 		
 	}
 	
@@ -83,31 +77,19 @@ public class Virkning : IVirkning {
 		_actorUuid = builder._actorUuid;
 		_comment = builder._comment;
 		_effectiveFromDate = builder._effectiveFromDate;
-		_isEffectiveFromLimit = builder._isEffectiveFromLimit;
 		_effectiveToDate = builder._effectiveToDate;
-		_isEffectiveToLimit = builder._isEffectiveToLimit;
 	}
 
 	
 	public String aktoerRefUrn() { return _actorUrn; }
-
 	
 	public String aktoerRefUuid() {	return _actorUuid; }
-
 	
 	public String kommentar() { return _comment; }
-
 	
-	public DateTime fraTidspunkt() { return _effectiveFromDate; }
-
+	public DateTime? fraTidspunkt() { return _effectiveFromDate; }
 	
-	public Boolean isFraTidspunktGraenseIndikator() { return _isEffectiveFromLimit; }
-
-	
-	public DateTime tilTidspunkt() { return _effectiveToDate; }
-
-	
-	public Boolean isTilTidspunktGraenseIndikator() { return _isEffectiveToLimit; }
+	public DateTime? tilTidspunkt() { return _effectiveToDate; }
 
 }
 

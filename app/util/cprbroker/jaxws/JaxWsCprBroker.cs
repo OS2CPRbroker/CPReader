@@ -1153,18 +1153,9 @@ namespace util.cprbroker.jaxws
                             .actorUuid(actor.Item);
                 }
 
-                if (virkningType.FraTidspunkt != null)
+                if (virkningType.FraTidspunkt != null && virkningType.FraTidspunkt.Item is DateTime)
                 {
-
-                    if (virkningType.FraTidspunkt.Item is DateTime)
-                    {
-                        effectBuilder.effectiveFromDate((DateTime)virkningType.FraTidspunkt.Item);
-                    }
-                    else
-                    {
-                        effectBuilder.isEffectiveFromLimit((bool)virkningType.FraTidspunkt.Item);
-
-                    }
+                    effectBuilder.effectiveFromDate((DateTime)virkningType.FraTidspunkt.Item);
                 }
 
                 effectBuilder.comment(virkningType.CommentText);
@@ -1192,30 +1183,14 @@ namespace util.cprbroker.jaxws
                             .actorUuid(actor.Item);
                 }
 
-                if (virkningType.FraTidspunkt != null)
+                if (virkningType.FraTidspunkt != null && virkningType.FraTidspunkt.Item is DateTime)
                 {
-                    if (virkningType.FraTidspunkt.Item is DateTime)
-                    {
-                        effectBuilder.effectiveFromDate((DateTime)virkningType.FraTidspunkt.Item);
-                    }
-                    else
-                    {
-                        effectBuilder.isEffectiveFromLimit((bool)virkningType.FraTidspunkt.Item);
-                    }
-
+                    effectBuilder.effectiveFromDate((DateTime)virkningType.FraTidspunkt.Item);
                 }
 
-                if (virkningType.TilTidspunkt != null)
+                if (virkningType.TilTidspunkt != null && virkningType.TilTidspunkt.Item is DateTime)
                 {
-                    if (virkningType.TilTidspunkt.Item is DateTime)
-                    {
-                        effectBuilder.effectiveToDate((DateTime)virkningType.TilTidspunkt.Item);
-                    }
-                    else
-                    {
-                        effectBuilder.isEffectiveToLimit((bool)virkningType.TilTidspunkt.Item);
-                    }
-
+                    effectBuilder.effectiveToDate((DateTime)virkningType.TilTidspunkt.Item);
                 }
 
                 effectBuilder.comment(virkningType.CommentText);
