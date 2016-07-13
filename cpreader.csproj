@@ -256,8 +256,14 @@
     <Compile Include="app\util\StringUtils.cs" />
     <Content Include="app\views\access_denied.scala.html" />
     <Content Include="app\views\listsingle.scala.html" />
+    <Content Include="Scripts\cart.js" />
+    <Content Include="Scripts\lib.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\modolus11.js" />
+    <Content Include="Scripts\processQuery.js" />
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\validate.js" />
     <Content Include="Views\Shared\booleanfield.cshtml" />
     <Content Include="Views\Shared\cart.cshtml" />
     <None Include="Views\Shared\cartview.cshtml" />
@@ -299,7 +305,6 @@
     <Content Include="public\javascripts\bootstrap-3.3.1-dist\dist\js\bootstrap.js" />
     <Content Include="public\javascripts\bootstrap-3.3.1-dist\dist\js\bootstrap.min.js" />
     <Content Include="public\javascripts\bootstrap-3.3.1-dist\dist\js\npm.js" />
-    <Content Include="public\javascripts\cart.js" />
     <Content Include="public\javascripts\jquery-1.11.1\jquery-1.11.1.js" />
     <Content Include="public\javascripts\jquery-1.11.1\jquery-1.11.1.min.js" />
     <Content Include="public\javascripts\jquery-ui-1.11.2.custom\external\jquery\jquery.js" />
@@ -326,11 +331,6 @@
     <Content Include="public\javascripts\jquery-ui-1.11.2.custom\jquery-ui.structure.min.css" />
     <Content Include="public\javascripts\jquery-ui-1.11.2.custom\jquery-ui.theme.css" />
     <Content Include="public\javascripts\jquery-ui-1.11.2.custom\jquery-ui.theme.min.css" />
-    <Content Include="public\javascripts\lib.js" />
-    <Content Include="public\javascripts\main.js" />
-    <Content Include="public\javascripts\modolus11.js" />
-    <Content Include="public\javascripts\processQuery.js" />
-    <Content Include="public\javascripts\validate.js" />
     <Content Include="public\stylesheets\modal.css" />
     <Content Include="public\stylesheets\navbar.css" />
     <Content Include="public\stylesheets\signin.css" />
