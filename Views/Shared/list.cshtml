@@ -72,14 +72,14 @@
             <div class="panel-heading">
                 @if (searchInput.online)
                 {
-                <h4>@Messages.results_list_online_desc_1</h4>
-                @Messages.results_list_online_desc_2<br />
-                @Messages.results_list_online_desc_3
+                    <h4>@Messages.results_list_online_desc_1</h4>
+                    @Messages.results_list_online_desc_2<br />
+                    @Messages.results_list_online_desc_3
                 }
                 else {
-                <h4>@Messages.results_list_local_desc_1</h4>
-                @Messages.results_list_local_desc_2<br />
-                @Messages.results_list_local_desc_3
+                    <h4>@Messages.results_list_local_desc_1</h4>
+                    @Messages.results_list_local_desc_2<br />
+                    @Messages.results_list_local_desc_3
                 }
             </div>
         </div>
@@ -94,33 +94,43 @@
                     {
                         <div class="col-md-3 text-left">
                             @if (accesslevel > 1)
-                                {
+                            {
                                 @* Button to show person details *@
-                                <a href="#" onclick="javascript:showPersonDetails(event,'@person.uuid()')"
+                                <a href="#" onclick="javascript:showPersonDetails(event,'@(person.uuid())')"
                                    data-backdrop="static" data-toggle="modal"
-                                   @if (person.relationsWithPerson() != null) { Html.Raw("loaded = \"true\""); }
-                                   @if (person.relationsWithPerson() == null) { Html.Raw("loaded = \"false\""); }><span class="glyphicon glyphicon-user"></span>@Messages.person_viewdetails</a>
-                                }
+                                   @if (person.relationsWithPerson() != null) { @("loaded=\"true\"") }
+                                   @if (person.relationsWithPerson() == null) { @("loaded=\"false\"")}>
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    @Messages.person_viewdetails
+                                </a>
+                            }
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             @* Button to show person parents and custody holders *@
-                            <a href="#" onclick="javascript:showParents(event,'@person.uuid()')"
-                               @if (person.relationsWithPerson() != null) { Html.Raw("loaded = \"true\""); }
-                               @if (person.relationsWithPerson() == null) { Html.Raw("loaded = \"false\""); }><span class="glyphicon glyphicon-user"></span>@Messages.person_showparents</a>
+                            <a href="#" onclick="javascript:showParents(event,'@(person.uuid())')"
+                               @if (person.relationsWithPerson() != null) { @("loaded=\"true\"") }
+                               @if (person.relationsWithPerson() == null) { @("loaded=\"false\"") }>
+                                <span class="glyphicon glyphicon-user"></span>
+                                @Messages.person_showparents
+                            </a>
                         </div>
 
                         <div class="col-md-2 text-right">
                             @if (HttpContext.Current.Session["usecart"] as string == "1")
-                                {  <div id="cart@person.uuid()">@Html.Partial("cart", new Tuple<IPerson, string, bool, bool, string>(person, "none", false, false, "none"))</div> }
+                            {  
+                                <div id="cart@(person.uuid())">
+                                    @Html.Partial("cart", new Tuple<IPerson, string, bool, bool, string>(person, "none", false, false, "none"))
+                                </div> 
+                            }
                         </div>
                     }
                     else
                     {
                         <div class="col-md-5 text-right">
                             @if (HttpContext.Current.Session["usecart"] as string == "1")
-                            {  
-                                <div id="cart@person.uuid()">
+                            {
+                                <div id="cart@(person.uuid())">
                                     @Html.Partial("cart", new Tuple<IPerson, string, bool, bool, string>(person, "none", false, false, "none"))
-                                </div> 
+                                </div>
                             }
                         </div>
                     }
@@ -130,11 +140,11 @@
                 @********************************************************************************************************************@
                 @**************** SHOW PARENTS / CUSTODY HOLDERS ********************************************************************@
                 @********************************************************************************************************************@
-                <div id="parents-row@person.uuid()">
+                <div id="parents-row@(person.uuid())">
                     @Html.Partial("parentlist", new Tuple<IPerson, int>(person, accesslevel))
                 </div>
                 <script>
-                    document.getElementById("parents-row@person.uuid()").style.display = 'none';
+                    document.getElementById("parents-row@(person.uuid())").style.display = 'none';
                 </script>
 
 
@@ -142,7 +152,7 @@
                 @if (HttpContext.Current.Session["showparents@person.uuid"] as string == "show")
                 {
                     <script>
-                        document.getElementById("parents-row@person.uuid()").style.display = 'block';
+                        document.getElementById("parents-row@(person.uuid())").style.display = 'block';
                     </script>
                 }
                 else
@@ -153,10 +163,9 @@
                 @**************** END SHOW PARENTS / CUSTODY HOLDERS ****************************************************************@
                 @********************************************************************************************************************@
             </div>
-
-
+            
             <!-- Modal HTML -->
-            Html.Partial("detailmodal", new Tuple<IPerson, int>(person, accesslevel));
+            @(Html.Partial("detailmodal", new Tuple<IPerson, int>(person, accesslevel)))
 
             if (HttpContext.Current.Session["showparents"] as string == person.uuid())
             {
@@ -164,7 +173,7 @@
 
                             window.onload = function () {
                                 $('[id^=parents-row]').slideUp("fast");
-                                $('#parents-row@person.uuid()').slideDown("fast");
+                                $('#parents-row@(person.uuid())').slideDown("fast");
                 }
                 </script>
             }
@@ -173,8 +182,8 @@
                 <script>
                     window.onload = function () {
                         $('[id^=detailModal]').hide();
-                        $('#detailModal@person.uuid()').modal('show');
-                };
+                        $('#detailModal@(person.uuid())').modal('show');
+                    };
                 </script>
             }
         }
