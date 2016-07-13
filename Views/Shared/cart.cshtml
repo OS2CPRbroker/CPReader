@@ -31,7 +31,7 @@
     *
     * ***** END LICENSE BLOCK ***** *@
 
-@model Tuple<util.cprbroker.IPerson, string, Boolean, Boolean, String>
+@model Tuple<IPerson, string, Boolean, Boolean, String>
 
 @{
     var person = Model.Item1;
@@ -40,20 +40,21 @@
     var showparents = Model.Item4;
     var expandid = Model.Item5;
 }
-@if (
-                               cpreader.Properties.Settings.Default.cartAllowNonBornPersons
-                                || (person.tilstand() != null && person.tilstand().livStatusKode() == util.cprbroker.ELifeStatusType.FOEDT)
-                            )
+@if (Settings.Default.cartAllowNonBornPersons 
+    || 
+    (person.tilstand() != null && person.tilstand().livStatusKode() == ELifeStatusType.FOEDT)
+    )
 {
     <a href="#" name="addToCartAnchor" uuid='@(person.uuid())'><span class="glyphicon glyphicon-plus"></span> @Messages.cart_add</a>
 }
-else {
+else
+{
     <a>
         <span class="link-disabled"><span class="glyphicon glyphicon-plus"></span>@Messages.cart_add</span>
     </a>
 }
 
-@if (System.Web.HttpContext.Current.Session["opencart"] as string == "true")
+@if (HttpContext.Current.Session["opencart"] as string == "true")
 {
     <script>
         window.onload = function () {
@@ -61,12 +62,3 @@ else {
         };
     </script>
 }
-else {
-
-}
-
-
-
-
-
-
