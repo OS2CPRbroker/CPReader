@@ -39,7 +39,7 @@
             
             @if (HttpContext.Current.Session["usecart"] as string == "1")
             {
-                Html.Partial("cart", new Tuple<IPerson, string, bool, bool, string>(person, person.uuid(), false, false, "none"));
+                Html.Partial("cart", new Tuple<IPerson>(person));
             }
         </p>
     </div>

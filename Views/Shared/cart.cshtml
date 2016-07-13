@@ -31,14 +31,10 @@
     *
     * ***** END LICENSE BLOCK ***** *@
 
-@model Tuple<IPerson, string, Boolean, Boolean, String>
+@model Tuple<IPerson>
 
 @{
     var person = Model.Item1;
-    var showperson = Model.Item2;
-    var showcart = Model.Item3;
-    var showparents = Model.Item4;
-    var expandid = Model.Item5;
 }
 @if (Settings.Default.cartAllowNonBornPersons 
     || 

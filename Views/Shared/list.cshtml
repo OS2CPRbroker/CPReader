@@ -118,7 +118,7 @@
                             @if (HttpContext.Current.Session["usecart"] as string == "1")
                             {  
                                 <div id="cart@(person.uuid())">
-                                    @Html.Partial("cart", new Tuple<IPerson, string, bool, bool, string>(person, "none", false, false, "none"))
+                                    @Html.Partial("cart", new Tuple<IPerson>(person))
                                 </div> 
                             }
                         </div>
@@ -129,7 +129,7 @@
                             @if (HttpContext.Current.Session["usecart"] as string == "1")
                             {
                                 <div id="cart@(person.uuid())">
-                                    @Html.Partial("cart", new Tuple<IPerson, string, bool, bool, string>(person, "none", false, false, "none"))
+                                    @Html.Partial("cart", new Tuple<IPerson>(person))
                                 </div>
                             }
                         </div>
