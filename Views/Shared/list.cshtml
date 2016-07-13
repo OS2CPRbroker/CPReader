@@ -55,11 +55,11 @@
                     string.Format(Messages.results_list_amountOfResults, results); <strong>@searchInput.getQuery()</strong>
                     if (searchInput.getAddressQuery() != null && searchInput.getAddressQuery().Length > 0)
                     {
-                        Html.Raw(" " + searchInput.getAddressQuery());
+                        @(" " + searchInput.getAddressQuery())
                     }
                 }
                 else {
-                    Html.Raw(string.Format(Messages.results_list_searchFailed, results));
+                    @(string.Format(Messages.results_list_searchFailed, results))
                 }
             </h3>
         </div>
@@ -97,9 +97,7 @@
                             {
                                 @* Button to show person details *@
                                 <a href="#" onclick="javascript:showPersonDetails(event,'@(person.uuid())')"
-                                   data-backdrop="static" data-toggle="modal"
-                                   @if (person.relationsWithPerson() != null) { @("loaded=\"true\"") }
-                                   @if (person.relationsWithPerson() == null) { @("loaded=\"false\"")}>
+                                   data-backdrop="static" data-toggle="modal" loaded="@(person.relationsWithPerson() != null? "true" : "false")">
                                     <span class="glyphicon glyphicon-user"></span>
                                     @Messages.person_viewdetails
                                 </a>
