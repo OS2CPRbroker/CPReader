@@ -32,10 +32,11 @@
  *
  * ***** END LICENSE BLOCK ***** *@
  
-@model Tuple<String, SearchController.SearchInput>
 @{ 
-    var title = Model.Item1;
-    var searchInput = Model.Item2;
+    var title = ViewBag.Title;
+    var searchInput = new SearchController.SearchInput();
+    searchInput.fillFromSession(HttpContext.Current);
+    
 }
 
 <!DOCTYPE html>

@@ -39,6 +39,7 @@ using System.Net;
 using System.Linq;
 using System.Collections.Generic;
 using util;
+using System.Web;
 
 namespace cpreader.Controllers
 {
@@ -449,8 +450,18 @@ namespace cpreader.Controllers
 
             public void fillFromSession(Controller controller)
             {
-                setQuery(StringUtils.format("{0}", controller.Session["query"]));
-                setAddressQuery(StringUtils.format("{0}", controller.Session["addressQuery"]));
+                fillFromSession(controller.Session.Keys.OfType<string>().ToDictionary<string, string, object>(k => k, k => controller.Session[k]));
+            }
+
+            public void fillFromSession(HttpContext context)
+            {
+                fillFromSession(context.Session.Keys.OfType<string>().ToDictionary<string, string, object>(k => k, k => context.Session[k]));
+            }
+
+            public void fillFromSession(Dictionary<string,object> controller)
+            {
+                setQuery(StringUtils.format("{0}", controller["query"]));
+                setAddressQuery(StringUtils.format("{0}", controller["addressQuery"]));
 
 
                 if (cpreader.Properties.Settings.Default.search_type == 1)
@@ -465,7 +476,7 @@ namespace cpreader.Controllers
                 }
                 else
                 {
-                    String onlineS = controller.Session["online"] as string;
+                    String onlineS = controller["online"] as string;
                     if ("true".Equals(onlineS))
                         setOnline(true);
                 }
