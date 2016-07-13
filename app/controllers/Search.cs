@@ -318,11 +318,11 @@ namespace cpreader.Controllers
 
             if (person.code() == 200)
             {
-                return View("parentlist", new Tuple<IPerson, int>(person, accessLevel));
+                return PartialView("parentlist", new Tuple<IPerson, int>(person, accessLevel));
             }
             else {
                 //TODO - A person wasn't found
-                return View("show_error", new Tuple<int, SearchInput>(person.code(), searchInput));
+                return PartialView("show_error", new Tuple<int, SearchInput>(person.code(), searchInput));
             }
         }
 
