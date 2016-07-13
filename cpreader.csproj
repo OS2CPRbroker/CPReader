@@ -279,6 +279,7 @@
     <Content Include="Views\Shared\modalcontent.cshtml" />
     <Content Include="Views\Shared\greenlandicaddress.cshtml" />
     <Content Include="Views\Shared\navbar.cshtml" />
+    <Content Include="Views\Shared\danishaddress.cshtml" />
     <None Include="Views\Shared\parentlist.cshtml" />
     <Content Include="app\views\parentmodal.scala.html" />
     <Content Include="app\views\person.scala.html" />

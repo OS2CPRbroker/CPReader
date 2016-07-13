@@ -93,12 +93,12 @@
                                 <h3 class="panel-title">@Messages.resultat_egenskaber</h3>
                             </div>
                             <div class="panel-body">
-                                @Html.Partial("textfield", new Tuple<string, object>("person_firstname", person.firstname()))
-                                @Html.Partial("textfield", new Tuple<string, object>("person.middelname", person.middelname()))
-                                @Html.Partial("textfield", new Tuple<string, object>("person.lastname", person.lastname()))
-                                @Html.Partial("textfield", new Tuple<string, object>("person.callname", person.callname()))
-                                @Html.Partial("textfield", new Tuple<string, object>("person.nameForAddressing", person.nameForAddressing()))
-                                @Html.Partial("textfield", new Tuple<string, object>("person.gender", person.gender()))
+                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_firstname, person.firstname()))
+                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_middelname, person.middelname()))
+                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_lastname, person.lastname()))
+                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_callname, person.callname()))
+                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_nameForAddressing, person.nameForAddressing()))
+                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_gender, person.gender()))
                                 @if (person.birthdate() != null)
                                 {
                                     <dl class="dl-horizontal margins-removed">
@@ -106,8 +106,8 @@
                                         <dd>@person.birthdate().ToString("dd. MMMM yyyy")</dd>
                                     </dl>
                                 }
-                                @Html.Partial("textfield", new Tuple<string, object>("person.birthplace", person.nameForAddressing()))
-                                @Html.Partial("textfield", new Tuple<string, object>("person.birthRegisteringAuthority", person.birthRegisteringAuthority()))
+                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_birthplace, person.nameForAddressing()))
+                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_birthRegisteringAuthority, person.birthRegisteringAuthority()))
                             </div>
                             <div class="panel-footer"><p class="text-right">@Html.Partial("virkning", new Tuple<IVirkning, bool>(person.effect(), true))</p></div>
                         </div>
@@ -120,12 +120,12 @@
                             <div class="panel-body">
                                 @if (person.registerInformation() != null)
                                 {
-                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, "person.registerInformation.cprCitizen.socialSecurityNumberActive", person.registerInformation().cprCitizen().isSocialSecurityNumberValid()))
-                                    @Html.Partial("textfield", new Tuple<string, object>("person.registerInformation.cprCitizen.personNationalityCode", person.registerInformation().cprCitizen().personNationalityCode()))
-                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, "person.registerInformation.cprCitizen.isMemberOfTheChurch", person.registerInformation().cprCitizen().isMemberOfTheChurch()))
-                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, "person.registerInformation.cprCitizen.isResearcherProtected", person.registerInformation().cprCitizen().isResearcherProtected()))
-                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, "person.registerInformation.cprCitizen.isNameAddressProtected", person.registerInformation().cprCitizen().isNameAddressProtected()))
-                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, "person.registerInformation.cprCitizen.isPhoneNumberProtected", person.registerInformation().cprCitizen().isPhoneNumberProtected()))
+                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_socialSecurityNumberActive, person.registerInformation().cprCitizen().isSocialSecurityNumberValid()))
+                                    @Html.Partial("textfield", new Tuple<string, object>(Messages.person_registerInformation_cprCitizen_personNationalityCode, person.registerInformation().cprCitizen().personNationalityCode()))
+                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_isMemberOfTheChurch, person.registerInformation().cprCitizen().isMemberOfTheChurch()))
+                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_isResearcherProtected, person.registerInformation().cprCitizen().isResearcherProtected()))
+                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_isNameAddressProtected, person.registerInformation().cprCitizen().isNameAddressProtected()))
+                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_isPhoneNumberProtected, person.registerInformation().cprCitizen().isPhoneNumberProtected()))
                                 }
                             </div>
                             <div class="panel-footer">
@@ -141,7 +141,7 @@
                                     if (person.tilstand().civilStatusKode() != null)
                                     {
                                         <dl class="dl-horizontal">
-                                            <dt>@Messages.person_tilstand_civilStatusKode")</dt>
+                                            <dt>@Messages.person_tilstand_civilStatusKode</dt>
                                             <dd>@person.tilstand().civilStatusKode()</dd>
                                             @if (person.tilstand().civilTilstandsVirkning().fraTidspunkt() != null)
                                             {
@@ -152,7 +152,7 @@
                                     if (person.tilstand().livStatusKode() != null)
                                     {
                                         <dl class="dl-horizontal">
-                                            <dt>@Messages.person_tilstand_livStatusKode")</dt>
+                                            <dt>@Messages.person_tilstand_livStatusKode</dt>
                                             <dd>@person.tilstand().livStatusKode()</dd>
                                             @if (person.tilstand().livTilstandsVirkning().fraTidspunkt() != null)
                                             {
