@@ -51,10 +51,11 @@ namespace cpreader
             //GET / search / address /:address / page /:page @controllers.Search.searchNameAndAddress(name = "", address: String, online: Boolean ?= false, page: Int)
             routes.MapRoute("search9", "search/address/{address}/page/{page}", new { controller = "Search", action = "searchNameAndAddress", name="", online=false });
             //GET / search / address /:address / online / page /:page @controllers.Search.searchNameAndAddress(name = "", address: String, online: Boolean ?= true, page: Int)
-            routes.MapRoute("address10", "search/address/{address}/online/page/{page}", new { controller = "Search", action = "searchNameAndAddress", name="", online=true });
+            routes.MapRoute("search10", "search/address/{address}/online/page/{page}", new { controller = "Search", action = "searchNameAndAddress", name="", online=true });
 
             //GET / show / uuid /:uuid / @controllers.Search.showPerson(uuid: String)
             //#GET         /showfull/uuid/:uuid/                                        @controllers.Search.showPersonFull(uuid : String)
+            routes.MapRoute("search11", "show/uuid/{uuid}/", new { controller = "Search", action = "showPerson" });
 
             //# Map static resources from the /public folder to the /assets URL path
             //GET / assets/*file                                                controllers.Assets.at(path="/public", file)

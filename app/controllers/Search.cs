@@ -192,7 +192,7 @@ namespace cpreader.Controllers
                 int page = 1;
                 int accessLevel = AccessLevelManager.getCurrentAccessLevel();
 
-                return View("list", new Tuple<List<IPerson>, int, int, string, SearchInput, int>(
+                return View("list", new list_viewModel(
                     persons, 1, page, path, searchInput, accessLevel));
             }
             else {
