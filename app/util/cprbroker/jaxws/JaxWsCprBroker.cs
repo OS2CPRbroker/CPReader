@@ -44,11 +44,7 @@ namespace util.cprbroker.jaxws
     public class JaxWsCprBroker : ICprBrokerAccessor
     {
 
-        public static readonly String HTTP = "http://";
-        public static readonly String HTTPS = "https://";
-
         private String endpoint;
-        private bool usingSsl;
         private String applicationToken;
         private String userToken;
         private int allowedSourceUsageOrderHeader;
@@ -60,10 +56,7 @@ namespace util.cprbroker.jaxws
         public JaxWsCprBroker()
         {
 
-            usingSsl = cpreader.Properties.Settings.Default.cprbroker_ssl;
-
-            String prefix = (usingSsl) ? HTTPS : HTTP;
-            endpoint = prefix + cpreader.Properties.Settings.Default.cprbroker_endpoint;
+            endpoint = Settings.Default.cprbroker_endpoint;
 
             applicationToken = cpreader.Properties.Settings.Default.cprbroker_applicationtoken;
             userToken = cpreader.Properties.Settings.Default.cprbroker_usertoken;
@@ -73,7 +66,6 @@ namespace util.cprbroker.jaxws
             //keystorePassword = config.getString("keystorepassword");
 
             play.Logger.debug("JaxWsCprBroker.constructor, endpoint: " + endpoint);
-            play.Logger.debug("JaxWsCprBroker.constructor, usingSsl: " + usingSsl);
             play.Logger.debug("JaxWsCprBroker.constructor, appToken: " + applicationToken);
             play.Logger.debug("JaxWsCprBroker.constructor, userToken: " + userToken);
             play.Logger.debug("JaxWsCprBroker.constructor, allowedSourceUsageOrderHeader: " + allowedSourceUsageOrderHeader);
@@ -118,8 +110,6 @@ namespace util.cprbroker.jaxws
                 play.Logger.info(value + " configured with " + value);
             }
 
-
-            play.Logger.info("cprbroker.ssl configured with " + cpreader.Properties.Settings.Default.cprbroker_ssl);
 
             int accesslevel = cpreader.Properties.Settings.Default.cprbroker_accesslevel;
 
@@ -917,8 +907,8 @@ namespace util.cprbroker.jaxws
                     }
 
                     // Get postofficebox
-                    int postOfficeBox = int.Parse(addressPostal.PostOfficeBoxIdentifier);
-                    //if (postOfficeBox != null)
+                    int postOfficeBox;
+                    if (int.TryParse(addressPostal.PostOfficeBoxIdentifier, out postOfficeBox))
                     {
                         addressBuilder.postOfficeBox(addressPostal.PostOfficeBoxIdentifier);
                     }
