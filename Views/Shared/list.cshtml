@@ -106,10 +106,8 @@
                             }
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             @* Button to show person parents and custody holders *@
-                            <a href="#" onclick="javascript:showParents(event,'@(person.uuid())')"
-                               @if (person.relationsWithPerson() != null) { @("loaded=\"true\"") }
-                               @if (person.relationsWithPerson() == null) { @("loaded=\"false\"") }>
-                                <span class="glyphicon glyphicon-user"></span>
+                            <a href="#" onclick="javascript:showParents(event,'@(person.uuid())')" loaded="@(person.relationsWithPerson() != null? "true" : "false")">
+                               <span class="glyphicon glyphicon-user"></span>
                                 @Messages.person_showparents
                             </a>
                         </div>

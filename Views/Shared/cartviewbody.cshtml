@@ -26,8 +26,8 @@
             }
         </tbody>
     </table>
-    </br>
-    </br>
+    <br/>
+    <br/>
     <hr>
     <div>
         @if (cartContents.Persons.Count > 0)
@@ -38,7 +38,7 @@
                     <span style="display: none" id="spnCprNumbersCopied" txt="@Messages.cart_copied"></span>
                 </div>
             </span>
-            <span id="spnCartNonIE">
+            <div id="spnCartNonIE">
                 <div class="row">
                     <div class="col-md-12">
                         <div id="copy-message" style="display: none">@Messages.cart_rightclick</div>
@@ -53,9 +53,9 @@
                     </div>
                 </div>
                 <div style="float: left;">
-                    <a href="#" OnClick="selectCPRNumbers();" title="@Messages.cart_select_title"><span class="glyphicon glyphicon-file"></span> @Messages("cart.select")</a>
+                    <a href="#" OnClick="selectCPRNumbers();" title="@Messages.cart_select_title"><span class="glyphicon glyphicon-file"></span> @Messages.cart_select</a>
                 </div>
-            </span>
+            </div>
             <script>
                 if (window.clipboardData) {
                     document.getElementById('spnCartNonIE').style.display = 'none';
