@@ -40,12 +40,12 @@ namespace util
     /**
      * Created by Beemen on 14/11/2014.
      */
-    public class StringUtils
+    public static class StringUtils
     {
-        public static String TrimZerosOnLeft(string str)
+        public static String TrimZerosOnLeft(this string str)
         {
             if (str != null)
-                return str.Replace("\\A0+", "");
+                return str.TrimStart('0');
             return str;
         }
 

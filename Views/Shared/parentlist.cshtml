@@ -28,13 +28,13 @@
                     </div>
                     
                     <div class="col-md-3 text-right">
-                        @if(HttpContext.Current.Session["usecart"] as string == "1") {  <div id="cart@(r.person().uuid())">@Html.Partial("cart", new Tuple<IPerson>(r.person()))</div> }
+                        @if(AccessLevelManager.getCurrentUseCart()) {  <div id="cart@(r.person().uuid())">@Html.Partial("cart", new Tuple<IPerson>(r.person()))</div> }
                     </div>
                 }
                 else
                 {
                     <div class="col-md-5 text-right">
-                        @if(HttpContext.Current.Session["usecart"] as string == "1") {  <div id="cart@(r.person().uuid())">@Html.Partial("cart", new Tuple<IPerson>(r.person()))</div> }
+                        @if(AccessLevelManager.getCurrentUseCart()) {  <div id="cart@(r.person().uuid())">@Html.Partial("cart", new Tuple<IPerson>(r.person()))</div> }
                     </div>
                 }
             </div>

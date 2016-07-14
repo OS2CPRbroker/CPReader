@@ -103,22 +103,22 @@ public class DanishAddress : IDanishAddress {
 		public IDanishAddress build() { return new DanishAddress(this); }
 		
 		// builder methods
-		public Builder countryIdentificationCode(String newCountryIdentificationCode) { _countryIdentificationCode = newCountryIdentificationCode; return this;}
+		public Builder countryIdentificationCode(String newCountryIdentificationCode) { _countryIdentificationCode = newCountryIdentificationCode.TrimZerosOnLeft(); return this;}
 		public Builder districtName(String newDistrictName) { _districtName = newDistrictName; return this;}
 		public Builder districtSubdivision(String newDistrictSubdivision) { _districtSubdivision = newDistrictSubdivision; return this;}
-		public Builder floor(String newFloor) { _floor = newFloor; return this;}
+		public Builder floor(String newFloor) { _floor = newFloor.TrimZerosOnLeft(); return this;}
 		public Builder mailSubLocaltion(String newMailSubLocaltion) { _mailSubLocaltion = newMailSubLocaltion; return this;}
-		public Builder postCode(String newPostCode) { _postCode = newPostCode; return this;}
+		public Builder postCode(String newPostCode) { _postCode = newPostCode.TrimZerosOnLeft(); return this;}
 		public Builder postOfficeBox(String newPostOfficeBox) { _postOfficeBox = newPostOfficeBox; return this;}
-		public Builder streetBuilding(String newStreetBuilding) { _streetBuilding = newStreetBuilding; return this;}
+		public Builder streetBuilding(String newStreetBuilding) { _streetBuilding = newStreetBuilding.TrimZerosOnLeft(); return this;}
 		public Builder streetName(String newStreetName) { _streetName = newStreetName; return this;}
 		public Builder streetNameForAdressing(String newStreetNameForAdressing) { _streetNameForAdressing = newStreetNameForAdressing; return this;}
-		public Builder suite(String newSuite) { _suite = newSuite; return this;}
+		public Builder suite(String newSuite) { _suite = newSuite.TrimZerosOnLeft(); return this;}
 		public Builder note(String newNote) { _note = newNote; return this;}
 		
-		public Builder municipalityCode(String newCode) { _municipalityCode = newCode; return this;}
-		public Builder streetBuildingIdentifier(String newIdentifier) { _streetBuildingIdentifier = newIdentifier; return this;}
-		public Builder streetCode(String newCode) { _streetCode = newCode; return this;}
+		public Builder municipalityCode(String newCode) { _municipalityCode = newCode.TrimZerosOnLeft(); return this;}
+		public Builder streetBuildingIdentifier(String newIdentifier) { _streetBuildingIdentifier = newIdentifier.TrimZerosOnLeft(); return this;}
+		public Builder streetCode(String newCode) { _streetCode = newCode.TrimZerosOnLeft(); return this;}
 		
 		public Builder danishNote(String newNote) { _danishNote = newNote; return this;}
 		public Builder politiDistrikt(String newDistrikt) { _politiDistrikt = newDistrikt; return this;}
