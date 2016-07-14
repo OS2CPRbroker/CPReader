@@ -52,8 +52,10 @@ namespace util.cprbroker
          */
 
         EMaritalStatusType civilStatusKode();
+        string civilStatusString();
         IVirkning civilTilstandsVirkning();
         ELifeStatusType livStatusKode();
+        string livStatusString();
         IVirkning livTilstandsVirkning();
     }
 }

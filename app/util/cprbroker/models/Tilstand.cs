@@ -78,12 +78,13 @@ namespace util.cprbroker.models
 
         public EMaritalStatusType civilStatusKode() { return _civilStatusKode; }
 
+        public string civilStatusString() { return Description.GetDescription(_civilStatusKode); }
 
         public IVirkning civilTilstandsVirkning() { return _civilTilstandsVirkning; }
 
-
         public ELifeStatusType livStatusKode() { return _livStatusKode; }
 
+        public string livStatusString() { return Description.GetDescription(_livStatusKode); }
 
         public IVirkning livTilstandsVirkning() { return _livTilstandsVirkning; }
 
