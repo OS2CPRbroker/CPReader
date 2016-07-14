@@ -480,8 +480,6 @@ namespace cpreader.Controllers
                     if ("true".Equals(onlineS))
                         setOnline(true);
                 }
-
-                setOnline(true);
             }
 
             public void saveToSession(Controller controller)
