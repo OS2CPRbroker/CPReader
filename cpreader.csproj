@@ -255,10 +255,17 @@
     <Compile Include="app\util\StringUtils.cs" />
     <Content Include="app\views\access_denied.scala.html" />
     <Content Include="app\views\listsingle.scala.html" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\modal.css" />
     <Content Include="Content\navbar.css" />
     <Content Include="Content\signin.css" />
     <Content Include="Controllers\Signon.java" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\cart.js" />
     <Content Include="Scripts\lib.js" />
     <Content Include="Scripts\main.js" />
@@ -269,6 +276,9 @@
     <Content Include="Scripts\validate.js" />
     <Content Include="Views\Shared\booleanfield.cshtml" />
     <Content Include="Views\Shared\cart.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Views\Shared\cartview.cshtml" />
     <Content Include="Views\Shared\cartviewbody.cshtml" />
     <Content Include="app\views\danishaddress.scala.html" />
@@ -292,12 +302,7 @@
     <Content Include="Views\Shared\tilstande.cshtml" />
     <Content Include="Views\Shared\virkning.cshtml" />
     <Content Include="Views\Shared\worldaddress.cshtml" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="public\images\favicon.png" />
@@ -349,9 +354,6 @@
     <Content Include="public\javascripts\bootstrap-3.3.1-dist\dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="public\javascripts\bootstrap-3.3.1-dist\dist\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="public\stylesheets\.DS_Store" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="app\.DS_Store" />
     <None Include="app\part\part.wsdl" />
     <Content Include="app\util\.DS_Store" />
@@ -364,8 +366,6 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -418,7 +418,9 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
