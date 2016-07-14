@@ -52,7 +52,7 @@
             <h3 class="panel-title">
                 @if (persons != null)
                 {
-                    string.Format(Messages.results_list_amountOfResults, results); <strong>@searchInput.getQuery()</strong>
+                    @(string.Format(Messages.results_list_amountOfResults, results)) <strong>@searchInput.getQuery()</strong>
                     if (searchInput.getAddressQuery() != null && searchInput.getAddressQuery().Length > 0)
                     {
                         @(" " + searchInput.getAddressQuery())
