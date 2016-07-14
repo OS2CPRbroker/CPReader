@@ -60,9 +60,9 @@
                 </span>
 
                 <div class="@(Settings.Default.search_type == 0? /* 0 */"navbar-form-online" : /* 1 or 2*/ "navbar-form-online-hidden")"/>
-                    <input type="radio" name="online" id="online_false" value="false" @if(!searchInput.getOnline()){ Html.Raw("checked"); }>
+                    <input type="radio" name="online" id="online_false" value="false" @if(!searchInput.getOnline()){ @("checked") }>
                     <label for="online_false">@Messages.nav_quicksearch_local &nbsp;&nbsp;</label>
-                    <input type="radio" name="online" id="online_true" value="true" @if(searchInput.getOnline()){Html.Raw("checked");}>
+                    <input type="radio" name="online" id="online_true" value="true" @if(searchInput.getOnline()){@("checked")}>
                     <label for="online_true"> @Messages.nav_quicksearch_online</label>
                 </div>
                 <button id="quicksearchbutton" type="button" class="btn btn-default navbar-form-search">@Messages.nav_quicksearch_submit</button>
