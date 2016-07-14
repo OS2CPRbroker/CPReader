@@ -35,42 +35,38 @@ using System;
 using System.Collections.Generic;
 namespace util.cprbroker.models
 {
+    public class PersonRelationshipsWithPerson : IPersonRelationshipsWithIPerson
+    {
+
+        public List<IRelationshipWithIPerson> _relations;
+
+        public PersonRelationshipsWithPerson(
+                List<IRelationshipWithIPerson> newRelations)
+        {
+
+            _relations = defensiveCopyOfValues(newRelations);
+        }
 
 
+        public List<IRelationshipWithIPerson> allRelations() { return _relations; }
 
 
+        /**
+         * helper method to make the class immutable
+         * @param newRelations IRelationshipWithIPerson representations
+         * @return  of a copy of the referencedValues
+         */
+        private List<IRelationshipWithIPerson> defensiveCopyOfValues(List<IRelationshipWithIPerson> newRelations)
+        {
+            List<IRelationshipWithIPerson> copy = new List<IRelationshipWithIPerson>();
 
+            foreach (IRelationshipWithIPerson relationWithPerson in newRelations)
+            {
+                copy.Add(relationWithPerson);
+            }
 
-
-
-public class PersonRelationshipsWithPerson : IPersonRelationshipsWithIPerson {
-
-	public List<IRelationshipWithIPerson> _relations;
-	
-	public PersonRelationshipsWithPerson(
-			List<IRelationshipWithIPerson> newRelations) {
-		
-		_relations = defensiveCopyOfValues(newRelations);
-	}
-	
-	
-	public List<IRelationshipWithIPerson> allRelations() { return _relations; }
-
-	
-	/**
-	 * helper method to make the class immutable
-	 * @param newRelations IRelationshipWithIPerson representations
-	 * @return  of a copy of the referencedValues
-	 */
-	private List<IRelationshipWithIPerson> defensiveCopyOfValues(List<IRelationshipWithIPerson> newRelations) {
-		List<IRelationshipWithIPerson> copy = new List<IRelationshipWithIPerson>();
-		
-		foreach(IRelationshipWithIPerson relationWithPerson  in newRelations) {
-			copy.Add(relationWithPerson);
-		}
-		
-		return (copy);
-	}
-}
+            return (copy);
+        }
+    }
 
 }

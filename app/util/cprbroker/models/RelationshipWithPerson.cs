@@ -33,53 +33,46 @@
 
 using System;
 using System.Collections.Generic;
+
 namespace util.cprbroker.models
 {
+    public class RelationshipWithPerson : IRelationshipWithIPerson
+    {
 
+        public IRelationship relationship;
+        public IPerson _person;
 
+        public class Builder
+        {
+            public IRelationship _relationship;
+            public IPerson _person;
 
+            public IRelationshipWithIPerson build() { return new RelationshipWithPerson(this); }
 
+            public Builder person(IPerson newPerson) { _person = newPerson; return this; }
+            public Builder relationship(IRelationship newRelationship) { _relationship = newRelationship; return this; }
+        }
 
+        private RelationshipWithPerson(Builder builder)
+        {
+            relationship = builder._relationship;
+            _person = builder._person;
+        }
 
+        public String comment() { return relationship.comment(); }
 
-public class RelationshipWithPerson : IRelationshipWithIPerson {
+        public String referenceUrn() { return relationship.referenceUrn(); }
 
-	public IRelationship relationship;
-	public IPerson _person;
-	
-	public class Builder{
-		public IRelationship _relationship;
-		public IPerson _person;
-		
-		public IRelationshipWithIPerson build() { return new RelationshipWithPerson(this); }
-		
-		public Builder person(IPerson newPerson) { _person = newPerson; return this;}
-		public Builder relationship(IRelationship newRelationship) { _relationship = newRelationship; return this; }
-	}
-	
-	private RelationshipWithPerson(Builder builder) {
-		relationship = builder._relationship;
-		_person = builder._person;
-	}
-	
-	
-	public String comment() { return relationship.comment(); }
+        public String referenceUuid() { return relationship.referenceUuid(); }
 
-	
-	public String referenceUrn() { return relationship.referenceUrn(); }
+        public IVirkning effect() { return relationship.effect(); }
 
-	
-	public String referenceUuid() { return relationship.referenceUuid(); }
+        public ERelationshipType relationshipType() { return relationship.relationshipType(); }
 
-	
-	public IVirkning effect() {	return relationship.effect(); }
+        public string relationshipTypeString() { return relationship.relationshipTypeString(); }
 
-	
-	public ERelationshipType relationshipType() { return relationship.relationshipType(); }
+        public IPerson person() { return _person; }
 
-	
-	public IPerson person() { return _person; }
-
-}
+    }
 
 }

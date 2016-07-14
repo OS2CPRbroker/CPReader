@@ -16,7 +16,7 @@
             
             <div class="row">
 
-                @Html.Partial("listperson", new Tuple<IPerson, bool, string>(r.person(), true, r.relationshipType().ToString()+":" ))
+                @Html.Partial("listperson", new Tuple<IPerson, bool, string>(r.person(), true, r.relationshipTypeString()+":" ))
                 
                 @{
                     parentCount ++;

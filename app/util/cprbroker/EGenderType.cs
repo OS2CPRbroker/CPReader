@@ -59,7 +59,7 @@ namespace util.cprbroker
             Text = text;
         }
 
-        static string GetDescription(Enum en)
+        public static string GetDescription(Enum en)
         {
             Type type = en.GetType();
 

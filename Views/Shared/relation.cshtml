@@ -47,21 +47,23 @@
             }
             <h3 class="panel-title">
                 <span class="glyphicon glyphicon-user"></span> 
-                @relation.relationshipType()
+                @(relation.relationshipTypeString())
+
                 @if (relation.person().code() == 200)
                 {
-                    @relation.person().registerInformation().cprCitizen().socialSecurityNumber()
+                    @(relation.person().registerInformation().cprCitizen().socialSecurityNumber() + " ")
+                    
                     if (!string.IsNullOrEmpty(relation.person().firstname()))
                     { 
-                        @relation.person().firstname()
+                        @(relation.person().firstname() + " ")
                     }
                     if (!string.IsNullOrEmpty(relation.person().middelname()))
                     { 
-                        @relation.person().middelname()
+                        @(relation.person().middelname() + " ")
                     }
                     if (!string.IsNullOrEmpty(relation.person().lastname()))
                     { 
-                        @relation.person().lastname()
+                        @(relation.person().lastname() + " ")
                     }
                 }
             </h3>
@@ -72,9 +74,9 @@
                     <div id="session" style="display: none;">
                         @HttpContext.Current.Cache[relation.person().uuid()]= relation.person;
                     </div>
-                    if (System.Web.HttpContext.Current.Session["usecart"] as string == "1")
+                    if (AccessLevelManager.getCurrentUseCart())
                     {
-                        Html.Partial("cart", new Tuple<IPerson>(relation.person()));
+                        @Html.Partial("cart", new Tuple<IPerson>(relation.person()));
                     }
                 }
             </p>

@@ -37,9 +37,9 @@
                 @{HttpContext.Current.Cache[person.uuid()] = person;}
             </div>
             
-            @if (HttpContext.Current.Session["usecart"] as string == "1")
+            @if (AccessLevelManager.getCurrentUseCart())
             {
-                Html.Partial("cart", new Tuple<IPerson>(person));
+                @Html.Partial("cart", new Tuple<IPerson>(person));
             }
         </p>
     </div>

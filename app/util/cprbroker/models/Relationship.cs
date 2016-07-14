@@ -36,59 +36,55 @@ using System.Collections.Generic;
 namespace util.cprbroker.models
 {
 
+    public class Relationship : IRelationship
+    {
 
+        public String _comment;
+        public String _referenceUrn;
+        public String _referenceUuid;
+        public IVirkning _effect;
+        public ERelationshipType _type;
 
+        public class Builder
+        {
 
+            public String _comment;
+            public String _referenceUrn;
+            public String _referenceUuid;
+            public IVirkning _effect;
+            public ERelationshipType _type;
 
-public class Relationship : IRelationship {
+            public IRelationship build() { return new Relationship(this); }
 
-	public String _comment;
-	public String _referenceUrn;
-	public String _referenceUuid;
-	public IVirkning _effect;
-	public ERelationshipType _type;
-	
-	public class Builder{
-		
-		public String _comment;
-		public String _referenceUrn;
-		public String _referenceUuid;
-		public IVirkning _effect;
-		public ERelationshipType _type;
-		
-		public IRelationship build() { return new Relationship(this); }
-		
-		public Builder comment(String newComment) { _comment = newComment; return this; }
-		public Builder referenceUrn(String newUrn) { _referenceUrn = newUrn; return this; }
-		public Builder referenceUuid(String newUuid) { _referenceUuid = newUuid; return this; }
-		public Builder effect(IVirkning newEffect) { _effect = newEffect; return this; }
-		public Builder type(ERelationshipType newType) { _type = newType; return this; }
-		
-	}
-	
-	private Relationship(Builder builder) {
-		_comment = builder._comment;
-		_referenceUrn = builder._referenceUrn;
-		_referenceUuid = builder._referenceUuid;
-		_effect = builder._effect;
-		_type = builder._type;
-	}
-	
-	
-	public String comment() { return _comment; }
+            public Builder comment(String newComment) { _comment = newComment; return this; }
+            public Builder referenceUrn(String newUrn) { _referenceUrn = newUrn; return this; }
+            public Builder referenceUuid(String newUuid) { _referenceUuid = newUuid; return this; }
+            public Builder effect(IVirkning newEffect) { _effect = newEffect; return this; }
+            public Builder type(ERelationshipType newType) { _type = newType; return this; }
 
-	
-	public String referenceUrn() { return _referenceUrn; }
+        }
 
-	
-	public String referenceUuid() {	return _referenceUuid; }
+        private Relationship(Builder builder)
+        {
+            _comment = builder._comment;
+            _referenceUrn = builder._referenceUrn;
+            _referenceUuid = builder._referenceUuid;
+            _effect = builder._effect;
+            _type = builder._type;
+        }
 
-	
-	public IVirkning effect() { return _effect; }
-	
-	
-	public ERelationshipType relationshipType() { return _type;}
+        public String comment() { return _comment; }
 
-}
+        public String referenceUrn() { return _referenceUrn; }
+
+        public String referenceUuid() { return _referenceUuid; }
+
+        public IVirkning effect() { return _effect; }
+
+        public ERelationshipType relationshipType() { return _type; }
+
+        public string relationshipTypeString() { return Description.GetDescription(_type); }
+
+    }
 
 }

@@ -57,6 +57,7 @@ namespace util.cprbroker
         String referenceUuid();
         IVirkning effect();
         ERelationshipType relationshipType();
+        string relationshipTypeString();
 
     }
 }
