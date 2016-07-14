@@ -1,6 +1,6 @@
 require.config({
     paths: {
-        'jquery': 'jquery-1.10.2.min',
+        'jquery': 'jquery-1.11.1.min',
         'bootstrap': 'bootstrap.min',
         'jqueryui': '/public/javascripts/jquery-ui-1.11.2.custom/jquery-ui.min',
         'cart': 'cart'
