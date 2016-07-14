@@ -154,6 +154,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Cart.cs" />
+    <Compile Include="Controllers\Home.cs" />
+    <Compile Include="Controllers\Search.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,10 +187,6 @@
     <Content Include="app\conf\IConfiguration.java" />
     <Content Include="app\conf\IValidable.java" />
     <Content Include="app\conf\PlayConfiguration.java" />
-    <Compile Include="app\controllers\Cart.cs" />
-    <Compile Include="app\controllers\Home.cs" />
-    <Compile Include="app\controllers\Search.cs" />
-    <Content Include="app\controllers\Signon.java" />
     <Content Include="app\Global.java" />
     <Compile Include="app\util\AccessLevelManager.cs" />
     <Compile Include="app\util\addresses\DawaAddressParser.cs" />
@@ -259,6 +258,7 @@
     <Content Include="Content\modal.css" />
     <Content Include="Content\navbar.css" />
     <Content Include="Content\signin.css" />
+    <Content Include="Controllers\Signon.java" />
     <Content Include="Scripts\cart.js" />
     <Content Include="Scripts\lib.js" />
     <Content Include="Scripts\main.js" />
@@ -415,7 +415,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
