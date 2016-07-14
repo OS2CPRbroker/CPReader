@@ -256,6 +256,9 @@
     <Compile Include="app\util\StringUtils.cs" />
     <Content Include="app\views\access_denied.scala.html" />
     <Content Include="app\views\listsingle.scala.html" />
+    <Content Include="Content\modal.css" />
+    <Content Include="Content\navbar.css" />
+    <Content Include="Content\signin.css" />
     <Content Include="Scripts\cart.js" />
     <Content Include="Scripts\lib.js" />
     <Content Include="Scripts\main.js" />
@@ -332,9 +335,6 @@
     <Content Include="public\javascripts\jquery-ui-1.11.2.custom\jquery-ui.structure.min.css" />
     <Content Include="public\javascripts\jquery-ui-1.11.2.custom\jquery-ui.theme.css" />
     <Content Include="public\javascripts\jquery-ui-1.11.2.custom\jquery-ui.theme.min.css" />
-    <Content Include="public\stylesheets\modal.css" />
-    <Content Include="public\stylesheets\navbar.css" />
-    <Content Include="public\stylesheets\signin.css" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
