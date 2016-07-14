@@ -16,6 +16,14 @@ namespace util
      */
     public abstract class AccessLevelManager
     {
+        public static bool getCurrentUseCart()
+        {
+            var ret = HttpContext.Current.Session["usecart"];
+            if (ret == null)
+                getCurrentAccessLevel();
+            return HttpContext.Current.Session["usecart"] as string == "1";
+        }
+
         public static int getCurrentAccessLevel()
         {
             //if (Cache.get("accesslevel") == null)
