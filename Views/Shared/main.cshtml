@@ -33,10 +33,14 @@
  * ***** END LICENSE BLOCK ***** *@
  
 @{ 
+    if (ViewBag.Title == null)
+    {
+        ViewBag.Title = "CPReader";
+    }
     var title = ViewBag.Title;
     var searchInput = new SearchController.SearchInput();
     searchInput.fillFromSession(HttpContext.Current);
-    
+
 }
 
 <!DOCTYPE html>
