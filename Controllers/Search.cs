@@ -245,10 +245,10 @@ namespace cpreader.Controllers
         }
         */
 
-        public ActionResult getUuidFromCpr(SearchInput searchForm)
+        [HttpPost]
+        public ActionResult getUuidFromCpr(string query)
         {
-            //Form<SearchInput> searchForm = Form.form(SearchInput.class).bindFromRequest();
-
+            //query = System.Web.HttpContext.Current.Request["query"],
             // Search is now by CPR, clear the saved name (if any)
             SearchInput searchInput = new SearchInput();
             searchInput.fillFromSession(this);
@@ -256,7 +256,7 @@ namespace cpreader.Controllers
             searchInput.saveToSession(this);
 
             // Logging the search
-            play.Logger.info(User.Identity.Name + " searched for: " + searchForm.query);
+            play.Logger.info(User.Identity.Name + " searched for: " + query);
 
             // Check if there is errors (empty strings)
             // TODO: Check the ASP.NET euivalent
@@ -266,7 +266,7 @@ namespace cpreader.Controllers
             }*/
 
             // Input type == cprnumber
-            IUuid uuid = cprBroker.getUuid(searchForm.query);
+            IUuid uuid = cprBroker.getUuid(query);
 
             // logging the returned resultcode
             play.Logger.info(User.Identity.Name + "'s search request to CPRBroker responded, " + uuid.code() + " - " + uuid.message());
@@ -458,10 +458,11 @@ namespace cpreader.Controllers
                 fillFromSession(context.Session.Keys.OfType<string>().ToDictionary<string, string, object>(k => k, k => context.Session[k]));
             }
 
-            public void fillFromSession(Dictionary<string,object> controller)
+            public void fillFromSession(Dictionary<string, object> controller)
             {
-                setQuery(StringUtils.format("{0}", controller["query"]));
-                setAddressQuery(StringUtils.format("{0}", controller["addressQuery"]));
+                setQuery(StringUtils.format("{0}", controller.ContainsKey("query") ? controller["query"] : ""));
+
+                setAddressQuery(StringUtils.format("{0}", controller.ContainsKey("addressQuery") ? controller["addressQuery"] : ""));
 
 
                 if (cpreader.Properties.Settings.Default.search_type == 1)
@@ -476,7 +477,7 @@ namespace cpreader.Controllers
                 }
                 else
                 {
-                    String onlineS = controller["online"] as string;
+                    String onlineS = controller.ContainsKey("online") ? controller["online"] as string : "";
                     if ("true".Equals(onlineS))
                         setOnline(true);
                 }
