@@ -381,7 +381,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Web References\PartService\GetUuidArrayOutputType.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
