@@ -348,12 +348,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="public\.DS_Store" />
-    <Content Include="public\stylesheets\.DS_Store" />
-    <Content Include="app\.DS_Store" />
     <None Include="app\part\part.wsdl" />
-    <Content Include="app\util\.DS_Store" />
-    <Content Include="app\views\.DS_Store" />
     <Content Include="conf\routes" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
@@ -408,6 +403,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="public\stylesheets\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
