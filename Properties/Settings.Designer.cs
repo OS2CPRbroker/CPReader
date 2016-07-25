@@ -88,24 +88,6 @@ namespace cpreader.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool cprbroker_ssl {
-            get {
-                return ((bool)(this["cprbroker_ssl"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string cprbroker_endpoint {
-            get {
-                return ((string)(this["cprbroker_endpoint"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string cprbroker_applicationtoken {
             get {
@@ -146,6 +128,15 @@ namespace cpreader.Properties {
         public bool cartAllowNonBornPersons {
             get {
                 return ((bool)(this["cartAllowNonBornPersons"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://cprbroker.magenta-aps.dk/services/part.asmx")]
+        public string cprbroker_endpoint {
+            get {
+                return ((string)(this["cprbroker_endpoint"]));
             }
         }
         
