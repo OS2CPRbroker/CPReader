@@ -14,17 +14,11 @@
     <Setting Name="accessfile_url" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="accessfile_name" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="accessfile_online" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="cart_enabled" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="cprbroker_applicationtoken" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="cprbroker_usertoken" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
@@ -32,12 +26,9 @@
     <Setting Name="cprbroker_accesslevel" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="cprbroker_fetchrelations" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="cartAllowNonBornPersons" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
-    </Setting>	
+    </Setting>
     <Setting Name="cprbroker_endpoint" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://cprbroker.magenta-aps.dk/services/part.asmx</Value>
     </Setting>
@@ -49,6 +40,18 @@
     </Setting>
     <Setting Name="cprbroker_domain" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="accessfile_name" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\MagentaWorkspace\CPReader\aspnet-cpreader\conf\accessfile.config</Value>
+    </Setting>
+    <Setting Name="cprbroker_applicationtoken" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">bfb7c7dc-e4f3-4e20-ac86-a64fd0306e7a</Value>
+    </Setting>
+    <Setting Name="cprbroker_fetchrelations" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cpreader_PartService_Part" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:1551/services/part.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>
