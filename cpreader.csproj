@@ -399,10 +399,10 @@
     <Content Include="Views\Shared\partial_pagination.cshtml" />
     <Content Include="Views\Shared\show_error.cshtml" />
     <None Include="Web References\PartService\Part.wsdl" />
-    <Content Include="Web References\PartService\Reference.map">
+    <None Include="Web References\PartService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <Content Include="Web References\PartService\SoegListOutputType.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
@@ -448,7 +448,7 @@
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>cpreader_PartService_Part</CachedSettingsPropName>
+      <CachedSettingsPropName>cprbroker_endpoint</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>

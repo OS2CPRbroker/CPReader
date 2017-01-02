@@ -106,7 +106,8 @@ namespace cpreader.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://cprbroker.magenta-aps.dk/services/part.asmx")]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://cprbroker/services/part.asmx")]
         public string cprbroker_endpoint {
             get {
                 return ((string)(this["cprbroker_endpoint"]));
@@ -164,16 +165,6 @@ namespace cpreader.Properties {
         public bool cprbroker_fetchrelations {
             get {
                 return ((bool)(this["cprbroker_fetchrelations"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:1551/services/part.asmx")]
-        public string cpreader_PartService_Part {
-            get {
-                return ((string)(this["cpreader_PartService_Part"]));
             }
         }
         

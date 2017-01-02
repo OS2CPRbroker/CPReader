@@ -29,8 +29,8 @@
     <Setting Name="cartAllowNonBornPersons" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="cprbroker_endpoint" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://cprbroker.magenta-aps.dk/services/part.asmx</Value>
+    <Setting Name="cprbroker_endpoint" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://cprbroker/services/part.asmx</Value>
     </Setting>
     <Setting Name="cprbroker_username" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
@@ -49,9 +49,6 @@
     </Setting>
     <Setting Name="cprbroker_fetchrelations" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="cpreader_PartService_Part" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:1551/services/part.asmx</Value>
     </Setting>
     <Setting Name="cpreader_Log4NetConfig" Type="System.String" Scope="Application">
       <Value Profile="(Default)">conf\log4net.config</Value>
