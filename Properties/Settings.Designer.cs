@@ -176,5 +176,14 @@ namespace cpreader.Properties {
                 return ((string)(this["cpreader_PartService_Part"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("log4net.config")]
+        public string cpreader_Log4NetConfig {
+            get {
+                return ((string)(this["cpreader_Log4NetConfig"]));
+            }
+        }
     }
 }
