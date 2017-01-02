@@ -304,6 +304,11 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\cart.js" />
+    <Content Include="conf\accessfile.config" />
+    <Content Include="conf\log4net.config" />
+    <None Include="conf\log4net.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.1.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
@@ -340,7 +345,6 @@
     <Content Include="app\views\parentmodal.scala.html" />
     <Content Include="app\views\person.scala.html" />
     <Content Include="Views\Shared\relation.cshtml" />
-    <Content Include="app\views\show_error.scala.html" />
     <Content Include="Views\Shared\textfield.cshtml" />
     <Content Include="Views\Shared\tilstande.cshtml" />
     <Content Include="Views\Shared\virkning.cshtml" />
@@ -393,6 +397,7 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <Content Include="Views\Shared\partial_pagination.cshtml" />
+    <Content Include="Views\Shared\show_error.cshtml" />
     <None Include="Web References\PartService\Part.wsdl" />
     <Content Include="Web References\PartService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
