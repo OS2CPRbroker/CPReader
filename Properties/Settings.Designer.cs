@@ -179,7 +179,7 @@ namespace cpreader.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("log4net.config")]
+        [global::System.Configuration.DefaultSettingValueAttribute("conf\\log4net.config")]
         public string cpreader_Log4NetConfig {
             get {
                 return ((string)(this["cpreader_Log4NetConfig"]));
