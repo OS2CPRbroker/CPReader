@@ -53,7 +53,14 @@ namespace util
         private static int calculateAccessLevel(String username, String[] groupnames, out bool useCart)
         {
             // parse csv access levels file
-            String accessFileURL = cpreader.Properties.Settings.Default.accessfile_url + cpreader.Properties.Settings.Default.accessfile_name;
+            var config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+            var mainConfigPath = config.FilePath;
+            String accessFileName = Path.Combine(
+                new FileInfo(mainConfigPath).Directory.FullName,
+                string.Format("{0}", cpreader.Properties.Settings.Default.accessfile_name)
+                );
+            String accessFileURL = cpreader.Properties.Settings.Default.accessfile_url + accessFileName;
+            
 
             // Initial values
             var accesslevel = 0;
@@ -65,7 +72,7 @@ namespace util
             try
             {
                 linesText = onlineFile ? Encoding.UTF8.GetString(new WebClient().DownloadData(cpreader.Properties.Settings.Default.accessfile_url))
-                    : System.IO.File.ReadAllText(cpreader.Properties.Settings.Default.accessfile_name);
+                    : System.IO.File.ReadAllText(accessFileName);
             }
             catch (Exception e)
             {
