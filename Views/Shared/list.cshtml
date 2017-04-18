@@ -92,7 +92,7 @@
 
                     @if (accesslevel > 0)
                     {
-                        <div class="col-md-3 text-left">
+                        <div class="col-md-2 text-left">
                             @if (accesslevel > 1)
                             {
                                 @* Button to show person details *@
@@ -102,12 +102,24 @@
                                     @Messages.person_viewdetails
                                 </a>
                             }
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </div>
+                        <div class="col-md-2 text-left">
                             @* Button to show person parents and custody holders *@
                             <a href="#" onclick="javascript:showParents(event,'@(person.uuid())')" loaded="@(person.relationsWithPerson() != null? "true" : "false")">
-                               <span class="glyphicon glyphicon-user"></span>
+                                <span class="glyphicon glyphicon-user"></span>
                                 @Messages.person_showparents
                             </a>
+                        </div>
+                        <div class="col-md-2 text-left">
+                            @if (accesslevel > 1)
+                            {
+                                @* Button to show person details *@
+                                <a href="#" onclick="javascript:showPersonDetails(event,'@(person.uuid())')"
+                                   data-backdrop="static" data-toggle="modal" loaded="@(person.relationsWithPerson() != null? "true" : "false")">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    @Messages.person_viewdetails
+                                </a>
+                            }
                         </div>
 
                         <div class="col-md-2 text-right">
