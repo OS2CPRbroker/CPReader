@@ -1122,6 +1122,15 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to See all details.
+        /// </summary>
+        public static string person_viewfullpage {
+            get {
+                return ResourceManager.GetString("person_viewfullpage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Anden adresse.
         /// </summary>
         public static string resultat_andenaddresse {

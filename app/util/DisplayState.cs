@@ -6,12 +6,14 @@ namespace util
 
     /**
      * Created by Beemen on 17/5/15.
+     * Modified by Mathias on 24/4/17
      */
     public class DisplayState
     {
         public Boolean openCart;
         public String openPerson;
         public String openParents;
+        public String openFullpageview;
 
         private DisplayState()
         {
@@ -39,6 +41,11 @@ namespace util
                 ret.openParents = ctx.Session["openparents"].ToString();
             }
 
+            if (ctx.Session["showfullpageview"] != null)
+            {
+                ret.openFullpageview = ctx.Session["showfullpageview"].ToString();
+            }
+
             return ret;
         }
 
@@ -48,6 +55,7 @@ namespace util
             ctx.Session["opencart"] = openCart.ToString();
             ctx.Session["showperson"] = openPerson;
             ctx.Session["openparents"] = openParents;
+            ctx.Session["showfullpageview"] = openFullpageview;
         }
     }
 }

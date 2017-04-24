@@ -172,6 +172,36 @@ function showPersonDetails(event, uuid)
     }
 }
 
+function ShowFullPageView(event, uuid) {
+    var fullpageAnchor = event.target;
+    var fullpageModalDiv = $('#fullpageModal' + uuid);
+    var contentDiv = $('#content' + uuid);
+    
+
+    var showFunc = function () {
+        fullpageModalDiv.modal({ keyboard: true, backdrop: 'static' });
+    };
+    if (fullpageAnchor.attributes.loaded.value == 'false') {
+        contentDiv.load(
+            '/search/update/' + uuid + '/',
+            null,
+            function (data) {
+                if (data == "none") {
+                    window.alert("Not available");
+                }
+                else {
+                    setCartButtonEvents();
+                    fullpageAnchor.attributes.loaded.value = 'true';
+                    showFunc();
+                }
+            }
+        );
+    }
+    else {
+        showFunc();
+    }
+}
+
 function setCartButtonEvents(){
 
     $('a[name=addToCartAnchor]').unbind('click');
