@@ -43,4 +43,4 @@ server.pid
 #*.ldf - Not sure if they should be ignored yet
 
 # Web.config file - create from Web.config.example
-Web.config
+Web.*config
