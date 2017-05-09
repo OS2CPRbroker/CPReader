@@ -49,6 +49,10 @@ div.modal-content {
     margin:5px 0;
 }
 
+.dl-horizontal-long {
+    margin: 5px 0;
+}
+
 #myModal {
 	backdrop: 'static';
 }
