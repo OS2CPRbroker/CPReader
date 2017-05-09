@@ -1122,7 +1122,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to See all details.
+        ///   Looks up a localized string similar to See full overview.
         /// </summary>
         public static string person_viewfullpage {
             get {

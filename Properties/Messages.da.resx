@@ -518,4 +518,7 @@
   <data name="person_otherAddress_worldAddress_note" xml:space="preserve">
     <value>Note</value>
   </data>
+  <data name="person_viewfullpage" xml:space="preserve">
+    <value>Se personoverblik</value>
+  </data>
 </root>
