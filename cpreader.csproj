@@ -343,6 +343,7 @@
     <Content Include="Views\Shared\danishaddress.cshtml" />
     <Content Include="Views\Shared\fullpagemodal.cshtml" />
     <Content Include="Views\Shared\fullpagemodalcontent.cshtml" />
+    <Content Include="Views\Shared\cprAndName.cshtml" />
     <None Include="Views\Shared\parentlist.cshtml" />
     <Content Include="app\views\parentmodal.scala.html" />
     <Content Include="app\views\person.scala.html" />

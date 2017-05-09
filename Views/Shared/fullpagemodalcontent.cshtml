@@ -50,68 +50,48 @@
         <ul class="nav nav-pills nav-justified">
             @if (accesslevel > 1)
             {
-                <li class="active"><a href="#generelt@(person.uuid())" data-toggle="pill">Generelt</a></li>
-                <li><a href="#addresse@(person.uuid())" data-toggle="pill">Adresse</a></li>
-
-                if (person.relationsWithPerson() != null && person.relationsWithPerson().allRelations().Count > 0)
-                {
-                    <li><a href="#relationer@(person.uuid())" data-toggle="pill">Relationer</a></li>
-                }
-            }
-            else
-            {
-                if (person.relationsWithPerson() != null)
-                {
-                    if (person.relationsWithPerson().allRelations().Count > 0) {
-                        var showrelations = 0;
-
-                        foreach (var r in person.relationsWithPerson().allRelations())
-                        {
-                            if (r.relationshipType() == ERelationshipType.foraeldremyndighedsindehaver || r.relationshipType() == ERelationshipType.fader || r.relationshipType() == ERelationshipType.moder)
-                            {
-                                showrelations = 1;
-                            }
-                        }
-
-                        if (showrelations > 0)
-                        {
-                            <li class="active"><a href="#" data-toggle="pill">Relationer</a></li>
-                        }
-                    }
-                }
+                <li class="active"><a href="#familie@(person.uuid())" data-toggle="pill">Familie</a></li>
             }
         </ul>
         <br />
         <div class="tab-content">
             @if (accesslevel > 1)
             {
-                <div class="tab-pane active" id="generelt@(person.uuid())">
+                <div class="tab-pane active" id="familie@(person.uuid())">
+                    <div class="row">
+                        
+                    </div>
                     <div class="row">
                         <div class="col-md-7">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">@Messages.resultat_egenskaber</h3>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Børn</h3>
+                                </div>
+                                <div class="panel-body">
+                                    @if (person.relationsWithPerson() != null)
+                                    {
+                                        if (person.relationsWithPerson().allRelations().Count > 0)
+                                        {
+                                            List<IRelationshipWithIPerson> children = person.relationsWithPerson().allRelations().FindAll(
+                                                delegate (IRelationshipWithIPerson p)
+                                                {
+                                                    return p.relationshipType() == ERelationshipType.fader || p.relationshipType() == ERelationshipType.foraeldremydighedsboern;
+                                                }
+                                            );
+
+                                            if (children.Any()) //if there are no children
+                                            {
+                                                @Html.Partial("cprAndName", children)
+                                            }else
+                                            {
+                                                <text>Ingen børn</text>
+                                            }
+
+                                        }
+                                    }
+                                </div>
                             </div>
-                            <div class="panel-body">
-                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_firstname, person.firstname()))
-                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_middelname, person.middelname()))
-                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_lastname, person.lastname()))
-                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_callname, person.callname()))
-                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_nameForAddressing, person.nameForAddressing()))
-                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_gender, person.gender()))
-                                @if (person.birthdate() != null)
-                                {
-                                    <dl class="dl-horizontal margins-removed">
-                                        <dt>@Messages.person_birthdate</dt>
-                                        <dd>@person.birthdate().ToString("dd. MMMM yyyy")</dd>
-                                    </dl>
-                                }
-                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_birthplace, person.nameForAddressing()))
-                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_birthRegisteringAuthority, person.birthRegisteringAuthority()))
-                            </div>
-                            <div class="panel-footer"><p class="text-right">@Html.Partial("virkning", new Tuple<IVirkning, bool>(person.effect(), true))</p></div>
                         </div>
-                    </div>
                     <div class="col-md-5">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -165,23 +145,6 @@
                         </div>
                     </div>
                 </div>
-                </div>
-                <div class="tab-pane" id="addresse@(person.uuid())">
-                    <div class="row">
-                        <div class="col-md-12">
-                            @if (person.address() != null) {
-                                if (person.address().addressType() == EAddressType.Danish) {
-                                    @Html.Partial("danishaddress", new Tuple<IPerson>(person))
-                                }
-                                if (person.address().addressType() == EAddressType.Greenlandic) {
-                                    @Html.Partial("greenlandicaddress", new Tuple<IPerson>(person))
-                                }
-                                if (person.address().addressType() == EAddressType.World) {
-                                    @Html.Partial("worldaddress", new Tuple<IPerson>(person))
-                                }
-                            }
-                        </div>
-                    </div>
                 </div>
             }
             @if (person.relationsWithPerson() != null)
