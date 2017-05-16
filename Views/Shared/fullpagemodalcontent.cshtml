@@ -10,12 +10,12 @@
             <span class="glyphicon glyphicon-user"></span>
             Person: @(person.registerInformation().cprCitizen().socialSecurityNumber())
         </h4>
-        <div>
+        <br>
             @foreach (var l in person.postalLabel())
             {
-                @(l) <br>
+                @(l)
+                <br />
             }
-        </div>
         @if (person.tidspunkt() != null)
         {
             <p class="text-right">
@@ -58,11 +58,14 @@
             @if (accesslevel > 1)
             {
                 <div class="tab-pane active" id="familie@(person.uuid())">
-                    <div class="row">
-                        
+                    @*ADRESSE*@
+                    <div class="col-md-4">
+                        @Html.Partial("residence", new Tuple<IPerson>(person));
                     </div>
+
+                    @*BØRN*@
                     <div class="row">
-                        <div class="col-md-7">
+                        <div class="col-md-4">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Børn</h3>
@@ -75,7 +78,7 @@
                                             List<IRelationshipWithIPerson> children = person.relationsWithPerson().allRelations().FindAll(
                                                 delegate (IRelationshipWithIPerson p)
                                                 {
-                                                    return p.relationshipType() == ERelationshipType.fader || p.relationshipType() == ERelationshipType.foraeldremydighedsboern;
+                                                    return p.relationshipType() == ERelationshipType.boern || p.relationshipType() == ERelationshipType.foraeldremydighedsboern;
                                                 }
                                             );
 
@@ -86,7 +89,6 @@
                                             {
                                                 <text>Ingen børn</text>
                                             }
-
                                         }
                                     }
                                 </div>

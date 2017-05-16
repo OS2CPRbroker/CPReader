@@ -46,7 +46,6 @@ namespace util.addresses
      */
     public class DawaAddressParser : IAddressParser
     {
-
         public AdresseType ToAddressType(String addressString)
         {
             try
@@ -59,7 +58,7 @@ namespace util.addresses
                 var charset = Encoding.UTF8;
                 String response = charset.GetString(responseBytes);
 
-                JArray adresses = new JArray(response);
+                JArray adresses = JArray.Parse(response);
 
                 if (adresses.Count > 0)
                 {
@@ -108,7 +107,7 @@ namespace util.addresses
         {
             String[]
             names = path.Split('/');
-            for (int i = 0; i < names.Length - 1; i++)
+            for (int i = 0; +i < names.Length - 1; i++)
             {
                 obj = obj[names[i]];
             }

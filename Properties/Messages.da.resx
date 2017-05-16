@@ -521,4 +521,13 @@
   <data name="person_viewfullpage" xml:space="preserve">
     <value>Se personoverblik</value>
   </data>
+  <data name="results_bopael" xml:space="preserve">
+    <value>Bopæl</value>
+  </data>
+  <data name="person_addresse" xml:space="preserve">
+    <value>Addresse</value>
+  </data>
+  <data name="person_bor_alene" xml:space="preserve">
+    <value>Eneste beboer på adressen</value>
+  </data>
 </root>

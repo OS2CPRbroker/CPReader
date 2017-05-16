@@ -47,7 +47,7 @@ namespace cpreader.Controllers
     public class SearchController : Controller
     {
 
-        private static ICprBrokerAccessor cprBroker;
+        public static ICprBrokerAccessor cprBroker;
         private static Boolean onlineCacheEnabled;
         private static int onlineCacheTimeout;
         //public static IConfiguration config;

@@ -1,0 +1,51 @@
+﻿@model Tuple<util.cprbroker.IPerson>
+@{ 
+    var person = Model.Item1;
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Messages.results_bopael</h3>
+    </div>
+    <div class="panel-body">
+        @if (person.address() != null && person.postalLabel() != null)
+        {
+            string address = "";
+            if (person.postalLabel().Length >= 3)
+            {
+                address = person.postalLabel()[1] + ", " + person.postalLabel()[2];
+            }
+            else
+            {
+                address = Messages.person_address_danishAddress_isUkendtAdresse;
+            }
+            <p class="text-left">@Html.Partial("simpleaddress", new Tuple<IPerson>(person))</p>
+
+            // Search for other persons living on same address
+            List<IPerson> livingOnAddress = SearchController.cprBroker.searchList("", address, ESourceUsageOrder.ExternalOnly, -1, -1);
+            List<IPerson> livingOnSameAddress = new List<IPerson>();
+            if (livingOnAddress != null && livingOnAddress.Any())
+            {
+                foreach (IPerson resident in livingOnAddress)
+                {
+                    if (!person.uuid().Equals(resident.uuid()))
+                    {
+                        livingOnSameAddress.Add(resident);
+                    }
+                }
+                <b>Andre beboere på addressen</b>
+                @Html.Partial("ipersoncprandname", livingOnSameAddress);
+            }
+            else
+            {
+                <text>@Messages.person_bor_alene</text>
+            }
+        }
+        else
+        {
+            <text>@Messages.person_address_danishAddress_isUkendtAdresse</text>
+        }
+    </div>
+    <div class="panel-footer"><p class="text-right">@Html.Partial("virkning", new Tuple<IVirkning, bool>(person.effect(), true)) </p></div>
+</div>

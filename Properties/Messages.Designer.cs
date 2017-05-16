@@ -466,7 +466,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ukendt adresse.
+        ///   Looks up a localized string similar to Unknown address.
         /// </summary>
         public static string person_address_danishAddress_isUkendtAdresse {
             get {
@@ -673,7 +673,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ukendt adresse.
+        ///   Looks up a localized string similar to Unknown address.
         /// </summary>
         public static string person_address_greenlandicAddress_isUkendtAdresse {
             get {
@@ -682,7 +682,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kommunekode.
+        ///   Looks up a localized string similar to Municipal code.
         /// </summary>
         public static string person_address_greenlandicAddress_municipalityCode {
             get {
@@ -700,7 +700,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Postnummer.
+        ///   Looks up a localized string similar to Postal code.
         /// </summary>
         public static string person_address_greenlandicAddress_postCode {
             get {
@@ -830,6 +830,15 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string person_addresse {
+            get {
+                return ResourceManager.GetString("person_addresse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Birth Date.
         /// </summary>
         public static string person_birthdate {
@@ -853,6 +862,15 @@ namespace cpreader.Properties {
         public static string person_birthRegisteringAuthority {
             get {
                 return ResourceManager.GetString("person_birthRegisteringAuthority", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No other residents on address.
+        /// </summary>
+        public static string person_bor_alene {
+            get {
+                return ResourceManager.GetString("person_bor_alene", resourceCulture);
             }
         }
         
@@ -929,7 +947,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ukendt adresse.
+        ///   Looks up a localized string similar to Unknown address.
         /// </summary>
         public static string person_otherAddress_worldAddress_isUkendtAdresseIndikator {
             get {
@@ -938,7 +956,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beskrivelse.
+        ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string person_otherAddress_worldAddress_locationDescriptionText {
             get {
@@ -966,7 +984,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adresse.
+        ///   Looks up a localized string similar to Adress.
         /// </summary>
         public static string person_otherAddress_worldAddress_postalAddressFirstLineText {
             get {
@@ -1172,6 +1190,15 @@ namespace cpreader.Properties {
         public static string resultat_tilstande {
             get {
                 return ResourceManager.GetString("resultat_tilstande", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Residence.
+        /// </summary>
+        public static string results_bopael {
+            get {
+                return ResourceManager.GetString("results_bopael", resourceCulture);
             }
         }
         

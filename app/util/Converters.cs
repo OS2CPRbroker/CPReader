@@ -55,6 +55,10 @@ namespace util
 
         public AdresseType ToAddressType(String addressString)
         {
+            if (AddressParser == null)
+            {
+                AddressParser = new DawaAddressParser();
+            }
             addressString = string.Format("{0}", addressString);
             if (!string.IsNullOrEmpty(addressString))
             {
