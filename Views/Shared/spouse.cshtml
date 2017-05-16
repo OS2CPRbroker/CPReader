@@ -1,0 +1,32 @@
+﻿@model Tuple<util.cprbroker.IPerson>
+@{
+    var person = Model.Item1;
+}
+
+<h4>Partner</h4>
+@if (person.relationsWithPerson() != null)
+{
+    if (person.relationsWithPerson().allRelations().Count > 0)
+    {
+        List<IRelationshipWithIPerson> spouse = person.relationsWithPerson().allRelations().FindAll(
+            delegate (IRelationshipWithIPerson p)
+            {
+                return p.relationshipType() == ERelationshipType.aegtefaelle || p.relationshipType() == ERelationshipType.registreretPartner;
+            }
+        );
+
+        if (spouse.Any()) //if a spouse exists
+        {
+            @Html.Partial("cprAndName", spouse)
+        }
+        else if (person.tilstand().civilStatusKode() != EMaritalStatusType.GIFT)
+        {
+            <p><b>@Messages.person_tilstand_civilStatusKode</b> @person.tilstand().civilStatusKode().ToString()</p>
+        }
+        if (person.tilstand().civilTilstandsVirkning().fraTidspunkt() != null)
+        {
+            <br>
+            @Html.Partial("virkning", new Tuple<IVirkning, bool>(person.tilstand().civilTilstandsVirkning(), false))
+        }
+    }
+}

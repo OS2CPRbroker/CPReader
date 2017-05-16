@@ -47,142 +47,42 @@
 <div class="modal-body">
     @if(accesslevel > 0)
     {
-        <ul class="nav nav-pills nav-justified">
-            @if (accesslevel > 1)
-            {
-                <li class="active"><a href="#familie@(person.uuid())" data-toggle="pill">Familie</a></li>
-            }
-        </ul>
         <br />
         <div class="tab-content">
             @if (accesslevel > 1)
             {
                 <div class="tab-pane active" id="familie@(person.uuid())">
                     @*ADRESSE*@
-                    <div class="col-md-4">
-                        @Html.Partial("residence", new Tuple<IPerson>(person));
-                    </div>
-
-                    @*BØRN*@
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
+                            @Html.Partial("residence", new Tuple<IPerson>(person))
+                        </div>
+
+                        @*FAMILIE*@
+                        <div class="col-md-6">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Børn</h3>
+                                    <h3 class="panel-title">Familie</h3>
                                 </div>
                                 <div class="panel-body">
-                                    @if (person.relationsWithPerson() != null)
-                                    {
-                                        if (person.relationsWithPerson().allRelations().Count > 0)
-                                        {
-                                            List<IRelationshipWithIPerson> children = person.relationsWithPerson().allRelations().FindAll(
-                                                delegate (IRelationshipWithIPerson p)
-                                                {
-                                                    return p.relationshipType() == ERelationshipType.boern || p.relationshipType() == ERelationshipType.foraeldremydighedsboern;
-                                                }
-                                            );
-
-                                            if (children.Any()) //if there are no children
-                                            {
-                                                @Html.Partial("cprAndName", children)
-                                            }else
-                                            {
-                                                <text>Ingen børn</text>
-                                            }
-                                        }
-                                    }
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @Html.Partial("spouse", new Tuple<IPerson>(person))
+                                        </div>
+                                        <hr />
+                                        <div class="col-md-12">
+                                            @Html.Partial("children", new Tuple<IPerson>(person))
+                                        </div>
+                                        <hr />
+                                        <div class="col-md-12">
+                                            @Html.Partial("parents", new Tuple<IPerson>(person))
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    <div class="col-md-5">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">@Messages.resultat_registeroplysninger</h3>
-                            </div>
-                            <div class="panel-body">
-                                @if (person.registerInformation() != null)
-                                {
-                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_socialSecurityNumberActive, person.registerInformation().cprCitizen().isSocialSecurityNumberValid()))
-                                    @Html.Partial("textfield", new Tuple<string, object>(Messages.person_registerInformation_cprCitizen_personNationalityCode, person.registerInformation().cprCitizen().personNationalityCode()))
-                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_isMemberOfTheChurch, person.registerInformation().cprCitizen().isMemberOfTheChurch()))
-                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_isResearcherProtected, person.registerInformation().cprCitizen().isResearcherProtected()))
-                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_isNameAddressProtected, person.registerInformation().cprCitizen().isNameAddressProtected()))
-                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_isPhoneNumberProtected, person.registerInformation().cprCitizen().isPhoneNumberProtected()))
-                                }
-                            </div>
-                            <div class="panel-footer">
-                                <p class="text-right">@Html.Partial("virkning", new Tuple<IVirkning, bool>(person.registerInformation().virkning(), true))</p>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">@Messages.resultat_tilstande</h3>
-                            </div>
-                            <div class="panel-body">
-                                @if (person.tilstand() != null) {
-                                    if (person.tilstand().civilStatusKode() != null)
-                                    {
-                                        <dl class="dl-horizontal">
-                                            <dt>@Messages.person_tilstand_civilStatusKode</dt>
-                                            <dd>@person.tilstand().civilStatusKode()</dd>
-                                            @if (person.tilstand().civilTilstandsVirkning().fraTidspunkt() != null)
-                                            {
-                                                <dd>@Html.Partial("virkning", new Tuple<IVirkning, bool>(person.tilstand().civilTilstandsVirkning(), false))</dd>
-                                            }
-                                        </dl>
-                                    }
-                                    if (person.tilstand().livStatusKode() != null)
-                                    {
-                                        <dl class="dl-horizontal">
-                                            <dt>@Messages.person_tilstand_livStatusKode</dt>
-                                            <dd>@person.tilstand().livStatusKode()</dd>
-                                            @if (person.tilstand().livTilstandsVirkning().fraTidspunkt() != null)
-                                            {
-                                                <dd>@Html.Partial("virkning", new Tuple<IVirkning, bool>(person.tilstand().livTilstandsVirkning(), false))</dd>
-                                            }
-                                        </dl>
-                                    }
-                                }
-                            </div>
-                        </div>
                     </div>
                 </div>
-                </div>
-            }
-            @if (person.relationsWithPerson() != null)
-            {
-                if (person.relationsWithPerson().allRelations().Count > 0)
-                {
-                    if (accesslevel > 1)
-                    {
-                        @:<div class="tab-pane" id="relationer@(person.uuid())">
-                    }
-                    <div class="row">
-                        <div class="col-md-12">
-                            <br />
-                            @if (person.relationsWithPerson() != null)
-                            {
-                                foreach (var r in person.relationsWithPerson().allRelations())
-                                {
-                                    if (accesslevel > 1) {
-                                        @Html.Partial("relation", new Tuple<IRelationshipWithIPerson, IPerson>(r, person))
-                                    }
-                                    else
-                                    {
-                                        if (r.relationshipType() == ERelationshipType.foraeldremyndighedsindehaver || r.relationshipType() == ERelationshipType.fader || r.relationshipType() == ERelationshipType.moder)
-                                        {
-                                            @Html.Partial("relation", new Tuple<IRelationshipWithIPerson, IPerson>(r, person))
-                                        }
-                                    }
-                                }
-                            }
-                        </div>
-                    </div>
-                    if (accesslevel > 1)
-                    {
-                        @:</div>
-                    }
-                }
             }
         </div>
     }

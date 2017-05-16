@@ -31,13 +31,14 @@
     *
     * ***** END LICENSE BLOCK ***** *@
 @model List<IRelationshipWithIPerson>
-<table class="table table-condensed">
+<table class="table table-condensed" style="width: 100%">
     <tbody>
         @foreach (IRelationshipWithIPerson relation in Model)
         {
             <tr>
-                <td>Cpr nr. @(relation.person().registerInformation().cprCitizen().socialSecurityNumber())</td>
-                <td>Navn: @(relation.person().firstname()) @(relation.person().middelname()) @(relation.person().lastname()) </td>
+                <td><b>@relation.relationshipTypeString()</b></td>
+                <td>CPR: @(relation.person().registerInformation().cprCitizen().socialSecurityNumber())</td>
+                <td>Navn: @(relation.person().firstname()) @(relation.person().middelname()) @(relation.person().lastname())</td>
             </tr>
         }
     </tbody>
