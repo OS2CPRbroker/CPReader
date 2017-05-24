@@ -61,63 +61,70 @@
                     <div class="row">
                         
                     </div>
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Børn</h3>
-                                </div>
-                                <div class="panel-body">
-                                    @if (person.relationsWithPerson() != null)
-                                    {
-                                        if (person.relationsWithPerson().allRelations().Count > 0)
-                                        {
-                                            List<IRelationshipWithIPerson> children = person.relationsWithPerson().allRelations().FindAll(
-                                                delegate (IRelationshipWithIPerson p)
-                                                {
-                                                    return p.relationshipType() == ERelationshipType.fader || p.relationshipType() == ERelationshipType.foraeldremydighedsboern;
-                                                }
-                                            );
-
-                                            if (children.Any()) //if there are no children
-                                            {
-                                                @Html.Partial("cprAndName", children)
-                                            }else
-                                            {
-                                                <text>Ingen børn</text>
-                                            }
-
-                                        }
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">@Messages.resultat_registeroplysninger</h3>
+                                <h3 class="panel-title">Børn</h3>               @*TODO SKAL LAVES TIL OVERSÆTTELSE*@
                             </div>
                             <div class="panel-body">
-                                @if (person.registerInformation() != null)
+                                @if (person.relationsWithPerson() != null  && person.relationsWithPerson().allRelations().Count > 0)
                                 {
-                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_socialSecurityNumberActive, person.registerInformation().cprCitizen().isSocialSecurityNumberValid()))
-                                    @Html.Partial("textfield", new Tuple<string, object>(Messages.person_registerInformation_cprCitizen_personNationalityCode, person.registerInformation().cprCitizen().personNationalityCode()))
-                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_isMemberOfTheChurch, person.registerInformation().cprCitizen().isMemberOfTheChurch()))
-                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_isResearcherProtected, person.registerInformation().cprCitizen().isResearcherProtected()))
-                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_isNameAddressProtected, person.registerInformation().cprCitizen().isNameAddressProtected()))
-                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_isPhoneNumberProtected, person.registerInformation().cprCitizen().isPhoneNumberProtected()))
+                                    List<IRelationshipWithIPerson> children = person.relationsWithPerson().allRelations().FindAll(
+                                        delegate (IRelationshipWithIPerson p)
+                                        {
+                                            return p.relationshipType() == ERelationshipType.boern || p.relationshipType() == ERelationshipType.foraeldremydighedsboern;
+                                        }
+                                    );
+
+                                    if (children.Any()) //if there are no children
+                                    {
+                                        @Html.Partial("cprAndName", children)
+                                    }else
+                                    {
+                                        <text>Ingen børn</text>      @*TODO SKAL LAVES TIL OVERSÆTTELSE*@
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">@Messages.person_partner</h3>
+                            </div>
+                            <div class="panel-body">
+                                @if (person.relationsWithPerson() != null && person.relationsWithPerson().allRelations().Count > 0)
+                                {
+                                    IRelationshipWithIPerson partner = person.relationsWithPerson().allRelations().Find(
+                                                                delegate(IRelationshipWithIPerson p) {
+                                                                    return p.relationshipType() == ERelationshipType.aegtefaelle || p.relationshipType() == ERelationshipType.registreretPartner;
+                                                                }
+                                                            );
+                                    if(partner != null)
+                                    {
+                                        @Html.Partial("textfield", new Tuple<String,Object>("Cpr nr.",partner.person().registerInformation().cprCitizen().socialSecurityNumber()))
+                                        @Html.Partial("textfield", new Tuple<String,Object>(Messages.cart_name, partner.person().nameForAddressing()))
+                                        
+                                    }
+                                    else
+                                    {
+                                        <text>@Messages.person_no_partner</text>
+                                    }
                                 }
                             </div>
                             <div class="panel-footer">
-                                <p class="text-right">@Html.Partial("virkning", new Tuple<IVirkning, bool>(person.registerInformation().virkning(), true))</p>
+                                <p class="text-right">@Html.Partial("virkning", new Tuple<IVirkning, bool>(person.tilstand().civilTilstandsVirkning(), false))</p>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">@Messages.resultat_tilstande</h3>
                             </div>
                             <div class="panel-body">
-                                @if (person.tilstand() != null) {
+                                @if (person.tilstand() != null)
+                                {
                                     if (person.tilstand().civilStatusKode() != null)
                                     {
                                         <dl class="dl-horizontal">
@@ -144,7 +151,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
             }
             @if (person.relationsWithPerson() != null)

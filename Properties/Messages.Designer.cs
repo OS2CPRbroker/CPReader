@@ -920,6 +920,15 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No partner.
+        /// </summary>
+        public static string person_no_partner {
+            get {
+                return ResourceManager.GetString("person_no_partner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (No information).
         /// </summary>
         public static string person_noparents {
@@ -1001,6 +1010,15 @@ namespace cpreader.Properties {
         public static string person_otherAddress_worldAddress_postalAddressThirdLineText {
             get {
                 return ResourceManager.GetString("person_otherAddress_worldAddress_postalAddressThirdLineText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Partner.
+        /// </summary>
+        public static string person_partner {
+            get {
+                return ResourceManager.GetString("person_partner", resourceCulture);
             }
         }
         

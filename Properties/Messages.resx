@@ -521,4 +521,10 @@
   <data name="person_viewfullpage" xml:space="preserve">
     <value>See all details</value>
   </data>
+  <data name="person_no_partner" xml:space="preserve">
+    <value>No partner</value>
+  </data>
+  <data name="person_partner" xml:space="preserve">
+    <value>Partner</value>
+  </data>
 </root>

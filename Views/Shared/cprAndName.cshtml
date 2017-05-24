@@ -35,10 +35,14 @@
     <tbody>
         @foreach (IRelationshipWithIPerson relation in Model)
         {
-            <tr>
-                <td>Cpr nr. @(relation.person().registerInformation().cprCitizen().socialSecurityNumber())</td>
-                <td>Navn: @(relation.person().firstname()) @(relation.person().middelname()) @(relation.person().lastname()) </td>
-            </tr>
+            if (relation != null)
+            {
+                <tr>
+                    <td>Cpr nr. @(relation.person().registerInformation().cprCitizen().socialSecurityNumber())</td>         @*TODO SKAL LAVES TIL OVERSÆTTELSE*@
+                    <td>Navn: @(relation.person().nameForAddressing()) </td>           @*TODO SKAL LAVES TIL OVERSÆTTELSE*@
+                </tr>
+
+            }
         }
     </tbody>
 </table>

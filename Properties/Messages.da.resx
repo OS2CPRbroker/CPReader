@@ -518,4 +518,10 @@
   <data name="person_otherAddress_worldAddress_note" xml:space="preserve">
     <value>Note</value>
   </data>
+  <data name="person_no_partner" xml:space="preserve">
+    <value>Ingen partner</value>
+  </data>
+  <data name="person_partner" xml:space="preserve">
+    <value>Partner</value>
+  </data>
 </root>
