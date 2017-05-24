@@ -22,7 +22,7 @@
                     @foreach (IRelationshipWithIPerson relation in spouse)
                     {
                         if (relation != null)
-                        { 
+                        {
                             string dateField;
                             DateTime marriageDate = relation.effect().fraTidspunkt().Value;
                             if (relation.relationshipType() == ERelationshipType.aegtefaelle)
@@ -34,11 +34,28 @@
                                 dateField = Messages.person_partner_date;
                             }
 
-
+                            string cprNr;
+                            string name;
+                            try
+                            {
+                                cprNr = relation.person().registerInformation().cprCitizen().socialSecurityNumber().Insert(6, "-");
+                            }
+                            catch (Exception e)
+                            {
+                                cprNr = Messages.unknown;
+                            }
+                            try
+                            {
+                                name = relation.person().nameForAddressing();
+                            }
+                            catch (Exception e)
+                            {
+                                name = Messages.unknown;
+                            }
                                 <tr>
                                     <td><b>@relation.relationshipTypeString()</b></td>
-                                    <td>@(Messages.person_registerInformation_cprCitizen_socialSecurityNumber) @(relation.person().registerInformation().cprCitizen().socialSecurityNumber().Insert(6, "-"))</td>         @*TODO SKAL LAVES TIL OVERSÆTTELSE*@
-                                    <td>@(Messages.cart_name+":") @(relation.person().nameForAddressing()) </td>           @*TODO SKAL LAVES TIL OVERSÆTTELSE*@
+                                    <td>@(Messages.person_registerInformation_cprCitizen_socialSecurityNumber) @(cprNr)</td>         @*TODO SKAL LAVES TIL OVERSÆTTELSE*@
+                                    <td>@(Messages.cart_name+":") @(name) </td>           @*TODO SKAL LAVES TIL OVERSÆTTELSE*@
                                     <td>@dateField: @(marriageDate.ToString("dd.MM.yyyy")) </td>
                                 </tr>
 

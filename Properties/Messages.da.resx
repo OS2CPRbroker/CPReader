@@ -545,4 +545,7 @@
   <data name="person_partner_date" xml:space="preserve">
     <value>Partnerskabsdato</value>
   </data>
+  <data name="unknown" xml:space="preserve">
+    <value>ukendt</value>
+  </data>
 </root>

@@ -38,11 +38,29 @@
 
         if (relation != null)
         {
-                
+            string cprNr;
+            string name;
+            try
+            {
+                cprNr = relation.person().registerInformation().cprCitizen().socialSecurityNumber().Insert(6, "-");
+            }
+            catch (Exception e)
+            {
+                cprNr = Messages.unknown;
+            }
+            try
+            {
+                name = relation.person().nameForAddressing();
+            }
+            catch (Exception e)
+            {
+                name = Messages.unknown;
+            }
+
                 <tr>
                     <td><b>@relation.relationshipTypeString()</b></td>
-                    <td>@(Messages.person_registerInformation_cprCitizen_socialSecurityNumber) @(relation.person().registerInformation().cprCitizen().socialSecurityNumber().Insert(6,"-"))</td>         @*TODO SKAL LAVES TIL OVERSÆTTELSE*@
-                    <td>@(Messages.cart_name+":") @(relation.person().nameForAddressing()) </td>           @*TODO SKAL LAVES TIL OVERSÆTTELSE*@
+                    <td>@(Messages.person_registerInformation_cprCitizen_socialSecurityNumber) @(cprNr)</td>
+                    <td>@(Messages.cart_name+":") @(name) </td>
                 </tr>
 
             }
