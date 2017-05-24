@@ -344,6 +344,8 @@
     <Content Include="Views\Shared\fullpagemodal.cshtml" />
     <Content Include="Views\Shared\fullpagemodalcontent.cshtml" />
     <Content Include="Views\Shared\cprAndName.cshtml" />
+    <Content Include="Views\Shared\ipersoncprandname.cshtml" />
+    <Content Include="Views\Shared\children.cshtml" />
     <None Include="Views\Shared\parentlist.cshtml" />
     <Content Include="app\views\parentmodal.scala.html" />
     <Content Include="app\views\person.scala.html" />
@@ -401,6 +403,10 @@
     </Content>
     <Content Include="Views\Shared\partial_pagination.cshtml" />
     <Content Include="Views\Shared\show_error.cshtml" />
+    <Content Include="Views\Shared\simpleaddress.cshtml" />
+    <Content Include="Views\Shared\residence.cshtml" />
+    <Content Include="Views\Shared\parents.cshtml" />
+    <Content Include="Views\Shared\spouse.cshtml" />
     <None Include="Web References\PartService\Part.wsdl" />
     <None Include="Web References\PartService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>

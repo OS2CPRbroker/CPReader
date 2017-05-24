@@ -1,0 +1,69 @@
+﻿@model Tuple<util.cprbroker.IPerson>
+@{ 
+    var person = Model.Item1;
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Messages.results_bopael</h3>
+    </div>
+    <div class="panel-body">
+        <h4>@Messages.person_addresse</h4>
+        @if (person.address() != null && person.postalLabel() != null)
+        {
+            string address = "";
+            if (person.postalLabel().Length >= 2)
+            {
+                address = person.postalLabel()[1] + ", " + person.postalLabel()[2];
+            }
+            <p>@address</p>
+            @Html.Partial("virkning", new Tuple<IVirkning, bool>(person.effect(), true))
+            // Search for other persons living on same address
+            if (address != "")
+            {
+                List<IPerson> livingOnAddress = SearchController.cprBroker.searchList("", address, ESourceUsageOrder.ExternalOnly, -1, -1);
+                List<IPerson> livingOnSameAddress = new List<IPerson>();
+                <hr/>
+                if (livingOnAddress != null && livingOnAddress.Any())
+                {
+                    foreach (IPerson resident in livingOnAddress)
+                    {
+                        if (!person.uuid().Equals(resident.uuid()))
+                        {
+                            livingOnSameAddress.Add(resident);
+                        }
+                    }
+                <h4>Andre beboere på addressen</h4>
+                <p>@Html.Partial("ipersoncprandname", livingOnSameAddress)</p>
+                }
+                else
+                {
+                <p class="text-left">@Messages.person_bor_alene</p>
+                }
+            }
+        }
+        else
+        {
+            <text>@Messages.person_address_danishAddress_isUkendtAdresse</text>
+        }
+        @* Check for world adress*@
+        @if (person.otherAddress() != null && person.otherAddress().worldAddress() != null &&
+        (person.otherAddress().worldAddress().locationDescriptionText() != null ||
+        person.otherAddress().worldAddress().postalAddressFirstLineText() != null ||
+        person.otherAddress().worldAddress().postalAddressSecondLineText() != null ||
+        person.otherAddress().worldAddress().postalAddressThirdLineText() != null ||
+        person.otherAddress().worldAddress().postalAddressFourthLineText() != null ||
+        person.otherAddress().worldAddress().postalAddressFifthLineText() != null))
+        {
+            if (person.otherAddress().addressType() == util.cprbroker.EAddressType.World)
+            {
+                <hr/>
+                if (person.otherAddress().worldAddress().postalAddressFirstLineText() != null)
+                {
+                    <p>@person.otherAddress().worldAddress().postalAddressFirstLineText()</p>
+                }
+            }
+        }
+    </div>
+</div>

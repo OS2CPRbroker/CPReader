@@ -418,7 +418,7 @@
     <value>Specielvejkode</value>
   </data>
   <data name="person_address_danishAddress_isUkendtAdresse" xml:space="preserve">
-    <value>Ukendt adresse</value>
+    <value>Unknown address</value>
   </data>
   <data name="person_address_greenlandicAddress_streetName" xml:space="preserve">
     <value>Gadenavn</value>
@@ -439,7 +439,7 @@
     <value>Forstad</value>
   </data>
   <data name="person_address_greenlandicAddress_postCode" xml:space="preserve">
-    <value>Postnummer</value>
+    <value>Postal code</value>
   </data>
   <data name="person_address_greenlandicAddress_districtName" xml:space="preserve">
     <value>By</value>
@@ -448,7 +448,7 @@
     <value>Landekode</value>
   </data>
   <data name="person_address_greenlandicAddress_municipalityCode" xml:space="preserve">
-    <value>Kommunekode</value>
+    <value>Municipal code</value>
   </data>
   <data name="person_address_greenlandicAddress_streetCode" xml:space="preserve">
     <value>Vejkode</value>
@@ -457,7 +457,7 @@
     <value>Specielvejkode</value>
   </data>
   <data name="person_address_greenlandicAddress_isUkendtAdresse" xml:space="preserve">
-    <value>Ukendt adresse</value>
+    <value>Unknown address</value>
   </data>
   <data name="person_address_greenlandicAddress_note" xml:space="preserve">
     <value>Note</value>
@@ -491,10 +491,10 @@
     <value>Note</value>
   </data>
   <data name="person_otherAddress_worldAddress_locationDescriptionText" xml:space="preserve">
-    <value>Beskrivelse</value>
+    <value>Description</value>
   </data>
   <data name="person_otherAddress_worldAddress_postalAddressFirstLineText" xml:space="preserve">
-    <value>Adresse</value>
+    <value>Adress</value>
   </data>
   <data name="person_otherAddress_worldAddress_postalAddressSecondLineText" xml:space="preserve">
     <value>
@@ -513,18 +513,36 @@
     </value>
   </data>
   <data name="person_otherAddress_worldAddress_isUkendtAdresseIndikator" xml:space="preserve">
-    <value>Ukendt adresse</value>
+    <value>Unknown address</value>
   </data>
   <data name="person_otherAddress_worldAddress_note" xml:space="preserve">
     <value>Note</value>
   </data>
   <data name="person_viewfullpage" xml:space="preserve">
-    <value>See all details</value>
+    <value>See full overview</value>
+  </data>
+  <data name="results_bopael" xml:space="preserve">
+    <value>Residence</value>
+  </data>
+  <data name="person_addresse" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="person_bor_alene" xml:space="preserve">
+    <value>No other residents on address</value>
   </data>
   <data name="person_no_partner" xml:space="preserve">
     <value>No partner</value>
   </data>
   <data name="person_partner" xml:space="preserve">
     <value>Partner</value>
+  </data>
+  <data name="person_cpr_short" xml:space="preserve">
+    <value>Cpr nr.</value>
+  </data>
+  <data name="person_married_date" xml:space="preserve">
+    <value>Wedding date</value>
+  </data>
+  <data name="person_partner_date" xml:space="preserve">
+    <value>Partnership date</value>
   </data>
 </root>

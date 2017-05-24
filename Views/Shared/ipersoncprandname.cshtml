@@ -30,22 +30,18 @@
     * the terms of any one of the MPL, the GPL or the LGPL.
     *
     * ***** END LICENSE BLOCK ***** *@
-@model List<IRelationshipWithIPerson>
-<table class="table table-condensed" style="width: 100%">
+@model List<IPerson>
+@{ 
+    var persons = Model;
+}
+<table class="table table-condensed">
     <tbody>
-    @foreach (IRelationshipWithIPerson relation in Model)
-    {
-
-        if (relation != null)
+        @foreach (IPerson person in persons)
         {
-                
-                <tr>
-                    <td><b>@relation.relationshipTypeString()</b></td>
-                    <td>@(Messages.person_registerInformation_cprCitizen_socialSecurityNumber) @(relation.person().registerInformation().cprCitizen().socialSecurityNumber().Insert(6,"-"))</td>         @*TODO SKAL LAVES TIL OVERSÆTTELSE*@
-                    <td>@(Messages.cart_name+":") @(relation.person().nameForAddressing()) </td>           @*TODO SKAL LAVES TIL OVERSÆTTELSE*@
-                </tr>
-
-            }
+            <tr>
+                <td><b>CPR: </b> @(person.registerInformation().cprCitizen().socialSecurityNumber())</td>
+                <td><b>Navn: </b>@(person.firstname()) @(person.middelname()) @(person.lastname()) </td>
+            </tr>
         }
     </tbody>
 </table>

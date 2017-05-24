@@ -466,7 +466,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ukendt adresse.
+        ///   Looks up a localized string similar to Unknown address.
         /// </summary>
         public static string person_address_danishAddress_isUkendtAdresse {
             get {
@@ -673,7 +673,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ukendt adresse.
+        ///   Looks up a localized string similar to Unknown address.
         /// </summary>
         public static string person_address_greenlandicAddress_isUkendtAdresse {
             get {
@@ -682,7 +682,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kommunekode.
+        ///   Looks up a localized string similar to Municipal code.
         /// </summary>
         public static string person_address_greenlandicAddress_municipalityCode {
             get {
@@ -700,7 +700,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Postnummer.
+        ///   Looks up a localized string similar to Postal code.
         /// </summary>
         public static string person_address_greenlandicAddress_postCode {
             get {
@@ -830,6 +830,15 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string person_addresse {
+            get {
+                return ResourceManager.GetString("person_addresse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Birth Date.
         /// </summary>
         public static string person_birthdate {
@@ -857,11 +866,29 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No other residents on address.
+        /// </summary>
+        public static string person_bor_alene {
+            get {
+                return ResourceManager.GetString("person_bor_alene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Call Name.
         /// </summary>
         public static string person_callname {
             get {
                 return ResourceManager.GetString("person_callname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cpr nr..
+        /// </summary>
+        public static string person_cpr_short {
+            get {
+                return ResourceManager.GetString("person_cpr_short", resourceCulture);
             }
         }
         
@@ -902,6 +929,15 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wedding date.
+        /// </summary>
+        public static string person_married_date {
+            get {
+                return ResourceManager.GetString("person_married_date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Middle Name.
         /// </summary>
         public static string person_middelname {
@@ -938,7 +974,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ukendt adresse.
+        ///   Looks up a localized string similar to Unknown address.
         /// </summary>
         public static string person_otherAddress_worldAddress_isUkendtAdresseIndikator {
             get {
@@ -947,7 +983,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beskrivelse.
+        ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string person_otherAddress_worldAddress_locationDescriptionText {
             get {
@@ -975,7 +1011,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adresse.
+        ///   Looks up a localized string similar to Adress.
         /// </summary>
         public static string person_otherAddress_worldAddress_postalAddressFirstLineText {
             get {
@@ -1019,6 +1055,15 @@ namespace cpreader.Properties {
         public static string person_partner {
             get {
                 return ResourceManager.GetString("person_partner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Partnership date.
+        /// </summary>
+        public static string person_partner_date {
+            get {
+                return ResourceManager.GetString("person_partner_date", resourceCulture);
             }
         }
         
@@ -1140,7 +1185,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to See all details.
+        ///   Looks up a localized string similar to See full overview.
         /// </summary>
         public static string person_viewfullpage {
             get {
@@ -1190,6 +1235,15 @@ namespace cpreader.Properties {
         public static string resultat_tilstande {
             get {
                 return ResourceManager.GetString("resultat_tilstande", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Residence.
+        /// </summary>
+        public static string results_bopael {
+            get {
+                return ResourceManager.GetString("results_bopael", resourceCulture);
             }
         }
         

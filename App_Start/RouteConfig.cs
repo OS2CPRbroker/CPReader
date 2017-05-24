@@ -42,12 +42,12 @@ namespace cpreader
             //GET / search / name /:name / address /:address / page /:page @controllers.Search.searchNameAndAddress(name: String, address: String, online: Boolean ?= false, page: Int)
             routes.MapRoute("search5", "search/name/{name}/address/{address}/page/{page}", new { controller = "Search", action = "searchNameAndAddress", online = false });
             //GET / search / name /:name / address /:address / online / page /:page @controllers.Search.searchNameAndAddress(name: String, address: String, online: Boolean ?= true, page: Int)
-            routes.MapRoute("search6", "search/name/{name}/address/{address}/online/{online}/page/{page}", new { controller = "Search", action = "searchNameAndAddress", online = false });
+            routes.MapRoute("search6", "search/name/{name}/address/{address}/online/page/{page}", new { controller = "Search", action = "searchNameAndAddress", online = true });
 
             //GET / search / name /:name / page /:page @controllers.Search.searchNameAndAddress(name: String, address = "", online: Boolean ?= false, page: Int)
             routes.MapRoute("search7", "search/name/{name}/page/{page}", new { controller = "Search", action = "searchNameAndAddress", address = "", online = false });
             //GET / search / name /:name / online / page /:page @controllers.Search.searchNameAndAddress(name: String, address = "", online: Boolean ?= true, page: Int)
-            routes.MapRoute("search8", "search/name/{name}/online/{online}/page/{page}", new { controller = "Search", action = "searchNameAndAddress", address = "", online = true });
+            routes.MapRoute("search8", "search/name/{name}/online/page/{page}", new { controller = "Search", action = "searchNameAndAddress", address = "", online = true });
             //GET / search / address /:address / page /:page @controllers.Search.searchNameAndAddress(name = "", address: String, online: Boolean ?= false, page: Int)
             routes.MapRoute("search9", "search/address/{address}/page/{page}", new { controller = "Search", action = "searchNameAndAddress", name="", online=false });
             //GET / search / address /:address / online / page /:page @controllers.Search.searchNameAndAddress(name = "", address: String, online: Boolean ?= true, page: Int)
