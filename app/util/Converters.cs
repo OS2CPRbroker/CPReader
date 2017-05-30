@@ -57,7 +57,7 @@ namespace util
         {
             if (AddressParser == null)
             {
-                AddressParser = new DawaAddressParser();
+                AddressParser = new RegexAddressParser();
             }
             addressString = string.Format("{0}", addressString);
             if (!string.IsNullOrEmpty(addressString))

@@ -328,7 +328,7 @@
     <value>Life Status</value>
   </data>
   <data name="person_registerInformation_cprCitizen_socialSecurityNumber" xml:space="preserve">
-    <value>CPR Number</value>
+    <value>CPR</value>
   </data>
   <data name="person_registerInformation_cprCitizen_socialSecurityNumberActive" xml:space="preserve">
     <value>CPR Number Active</value>

@@ -1113,7 +1113,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CPR Number.
+        ///   Looks up a localized string similar to CPR.
         /// </summary>
         public static string person_registerInformation_cprCitizen_socialSecurityNumber {
             get {
