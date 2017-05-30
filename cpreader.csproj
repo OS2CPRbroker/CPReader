@@ -403,7 +403,6 @@
     </Content>
     <Content Include="Views\Shared\partial_pagination.cshtml" />
     <Content Include="Views\Shared\show_error.cshtml" />
-    <Content Include="Views\Shared\simpleaddress.cshtml" />
     <Content Include="Views\Shared\residence.cshtml" />
     <Content Include="Views\Shared\parents.cshtml" />
     <Content Include="Views\Shared\spouse.cshtml" />

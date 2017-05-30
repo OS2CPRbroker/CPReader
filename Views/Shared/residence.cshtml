@@ -8,24 +8,25 @@
     <div class="panel-heading">
         <h3 class="panel-title">@Messages.results_bopael</h3>
     </div>
-    <div class="panel-body">
+    <div class="panel-
+         ">
         <h4>@Messages.person_addresse</h4>
         @if (person.address() != null && person.postalLabel() != null)
         {
             string address = "";
             if (person.postalLabel().Length >= 2)
             {
-                address = person.postalLabel()[1] + ", " + person.postalLabel()[2];
+                address = person.postalLabel()[1] + " " + person.postalLabel()[2];
             }
             <p>@address</p>
             @Html.Partial("virkning", new Tuple<IVirkning, bool>(person.effect(), true))
             // Search for other persons living on same address
             if (address != "")
             {
-                List<IPerson> livingOnAddress = SearchController.cprBroker.searchList("", address, ESourceUsageOrder.ExternalOnly, -1, -1);
+                List<IPerson> livingOnAddress = SearchController.cprBroker.searchList("", address, ESourceUsageOrder.LocalOnly, -1, -1);
                 List<IPerson> livingOnSameAddress = new List<IPerson>();
                 <hr/>
-                if (livingOnAddress != null && livingOnAddress.Any())
+                if (livingOnAddress != null)
                 {
                     foreach (IPerson resident in livingOnAddress)
                     {
@@ -34,8 +35,11 @@
                             livingOnSameAddress.Add(resident);
                         }
                     }
-                <h4>Andre beboere på addressen</h4>
-                <p>@Html.Partial("ipersoncprandname", livingOnSameAddress)</p>
+                }
+                if (livingOnSameAddress.Any())
+                {
+                    <h4>Andre beboere på addressen</h4>
+                    <p>@Html.Partial("ipersoncprandname", livingOnSameAddress)</p>
                 }
                 else
                 {

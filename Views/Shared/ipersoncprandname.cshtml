@@ -39,8 +39,8 @@
         @foreach (IPerson person in persons)
         {
             <tr>
-                <td><b>CPR: </b> @(person.registerInformation().cprCitizen().socialSecurityNumber())</td>
-                <td><b>Navn: </b>@(person.firstname()) @(person.middelname()) @(person.lastname()) </td>
+                <td>CPR: @(person.registerInformation().cprCitizen().socialSecurityNumber())</td>
+                <td>Navn: @(person.firstname()) @(person.middelname()) @(person.lastname()) </td>
             </tr>
         }
     </tbody>

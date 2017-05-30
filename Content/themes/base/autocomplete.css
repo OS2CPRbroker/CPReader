@@ -9,8 +9,20 @@
  * http://api.jqueryui.com/autocomplete/#theming
  */
 .ui-autocomplete {
-	position: absolute;
-	top: 0;
-	left: 0;
-	cursor: default;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: default;
+    background-color: #ffffff;
+    outline: auto;
+}
+
+.ui-menu-item {
+   color: #808080;
+}
+
+.ui-menu .ui-state-focus,
+.ui-menu .ui-state-active {
+    text-decoration: underline;
+    color: #000000;
 }

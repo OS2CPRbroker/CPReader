@@ -46,7 +46,7 @@ namespace util.addresses
 
         public AdresseType ToAddressType(String addressString)
         {
-            String comma = "((\\s+)|(\\s*[,;\\.]{1}\\s*))";
+            String comma = "((\\s+)|(\\s*[,;\\.]{1,2}\\s*))";
             String pat = "(?<streetName>[^0-9]+)" + comma
                     + "(?<houseNumber>[0-9]+[a-zA-Z]*)" + comma
                     + "(" + "(?<floor>([0-9]{1,2})|st)?(\\.)?(sal)?" + comma + ")?"
