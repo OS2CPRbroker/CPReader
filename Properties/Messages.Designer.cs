@@ -884,6 +884,15 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cpr nr..
+        /// </summary>
+        public static string person_cpr_short {
+            get {
+                return ResourceManager.GetString("person_cpr_short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string person_false {
@@ -920,6 +929,15 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wedding date.
+        /// </summary>
+        public static string person_married_date {
+            get {
+                return ResourceManager.GetString("person_married_date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Middle Name.
         /// </summary>
         public static string person_middelname {
@@ -934,6 +952,15 @@ namespace cpreader.Properties {
         public static string person_nameForAddressing {
             get {
                 return ResourceManager.GetString("person_nameForAddressing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No partner.
+        /// </summary>
+        public static string person_no_partner {
+            get {
+                return ResourceManager.GetString("person_no_partner", resourceCulture);
             }
         }
         
@@ -1019,6 +1046,24 @@ namespace cpreader.Properties {
         public static string person_otherAddress_worldAddress_postalAddressThirdLineText {
             get {
                 return ResourceManager.GetString("person_otherAddress_worldAddress_postalAddressThirdLineText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Partner.
+        /// </summary>
+        public static string person_partner {
+            get {
+                return ResourceManager.GetString("person_partner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Partnership date.
+        /// </summary>
+        public static string person_partner_date {
+            get {
+                return ResourceManager.GetString("person_partner_date", resourceCulture);
             }
         }
         
@@ -1271,6 +1316,15 @@ namespace cpreader.Properties {
         public static string results_list_searchFailed {
             get {
                 return ResourceManager.GetString("results_list_searchFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to unknown.
+        /// </summary>
+        public static string unknown {
+            get {
+                return ResourceManager.GetString("unknown", resourceCulture);
             }
         }
         

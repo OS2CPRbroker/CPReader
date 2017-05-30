@@ -33,13 +33,37 @@
 @model List<IRelationshipWithIPerson>
 <table class="table table-condensed" style="width: 100%">
     <tbody>
-        @foreach (IRelationshipWithIPerson relation in Model)
+    @foreach (IRelationshipWithIPerson relation in Model)
+    {
+
+        if (relation != null)
         {
-            <tr>
-                <td><b>@relation.relationshipTypeString()</b></td>
-                <td>CPR: @(relation.person().registerInformation().cprCitizen().socialSecurityNumber())</td>
-                <td>Navn: @(relation.person().firstname()) @(relation.person().middelname()) @(relation.person().lastname())</td>
-            </tr>
+            string cprNr;
+            string name;
+            try
+            {
+                cprNr = relation.person().registerInformation().cprCitizen().socialSecurityNumber().Insert(6, "-");
+            }
+            catch (Exception e)
+            {
+                cprNr = Messages.unknown;
+            }
+            try
+            {
+                name = relation.person().nameForAddressing();
+            }
+            catch (Exception e)
+            {
+                name = Messages.unknown;
+            }
+
+                <tr>
+                    <td><b>@relation.relationshipTypeString()</b></td>
+                    <td>@(Messages.person_registerInformation_cprCitizen_socialSecurityNumber) @(cprNr)</td>
+                    <td>@(Messages.cart_name+":") @(name) </td>
+                </tr>
+
+            }
         }
     </tbody>
 </table>

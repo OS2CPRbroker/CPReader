@@ -530,4 +530,22 @@
   <data name="person_bor_alene" xml:space="preserve">
     <value>Eneste beboer på adressen</value>
   </data>
+  <data name="person_no_partner" xml:space="preserve">
+    <value>Ingen partner</value>
+  </data>
+  <data name="person_partner" xml:space="preserve">
+    <value>Partner</value>
+  </data>
+  <data name="person_cpr_short" xml:space="preserve">
+    <value>Cpr nr.</value>
+  </data>
+  <data name="person_married_date" xml:space="preserve">
+    <value>Vielsesdato</value>
+  </data>
+  <data name="person_partner_date" xml:space="preserve">
+    <value>Partnerskabsdato</value>
+  </data>
+  <data name="unknown" xml:space="preserve">
+    <value>ukendt</value>
+  </data>
 </root>

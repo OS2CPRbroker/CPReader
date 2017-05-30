@@ -530,4 +530,22 @@
   <data name="person_bor_alene" xml:space="preserve">
     <value>No other residents on address</value>
   </data>
+  <data name="person_no_partner" xml:space="preserve">
+    <value>No partner</value>
+  </data>
+  <data name="person_partner" xml:space="preserve">
+    <value>Partner</value>
+  </data>
+  <data name="person_cpr_short" xml:space="preserve">
+    <value>Cpr nr.</value>
+  </data>
+  <data name="person_married_date" xml:space="preserve">
+    <value>Wedding date</value>
+  </data>
+  <data name="person_partner_date" xml:space="preserve">
+    <value>Partnership date</value>
+  </data>
+  <data name="unknown" xml:space="preserve">
+    <value>unknown</value>
+  </data>
 </root>

@@ -11,22 +11,62 @@
         List<IRelationshipWithIPerson> spouse = person.relationsWithPerson().allRelations().FindAll(
             delegate (IRelationshipWithIPerson p)
             {
-                return p.relationshipType() == ERelationshipType.aegtefaelle || p.relationshipType() == ERelationshipType.registreretPartner;
+                return (p.relationshipType() == ERelationshipType.aegtefaelle || p.relationshipType() == ERelationshipType.registreretPartner) && (p.effect().tilTidspunkt() == null);
             }
         );
 
-        if (spouse.Any()) //if a spouse exists
+        if (spouse.Any()) //if there is any spouses (should max be one, but is made to handle more)
         {
-            @Html.Partial("cprAndName", spouse)
+            <table class="table table-condensed" style="width: 100%">
+                <tbody>
+                    @foreach (IRelationshipWithIPerson relation in spouse)
+                    {
+                        if (relation != null)
+                        {
+                            string dateField;
+                            DateTime marriageDate = relation.effect().fraTidspunkt().Value;
+                            if (relation.relationshipType() == ERelationshipType.aegtefaelle)
+                            {
+                                dateField = Messages.person_married_date;
+                            }
+                            else
+                            {
+                                dateField = Messages.person_partner_date;
+                            }
+
+                            string cprNr;
+                            string name;
+                            try
+                            {
+                                cprNr = relation.person().registerInformation().cprCitizen().socialSecurityNumber().Insert(6, "-");
+                            }
+                            catch (Exception e)
+                            {
+                                cprNr = Messages.unknown;
+                            }
+                            try
+                            {
+                                name = relation.person().nameForAddressing();
+                            }
+                            catch (Exception e)
+                            {
+                                name = Messages.unknown;
+                            }
+                                <tr>
+                                    <td><b>@relation.relationshipTypeString()</b></td>
+                                    <td>@(Messages.person_registerInformation_cprCitizen_socialSecurityNumber) @(cprNr)</td>         @*TODO SKAL LAVES TIL OVERSÆTTELSE*@
+                                    <td>@(Messages.cart_name+":") @(name) </td>           @*TODO SKAL LAVES TIL OVERSÆTTELSE*@
+                                    <td>@dateField: @(marriageDate.ToString("dd.MM.yyyy")) </td>
+                                </tr>
+
+                        }
+                    }
+                </tbody>
+            </table>
         }
         else if (person.tilstand().civilStatusKode() != EMaritalStatusType.GIFT)
         {
             <p><b>@Messages.person_tilstand_civilStatusKode</b> @person.tilstand().civilStatusKode().ToString()</p>
-        }
-        if (person.tilstand().civilTilstandsVirkning().fraTidspunkt() != null)
-        {
-            <br>
-            @Html.Partial("virkning", new Tuple<IVirkning, bool>(person.tilstand().civilTilstandsVirkning(), false))
         }
     }
 }
