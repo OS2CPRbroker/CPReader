@@ -39,7 +39,9 @@ namespace util
             var windowsIdentity = HttpContext.Current.User.Identity as System.Security.Principal.WindowsIdentity;
             var groupNames = new string[] { };
             if (windowsIdentity.Groups != null)
-                groupNames = windowsIdentity.Groups.Select(g => g.Translate(typeof(System.Security.Principal.NTAccount)).Value).ToArray();
+                groupNames = windowsIdentity.Groups
+                    .Where(g => g.Translate(typeof(System.Security.Principal.NTAccount)) != null)
+                    .Select(g => g.Translate(typeof(System.Security.Principal.NTAccount)).Value).ToArray();
 
             bool useCart;
             int accessLevel = calculateAccessLevel(username, groupNames, out useCart);
