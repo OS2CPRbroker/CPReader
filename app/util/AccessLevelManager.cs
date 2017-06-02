@@ -37,11 +37,19 @@ namespace util
             HttpContext.Current.Session.Remove("accesslevel"); // invaidate current access level to force re-check
 
             var windowsIdentity = HttpContext.Current.User.Identity as System.Security.Principal.WindowsIdentity;
-            var groupNames = new string[] { };
+            List<string> groupNamesList = new List<string>();
             if (windowsIdentity.Groups != null)
-                groupNames = windowsIdentity.Groups
-                    .Where(g => g.GetType().Equals(typeof(System.Security.Principal.NTAccount)))
-                    .Select(g => g.Translate(typeof(System.Security.Principal.NTAccount)).Value).ToArray();
+                foreach(var g in windowsIdentity.Groups)
+                {
+                    try
+                    {
+                        groupNamesList.Add(g.Translate(typeof(System.Security.Principal.NTAccount)).Value);
+                    }
+                    catch(Exception e) { }
+                }
+            //groupNames = windowsIdentityFilteredGroups
+            //  .Select(g => g.Translate(typeof(System.Security.Principal.NTAccount)).Value).ToArray();
+            var groupNames = groupNamesList.ToArray();
 
             bool useCart;
             int accessLevel = calculateAccessLevel(username, groupNames, out useCart);
