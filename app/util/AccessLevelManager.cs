@@ -40,7 +40,7 @@ namespace util
             var groupNames = new string[] { };
             if (windowsIdentity.Groups != null)
                 groupNames = windowsIdentity.Groups
-                    .Where(g => g.Translate(typeof(System.Security.Principal.NTAccount)) != null)
+                    .Where(g => g.GetType().Equals(typeof(System.Security.Principal.NTAccount)))
                     .Select(g => g.Translate(typeof(System.Security.Principal.NTAccount)).Value).ToArray();
 
             bool useCart;
