@@ -45,7 +45,9 @@ namespace util
                     {
                         groupNamesList.Add(g.Translate(typeof(System.Security.Principal.NTAccount)).Value);
                     }
-                    catch(Exception e) { }
+                    catch(Exception e) {
+                        play.Logger.error("windowsidentity group: " + g.ToString() + " could not be translated.\nError message:\n" + e.ToString());
+                    }
                 }
             //groupNames = windowsIdentityFilteredGroups
             //  .Select(g => g.Translate(typeof(System.Security.Principal.NTAccount)).Value).ToArray();
