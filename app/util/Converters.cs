@@ -57,7 +57,7 @@ namespace util
         {
             if (AddressParser == null)
             {
-                AddressParser = new RegexAddressParser();
+                AddressParser = new DawaAddressParser();
             }
             addressString = string.Format("{0}", addressString);
             if (!string.IsNullOrEmpty(addressString))
@@ -76,7 +76,7 @@ namespace util
             while (name.Contains(","))
             {
                 int i = name.LastIndexOf(",");
-                name = name.Substring(i + 1) + " " + name.Substring(0, i - 1);
+                name = name.Substring(i + 1).Trim(' ') + " " + name.Substring(0, i).Trim(' ');
             }
 
             String firstName = null, middleName = null, lastName = null;
@@ -93,8 +93,25 @@ namespace util
                 {
                     middleNames.Add(arr[i]);
                 }
-                middleName = StringUtils.join(" ", middleNames);
+                middleName = StringUtils.join(" ", middleNames).Trim(' ');
             }
+            
+            //CPRBroker will search for people matching ALL criterias, that are not null, so this nullifies the names, if they are empty,
+            //This could happen if 2 spaces are between names
+            //This is also usefull, to make searching for someone with only a lastname possible by searching for LASTNAME,
+            if(firstName == "")
+            {
+                firstName = null;
+            }
+            if(middleName == "")
+            {
+                middleName = null;
+            }
+            if(lastName == "")
+            {
+                lastName = null;
+            }
+
             return ToNavnStrukturType(firstName, middleName, lastName);
         }
 
