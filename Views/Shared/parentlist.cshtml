@@ -4,52 +4,60 @@
     var accesslevel = Model.Item2;
     var parentCount = 0;
 }
-
-@if(person.relationsWithPerson() != null)
+@if(accesslevel > 0)
 {
-    foreach(var r in person.relationsWithPerson().allRelations())
+    if(person.relationsWithPerson() != null)
     {
-        if (r.relationshipType() == ERelationshipType.foraeldremyndighedsindehaver || r.relationshipType() == ERelationshipType.fader || r.relationshipType() == ERelationshipType.moder)
+        foreach(var r in person.relationsWithPerson().allRelations())
         {
+            if (r.relationshipType() == ERelationshipType.foraeldremyndighedsindehaver || r.relationshipType() == ERelationshipType.fader || r.relationshipType() == ERelationshipType.moder)
+            {
 
-            HttpContext.Current.Cache[r.person().uuid()] = r.person();
+                HttpContext.Current.Cache[r.person().uuid()] = r.person();
             
-            <div class="row">
+                <div class="row">
 
-                @Html.Partial("listperson", new Tuple<IPerson, bool, string>(r.person(), true, r.relationshipTypeString()+":" ))
+                    @Html.Partial("listperson", new Tuple<IPerson, bool, string>(r.person(), true, r.relationshipTypeString()+":" ))
                 
-                @{
-                    parentCount ++;
-                }
-                @if(accesslevel > 1)
-                {
-                    <div class="col-md-2 text-left">
-                        <a href="/show/uuid/@r.person().uuid()/"><span class="glyphicon glyphicon-user"></span> @Messages.person_viewdetails</a>
-                    </div>
+                    @{
+                        parentCount ++;
+                    }
+                    @if(accesslevel > 1)
+                    {
+                        <div class="col-md-2 text-left">
+                            <a href="/show/uuid/@r.person().uuid()/"><span class="glyphicon glyphicon-user"></span> @Messages.person_viewdetails</a>
+                        </div>
                     
-                    <div class="col-md-3 text-right">
-                        @if(AccessLevelManager.getCurrentUseCart()) {  <div id="cart@(r.person().uuid())">@Html.Partial("cart", new Tuple<IPerson>(r.person()))</div> }
-                    </div>
-                }
-                else
-                {
-                    <div class="col-md-5 text-right">
-                        @if(AccessLevelManager.getCurrentUseCart()) {  <div id="cart@(r.person().uuid())">@Html.Partial("cart", new Tuple<IPerson>(r.person()))</div> }
-                    </div>
-                }
+                        <div class="col-md-3 text-right">
+                            @if(AccessLevelManager.getCurrentUseCart()) {  <div id="cart@(r.person().uuid())">@Html.Partial("cart", new Tuple<IPerson>(r.person()))</div> }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-5 text-right">
+                            @if(AccessLevelManager.getCurrentUseCart()) {  <div id="cart@(r.person().uuid())">@Html.Partial("cart", new Tuple<IPerson>(r.person()))</div> }
+                        </div>
+                    }
+                </div>
+            }
+        }
+        if(parentCount == 0)
+        {
+            <div class="row">
+                <div class="col-md-3">@Messages.person_noparents)</div>
             </div>
         }
     }
-    if(parentCount == 0)
+    else
     {
         <div class="row">
-            <div class="col-md-3">@Messages.person_noparents)</div>
+            Data not available
         </div>
-    }
-}
-else
-{
-    <div class="row">
-        Data not available
-    </div>
-}
+                            }
+                        }
+                        else
+                        {
+                            <div class="row">
+                                Access denied: Access-level not high enough
+                            </div>
+                        }
