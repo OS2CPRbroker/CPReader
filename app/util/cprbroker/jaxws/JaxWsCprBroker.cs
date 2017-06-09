@@ -256,38 +256,45 @@ namespace util.cprbroker.jaxws
             }
 
             Converters converters = new Converters();
-            SoegObjektType soegObjekt = converters.ToSoegObjektType(name, address);
-            input.SoegObjekt = soegObjekt;
+            List<SoegObjektType> soegObjekts = converters.ToSoegObjektTypes(name, address);
 
-            // Access CPR broker
-            Part service;
-            try
+            List<IPerson> persons = new List<IPerson>();
+            if (soegObjekts != null)
             {
-                service = getService(sourceUsageOrder);
-            }
-            catch (Exception e)
-            {
-                play.Logger.error(e);
-                return null;
-            }
-
-            SoegListOutputType soegListOutputType = service.SearchList(input);
-
-            List<IPerson> persons = null;
-            if (soegListOutputType != null
-                    && soegListOutputType.StandardRetur != null
-                    && soegListOutputType.StandardRetur.StatusKode.Equals("200"))
-            {
-
-                persons = new List<IPerson>();
-                if (soegListOutputType.LaesResultat != null)
+                foreach (SoegObjektType soegObjekt in soegObjekts)
                 {
-                    for (int i = 0; i < soegListOutputType.LaesResultat.Length; i++)
-                    {
-                        LaesResultatType laesResultatType = soegListOutputType.LaesResultat[i];
-                        String uuid = soegListOutputType.Idliste[i];
+                    input.SoegObjekt = soegObjekt;
 
-                        persons.Add(getPerson(uuid, laesResultatType, soegListOutputType.StandardRetur, fetchRelations));
+                    // Access CPR broker
+                    Part service;
+                    try
+                    {
+                        service = getService(sourceUsageOrder);
+                    }
+                    catch (Exception e)
+                    {
+                        play.Logger.error(e);
+                        return null;
+                    }
+
+                    SoegListOutputType soegListOutputType = service.SearchList(input);
+
+
+                    if (soegListOutputType != null
+                            && soegListOutputType.StandardRetur != null
+                            && soegListOutputType.StandardRetur.StatusKode.Equals("200"))
+                    {
+
+                        if (soegListOutputType.LaesResultat != null)
+                        {
+                            for (int i = 0; i < soegListOutputType.LaesResultat.Length; i++)
+                            {
+                                LaesResultatType laesResultatType = soegListOutputType.LaesResultat[i];
+                                String uuid = soegListOutputType.Idliste[i];
+
+                                persons.Add(getPerson(uuid, laesResultatType, soegListOutputType.StandardRetur, fetchRelations));
+                            }
+                        }
                     }
                 }
             }
@@ -319,14 +326,16 @@ namespace util.cprbroker.jaxws
 
             List<IPerson> persons = new List<IPerson>();
             IPerson tmpPerson;
-
-            int size = laesResultatTypeList.Length;
-            List<String> uuidList = uuids.values();
-
-            for (int i = 0; i < size; i++)
+            if (laesResultatTypeList != null)
             {
-                tmpPerson = getPerson(uuidList[i], laesResultatTypeList[i], listOutput.StandardRetur, false);
-                persons.Add(tmpPerson);
+                int size = laesResultatTypeList.Length;
+                List<String> uuidList = uuids.values();
+
+                for (int i = 0; i < size; i++)
+                {
+                    tmpPerson = getPerson(uuidList[i], laesResultatTypeList[i], listOutput.StandardRetur, false);
+                    persons.Add(tmpPerson);
+                }
             }
 
             return persons;
