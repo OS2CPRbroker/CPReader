@@ -8,7 +8,7 @@
     <div class="well">
         <h4>
             <span class="glyphicon glyphicon-user"></span>
-            Person: @(person.registerInformation().cprCitizen().socialSecurityNumber().Insert(6, " - "))
+            Person: @(person.registerInformation().cprCitizen().socialSecurityNumber().Insert(6, "-"))
             <br/>
             <br/>
             @person.nameForAddressing()
@@ -75,5 +75,5 @@
     }
 </div>
 <div class="modal-footer">
-    <button onclick="hideDetail()" id="fullpageCloseButton" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button onclick="hideDetail()" id="fullpageCloseButton@(person.uuid())" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 </div>

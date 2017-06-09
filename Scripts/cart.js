@@ -146,7 +146,7 @@ function showPersonDetails(event, uuid)
 
     var showFunc = function(){
         detailModalDiv.modal({ keyboard: true, backdrop: 'static' });
-        $("#detailCloseButton").focus();
+        $("#detailCloseButton" + uuid).focus();
     };
     if(detailsAnchor.attributes.loaded.value == 'false')
     {
@@ -181,7 +181,7 @@ function ShowFullPageView(event, uuid) {
 
     var showFunc = function () {
         fullpageModalDiv.modal({ keyboard: true, backdrop: 'static' });
-        $("#fullpageCloseButton").focus();
+        $("#fullpageCloseButton" + uuid).focus();
     };
     if (fullpageAnchor.attributes.loaded.value == 'false') {
         contentDiv.load(

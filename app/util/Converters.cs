@@ -67,7 +67,7 @@ namespace util
             return null;
         }
 
-        public NavnStrukturType ToNavnStrukturType(string name)
+        public NavnStrukturType ToNavnStrukturType(string name, int? type = null)
         {
 
             if (string.IsNullOrEmpty(name))
@@ -81,19 +81,40 @@ namespace util
 
             String firstName = null, middleName = null, lastName = null;
             String[] arr = name.Split(' ');
-            if (arr.Length >= 1)
-                firstName = arr[0];
-            if (arr.Length > 1)
-                lastName = arr[arr.Length - 1];
-            if (arr.Length > 2)
+
+            if (type != null)
             {
-                middleName = "";
-                var middleNames = new List<string>();
-                for (int i = 1; i < arr.Length - 1; i++)
+                switch (type)
                 {
-                    middleNames.Add(arr[i]);
+                    case 0:
+                        firstName = arr[0];
+                        break;
+                    case 1:
+                        middleName = arr[0];
+                        break;
+                    case 2:
+                        lastName = arr[0];
+                        break;
+                    default:
+                        break;
                 }
-                middleName = StringUtils.join(" ", middleNames).Trim(' ');
+            }
+            else
+            {
+                if (arr.Length >= 1)
+                    firstName = arr[0];
+                if (arr.Length > 1)
+                    lastName = arr[arr.Length - 1];
+                if (arr.Length > 2)
+                {
+                    middleName = "";
+                    var middleNames = new List<string>();
+                    for (int i = 1; i < arr.Length - 1; i++)
+                    {
+                        middleNames.Add(arr[i]);
+                    }
+                    middleName = StringUtils.join(" ", middleNames).Trim(' ');
+                }
             }
             
             //CPRBroker will search for people matching ALL criterias, that are not null, so this nullifies the names, if they are empty,
@@ -183,36 +204,53 @@ namespace util
             return ret.Split(newLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
         }
 
-        public SoegObjektType ToSoegObjektType(String name, String address)
+        public List<SoegObjektType> ToSoegObjektTypes(String name, String address)
         {
-            NavnStrukturType navnStrukturType = ToNavnStrukturType(name);
-            AdresseType addressObject = ToAddressType(address);
-            if (navnStrukturType == null && addressObject == null)
-                return null;
-
-            SoegAttributListeType soegAttributListeType = new SoegAttributListeType();
-
-            // Now fill Egenskab & registerOplysning
-            SoegEgenskabType soegEgenskabType = new SoegEgenskabType();
-            soegEgenskabType.NavnStruktur = navnStrukturType;
-            soegAttributListeType.SoegEgenskab = new SoegEgenskabType[] { soegEgenskabType };
-
-            if (addressObject != null)
+            List<NavnStrukturType> navnStrukturTypes = new List<NavnStrukturType>();
+            List<SoegObjektType> soegObjekts = new List<SoegObjektType>();
+            if (name != "" && name.Split(' ').Length == 1)
             {
-                RegisterOplysningType registerOplysningType = new RegisterOplysningType();
-
-                CprBorgerType cprBorgerType = new CprBorgerType();
-                cprBorgerType.FolkeregisterAdresse = addressObject;
-                registerOplysningType.Item = cprBorgerType;
-
-                soegAttributListeType.SoegRegisterOplysning = new RegisterOplysningType[] { registerOplysningType };
+                for (int i = 0; i < 3; i++)
+                {
+                    navnStrukturTypes.Add(ToNavnStrukturType(name, i));
+                }
+            }
+            else
+            {
+                navnStrukturTypes.Add(ToNavnStrukturType(name));
             }
 
-            SoegObjektType soegObjekt = new SoegObjektType();
-            soegObjekt.SoegAttributListe = soegAttributListeType;
+            foreach(NavnStrukturType navnStrukturType in navnStrukturTypes)
+            {
+                AdresseType addressObject = ToAddressType(address);
+                if (navnStrukturType == null && addressObject == null)
+                    return null;
 
-            return soegObjekt;
+                SoegAttributListeType soegAttributListeType = new SoegAttributListeType();
+
+                // Now fill Egenskab & registerOplysning
+                SoegEgenskabType soegEgenskabType = new SoegEgenskabType();
+                soegEgenskabType.NavnStruktur = navnStrukturType;
+                soegAttributListeType.SoegEgenskab = new SoegEgenskabType[] { soegEgenskabType };
+
+                if (addressObject != null)
+                {
+                    RegisterOplysningType registerOplysningType = new RegisterOplysningType();
+
+                    CprBorgerType cprBorgerType = new CprBorgerType();
+                    cprBorgerType.FolkeregisterAdresse = addressObject;
+                    registerOplysningType.Item = cprBorgerType;
+
+                    soegAttributListeType.SoegRegisterOplysning = new RegisterOplysningType[] { registerOplysningType };
+                }
+
+                SoegObjektType soegObjekt = new SoegObjektType();
+                soegObjekt.SoegAttributListe = soegAttributListeType;
+
+                soegObjekts.Add(soegObjekt);
+            }
+            
+            return soegObjekts;
         }
-
     }
 }
