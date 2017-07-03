@@ -313,6 +313,15 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Moving date.
+        /// </summary>
+        public static string moving_date {
+            get {
+                return ResourceManager.GetString("moving_date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string nav_help {

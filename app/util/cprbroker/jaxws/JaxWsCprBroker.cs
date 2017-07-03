@@ -521,6 +521,23 @@ namespace util.cprbroker.jaxws
                 newAddress = getAddress(otherAddress);
                 builder.otherAddress(newAddress);
 
+                // Find earliest registration of current address
+                DateTime movingDate;
+                foreach (RegisterOplysningType registerType in registerList)
+                {
+                    CprBorgerType reg = registerType.Item as CprBorgerType;
+                    IAddress cprAddress = getAddress(citizenData.FolkeregisterAdresse);
+
+                    AdresseType address = reg.FolkeregisterAdresse;
+                    IAddress regAddress = getAddress(address);
+                    if (regAddress.Equals(cprAddress))
+                    {
+                        // Get registeroplysningstidspunkt
+                        // Below code works but is very hacky
+                        //movingDate = DateTime.Parse(registerType.Virkning.FraTidspunkt.Item.ToString());
+                    }
+                }
+
                 //endregion
 
                 // region States

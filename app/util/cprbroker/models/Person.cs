@@ -77,6 +77,7 @@ namespace util.cprbroker.models
         public IAddress _address;
         public String[] _postalLabel;
         public IAddress _otherAddress;
+        public DateTime _movingDate;
 
         // contact
         public IContact _contact;
@@ -122,6 +123,7 @@ namespace util.cprbroker.models
 
             public IAddress _address;
             public IAddress _otherAddress;
+            public DateTime _movingDate;
 
             public IContact _contact;
             public IContact _nextOfKinContact;
@@ -222,6 +224,12 @@ namespace util.cprbroker.models
                 return this;
             }
 
+            public Builder movingDate(DateTime newMovingDate)
+            {
+                _movingDate = newMovingDate;
+                return this;
+            }
+
             public Builder contact(IContact newContact)
             {
                 _contact = newContact;
@@ -291,6 +299,7 @@ namespace util.cprbroker.models
 
             _address = builder._address;
             _otherAddress = builder._otherAddress;
+            _movingDate = builder._movingDate;
             // Now name and address have been set
             _postalLabel = new util.Converters().ToPostalLabel(this);
 
@@ -400,6 +409,12 @@ namespace util.cprbroker.models
         public IAddress otherAddress()
         {
             return _otherAddress;
+        }
+
+
+        public DateTime movingDate()
+        {
+            return _movingDate;
         }
 
 

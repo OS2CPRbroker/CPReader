@@ -548,4 +548,7 @@
   <data name="unknown" xml:space="preserve">
     <value>ukendt</value>
   </data>
+  <data name="moving_date" xml:space="preserve">
+    <value>Flyttedato</value>
+  </data>
 </root>

@@ -18,7 +18,11 @@
                 address = person.postalLabel()[1] + " " + person.postalLabel()[2];
             }
             <p>@address</p>
-            @Html.Partial("virkning", new Tuple<IVirkning, bool>(person.effect(), true))
+
+            DateTime movingDate = person.effect().fraTidspunkt().Value;
+            IRegisterInformation register = person.registerInformation();
+
+            <p><b>@Messages.moving_date</b> @movingDate.ToString("dd.MM.yyyy")</p>
             // Search for other persons living on same address
             if (address != "")
             {

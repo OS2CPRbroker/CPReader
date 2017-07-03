@@ -548,4 +548,7 @@
   <data name="unknown" xml:space="preserve">
     <value>unknown</value>
   </data>
+  <data name="moving_date" xml:space="preserve">
+    <value>Moving date</value>
+  </data>
 </root>
