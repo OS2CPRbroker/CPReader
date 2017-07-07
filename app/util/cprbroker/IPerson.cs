@@ -54,6 +54,8 @@ namespace util.cprbroker
 
         IAddress otherAddress();
 
+        DateTime movingDate();
+
         IContact contact();
 
         IContact nextOfKinContact();

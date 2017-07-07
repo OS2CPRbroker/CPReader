@@ -19,8 +19,7 @@
             }
             <p>@address</p>
 
-            DateTime movingDate = person.effect().fraTidspunkt().Value;
-            IRegisterInformation register = person.registerInformation();
+            DateTime movingDate = person.movingDate();
 
             <p><b>@Messages.moving_date</b> @movingDate.ToString("dd.MM.yyyy")</p>
             // Search for other persons living on same address

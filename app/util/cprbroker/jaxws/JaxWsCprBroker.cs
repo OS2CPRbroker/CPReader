@@ -37,6 +37,7 @@ using System.Collections.Generic;
 using System.Linq;
 using cpreader.PartService;
 using util.cprbroker.models;
+using System.Reflection;
 using cpreader.Properties;
 
 namespace util.cprbroker.jaxws
@@ -261,6 +262,7 @@ namespace util.cprbroker.jaxws
             List<IPerson> persons = new List<IPerson>();
             if (soegObjekts != null)
             {
+                List<String> uuids = new List<String>();
                 foreach (SoegObjektType soegObjekt in soegObjekts)
                 {
                     input.SoegObjekt = soegObjekt;
@@ -292,17 +294,22 @@ namespace util.cprbroker.jaxws
                                 LaesResultatType laesResultatType = soegListOutputType.LaesResultat[i];
                                 String uuid = soegListOutputType.Idliste[i];
 
-                                persons.Add(getPerson(uuid, laesResultatType, soegListOutputType.StandardRetur, fetchRelations));
+                                //persons.Add(getPerson(uuid, laesResultatType, soegListOutputType.StandardRetur, fetchRelations));
+                                if (!uuids.Contains(uuid))
+                                    uuids.Add(uuid);
                             }
                         }
                     }
                 }
+                IUuids iuuids = new Uuids(200, "", uuids);
+
+                persons = list(iuuids, ESourceUsageOrder.LocalThenExternal, fetchRelations);
             }
             return persons;
         }
 
 
-        public List<IPerson> list(IUuids uuids, ESourceUsageOrder sourceUsageOrder)
+        public List<IPerson> list(IUuids uuids, ESourceUsageOrder sourceUsageOrder, bool fetchRelations)
         {
 
             ListInputType listInput = new ListInputType() { UUID = uuids.values().ToArray() };
@@ -333,7 +340,7 @@ namespace util.cprbroker.jaxws
 
                 for (int i = 0; i < size; i++)
                 {
-                    tmpPerson = getPerson(uuidList[i], laesResultatTypeList[i], listOutput.StandardRetur, false);
+                    tmpPerson = getPerson(uuidList[i], laesResultatTypeList[i], listOutput.StandardRetur, fetchRelations);
                     persons.Add(tmpPerson);
                 }
             }
@@ -522,21 +529,30 @@ namespace util.cprbroker.jaxws
                 builder.otherAddress(newAddress);
 
                 // Find earliest registration of current address
-                DateTime movingDate;
+                IAddress currentAddress = getAddress(citizenData.FolkeregisterAdresse);
+                // Sort by virkning-date
+                Array.Sort(registerList, (x, y) => DateTime.Compare(DateTime.Parse(getEffect(y.Virkning).fraTidspunkt().Value.ToString("dd.MM.yyyy")), DateTime.Parse(getEffect(x.Virkning).fraTidspunkt().Value.ToString("dd.MM.yyyy"))));
+                DateTime movingDate = birthdate;
                 foreach (RegisterOplysningType registerType in registerList)
                 {
                     CprBorgerType reg = registerType.Item as CprBorgerType;
-                    IAddress cprAddress = getAddress(citizenData.FolkeregisterAdresse);
-
                     AdresseType address = reg.FolkeregisterAdresse;
                     IAddress regAddress = getAddress(address);
-                    if (regAddress.Equals(cprAddress))
+                    if (!compareAdresses(currentAddress, regAddress))
                     {
-                        // Get registeroplysningstidspunkt
-                        // Below code works but is very hacky
-                        //movingDate = DateTime.Parse(registerType.Virkning.FraTidspunkt.Item.ToString());
+                        break;
+                    }
+                    else
+                    {
+                        String name = attributes.NavnStruktur.PersonNameForAddressingName;
+                        // Get virkningstidspunkt
+                        IVirkning virkning = getEffect(registerType.Virkning);
+                        DateTime newMovingDate = DateTime.Parse(virkning.fraTidspunkt().Value.ToString("dd.MM.yyyy"));
+                        movingDate = newMovingDate;
                     }
                 }
+                // Assign moving date
+                builder.movingDate(movingDate);
 
                 //endregion
 
@@ -588,7 +604,7 @@ namespace util.cprbroker.jaxws
                         IUuids uuidsFromRelations = new Uuids(200, "", relationUuids);
 
                         // Get all the persons with those uuids
-                        List<IPerson> relationshipPersons = list(uuidsFromRelations, ESourceUsageOrder.LocalThenExternal);
+                        List<IPerson> relationshipPersons = list(uuidsFromRelations, ESourceUsageOrder.LocalThenExternal, false);
 
 
                         RelationshipWithPerson.Builder relationshipWithPersonBuilder;
@@ -1262,6 +1278,45 @@ namespace util.cprbroker.jaxws
             }
 
             return null;
+        }
+
+        private bool compareAdresses(IAddress a, IAddress b)
+        {
+            if (a == null || b == null)
+            {
+                return false;
+            }
+            Type addressType = a.GetType();
+            if (b.GetType() != addressType)
+                return false;
+
+            FieldInfo[] fields = addressType.GetFields();
+            foreach (FieldInfo prop in fields)
+            {
+                var first = prop.GetValue(a);
+                var second = prop.GetValue(b);
+
+                if (first == null ^ second == null)
+                {
+                    return false;
+                }
+
+                if (!(first == null && second == null))
+                {
+                    if (!(first.Equals(second)))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        private RegisterOplysningType[] sortByDate(RegisterOplysningType[] toSort)
+        {
+            RegisterOplysningType[] sorted = new RegisterOplysningType[toSort.Length];
+
+            return sorted;
         }
     }
 }
