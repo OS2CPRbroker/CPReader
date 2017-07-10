@@ -187,28 +187,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\conf\ConfigWrapper.java" />
-    <Content Include="app\conf\IConfiguration.java" />
-    <Content Include="app\conf\IValidable.java" />
-    <Content Include="app\conf\PlayConfiguration.java" />
-    <Content Include="app\Global.java" />
     <Compile Include="app\util\AccessLevelManager.cs" />
     <Compile Include="app\util\addresses\DawaAddressParser.cs" />
     <Compile Include="app\util\addresses\IAddressParser.cs" />
     <Compile Include="app\util\addresses\RegexAddressParser.cs" />
-    <Content Include="app\util\auth\AuthenticationResponse.java" />
-    <Content Include="app\util\auth\AuthResponseType.java" />
-    <Content Include="app\util\auth\IAuthentication.java" />
-    <Content Include="app\util\auth\IAuthenticationResponse.java" />
-    <Content Include="app\util\auth\IGroupAuthentication.java" />
-    <Content Include="app\util\auth\IIntegratedAuthenticaton.java" />
-    <Content Include="app\util\auth\Secured.java" />
-    <Content Include="app\util\auth\TestAuthenticationStrategy.java" />
-    <Content Include="app\util\auth\unboundid\implementations\ProxyUserUnboundidAuthentication.java" />
-    <Content Include="app\util\auth\unboundid\implementations\UnboundidAuthentication.java" />
-    <Content Include="app\util\auth\unboundid\implementations\UnboundidConnection.java" />
-    <Content Include="app\util\auth\unboundid\IUnboundidConnection.java" />
-    <Content Include="app\util\auth\WindowsAuthenticationStrategy.java" />
     <Compile Include="app\util\Cart.cs" />
     <Compile Include="app\util\Converters.cs" />
     <Compile Include="app\util\cprbroker\EAddressType.cs" />
@@ -255,7 +237,6 @@
     <Compile Include="app\util\cprbroker\models\Virkning.cs" />
     <Compile Include="app\util\cprbroker\models\WorldAddress.cs" />
     <Compile Include="app\util\Logger.cs" />
-    <Content Include="app\util\Program.java" />
     <Compile Include="app\util\StringUtils.cs" />
     <Content Include="app\views\access_denied.scala.html" />
     <Content Include="app\views\listsingle.scala.html" />
@@ -299,7 +280,6 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="Controllers\Signon.java" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -309,6 +289,7 @@
     <None Include="conf\log4net.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.1.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
@@ -419,6 +400,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\conf\" />
+    <Folder Include="app\util\auth\unboundid\implementations\" />
     <Folder Include="Models\" />
     <Folder Include="public\stylesheets\" />
   </ItemGroup>

@@ -531,7 +531,7 @@ namespace util.cprbroker.jaxws
                 // Find earliest registration of current address
                 IAddress currentAddress = getAddress(citizenData.FolkeregisterAdresse);
                 // Sort by virkning-date
-                Array.Sort(registerList, (x, y) => DateTime.Compare(DateTime.Parse(getEffect(y.Virkning).fraTidspunkt().Value.ToString("dd.MM.yyyy")), DateTime.Parse(getEffect(x.Virkning).fraTidspunkt().Value.ToString("dd.MM.yyyy"))));
+                Array.Sort(registerList, (x, y) => DateTime.Compare(DateTime.Parse(getEffect(y.Virkning).fraTidspunkt().Value.ToString("dd.MM.yyyy"), Converters.danishDateFormat), DateTime.Parse(getEffect(x.Virkning).fraTidspunkt().Value.ToString("dd.MM.yyyy"), Converters.danishDateFormat)));
                 DateTime movingDate = birthdate;
                 foreach (RegisterOplysningType registerType in registerList)
                 {
@@ -547,7 +547,7 @@ namespace util.cprbroker.jaxws
                         String name = attributes.NavnStruktur.PersonNameForAddressingName;
                         // Get virkningstidspunkt
                         IVirkning virkning = getEffect(registerType.Virkning);
-                        DateTime newMovingDate = DateTime.Parse(virkning.fraTidspunkt().Value.ToString("dd.MM.yyyy"));
+                        DateTime newMovingDate = DateTime.Parse(virkning.fraTidspunkt().Value.ToString("dd.MM.yyyy"), Converters.danishDateFormat);
                         movingDate = newMovingDate;
                     }
                 }

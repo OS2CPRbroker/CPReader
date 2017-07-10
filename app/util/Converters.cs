@@ -45,7 +45,7 @@ namespace util
      */
     public class Converters
     {
-
+        public static readonly IFormatProvider danishDateFormat = System.Globalization.CultureInfo.GetCultureInfo("da-DK").DateTimeFormat;
 
         public static IAddressParser AddressParser;
         public static bool isDawaAddressParser()

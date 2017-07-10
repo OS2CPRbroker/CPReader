@@ -44,3 +44,5 @@ server.pid
 
 # Web.config file - create from Web.config.example
 Web.*config
+
+Properties/PublishProfiles/CustomProfile\.pubxml
