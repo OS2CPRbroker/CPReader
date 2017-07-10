@@ -1,11 +1,4 @@
-CPReader
-=====================================
-This is a web-application for making searches and look up information from a CPR Broker.
-
-Source code is public available from https://view.softwareborsen.dk/Softwareborsen/CPReader/
-Documentation is available in the docs directory and online at http://digitaliser.dk/resource/2534113
-
-LICENCE
+LICENSE
 =====================================
 
 Version: MPL 2.0/GPL 2.0/LGPL 2.1
@@ -22,10 +15,10 @@ License.
  
 Contributor(s):
 Beemen Beshara
-SÃ¸ren KirkegÃ¥rd
+Søren Kirkegård
  
 The code is currently governed by OS2 - Offentligt digitaliserings-
-fÃ¦llesskab / http://www.os2web.dk .
+fællesskab / http://www.os2web.dk .
  
 Alternatively, the contents of this file may be used under the terms of
 either the GNU General Public License Version 2 or later (the "GPL"), or
