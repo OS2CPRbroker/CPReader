@@ -143,7 +143,7 @@
                                         <dl class="dl-horizontal">
                                             <dt>@Messages.person_tilstand_civilStatusKode</dt>
                                             <dd>@person.tilstand().civilStatusKode()</dd>
-                                            @if (person.tilstand().civilTilstandsVirkning().fraTidspunkt() != null)
+                                            @if (person.tilstand().civilTilstandsVirkning() != null && person.tilstand().civilTilstandsVirkning().fraTidspunkt() != null)
                                             {
                                                 <dd>@Html.Partial("virkning", new Tuple<IVirkning, bool>(person.tilstand().civilTilstandsVirkning(), false))</dd>
                                             }
@@ -154,7 +154,7 @@
                                         <dl class="dl-horizontal">
                                             <dt>@Messages.person_tilstand_livStatusKode</dt>
                                             <dd>@person.tilstand().livStatusKode()</dd>
-                                            @if (person.tilstand().livTilstandsVirkning().fraTidspunkt() != null)
+                                            @if (person.tilstand().livTilstandsVirkning() != null && person.tilstand().livTilstandsVirkning().fraTidspunkt() != null)
                                             {
                                                 <dd>@Html.Partial("virkning", new Tuple<IVirkning, bool>(person.tilstand().livTilstandsVirkning(), false))</dd>
                                             }
