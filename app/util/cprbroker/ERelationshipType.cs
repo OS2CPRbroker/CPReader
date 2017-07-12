@@ -50,7 +50,7 @@ namespace util.cprbroker
         retligHandleevneVaergeForPersonen,
         [Description("Ægtefælle")]
         aegtefaelle,
-        [Description("Registeret partner")]
+        [Description("Registreret partner")]
         registreretPartner,
         [Description("Barn")]
         boern,

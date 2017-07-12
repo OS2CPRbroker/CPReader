@@ -40,7 +40,18 @@
 <div class="col-md-1">
     @if (showPnr)
     {
-        @person.registerInformation().cprCitizen().socialSecurityNumber()
+        if (person != null &&
+            person.registerInformation() != null &&
+            person.registerInformation().cprCitizen() != null &&
+            person.registerInformation().cprCitizen().socialSecurityNumber() != null)
+        {
+            @person.registerInformation().cprCitizen().socialSecurityNumber()
+        }
+        else
+        {
+            <span class="glyphicon glyphicon-exclamation-sign"></span> 
+            <h3>Manglende oplysninger fra online søgning. Opdater venligst siden.</h3>
+        }
     }
 </div>
 <div class="col-md-2">

@@ -39,7 +39,7 @@
 }
 <div id="fullpageModal@(person.uuid())" class="modal static"  role="dialog">
     <div class="modal-dialog">
-        <div id="content@(person.uuid())" class="modal-content" >
+        <div id="fullpagecontent@(person.uuid())" class="modal-content" >
             @Html.Partial("fullpagemodalcontent", new Tuple<IPerson,int>(person, accesslevel))
         </div>
     </div>

@@ -36,26 +36,28 @@ namespace cpreader
             routes.MapRoute("search2", "search/update/{uuid}", new { controller = "Search", action = "updatePerson" });
             //GET / search / updateparents /:uuid / @controllers.Search.updateParents(uuid: String)
             routes.MapRoute("search3", "search/updateparents/{uuid}", new { controller = "Search", action = "updateParents" });
+            //GET / search / updatefullpage /:uuid / @controllers.Search.updateFullpage(uuid: String)
+            routes.MapRoute("search4", "search/updatefullpage/{uuid}", new { controller = "Search", action = "updateFullpage" });
             //POST / search / closedetail                                           @controllers.Search.closeDetail()
-            routes.MapRoute("search4", "search/closedetail", new { controller = "Search", action = "closeDetail" });
+            routes.MapRoute("search5", "search/closedetail", new { controller = "Search", action = "closeDetail" });
 
             //GET / search / name /:name / address /:address / page /:page @controllers.Search.searchNameAndAddress(name: String, address: String, online: Boolean ?= false, page: Int)
-            routes.MapRoute("search5", "search/name/{name}/address/{address}/page/{page}", new { controller = "Search", action = "searchNameAndAddress", online = false });
+            routes.MapRoute("search6", "search/name/{name}/address/{address}/page/{page}", new { controller = "Search", action = "searchNameAndAddress", online = false });
             //GET / search / name /:name / address /:address / online / page /:page @controllers.Search.searchNameAndAddress(name: String, address: String, online: Boolean ?= true, page: Int)
-            routes.MapRoute("search6", "search/name/{name}/address/{address}/online/page/{page}", new { controller = "Search", action = "searchNameAndAddress", online = true });
+            routes.MapRoute("search7", "search/name/{name}/address/{address}/online/page/{page}", new { controller = "Search", action = "searchNameAndAddress", online = true });
 
             //GET / search / name /:name / page /:page @controllers.Search.searchNameAndAddress(name: String, address = "", online: Boolean ?= false, page: Int)
-            routes.MapRoute("search7", "search/name/{name}/page/{page}", new { controller = "Search", action = "searchNameAndAddress", address = "", online = false });
+            routes.MapRoute("search8", "search/name/{name}/page/{page}", new { controller = "Search", action = "searchNameAndAddress", address = "", online = false });
             //GET / search / name /:name / online / page /:page @controllers.Search.searchNameAndAddress(name: String, address = "", online: Boolean ?= true, page: Int)
-            routes.MapRoute("search8", "search/name/{name}/online/page/{page}", new { controller = "Search", action = "searchNameAndAddress", address = "", online = true });
+            routes.MapRoute("search9", "search/name/{name}/online/page/{page}", new { controller = "Search", action = "searchNameAndAddress", address = "", online = true });
             //GET / search / address /:address / page /:page @controllers.Search.searchNameAndAddress(name = "", address: String, online: Boolean ?= false, page: Int)
-            routes.MapRoute("search9", "search/address/{address}/page/{page}", new { controller = "Search", action = "searchNameAndAddress", name="", online=false });
+            routes.MapRoute("search10", "search/address/{address}/page/{page}", new { controller = "Search", action = "searchNameAndAddress", name="", online=false });
             //GET / search / address /:address / online / page /:page @controllers.Search.searchNameAndAddress(name = "", address: String, online: Boolean ?= true, page: Int)
-            routes.MapRoute("search10", "search/address/{address}/online/page/{page}", new { controller = "Search", action = "searchNameAndAddress", name="", online=true });
+            routes.MapRoute("search11", "search/address/{address}/online/page/{page}", new { controller = "Search", action = "searchNameAndAddress", name="", online=true });
 
             //GET / show / uuid /:uuid / @controllers.Search.showPerson(uuid: String)
             //#GET         /showfull/uuid/:uuid/                                        @controllers.Search.showPersonFull(uuid : String)
-            routes.MapRoute("search11", "show/uuid/{uuid}/", new { controller = "Search", action = "showPerson" });
+            routes.MapRoute("search12", "show/uuid/{uuid}/", new { controller = "Search", action = "showPerson" });
 
             //# Map static resources from the /public folder to the /assets URL path
             //GET / assets/*file                                                controllers.Assets.at(path="/public", file)

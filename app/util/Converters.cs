@@ -204,6 +204,92 @@ namespace util
             return ret.Split(newLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
         }
 
+        public SoegObjektType AddressToSoegObjekt(IAddress address)
+        {
+            if (address == null)
+                return null;
+
+            SoegAttributListeType soegAttributListeType = new SoegAttributListeType();
+
+            // Now fill Egenskab & registerOplysning
+            SoegEgenskabType soegEgenskabType = new SoegEgenskabType();
+            soegEgenskabType.NavnStruktur = null;
+            soegAttributListeType.SoegEgenskab = new SoegEgenskabType[] { soegEgenskabType };
+
+            if (address != null)
+            {
+                RegisterOplysningType registerOplysningType = new RegisterOplysningType();
+
+                CprBorgerType cprBorgerType = new CprBorgerType();
+                AdresseType addressObject = getAdresseType(address);
+                if (addressObject == null)
+                    return null;
+
+                cprBorgerType.FolkeregisterAdresse = addressObject;
+                registerOplysningType.Item = cprBorgerType;
+
+                soegAttributListeType.SoegRegisterOplysning = new RegisterOplysningType[] { registerOplysningType };
+            }
+
+            SoegObjektType soegObjekt = new SoegObjektType();
+            soegObjekt.SoegAttributListe = soegAttributListeType;
+            return soegObjekt;
+        }
+
+        private AdresseType getAdresseType(IAddress address)
+        {
+            AdresseType ret = new AdresseType();
+            switch (address.addressType())
+            {
+                case EAddressType.Danish:
+                    ret = getAdresseType(address as IDanishAddress);
+                    break;
+
+                default:
+                    ret = null;                   
+                    break;
+            }
+
+            return ret;
+        }
+
+        private AdresseType getAdresseType(IDanishAddress address)
+        {
+            String streetName = null, houseNumber = null, floor = null, door = null, districtSubdivision = null, postCode = null, postDistrict = null;
+
+            streetName = address.streetName();
+            houseNumber = address.streetBuilding();
+            floor = address.floor();
+            door = address.suite();
+            districtSubdivision = address.districtSubdivision();
+            postCode = address.postCode();
+            postDistrict = address.postDistrikt();
+
+            AdresseType ret = new AdresseType();
+
+            DanskAdresseType danskAdresse = new DanskAdresseType();
+            danskAdresse.PostDistriktTekst = postDistrict;
+            ret.Item = danskAdresse;
+
+            AddressCompleteType addressComplete = new AddressCompleteType();
+            danskAdresse.AddressComplete = addressComplete;
+
+            AddressAccessType addressAccess = new AddressAccessType();
+            addressAccess.StreetBuildingIdentifier = houseNumber;
+            addressComplete.AddressAccess = addressAccess;
+
+            AddressPostalType addressPostal = new AddressPostalType();
+            addressPostal.StreetName = streetName;
+            addressPostal.FloorIdentifier = floor;
+            addressPostal.SuiteIdentifier = door;
+            addressPostal.DistrictSubdivisionIdentifier = districtSubdivision;
+            addressPostal.PostCodeIdentifier = postCode;
+            addressPostal.DistrictName = postDistrict;
+            addressComplete.AddressPostal = addressPostal;
+
+            return ret;
+        }
+
         public List<SoegObjektType> ToSoegObjektTypes(String name, String address)
         {
             List<NavnStrukturType> navnStrukturTypes = new List<NavnStrukturType>();

@@ -176,7 +176,7 @@ function showPersonDetails(event, uuid)
 function ShowFullPageView(event, uuid) {
     var fullpageAnchor = event.target;
     var fullpageModalDiv = $('#fullpageModal' + uuid);
-    var contentDiv = $('#content' + uuid);
+    var contentDiv = $('#fullpagecontent' + uuid);
     
 
     var showFunc = function () {
@@ -185,7 +185,7 @@ function ShowFullPageView(event, uuid) {
     };
     if (fullpageAnchor.attributes.loaded.value == 'false') {
         contentDiv.load(
-            '/search/update/' + uuid + '/',
+            '/search/updatefullpage/' + uuid + '/',
             null,
             function (data) {
                 if (data == "none") {

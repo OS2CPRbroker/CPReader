@@ -303,9 +303,76 @@ namespace util.cprbroker.jaxws
                 }
                 IUuids iuuids = new Uuids(200, "", uuids);
 
-                persons = list(iuuids, ESourceUsageOrder.LocalThenExternal, fetchRelations);
+                persons = list(iuuids, ESourceUsageOrder.LocalThenExternal, false);
             }
             return persons;
+        }
+
+        public List<IPerson> getPersonsOnAddress(IAddress address, ESourceUsageOrder sourceUsageOrder, int maxResults, int startIndex)
+        {
+            // Setup the input parameters
+            SoegInputType1 input = new SoegInputType1();
+
+            // zerobased index of where the search should start
+            if (startIndex > 0)
+            {
+                input.FoersteResultatReference = startIndex.ToString();
+            }
+
+            // defaults to 1000 if nothing is specified
+            if (maxResults > 0)
+            {
+                input.MaksimalAntalKvantitet = maxResults.ToString();
+            }
+
+            Converters converter = new Converters();
+            SoegObjektType soegObjekt = converter.AddressToSoegObjekt(address);
+
+            input.SoegObjekt = soegObjekt;
+            List<IPerson> persons = new List<IPerson>();
+            if (soegObjekt != null)
+            {
+                List<String> uuids = new List<String>();
+                // Access CPR broker
+                Part service;
+                try
+                {
+                    service = getService(sourceUsageOrder);
+                }
+                catch (Exception e)
+                {
+                    play.Logger.error(e);
+                    return null;
+                }
+
+                SoegListOutputType soegListOutputType = service.SearchList(input);
+
+
+                if (soegListOutputType != null
+                        && soegListOutputType.StandardRetur != null
+                        && soegListOutputType.StandardRetur.StatusKode.Equals("200"))
+                {
+
+                    if (soegListOutputType.LaesResultat != null)
+                    {
+                        for (int i = 0; i < soegListOutputType.LaesResultat.Length; i++)
+                        {
+                            LaesResultatType laesResultatType = soegListOutputType.LaesResultat[i];
+                            String uuid = soegListOutputType.Idliste[i];
+
+                            //persons.Add(getPerson(uuid, laesResultatType, soegListOutputType.StandardRetur, fetchRelations));
+                            if (!uuids.Contains(uuid))
+                                uuids.Add(uuid);
+                        }
+                    }
+                }
+                IUuids iuuids = new Uuids(200, "", uuids);
+
+                persons = list(iuuids, ESourceUsageOrder.LocalThenExternal, false);
+            }
+            return persons;
+
+
         }
 
 
@@ -348,6 +415,8 @@ namespace util.cprbroker.jaxws
             return persons;
 
         }
+
+
 
         public IPerson read(String uuid)
         {

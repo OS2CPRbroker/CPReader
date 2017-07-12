@@ -326,6 +326,51 @@ namespace cpreader.Controllers
             }
         }
 
+        public ActionResult updateFullpage(String uuid)
+        {
+            play.Logger.info("UPDATE fullpage view of person: " + uuid);
+
+            IPerson person = null;
+            try
+            {
+                person = cprBroker.read(uuid);
+
+                // Logging the show request
+                play.Logger.info(User.Identity.Name + "'s request to CPRBroker responded, " + person.code() + " - " + person.message());
+            }
+            catch (Exception ex)
+            {
+                play.Logger.error(ex);
+            }
+            SearchInput searchInput = new SearchInput();
+            searchInput.fillFromSession(this);
+
+            // access level - add to person model
+            int accessLevel = AccessLevelManager.getCurrentAccessLevel();
+
+            if (accessLevel < 1)
+            {
+                return PartialView("access_denied", new Tuple<int, SearchInput, string>(401, searchInput, "Access denied."));
+            }
+            if (person == null)
+            {
+                return PartialView("show_error", new Tuple<int, SearchInput>(503, searchInput));
+            }
+
+            if (person.code() == 200)
+            {
+                ActionResult ret = PartialView("fullpagemodalcontent", new Tuple<IPerson, int>(person, accessLevel));
+                return ret;
+
+            }
+            else
+            {
+                //TODO - A person wasn't found
+                return PartialView("show_error", new Tuple<int, SearchInput>(person.code(), searchInput));
+            }
+        }
+            
+
         public ActionResult updatePerson(String uuid)
         {
             play.Logger.info("UPDATE person: " + uuid);

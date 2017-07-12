@@ -23,9 +23,9 @@
 
             <p><b>@Messages.moving_date</b> @movingDate.ToString("dd.MM.yyyy")</p>
             // Search for other persons living on same address
-            if (address != "")
+            if (address != "" && person.relations() != null) // Makes sure an address search is not performed until relations have been fetched
             {
-                List<IPerson> livingOnAddress = SearchController.cprBroker.searchList("", address, ESourceUsageOrder.LocalOnly, -1, -1);
+                List<IPerson> livingOnAddress = SearchController.cprBroker.getPersonsOnAddress(person.address(), ESourceUsageOrder.LocalOnly, -1, -1);
                 List<IPerson> livingOnSameAddress = new List<IPerson>();
                 <hr/>
                 if (livingOnAddress != null)

@@ -50,7 +50,7 @@
             }
             try
             {
-                name = relation.person().nameForAddressing();
+                name = relation.person().firstname() + " " + relation.person().middelname() + " " + relation.person().lastname();
             }
             catch (Exception e)
             {
@@ -59,7 +59,7 @@
 
                 <tr>
                     <td><b>@relation.relationshipTypeString()</b></td>
-                    <td>@(Messages.person_registerInformation_cprCitizen_socialSecurityNumber) @(cprNr)</td>
+                    <td>@(Messages.person_registerInformation_cprCitizen_socialSecurityNumber + ":") @(cprNr)</td>
                     <td>@(Messages.cart_name+":") @(name) </td>
                 </tr>
 

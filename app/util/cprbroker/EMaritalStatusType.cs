@@ -46,10 +46,10 @@ namespace util.cprbroker
         SEPARERET,
         [Description("Enke")]
         ENKE,
-        [Description("Registeret partner")]
-        REGISTRERET_PARTNER,
+        [Description("Registreret partner")]
+        REGISTRERETPARTNER,
         [Description("Ophævet partnerskab")]
-        OPHAEVET_PARTNERSKAB,
+        OPHAEVETPARTNERSKAB,
         [Description("Længstlevende")]
         LAENGSTLEVENDE
     }

@@ -74,7 +74,7 @@
                         @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_postalAddressThirdLineText, person.otherAddress().worldAddress().postalAddressThirdLineText()))
                         @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_postalAddressFourthLineText, person.otherAddress().worldAddress().postalAddressFourthLineText()))
                         @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_postalAddressFifthLineText, person.otherAddress().worldAddress().postalAddressFifthLineText()))
-                        @Html.Partial("booleanfield", new Tuple<bool, string, object>(true, Messages.person_otherAddress_worldAddress_isUkendtAdresseIndikator, person.otherAddress().worldAddress().isUkendtAdresseIndikator()))
+                        @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_otherAddress_worldAddress_isUkendtAdresseIndikator, person.otherAddress().worldAddress().isUkendtAdresseIndikator()))
                         @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_note, person.otherAddress().worldAddress().note()))
 
                     </div>

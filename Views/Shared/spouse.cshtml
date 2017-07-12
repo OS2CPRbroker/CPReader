@@ -15,7 +15,7 @@
             }
         );
 
-        if (spouse.Any()) //if there is any spouses (should max be one, but is made to handle more)
+        if (spouse.Any()) //if there are any spouses (should be one at most, but can handle more)
         {
             <table class="table table-condensed" style="width: 100%">
                 <tbody>
@@ -46,7 +46,7 @@
                             }
                             try
                             {
-                                name = relation.person().nameForAddressing();
+                                name = relation.person().firstname() + " " + relation.person().middelname() + " " + relation.person().lastname();
                             }
                             catch (Exception e)
                             {
@@ -54,7 +54,7 @@
                             }
                                 <tr>
                                     <td><b>@relation.relationshipTypeString()</b></td>
-                                    <td>@(Messages.person_registerInformation_cprCitizen_socialSecurityNumber) @(cprNr)</td>
+                                    <td>@(Messages.person_registerInformation_cprCitizen_socialSecurityNumber + ":") @(cprNr)</td>
                                     <td>@(Messages.cart_name+":") @(name) </td>
                                     <td>@dateField: @(marriageDate.ToString("dd.MM.yyyy")) </td>
                                 </tr>

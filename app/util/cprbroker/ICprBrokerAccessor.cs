@@ -69,5 +69,7 @@ namespace util.cprbroker
         //TODO Add methods for list
         //List<IPerson> list(IUuids uuids, ESourceUsageOrder sourceUsageOrder);
 
+        List<IPerson> getPersonsOnAddress(IAddress address, ESourceUsageOrder sourceUsageOrder, int maxResults, int startIndex);
+
     }
 }
