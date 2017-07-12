@@ -8,7 +8,7 @@
     <div class="well">
         <h4>
             <span class="glyphicon glyphicon-user"></span>
-            Person: @(person.registerInformation().cprCitizen().socialSecurityNumber())
+            Person: @(person.registerInformation().cprCitizen().socialSecurityNumber().Insert(6, "-"))
         </h4>
         <div>
             @foreach (var l in person.postalLabel())

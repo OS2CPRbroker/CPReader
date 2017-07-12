@@ -51,7 +51,7 @@
 
                 @if (relation.person().code() == 200)
                 {
-                    @(relation.person().registerInformation().cprCitizen().socialSecurityNumber() + " ")
+                    @(relation.person().registerInformation().cprCitizen().socialSecurityNumber().Insert(6, "-") + " ")
                     
                     if (!string.IsNullOrEmpty(relation.person().firstname()))
                     { 

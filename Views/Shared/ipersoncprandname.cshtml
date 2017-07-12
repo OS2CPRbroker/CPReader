@@ -39,7 +39,7 @@
         @foreach (IPerson person in persons)
         {
             <tr>
-                <td>CPR: @(person.registerInformation().cprCitizen().socialSecurityNumber())</td>
+                <td>CPR: @(person.registerInformation().cprCitizen().socialSecurityNumber().Insert(6, "-"))</td>
                 <td>Navn: @(person.firstname()) @(person.middelname()) @(person.lastname()) </td>
             </tr>
         }

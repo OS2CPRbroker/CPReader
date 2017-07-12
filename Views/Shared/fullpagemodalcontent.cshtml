@@ -11,7 +11,7 @@
             Person: @(person.registerInformation().cprCitizen().socialSecurityNumber().Insert(6, "-"))
             <br/>
             <br/>
-            @person.nameForAddressing()
+            @person.firstname() @person.middelname() @person.lastname()
         </h4>
         @if (person.tidspunkt() != null)
         {
