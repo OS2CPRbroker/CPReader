@@ -379,7 +379,7 @@
     <value>Adresseforadressering</value>
   </data>
   <data name="person_address_danishAddress_suite" xml:space="preserve">
-    <value>Suite</value>
+    <value>Dør</value>
   </data>
   <data name="person_address_danishAddress_note" xml:space="preserve">
     <value>Note</value>
