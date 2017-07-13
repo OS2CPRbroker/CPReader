@@ -60,7 +60,7 @@ namespace util.cprbroker.jaxws
             endpoint = Settings.Default.cprbroker_endpoint;
 
             applicationToken = cpreader.Properties.Settings.Default.cprbroker_applicationtoken;
-            userToken = cpreader.Properties.Settings.Default.cprbroker_usertoken;
+            userToken = System.Web.HttpContext.Current.User.Identity.Name;
             allowedSourceUsageOrderHeader = cpreader.Properties.Settings.Default.cprbroker_accesslevel;
             fetchRelations = cpreader.Properties.Settings.Default.cprbroker_fetchrelations;
             //keystore = config.getString("keystorefile");
