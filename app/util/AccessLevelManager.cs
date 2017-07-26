@@ -104,7 +104,7 @@ namespace util
                 });
 
 
-            var searchNames = groupnames.Union(new string[] { username }).ToArray();
+            var searchNames = groupnames.Union(new string[] { username }).Select(s => s.ToLowerInvariant()).ToArray();
 
             var matchedLine = entries.FirstOrDefault(
                 l => searchNames.Contains(l.Name) || l.Name == "*");
