@@ -290,6 +290,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.1.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
@@ -308,7 +309,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.11.1.min.map" />
-    <None Include="Views\Shared\cartview.cshtml" />
+    <Content Include="Views\Shared\cartview.cshtml" />
     <Content Include="Views\Shared\cartviewbody.cshtml" />
     <Content Include="app\views\danishaddress.scala.html" />
     <Content Include="Views\Shared\index.cshtml" />
@@ -327,7 +328,7 @@
     <Content Include="Views\Shared\cprAndName.cshtml" />
     <Content Include="Views\Shared\ipersoncprandname.cshtml" />
     <Content Include="Views\Shared\children.cshtml" />
-    <None Include="Views\Shared\parentlist.cshtml" />
+    <Content Include="Views\Shared\parentlist.cshtml" />
     <Content Include="app\views\parentmodal.scala.html" />
     <Content Include="app\views\person.scala.html" />
     <Content Include="Views\Shared\relation.cshtml" />
