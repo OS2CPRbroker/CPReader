@@ -188,7 +188,6 @@ namespace cpreader.Controllers
                 List<IPerson> persons = new List<IPerson>();
                 persons.Add(person);
                 String path = Request.Path;
-                path = path.Substring(0, path.IndexOf("page") + 5);
                 int page = 1;
                 int accessLevel = AccessLevelManager.getCurrentAccessLevel();
 
