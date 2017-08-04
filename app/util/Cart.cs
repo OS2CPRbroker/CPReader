@@ -59,7 +59,7 @@ namespace util
                 }
             }
             else {
-                play.Logger.info("problem adding " + uuid);
+                cpreader.Logger.info("problem adding " + uuid);
                 return "";
             }
         }

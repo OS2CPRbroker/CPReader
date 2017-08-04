@@ -98,7 +98,7 @@ namespace util.addresses
             }
             catch (Exception ex)
             {
-                play.Logger.error(ex);
+                cpreader.Logger.error(ex);
             }
             return null;
         }

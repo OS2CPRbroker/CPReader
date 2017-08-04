@@ -238,8 +238,6 @@
     <Compile Include="app\util\cprbroker\models\WorldAddress.cs" />
     <Compile Include="app\util\Logger.cs" />
     <Compile Include="app\util\StringUtils.cs" />
-    <Content Include="app\views\access_denied.scala.html" />
-    <Content Include="app\views\listsingle.scala.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -311,9 +309,7 @@
     <Content Include="Scripts\jquery-1.11.1.min.map" />
     <Content Include="Views\Shared\cartview.cshtml" />
     <Content Include="Views\Shared\cartviewbody.cshtml" />
-    <Content Include="app\views\danishaddress.scala.html" />
     <Content Include="Views\Shared\index.cshtml" />
-    <Content Include="app\views\login.scala.html" />
     <Content Include="Views\Shared\main.cshtml" />
     <Content Include="Views\Shared\detailmodal.cshtml" />
     <Content Include="Views\Shared\list.cshtml" />
@@ -329,8 +325,6 @@
     <Content Include="Views\Shared\ipersoncprandname.cshtml" />
     <Content Include="Views\Shared\children.cshtml" />
     <Content Include="Views\Shared\parentlist.cshtml" />
-    <Content Include="app\views\parentmodal.scala.html" />
-    <Content Include="app\views\person.scala.html" />
     <Content Include="Views\Shared\relation.cshtml" />
     <Content Include="Views\Shared\textfield.cshtml" />
     <Content Include="Views\Shared\tilstande.cshtml" />

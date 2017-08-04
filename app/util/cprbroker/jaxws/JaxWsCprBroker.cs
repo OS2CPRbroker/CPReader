@@ -66,12 +66,12 @@ namespace util.cprbroker.jaxws
             //keystore = config.getString("keystorefile");
             //keystorePassword = config.getString("keystorepassword");
 
-            play.Logger.debug("JaxWsCprBroker.constructor, endpoint: " + endpoint);
-            play.Logger.debug("JaxWsCprBroker.constructor, appToken: " + applicationToken);
-            play.Logger.debug("JaxWsCprBroker.constructor, userToken: " + userToken);
-            play.Logger.debug("JaxWsCprBroker.constructor, allowedSourceUsageOrderHeader: " + allowedSourceUsageOrderHeader);
-            play.Logger.debug("JaxWsCprBroker.constructor, keystore: " + keystore);
-            play.Logger.debug("JaxWsCprBroker.constructor, keystorePassword: " + keystorePassword);
+            cpreader.Logger.debug("JaxWsCprBroker.constructor, endpoint: " + endpoint);
+            cpreader.Logger.debug("JaxWsCprBroker.constructor, appToken: " + applicationToken);
+            cpreader.Logger.debug("JaxWsCprBroker.constructor, userToken: " + userToken);
+            cpreader.Logger.debug("JaxWsCprBroker.constructor, allowedSourceUsageOrderHeader: " + allowedSourceUsageOrderHeader);
+            cpreader.Logger.debug("JaxWsCprBroker.constructor, keystore: " + keystore);
+            cpreader.Logger.debug("JaxWsCprBroker.constructor, keystorePassword: " + keystorePassword);
 
 
         }
@@ -105,10 +105,10 @@ namespace util.cprbroker.jaxws
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    play.Logger.error("JaxWsCprBroker lacking configuration string: " + value);
+                    cpreader.Logger.error("JaxWsCprBroker lacking configuration string: " + value);
                     throw new Exception("JaxWsCprBroker lacking configuration string " + value);
                 }
-                play.Logger.info(value + " configured with " + value);
+                cpreader.Logger.info(value + " configured with " + value);
             }
 
 
@@ -117,15 +117,15 @@ namespace util.cprbroker.jaxws
 
             if (accesslevel < 0 || accesslevel > 2)
             {
-                play.Logger.error("cprbroker.accesslevel must be an integer between 0 and 2");
+                cpreader.Logger.error("cprbroker.accesslevel must be an integer between 0 and 2");
                 throw new Exception("cprbroker.accesslevel must be an integer between 0 and 2");
             }
 
-            play.Logger.info("cprbroker.accesslevel configured with " + accesslevel
+            cpreader.Logger.info("cprbroker.accesslevel configured with " + accesslevel
                     + " [" + (ESourceUsageOrder)accesslevel + "]");
 
 
-            play.Logger.info("cprbroker.fetchrelations configured with " + cpreader.Properties.Settings.Default.cprbroker_fetchrelations);
+            cpreader.Logger.info("cprbroker.fetchrelations configured with " + cpreader.Properties.Settings.Default.cprbroker_fetchrelations);
         }
 
         /**
@@ -167,7 +167,7 @@ namespace util.cprbroker.jaxws
             }
             catch (Exception e)
             {
-                play.Logger.error(e);
+                cpreader.Logger.error(e);
                 return null;
             }
             GetUuidOutputType uuid = service.GetUuid(cprNumber);
@@ -217,7 +217,7 @@ namespace util.cprbroker.jaxws
             }
             catch (Exception e)
             {
-                play.Logger.error(e);
+                cpreader.Logger.error(e);
                 return null;
             }
 
@@ -275,7 +275,7 @@ namespace util.cprbroker.jaxws
                     }
                     catch (Exception e)
                     {
-                        play.Logger.error(e);
+                        cpreader.Logger.error(e);
                         return null;
                     }
 
@@ -341,7 +341,7 @@ namespace util.cprbroker.jaxws
                 }
                 catch (Exception e)
                 {
-                    play.Logger.error(e);
+                    cpreader.Logger.error(e);
                     return null;
                 }
 
@@ -390,7 +390,7 @@ namespace util.cprbroker.jaxws
             }
             catch (Exception e)
             {
-                play.Logger.error(e.Message);
+                cpreader.Logger.error(e.Message);
                 return null;
             }
 
@@ -435,7 +435,7 @@ namespace util.cprbroker.jaxws
             }
             catch (Exception e)
             {
-                play.Logger.error(e.Message);
+                cpreader.Logger.error(e.Message);
                 return null;
             }
 
@@ -636,7 +636,7 @@ namespace util.cprbroker.jaxws
 
                 if (isGettingRelations)
                 {
-                    play.Logger.info("getting relations");
+                    cpreader.Logger.info("getting relations");
                     // Assigning person relations
                     IPersonRelationships newRelations = getAllPersonRelations(laesResultatType);
                     if (newRelations != null)
@@ -682,7 +682,7 @@ namespace util.cprbroker.jaxws
                         // Make the IPersonRelationshipsWithIPersons
                         for (int i = 0; i < relationshipPersons.Count; i++)
                         {
-                            play.Logger.info("adding relation");
+                            cpreader.Logger.info("adding relation");
                             relationshipWithPersonBuilder = new RelationshipWithPerson.Builder();
 
                             relationshipWithPersonBuilder.relationship(allRelations[i]);

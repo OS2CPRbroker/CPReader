@@ -4,7 +4,7 @@ using System.IO;
 using log4net.Core;
 using System.Web;
 
-namespace play
+namespace cpreader
 {
 
     /**

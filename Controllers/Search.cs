@@ -79,7 +79,7 @@ namespace cpreader.Controllers
             {
 
                 // log what page the user requested
-                play.Logger.info(String.Format("At <{0}> user <{1}> searched for name<{2}>, address<{3}>; online <{4}>, page <{5}>",
+                cpreader.Logger.info(String.Format("At <{0}> user <{1}> searched for name<{2}>, address<{3}>; online <{4}>, page <{5}>",
                         DateTime.Now,
                         User.Identity.Name,
                         name,
@@ -114,7 +114,7 @@ namespace cpreader.Controllers
             }
             catch (Exception ex)
             {
-                play.Logger.error(ex);
+                cpreader.Logger.error(ex);
             }
 
 
@@ -154,7 +154,7 @@ namespace cpreader.Controllers
         public ActionResult showPerson(String uuid)
         {
             // Logging the show request
-            play.Logger.info(String.Format("At <{0}> user <{1}> requested to see uuid <{2}>",
+            cpreader.Logger.info(String.Format("At <{0}> user <{1}> requested to see uuid <{2}>",
                     DateTime.Now,
                     User.Identity.Name,
                     uuid
@@ -166,11 +166,11 @@ namespace cpreader.Controllers
                 person = cprBroker.read(uuid);
 
                 // Logging the show request
-                play.Logger.info(User.Identity.Name + "'s request to CPRBroker responded, " + person.code() + " - " + person.message());
+                cpreader.Logger.info(User.Identity.Name + "'s request to CPRBroker responded, " + person.code() + " - " + person.message());
             }
             catch (Exception ex)
             {
-                play.Logger.error(ex);
+                cpreader.Logger.error(ex);
             }
 
 
@@ -203,7 +203,7 @@ namespace cpreader.Controllers
         @Security.Authenticated(Secured.class)
         public Result showPersonFull(String uuid) {
             // Logging the show request
-            play.Logger.info(String.format( "At <%s> user <%s> requested to see uuid <%s>",
+            cpreader.Logger.info(String.format( "At <%s> user <%s> requested to see uuid <%s>",
                     DateTime.now(),
                     Secured.getCurrntUsername(),
                     uuid
@@ -214,9 +214,9 @@ namespace cpreader.Controllers
                 person = cprBroker.read(uuid);
 
                 // Logging the show request
-                play.Logger.info(session("username") + "'s request to CPRBroker responded, " + person.code() + " - " + person.message());
+                cpreader.Logger.info(session("username") + "'s request to CPRBroker responded, " + person.code() + " - " + person.message());
             } catch (Exception ex) {
-                play.Logger.error(ex.toString());
+                cpreader.Logger.error(ex.toString());
             }
 
             SearchInput searchInput = new SearchInput();
@@ -255,7 +255,7 @@ namespace cpreader.Controllers
             searchInput.saveToSession(this);
 
             // Logging the search
-            play.Logger.info(User.Identity.Name + " searched for: " + query);
+            cpreader.Logger.info(User.Identity.Name + " searched for: " + query);
 
             // Check if there is errors (empty strings)
             // TODO: Check the ASP.NET euivalent
@@ -268,7 +268,7 @@ namespace cpreader.Controllers
             IUuid uuid = cprBroker.getUuid(query);
 
             // logging the returned resultcode
-            play.Logger.info(User.Identity.Name + "'s search request to CPRBroker responded, " + uuid.code() + " - " + uuid.message());
+            cpreader.Logger.info(User.Identity.Name + "'s search request to CPRBroker responded, " + uuid.code() + " - " + uuid.message());
 
             if (uuid.code() == 200)
             {
@@ -278,14 +278,14 @@ namespace cpreader.Controllers
             else {
                 // this should never happen as person master will just assign
                 // a new uuid if it doesn't exist
-                play.Logger.info("search form has errors");
+                cpreader.Logger.info("search form has errors");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "CPR not found in local");
             }
         }
 
         public ActionResult updateParents(String uuid)
         {
-            play.Logger.info("UPDATE PARENTS: " + uuid);
+            cpreader.Logger.info("UPDATE PARENTS: " + uuid);
 
             IPerson person = null;
             try
@@ -293,11 +293,11 @@ namespace cpreader.Controllers
                 person = cprBroker.read(uuid);
 
                 // Logging the show request
-                play.Logger.info(User.Identity.Name + "'s request to CPRBroker responded, " + person.code() + " - " + person.message());
+                cpreader.Logger.info(User.Identity.Name + "'s request to CPRBroker responded, " + person.code() + " - " + person.message());
             }
             catch (Exception ex)
             {
-                play.Logger.error(ex);
+                cpreader.Logger.error(ex);
             }
             SearchInput searchInput = new SearchInput();
             searchInput.fillFromSession(this);
@@ -327,7 +327,7 @@ namespace cpreader.Controllers
 
         public ActionResult updateFullpage(String uuid)
         {
-            play.Logger.info("UPDATE fullpage view of person: " + uuid);
+            cpreader.Logger.info("UPDATE fullpage view of person: " + uuid);
 
             IPerson person = null;
             try
@@ -335,11 +335,11 @@ namespace cpreader.Controllers
                 person = cprBroker.read(uuid);
 
                 // Logging the show request
-                play.Logger.info(User.Identity.Name + "'s request to CPRBroker responded, " + person.code() + " - " + person.message());
+                cpreader.Logger.info(User.Identity.Name + "'s request to CPRBroker responded, " + person.code() + " - " + person.message());
             }
             catch (Exception ex)
             {
-                play.Logger.error(ex);
+                cpreader.Logger.error(ex);
             }
             SearchInput searchInput = new SearchInput();
             searchInput.fillFromSession(this);
@@ -372,7 +372,7 @@ namespace cpreader.Controllers
 
         public ActionResult updatePerson(String uuid)
         {
-            play.Logger.info("UPDATE person: " + uuid);
+            cpreader.Logger.info("UPDATE person: " + uuid);
 
             IPerson person = null;
             try
@@ -380,11 +380,11 @@ namespace cpreader.Controllers
                 person = cprBroker.read(uuid);
 
                 // Logging the show request
-                play.Logger.info(User.Identity.Name + "'s request to CPRBroker responded, " + person.code() + " - " + person.message());
+                cpreader.Logger.info(User.Identity.Name + "'s request to CPRBroker responded, " + person.code() + " - " + person.message());
             }
             catch (Exception ex)
             {
-                play.Logger.error(ex);
+                cpreader.Logger.error(ex);
             }
             SearchInput searchInput = new SearchInput();
             searchInput.fillFromSession(this);
@@ -415,7 +415,7 @@ namespace cpreader.Controllers
 
         public ActionResult closeDetail()
         {
-            play.Logger.info("CLOSE DETAIL ");
+            cpreader.Logger.info("CLOSE DETAIL ");
             this.Session["showperson"] = "none";
             return Content("Closed");
         }
@@ -477,17 +477,17 @@ namespace cpreader.Controllers
             {
                 if (cpreader.Properties.Settings.Default.search_type == 1)
                 {
-                    play.Logger.info("OFFLINE SEARCH");
+                    cpreader.Logger.info("OFFLINE SEARCH");
                     this.setOnline(false); // local
                 }
                 else if (cpreader.Properties.Settings.Default.search_type == 2)
                 {
-                    play.Logger.info("ONLINE SEARCH");
+                    cpreader.Logger.info("ONLINE SEARCH");
                     this.setOnline(true); // online
                 }
                 else
                 {
-                    play.Logger.info("USE RADIO BUTTON VALUE: " + online);
+                    cpreader.Logger.info("USE RADIO BUTTON VALUE: " + online);
                     this.setOnline(value); // use radio button value
                 }
             }
@@ -511,12 +511,12 @@ namespace cpreader.Controllers
 
                 if (cpreader.Properties.Settings.Default.search_type == 1)
                 {
-                    play.Logger.info("OFFLINE SEARCH");
+                    cpreader.Logger.info("OFFLINE SEARCH");
                     this.setOnline(false); // local            
                 }
                 else if (cpreader.Properties.Settings.Default.search_type == 2)
                 {
-                    play.Logger.info("ONLINE SEARCH");
+                    cpreader.Logger.info("ONLINE SEARCH");
                     this.setOnline(true); // online
                 }
                 else

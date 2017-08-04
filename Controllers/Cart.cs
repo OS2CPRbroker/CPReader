@@ -33,7 +33,7 @@
 using System.Web.Mvc;
 using System;
 using System.Collections.Generic;
-using play;
+using cpreader;
 using System.Net;
 
 namespace cpreader.Controllers
@@ -69,7 +69,7 @@ namespace cpreader.Controllers
 
         public ActionResult empty()
         {
-            play.Logger.info("clearing cart");
+            cpreader.Logger.info("clearing cart");
             util.Cart cart = util.Cart.fromSession();
             cart.clear();
             cart.saveToSession();
@@ -78,7 +78,7 @@ namespace cpreader.Controllers
 
         public ActionResult addItem(String uuid)
         {
-            play.Logger.info("adding " + uuid);
+            cpreader.Logger.info("adding " + uuid);
             util.Cart cart = util.Cart.fromSession();
             String ret = cart.add(uuid);
             cart.saveToSession();
@@ -87,7 +87,7 @@ namespace cpreader.Controllers
 
         public ActionResult removeItem(String uuid)
         {
-            play.Logger.info("removing " + uuid);
+            cpreader.Logger.info("removing " + uuid);
             util.Cart cart = util.Cart.fromSession();
             String ret = cart.remove(uuid);
             cart.saveToSession();

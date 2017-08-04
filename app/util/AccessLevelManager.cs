@@ -46,7 +46,7 @@ namespace util
                         groupNamesList.Add(g.Translate(typeof(System.Security.Principal.NTAccount)).Value);
                     }
                     catch(Exception e) {
-                        play.Logger.error("windowsidentity group: " + g.ToString() + " could not be translated.\nError message:\n" + e.ToString());
+                        cpreader.Logger.error("windowsidentity group: " + g.ToString() + " could not be translated.\nError message:\n" + e.ToString());
                     }
                 }
             //groupNames = windowsIdentityFilteredGroups
@@ -59,7 +59,7 @@ namespace util
             HttpContext.Current.Session["accesslevel"] = accessLevel; // good for 2 hours
             HttpContext.Current.Session["usecart"] = useCart;
 
-            play.Logger.info("ACCESS LEVEL UPDATED TO " + HttpContext.Current.Session["accesslevel"]);
+            cpreader.Logger.info("ACCESS LEVEL UPDATED TO " + HttpContext.Current.Session["accesslevel"]);
         }
 
         private static int calculateAccessLevel(String username, String[] groupnames, out bool useCart)
@@ -88,7 +88,7 @@ namespace util
             }
             catch (Exception e)
             {
-                play.Logger.info("ERROR ");
+                cpreader.Logger.info("ERROR ");
             }
 
             int dummyInt;
