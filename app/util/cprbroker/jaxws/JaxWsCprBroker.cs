@@ -66,12 +66,12 @@ namespace util.cprbroker.jaxws
             //keystore = config.getString("keystorefile");
             //keystorePassword = config.getString("keystorepassword");
 
-            cpreader.Logger.debug("JaxWsCprBroker.constructor, endpoint: " + endpoint);
-            cpreader.Logger.debug("JaxWsCprBroker.constructor, appToken: " + applicationToken);
-            cpreader.Logger.debug("JaxWsCprBroker.constructor, userToken: " + userToken);
-            cpreader.Logger.debug("JaxWsCprBroker.constructor, allowedSourceUsageOrderHeader: " + allowedSourceUsageOrderHeader);
-            cpreader.Logger.debug("JaxWsCprBroker.constructor, keystore: " + keystore);
-            cpreader.Logger.debug("JaxWsCprBroker.constructor, keystorePassword: " + keystorePassword);
+            //cpreader.Logger.debug("JaxWsCprBroker.constructor, endpoint: " + endpoint);
+            //cpreader.Logger.debug("JaxWsCprBroker.constructor, appToken: " + applicationToken);
+            //cpreader.Logger.debug("JaxWsCprBroker.constructor, userToken: " + userToken);
+            //cpreader.Logger.debug("JaxWsCprBroker.constructor, allowedSourceUsageOrderHeader: " + allowedSourceUsageOrderHeader);
+            //cpreader.Logger.debug("JaxWsCprBroker.constructor, keystore: " + keystore);
+            //cpreader.Logger.debug("JaxWsCprBroker.constructor, keystorePassword: " + keystorePassword);
 
 
         }
