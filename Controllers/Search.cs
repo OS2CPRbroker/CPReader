@@ -77,15 +77,19 @@ namespace cpreader.Controllers
             List<IPerson> persons = null;
             try
             {
+                String hostName = Dns.GetHostName();
+                String ipAddress = LoggingTools.GetVisitorIPAddress();
 
                 // log what page the user requested
-                cpreader.Logger.info(String.Format("At <{0}> user <{1}> searched for name<{2}>, address<{3}>; online <{4}>, page <{5}>",
+                cpreader.Logger.info(String.Format("At <{0}> user <{1}> searched for name<{2}>, address<{3}>; online <{4}>, page <{5}>. Host name: <{6}> at local IP address <{7}>.",
                         DateTime.Now,
                         User.Identity.Name,
                         name,
                         address,
                         online,
-                        page
+                        page,
+                        hostName,
+                        ipAddress
                 ));
 
                 String key = String.Format("session={0};name={1};address={2}", getSessionId(), name, address);
@@ -153,11 +157,16 @@ namespace cpreader.Controllers
          */
         public ActionResult showPerson(String uuid)
         {
+            String hostName = Dns.GetHostName();
+            String ipAddress = LoggingTools.GetVisitorIPAddress();
+
             // Logging the show request
-            cpreader.Logger.info(String.Format("At <{0}> user <{1}> requested to see uuid <{2}>",
+            cpreader.Logger.info(String.Format("At <{0}> user <{1}> requested to see uuid <{2}>. Host name: <{3}> at local IP address <{4}>.",
                     DateTime.Now,
                     User.Identity.Name,
-                    uuid
+                    uuid,
+                    hostName,
+                    ipAddress
             ));
 
             IPerson person = null;
@@ -166,7 +175,11 @@ namespace cpreader.Controllers
                 person = cprBroker.read(uuid);
 
                 // Logging the show request
-                cpreader.Logger.info(User.Identity.Name + "'s request to CPRBroker responded, " + person.code() + " - " + person.message());
+                cpreader.Logger.info(String.Format("{0}'s request to CPRBroker responded, {1} - {2}.",
+                    User.Identity.Name,
+                    person.code(),
+                    person.message()
+                    ));
             }
             catch (Exception ex)
             {
@@ -254,8 +267,16 @@ namespace cpreader.Controllers
             searchInput.setQuery("");
             searchInput.saveToSession(this);
 
+            String hostName = Dns.GetHostName();
+            String ipAddress = LoggingTools.GetVisitorIPAddress();
+
             // Logging the search
-            cpreader.Logger.info(User.Identity.Name + " searched for: " + query);
+            cpreader.Logger.info(String.Format("<{0}> searched for: <{1}> from host name: <{3}> at local IP address <{4}>.", 
+                User.Identity.Name,
+                query,
+                hostName,
+                ipAddress
+                ));
 
             // Check if there is errors (empty strings)
             // TODO: Check the ASP.NET euivalent
@@ -285,7 +306,7 @@ namespace cpreader.Controllers
 
         public ActionResult updateParents(String uuid)
         {
-            cpreader.Logger.info("UPDATE PARENTS: " + uuid);
+            cpreader.Logger.info("Accessing parents of person: " + uuid);
 
             IPerson person = null;
             try
@@ -327,7 +348,7 @@ namespace cpreader.Controllers
 
         public ActionResult updateFullpage(String uuid)
         {
-            cpreader.Logger.info("UPDATE fullpage view of person: " + uuid);
+            cpreader.Logger.info("Accessing overview of person: " + uuid);
 
             IPerson person = null;
             try
@@ -372,7 +393,7 @@ namespace cpreader.Controllers
 
         public ActionResult updatePerson(String uuid)
         {
-            cpreader.Logger.info("UPDATE person: " + uuid);
+            cpreader.Logger.info("Accessing person: " + uuid);
 
             IPerson person = null;
             try

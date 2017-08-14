@@ -45,11 +45,11 @@
             person.registerInformation().cprCitizen() != null &&
             person.registerInformation().cprCitizen().socialSecurityNumber() != null)
         {
-            @person.registerInformation().cprCitizen().socialSecurityNumber()
+            <text>@person.registerInformation().cprCitizen().socialSecurityNumber().Substring(0, 6)****</text>
         }
         else
         {
-            <span class="glyphicon glyphicon-exclamation-sign"></span> 
+            <span class="glyphicon glyphicon-refresh"></span> 
             <h3>Manglende oplysninger fra online søgning. Opdater venligst siden.</h3>
         }
     }
@@ -73,29 +73,37 @@
     @if (person.address() != null && person.address().addressType() == util.cprbroker.EAddressType.Danish)
     {
         <span class="text-muted">
-            @if (!string.IsNullOrEmpty(person.address().danishAddress().streetName()))
+            @if (!person.registerInformation().cprCitizen().isNameAddressProtected())
             {
-                @person.address().danishAddress().streetName()
-            }
-            @if (!string.IsNullOrEmpty(person.address().danishAddress().streetBuilding()))
-            {
-                @person.address().danishAddress().streetBuilding()
-            }
-            @if (!string.IsNullOrEmpty(person.address().danishAddress().floor()))
-            {
-                @person.address().danishAddress().floor()
-            }
-            @if (!string.IsNullOrEmpty(person.address().danishAddress().suite()))
-            {
-                @person.address().danishAddress().suite()
-            }
-            @if (!string.IsNullOrEmpty(person.address().danishAddress().postCode()))
-            {
-                @person.address().danishAddress().postCode()
-            }
-            @if (!string.IsNullOrEmpty(person.address().danishAddress().districtName()))
-            {
-                @person.address().danishAddress().districtName()
+                if (!string.IsNullOrEmpty(person.address().danishAddress().streetName()))
+                {
+                    @person.address().danishAddress().streetName()
+                    <text> </text>
+                }
+                if (!string.IsNullOrEmpty(person.address().danishAddress().streetBuilding()))
+                {
+                    @person.address().danishAddress().streetBuilding()
+                    <text> </text>
+                }
+                if (!string.IsNullOrEmpty(person.address().danishAddress().floor()))
+                {
+                    @person.address().danishAddress().floor()
+                    <text> </text>
+                }
+                if (!string.IsNullOrEmpty(person.address().danishAddress().suite()))
+                {
+                    @person.address().danishAddress().suite()
+                    <text> </text>
+                }
+                if (!string.IsNullOrEmpty(person.address().danishAddress().postCode()))
+                {
+                    @person.address().danishAddress().postCode()
+                    <text> </text>
+                }
+                if (!string.IsNullOrEmpty(person.address().danishAddress().districtName()))
+                {
+                    @person.address().danishAddress().districtName()
+                }
             }
         </span>
     }

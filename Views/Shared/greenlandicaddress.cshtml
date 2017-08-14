@@ -9,7 +9,13 @@
         <div class="panel panel-default">
 
             <div class="panel-heading">
-                <h3 class="panel-title">@Messages.resultat_postaddresse</h3>
+                <h3 class="panel-title">
+                    @Messages.resultat_postaddresse
+                    @if (person.registerInformation().cprCitizen().isNameAddressProtected())
+                    {
+                        <span class="glyphicon glyphicon-exclamation-sign" />
+                    }
+                </h3>
             </div>
 
             <div class="panel-body">
