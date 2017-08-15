@@ -77,8 +77,8 @@ namespace cpreader.Controllers
             List<IPerson> persons = null;
             try
             {
-                String hostName = Dns.GetHostName();
                 String ipAddress = LoggingTools.GetVisitorIPAddress();
+                String hostName = System.Net.Dns.GetHostEntry(ipAddress).HostName.Split(new Char[] { '.' }).FirstOrDefault<String>();
 
                 // log what page the user requested
                 cpreader.Logger.info(String.Format("At <{0}> user <{1}> searched for name<{2}>, address<{3}>; online <{4}>, page <{5}>. Host name: <{6}> at local IP address <{7}>.",
@@ -157,8 +157,8 @@ namespace cpreader.Controllers
          */
         public ActionResult showPerson(String uuid)
         {
-            String hostName = Dns.GetHostName();
             String ipAddress = LoggingTools.GetVisitorIPAddress();
+            String hostName = System.Net.Dns.GetHostEntry(ipAddress).HostName.Split(new Char[] { '.' }).FirstOrDefault<String>();
 
             // Logging the show request
             cpreader.Logger.info(String.Format("At <{0}> user <{1}> requested to see uuid <{2}>. Host name: <{3}> at local IP address <{4}>.",
@@ -267,8 +267,8 @@ namespace cpreader.Controllers
             searchInput.setQuery("");
             searchInput.saveToSession(this);
 
-            String hostName = Dns.GetHostName();
             String ipAddress = LoggingTools.GetVisitorIPAddress();
+            String hostName = System.Net.Dns.GetHostEntry(ipAddress).HostName.Split(new Char[] { '.' }).FirstOrDefault<String>();
 
             // Logging the search
             cpreader.Logger.info(String.Format("<{0}> searched for: <{1}> from host name: <{2}> at local IP address <{3}>.", 
@@ -306,7 +306,10 @@ namespace cpreader.Controllers
 
         public ActionResult updateParents(String uuid)
         {
-            cpreader.Logger.info("Accessing parents of person: " + uuid);
+            cpreader.Logger.info(String.Format("{0} is accessing parents of person: {1}", 
+                User.Identity.Name,
+                uuid
+                ));
 
             IPerson person = null;
             try
@@ -348,7 +351,10 @@ namespace cpreader.Controllers
 
         public ActionResult updateFullpage(String uuid)
         {
-            cpreader.Logger.info("Accessing overview of person: " + uuid);
+            cpreader.Logger.info(String.Format("{0} is accessing overview of person: {1}",
+                User.Identity.Name,
+                uuid
+                ));
 
             IPerson person = null;
             try
@@ -393,7 +399,10 @@ namespace cpreader.Controllers
 
         public ActionResult updatePerson(String uuid)
         {
-            cpreader.Logger.info("Accessing person: " + uuid);
+            cpreader.Logger.info(String.Format("{0} is accessing details of person: {1}",
+                User.Identity.Name,
+                uuid
+                ));
 
             IPerson person = null;
             try
