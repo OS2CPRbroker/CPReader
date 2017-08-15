@@ -45,7 +45,7 @@
             person.registerInformation().cprCitizen() != null &&
             person.registerInformation().cprCitizen().socialSecurityNumber() != null)
         {
-            <text>@person.registerInformation().cprCitizen().socialSecurityNumber().Substring(0, 6)****</text>
+            <text>@person.registerInformation().cprCitizen().socialSecurityNumber().Substring(0, 6)-****</text>
         }
         else
         {
@@ -104,6 +104,10 @@
                 {
                     @person.address().danishAddress().districtName()
                 }
+            }
+            else
+            {
+                <text>Adressebeskyttelse <span style="color:#000000" class="glyphicon glyphicon-exclamation-sign" /></text>
             }
         </span>
     }

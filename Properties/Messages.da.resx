@@ -172,7 +172,7 @@
     <value>Ugyldig adresse</value>
   </data>
   <data name="nav_quicksearch_addressrequired" xml:space="preserve">
-    <value>Du skal skrive en adresse hvis du vil at søge online</value>
+    <value>Du skal skrive en adresse hvis du vil søge online</value>
   </data>
   <data name="nav_help" xml:space="preserve">
     <value>Hjælp</value>

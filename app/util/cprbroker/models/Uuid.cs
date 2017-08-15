@@ -33,59 +33,62 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+
 namespace util.cprbroker.models
 {
-
-
-
-public class Uuid : IUuid {
+    public class Uuid : IUuid
+        {
 	
-	public String _uuid;
-	public String _message;
-	public int _code;
+	    public String _uuid;
+	    public String _message;
+	    public int _code;
 	
-	// Lazy initialized, cached hashCode
-	public int _hashCode;
+	    // Lazy initialized, cached hashCode
+	    public int _hashCode;
 	
-	/**
-	 * 
-	 * @param newUuid String representation of a hyphenated Guid with a length of 36
-	 * @param newCode CPR Broker status code
-	 * @param newMessage CPR Broker message
-	 * @throws IllegaArgumentException Throws if newUuid length != 36
-	 */
-	public Uuid(String newUuid, int newCode, String newMessage) {
-		//TODO make a pattern match instead!
-		if(newUuid.Length != 36) throw new ArgumentException("A uuid must be a String representation of a hyphenated Guid with a length of 36");
-		_uuid = newUuid;
-		_message = newMessage;
-		_code = newCode;
-	}
+	    /**
+	     * 
+	     * @param newUuid String representation of a hyphenated Guid with a length of 36
+	     * @param newCode CPR Broker status code
+	     * @param newMessage CPR Broker message
+	     * @throws IllegalArgumentException Throws if newUuid does not match uuid regex (with or without curly brackets)
+	     */
+	    public Uuid(String newUuid, int newCode, String newMessage)
+        {
+            if (String.IsNullOrEmpty(newUuid))
+                newUuid = "";
 
-	
-	public String message() {
-		return _message;
-	}
+            if (!Regex.IsMatch(newUuid, cpreader.app.util.Constants.uuidRegex)) throw new ArgumentException("A uuid must be a String representation of a hyphenated Guid with a length of 36");
+		    _uuid = newUuid;
+		    _message = newMessage;
+		    _code = newCode;
+	    }
 
 	
-	public int code() {
-		return _code;
-	}
+	    public String message() {
+		    return _message;
+	    }
 
 	
-	public String value() {
-		return _uuid;
-	}
+	    public int code() {
+		    return _code;
+	    }
+
+	
+	    public String value() {
+		    return _uuid;
+	    }
 	
 	
-	public String toString() {
-		return _uuid;
-	}
+	    public String toString() {
+		    return _uuid;
+	    }
 	
 	
 	
 
 
-}
+    }
 
 }

@@ -271,7 +271,7 @@ namespace cpreader.Controllers
             String ipAddress = LoggingTools.GetVisitorIPAddress();
 
             // Logging the search
-            cpreader.Logger.info(String.Format("<{0}> searched for: <{1}> from host name: <{3}> at local IP address <{4}>.", 
+            cpreader.Logger.info(String.Format("<{0}> searched for: <{1}> from host name: <{2}> at local IP address <{3}>.", 
                 User.Identity.Name,
                 query,
                 hostName,
@@ -299,7 +299,7 @@ namespace cpreader.Controllers
             else {
                 // this should never happen as person master will just assign
                 // a new uuid if it doesn't exist
-                cpreader.Logger.info("search form has errors");
+                cpreader.Logger.info(String.Format("CPR number <{0}> not found.", query));
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "CPR not found in local");
             }
         }

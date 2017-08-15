@@ -17,13 +17,17 @@
             {
                 address = person.postalLabel()[1] + " " + person.postalLabel()[2];
             }
-            <p>
+            if (!person.registerInformation().cprCitizen().isNameAddressProtected())
+            {
                 @address
-                @if (person.registerInformation().cprCitizen().isNameAddressProtected())
-                {
-                    <span class="glyphicon glyphicon-exclamation-sign" />
-                }
-            </p>
+            }
+            else
+            {
+                <p style="color:#ff0000">
+                    @address
+                    <span style="color:#000000" class="glyphicon glyphicon-exclamation-sign" />
+                </p>
+            }
 
             DateTime movingDate = person.movingDate();
 
