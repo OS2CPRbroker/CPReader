@@ -143,7 +143,7 @@ namespace cpreader.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\MagentaWorkspace\\CPReader\\aspnet-cpreader\\conf\\accessfile.config")]
+        [global::System.Configuration.DefaultSettingValueAttribute("conf\\accessfile.config")]
         public string accessfile_name {
             get {
                 return ((string)(this["accessfile_name"]));
@@ -174,6 +174,28 @@ namespace cpreader.Properties {
         public string cpreader_Log4NetConfig {
             get {
                 return ((string)(this["cpreader_Log4NetConfig"]));
+            }
+        }
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string local_municipalities_file_url
+        {
+            get
+            {
+                return ((string)(this["local_municipalities_file_url"]));
+            }
+        }
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("conf\\local_municipalities.config")]
+        public string local_municipalities_name
+        {
+            get
+            {
+                return ((string)(this["local_municipalities_name"]));
             }
         }
     }

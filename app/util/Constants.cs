@@ -5,8 +5,8 @@ using System.Web;
 
 namespace cpreader.app.util
 {
-    public class Constants
+    public static class Constants
     {
-        public static readonly String uuidRegex = @"{?[\d\w]{8}\-[\d\w]{4}\-[\d\w]{4}\-[\d\w]{4}\-[\d\w]{12}}?";
+        public static readonly String UuidRegex = @"{?[\d\w]{8}\-[\d\w]{4}\-[\d\w]{4}\-[\d\w]{4}\-[\d\w]{12}}?";
     }
 }

@@ -59,7 +59,7 @@ namespace util.cprbroker.models
             if (String.IsNullOrEmpty(newUuid))
                 newUuid = "";
 
-            if (!Regex.IsMatch(newUuid, cpreader.app.util.Constants.uuidRegex)) throw new ArgumentException("A uuid must be a String representation of a hyphenated Guid with a length of 36");
+            if (!Regex.IsMatch(newUuid, cpreader.app.util.Constants.UuidRegex)) throw new ArgumentException("A uuid must be a String representation of a hyphenated Guid with a length of 36");
 		    _uuid = newUuid;
 		    _message = newMessage;
 		    _code = newCode;
