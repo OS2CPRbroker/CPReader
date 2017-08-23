@@ -154,6 +154,7 @@
   <ItemGroup>
     <Compile Include="app\util\Constants.cs" />
     <Compile Include="app\util\LocalMunicipalitiesManager.cs" />
+    <Compile Include="app\util\Logcleaner.cs" />
     <Compile Include="app\util\LoggingTools.cs" />
     <Compile Include="app\util\DisplayState.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
