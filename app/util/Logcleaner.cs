@@ -28,7 +28,7 @@ namespace cpreader.app.util
                     CleanOldLogs();
                     break;
                 default:
-                    Logger.error("Unrecognized task");
+                    Logger.Log(log4net.Core.Level.Error, "Unrecognized task", "");
                     break;
             } 
             AddTask(k, Convert.ToInt32(v));
@@ -36,8 +36,7 @@ namespace cpreader.app.util
 
         private static void CleanOldLogs()
         {
-            //Logger.info("Deleting old log files...");
-            Console.WriteLine("Log cleaner running");
+            Logger.Log(log4net.Core.Level.Info, "Deleting old log files...", "");
 
             DateTime dateToday = DateTime.Today;
             string root = HttpRuntime.AppDomainAppPath;
@@ -57,10 +56,19 @@ namespace cpreader.app.util
                         TimeSpan fileAge = dateToday.Subtract(dateCreated);
                         string strDate = dateCreated.ToString();
                         string strAge = fileAge.ToString();
-                        
-                        if (fileAge.Days > cpreader.app.util.Constants.MaxLogfileAge)
+
+                        int maxAge;
+
+                        if (int.TryParse(cpreader.Properties.Settings.Default.max_logfile_age, out maxAge))
                         {
-                            DeleteFile(filename);
+                            if (fileAge.Days > maxAge)
+                            {
+                                DeleteFile(filename);
+                            }
+                        }
+                        else
+                        {
+                            Logger.Log(log4net.Core.Level.Error, "Error parsing max_logfile_age in the Web configuration file. Please fix any syntax errors.", "");
                         }
                     }
                 }
@@ -72,11 +80,11 @@ namespace cpreader.app.util
             if (File.Exists(filename))
             {
                 File.Delete(filename);
-                //Logger.info(String.Format("Deleting log file {0}", filename));
+                Logger.Log(log4net.Core.Level.Info, String.Format("Deleting log file {0}", filename), "");
             }
             else
             {
-                //Logger.error(String.Format("Error deleting log file {0}", filename));
+                Logger.Log(log4net.Core.Level.Error, String.Format("Error deleting log file {0}", filename), "");
             }
         }
     }

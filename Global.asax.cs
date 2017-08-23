@@ -12,11 +12,11 @@ namespace cpreader
     {
         protected void Application_Start()
         {
-            //app.util.Logcleaner.AddTask("CleanOldLogs", app.util.Constants.SecondsInADay);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            app.util.Logcleaner.AddTask("CleanOldLogs", app.util.Constants.SecondsInADay);
         }
     }
 }

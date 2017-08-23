@@ -198,5 +198,16 @@ namespace cpreader.Properties {
                 return ((string)(this["local_municipalities_name"]));
             }
         }
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("182")]
+        public string max_logfile_age
+        {
+            get
+            {
+                return ((string)(this["max_logfile_age"]));
+            }
+        }
     }
 }
