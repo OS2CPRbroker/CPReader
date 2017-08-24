@@ -28,22 +28,8 @@ namespace cpreader
 
         public static void Log(Level level, string text)
         {
-            var logEvent = new LoggingEvent(new LoggingEventData()
-            {
-                Level = level,
-                Message = text,
-                TimeStamp = DateTime.Now,
-                UserName = HttpContext.Current.User.Identity.Name,
-                ExceptionString = null,
-                Domain = null,
-                Identity = null,
-                LocationInfo = null,
-                LoggerName = null,
-                //Properties = props,
-                ThreadName = null
-            });
-
-            log.Logger.Log(logEvent);
+            string username = HttpContext.Current.User.Identity.Name;
+            Log(level, text, username);
         }
 
         public static void Log(Level level, string text, string username)
