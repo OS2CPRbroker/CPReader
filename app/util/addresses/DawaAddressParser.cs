@@ -64,13 +64,13 @@ namespace util.addresses
                 {
                     String streetName = null, houseNumber = null, floor = null, door = null, districtSubdivision = null, postCode = null, postDistrict = null;
 
-                    streetName = GetString(adresses, "adgangsadresse/vejstykke/navn");
-                    houseNumber = GetString(adresses, "adgangsadresse/husnr");
-                    floor = GetString(adresses, "etage");
-                    door = GetString(adresses, "dør");
-                    districtSubdivision = GetString(adresses, "adgangsadresse/supplerendebynavn");
-                    postCode = GetString(adresses, "adgangsadresse/postnummer/nr");
-                    postDistrict = GetString(adresses, "adgangsadresse/postnummer/navn");
+                    streetName = GetString(adresses[0], "adgangsadresse/vejstykke/navn");
+                    houseNumber = GetString(adresses[0], "adgangsadresse/husnr");
+                    floor = GetString(adresses[0], "etage");
+                    door = GetString(adresses[0], "dør");
+                    districtSubdivision = GetString(adresses[0], "adgangsadresse/supplerendebynavn");
+                    postCode = GetString(adresses[0], "adgangsadresse/postnummer/nr");
+                    postDistrict = GetString(adresses[0], "adgangsadresse/postnummer/navn");
 
                     AdresseType ret = new AdresseType();
                     DanskAdresseType danskAdresse = new DanskAdresseType();

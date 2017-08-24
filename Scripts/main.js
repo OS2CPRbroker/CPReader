@@ -24,21 +24,21 @@ require(["jquery", "bootstrap", "processQuery", "validate", "cart", "modolus11",
         // handle submission routing
         $('#quicksearchbutton').click(function (event) {
             event.preventDefault();
-            callProcessQuery();
+            v.resolveAmbiguousAddresses(callProcessQuery);
         });
 
         // handle submission routing on enter as well
         $('#query').keypress(function (event) {
-            if (event.which == 13) {
+            if (event.which === 13) {
                 event.preventDefault();
-                callProcessQuery();
+                v.resolveAmbiguousAddresses(callProcessQuery);
             }
         });
 
         $('#addressQuery').keypress(function (event) {
-            if (event.which == 13) {
+            if (event.which === 13) {
                 event.preventDefault();
-                callProcessQuery();
+                v.resolveAmbiguousAddresses(callProcessQuery);
             }
         });
 
@@ -52,7 +52,7 @@ require(["jquery", "bootstrap", "processQuery", "validate", "cart", "modolus11",
 
         // validate address
         $('#addressQuery').keyup(function (event) {
-            if (event.which != 13) {
+            if (event.which !== 13) {
                 v.validateAddressQuery();
             }
         });

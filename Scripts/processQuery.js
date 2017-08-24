@@ -8,11 +8,11 @@
 
                 var query = queryField.val().trim();
                 var addressQuery = addressQueryField.val().trim();
-                var online = ($("input[name=online]:checked").val() == "true");
+                var online = ($("input[name=online]:checked").val() === "true");
 
                 var validationDoneCallBack = function(){
                     var valid = !queryField.parent().hasClass('has-error') && !queryField.parent().hasClass('has-warning');
-                    if(!addressQueryField.attr('disabled') || !addressQueryField.attr('disabled') == 'false'){
+                    if(!addressQueryField.attr('disabled') || !addressQueryField.attr('disabled') === 'false'){
                         valid &= !addressQueryField.parent().hasClass('has-error') && !addressQueryField.parent().hasClass('has-warning');
                     }
 
@@ -34,7 +34,7 @@
                     // if the input is recognised as a CPR number, redirect to a uuid search
                     if (cpr.test(query) || cprpattern.test(query)) {
                         query = query.replace("-", "");
-                        if(query.length == 9)
+                        if(query.length === 9)
                             query = "0" + query;
                         $.post('/search/cpr/', {"query": query}, function (data) {
                             window.location = '/show/uuid/' + data + '/';

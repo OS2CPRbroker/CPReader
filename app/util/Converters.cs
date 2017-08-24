@@ -47,7 +47,7 @@ namespace util
     {
         public static readonly IFormatProvider danishDateFormat = System.Globalization.CultureInfo.GetCultureInfo("da-DK").DateTimeFormat;
 
-        public static IAddressParser AddressParser;
+        public static IAddressParser AddressParser = new DawaAddressParser();
         public static bool isDawaAddressParser()
         {
             return AddressParser is DawaAddressParser;
@@ -55,10 +55,6 @@ namespace util
 
         public AdresseType ToAddressType(String addressString)
         {
-            if (AddressParser == null)
-            {
-                AddressParser = new DawaAddressParser();
-            }
             addressString = string.Format("{0}", addressString);
             if (!string.IsNullOrEmpty(addressString))
             {

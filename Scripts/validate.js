@@ -70,11 +70,11 @@ define(["modolus11"], function(modolus11) {
 				}
 
 				//if there is 10 numbers
-				else if ((query.length == 10 & !cprpattern.test(query))
-						| (query.length == 11 & cprpattern.test(query))) {
+				else if ((query.length === 10 & !cprpattern.test(query))
+						| (query.length === 11 & cprpattern.test(query))) {
 					// is the date 010165 or 010166
-					if (query.substring(0, 6) == '010165'
-							| query.substring(0, 6) == '010166') {
+					if (query.substring(0, 6) === '010165'
+							| query.substring(0, 6) === '010166') {
 						queryfield.parent().addClass('has-success');
 					} else if (!cprpattern.test(query) & modolus11.check(query)) {
 						queryfield.parent().addClass('has-success');
@@ -111,9 +111,9 @@ define(["modolus11"], function(modolus11) {
 			}
 
 			// Prohibit name only search
-			var online = ($("input[name=online]:checked").val() == "true");
+			var online = ($("input[name=online]:checked").val() === "true");
 			if (online && !addressQueryField.attr('disabled')) {
-				if (addressQuery.length == 0) {
+				if (addressQuery.length === 0) {
 					addressQueryField.parent().addClass('has-warning');
 					addressQueryField.attr('data-original-title', 'Bemærk');
 					addressQueryField.attr('data-content', addressQueryField.attr('addressRequiredText'));
@@ -122,7 +122,7 @@ define(["modolus11"], function(modolus11) {
 			}
 
 			// Invalid addresses
-			if(validateDawa == 'true')
+			if(validateDawa === "True")
 			{
 				$.ajax({
 					url:		document.location.protocol + '//dawa.aws.dk/adresser/autocomplete',
@@ -131,7 +131,7 @@ define(["modolus11"], function(modolus11) {
 					data: 		{q: addressQuery, maxantal: 1},
 					//async: 		false,
 					success: 	function (data) {
-						if(data.length == 0){
+						if(data.length === 0){
 							addressQueryField.parent().addClass('has-warning');
 							addressQueryField.attr('data-original-title', 'Bemærk');
 							addressQueryField.attr('data-content', addressQueryField.attr('invalidAddressText'));
@@ -171,6 +171,33 @@ define(["modolus11"], function(modolus11) {
 			queryfield.parent().removeClass('has-warning');
 
 			queryfield.popover('destroy');
-		}
+        },
+
+        resolveAmbiguousAddresses: function (doneCallBack) {
+            var addressQueryField = $('#addressQuery');
+            var addressQuery = addressQueryField.val().trim();
+
+            if (!doneCallBack) {
+                doneCallBack = function (){};
+            }
+
+            $.ajax({
+                url: document.location.protocol + '//dawa.aws.dk/adresser/autocomplete',
+                type: "GET",
+                dataType: "jsonp",
+                data: { q: addressQuery, maxantal: 1 },
+                async: true,
+                success: function (data) {
+                    if (data.length > 1) {
+                        addressQueryField.val(data[0].tekst);
+                    }
+                    doneCallBack();
+                },
+                error: function (textStatus) {
+                    alert("Der kunne ikke hentes data fra AWS API'et. Serveren returnerede følgende:\n'" + textStatus + "'\n\nAdresseforslag virker derfor ikke pt.");
+                    doneCallBack();
+                }
+            });
+        }
 	}
 });
