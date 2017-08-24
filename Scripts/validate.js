@@ -181,6 +181,11 @@ define(["modolus11"], function(modolus11) {
                 doneCallBack = function (){};
             }
 
+            if (addressQuery === "") {
+                doneCallBack();
+                return;
+            }
+
             $.ajax({
                 url: document.location.protocol + '//dawa.aws.dk/adresser/autocomplete',
                 type: "GET",
