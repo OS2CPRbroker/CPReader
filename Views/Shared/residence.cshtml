@@ -1,0 +1,100 @@
+﻿@model Tuple<util.cprbroker.IPerson>
+@{ 
+    var person = Model.Item1;
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Messages.results_bopael</h3>
+    </div>
+    <div class="panel-body">
+        <h4>@Messages.person_addresse</h4>
+        @if (person.address() != null && person.postalLabel() != null)
+        {
+            string address = "";
+            if (person.postalLabel().Length >= 2)
+            {
+                address = person.postalLabel()[1] + " " + person.postalLabel()[2];
+            }
+            if (!person.registerInformation().cprCitizen().isNameAddressProtected())
+            {
+                @address
+            }
+            else
+            {
+                <p style="color:#ff0000">
+                    @address
+                    <span style="color:#000000" class="glyphicon glyphicon-exclamation-sign" />
+                </p>
+            }
+
+            DateTime movingDate = person.movingDate();
+
+            <p><b>@Messages.moving_date</b> @movingDate.ToString("dd.MM.yyyy")</p>
+            // Search for other persons living on same address
+            if (address != "" && person.relations() != null) // Makes sure an address search is not performed until relations have been fetched
+            {
+                // Search locally in CprBroker if the municipality code of the address is configured in local_municipalities
+                // Otherwise, search externally
+                int[] localMunicipalities = cpreader.app.util.LocalMunicipalitiesManager.getLocalMunicipalities();
+                int municipalityCode;
+                List<IPerson> livingOnAddress;
+
+                if (person.address().danishAddress() != null &&
+                    int.TryParse(person.address().danishAddress().municipalityCode(), out municipalityCode) &&
+                    localMunicipalities.Contains(municipalityCode))
+                {
+                    livingOnAddress = SearchController.cprBroker.getPersonsOnAddress(person.address(), ESourceUsageOrder.LocalOnly, -1, -1);
+                }
+                else
+                {
+                    livingOnAddress = SearchController.cprBroker.getPersonsOnAddress(person.address(), ESourceUsageOrder.ExternalOnly, -1, -1);
+                }
+                List<IPerson> livingOnSameAddress = new List<IPerson>();
+                <hr/>
+                if (livingOnAddress != null)
+                {
+                    foreach (IPerson resident in livingOnAddress)
+                    {
+                        if (!person.uuid().Equals(resident.uuid()))
+                        {
+                            livingOnSameAddress.Add(resident);
+                        }
+                    }
+                }
+                if (livingOnSameAddress.Any())
+                {
+                    <h4>Andre beboere på addressen</h4>
+                    <p>@Html.Partial("ipersoncprandname", livingOnSameAddress)</p>
+                }
+                else
+                {
+                    <p class="text-left">@Messages.person_bor_alene</p>
+                }
+            }
+        }
+        else
+        {
+            <text>@Messages.person_address_danishAddress_isUkendtAdresse</text>
+        }
+        @* Check for world adress*@
+        @if (person.otherAddress() != null && person.otherAddress().worldAddress() != null &&
+        (person.otherAddress().worldAddress().locationDescriptionText() != null ||
+        person.otherAddress().worldAddress().postalAddressFirstLineText() != null ||
+        person.otherAddress().worldAddress().postalAddressSecondLineText() != null ||
+        person.otherAddress().worldAddress().postalAddressThirdLineText() != null ||
+        person.otherAddress().worldAddress().postalAddressFourthLineText() != null ||
+        person.otherAddress().worldAddress().postalAddressFifthLineText() != null))
+        {
+            if (person.otherAddress().addressType() == util.cprbroker.EAddressType.World)
+            {
+                <hr/>
+                if (person.otherAddress().worldAddress().postalAddressFirstLineText() != null)
+                {
+                    <p>@person.otherAddress().worldAddress().postalAddressFirstLineText()</p>
+                }
+            }
+        }
+    </div>
+</div>

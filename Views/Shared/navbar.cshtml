@@ -1,0 +1,96 @@
+@* ***** BEGIN LICENSE BLOCK *****
+* Version: MPL 2.0/GPL 2.0/LGPL 2.1
+*
+* The contents of this file are subject to the Mozilla Public License
+* Version 2.0 (the "License"); you may not use this file except in
+* compliance with the License. You may obtain a copy of the License at
+* http://www.mozilla.org/MPL/
+*
+* Software distributed under the License is distributed on an "AS IS"basis,
+* WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+* for the specific language governing rights and limitations under the
+* License.
+*
+* Contributor(s):
+* Beemen Beshara
+* Søren Kirkegård
+*
+* The code is currently governed by OS2 - Offentligt digitaliserings-
+* fællesskab / http://www.os2web.dk .
+*
+* Alternatively, the contents of this file may be used under the terms of
+* either the GNU General Public License Version 2 or later (the "GPL"), or
+* the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+* in which case the provisions of the GPL or the LGPL are applicable instead
+* of those above. If you wish to allow use of your version of this file only
+* under the terms of either the GPL or the LGPL, and not to allow others to
+* use your version of this file under the terms of the MPL, indicate your
+* decision by deleting the provisions above and replace them with the notice
+* and other provisions required by the GPL or the LGPL. If you do not delete
+* the provisions above, a recipient may use your version of this file under
+* the terms of any one of the MPL, the GPL or the LGPL.
+*
+* ***** END LICENSE BLOCK ***** *@
+
+@model Tuple<SearchController.SearchInput>
+
+@{
+    var searchInput = Model.Item1;
+}
+<div class="navbar navbar-default">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">@Messages.nav_title</a>
+    </div>
+
+    <div class="navbar-collapse collapse">
+        <form id="quicksearch" class="navbar-form navbar-left" role="search">
+            <div class="form-group" id="querygroup">
+                <span><input type="text" class="form-control" id="query" placeholder="@Messages.nav_quicksearch_placeholder" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getQuery()" /></span>
+                <span>
+                    <input type="text" class="form-control" id="addressQuery"
+                        placeholder="@Messages.nav_quicksearch_addresslaceholder" autocomplete="off" data-content="dummycontent" data-original-title="dummytitle" data-placement="bottom" value="@searchInput.getAddressQuery()"
+                        invalidAddressText = '@Messages.nav_quicksearch_invalidaddress' addressRequiredText='@Messages.nav_quicksearch_addressrequired'
+                        validateDawa = '@util.Converters.isDawaAddressParser()'
+                    />
+                </span>
+
+                <div class="@(Settings.Default.search_type == 0? /* 0 */"navbar-form-online" : /* 1 or 2*/ "navbar-form-online-hidden")"/>
+                    <input type="radio" name="online" id="online_false" value="false" @if(!searchInput.getOnline()){ @("checked") }>
+                    <label for="online_false">@Messages.nav_quicksearch_local &nbsp;&nbsp;</label>
+                    <input type="radio" name="online" id="online_true" value="true" @if(searchInput.getOnline()){@("checked")}>
+                    <label for="online_true"> @Messages.nav_quicksearch_online</label>
+                </div>
+                <button id="quicksearchbutton" type="button" class="btn btn-default navbar-form-search">@Messages.nav_quicksearch_submit</button>
+            </div>
+
+        </form>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">@Messages.nav_help</a> </li>
+            <li><span id="currentUsername">@User.Identity.Name</span></li>
+            @*@if(!util.auth.Secured.authenticationStrategy.isInstanceOf[util.auth.IIntegratedAuthenticaton]){
+                <li><a href="@routes.Signon.logout()">@Messages("nav.logout_button")</a></li>
+            }*@
+
+            @if(AccessLevelManager.getCurrentUseCart()) {
+            <li>
+                <a href="#cartModal" data-backdrop="static" data-toggle="modal">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                    @Messages.cart_view
+                    (<span name="cartCount">@CartController.countTextString()</span>)</a>
+                <span style="display: none;">@HttpContext.Current.Session["opencart"] = "false"</span>
+                <div id="cartModal" class="modal static">
+                    @Html.Partial("cartview", new Tuple<util.Cart>(util.Cart.fromSession()))
+                </div>
+            </li>
+            }
+        </ul>
+        
+    </div> <!--/.nav-collapse -->
+</div>
+<span id="message"></span>

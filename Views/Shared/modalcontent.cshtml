@@ -1,0 +1,227 @@
+@model Tuple<util.cprbroker.IPerson, int>
+@{
+    var person = Model.Item1;
+    var accesslevel = Model.Item2;
+}
+
+<div class="modal-header">
+    <div class="well">
+        <h4>
+            <span class="glyphicon glyphicon-user"></span>
+            Person: @(person.registerInformation().cprCitizen().socialSecurityNumber().Insert(6, "-"))
+        </h4>
+        <div>
+            @foreach (var l in person.postalLabel())
+            {
+                @(l) <br>
+            }
+        </div>
+        @if (person.tidspunkt() != null)
+        {
+            <p class="text-right">
+                @if (person.tidspunkt().sourceName() != null)
+                {
+                    @(person.tidspunkt().sourceName())
+                    @(",")
+                }
+                @if (person.tidspunkt().tidspunkt() != null)
+                {
+                    @(Messages.person_registrationdate)
+                    @(":")
+                    @(person.tidspunkt().tidspunkt().ToString("dd.MM.yy HH:mm:ss"))
+                }
+            </p>
+        }
+        <p class="text-right">
+            <div id="session" style="display: none;">
+                @{HttpContext.Current.Cache[person.uuid()] = person;}
+            </div>
+            
+            @if (AccessLevelManager.getCurrentUseCart())
+            {
+                @Html.Partial("cart", new Tuple<IPerson>(person));
+            }
+        </p>
+    </div>
+</div>
+<div class="modal-body">
+    @if(accesslevel > 0)
+    {
+        <ul class="nav nav-pills nav-justified">
+            @if (accesslevel > 1)
+            {
+                <li class="active"><a href="#generelt@(person.uuid())" data-toggle="pill">Generelt</a></li>
+                <li><a href="#addresse@(person.uuid())" data-toggle="pill">Adresse</a></li>
+
+                if (person.relationsWithPerson() != null && person.relationsWithPerson().allRelations().Count > 0)
+                {
+                    <li><a href="#relationer@(person.uuid())" data-toggle="pill">Relationer</a></li>
+                }
+            }
+            else
+            {
+                if (person.relationsWithPerson() != null)
+                {
+                    if (person.relationsWithPerson().allRelations().Count > 0) {
+                        var showrelations = 0;
+
+                        foreach (var r in person.relationsWithPerson().allRelations())
+                        {
+                            if (r.relationshipType() == ERelationshipType.foraeldremyndighedsindehaver || r.relationshipType() == ERelationshipType.fader || r.relationshipType() == ERelationshipType.moder)
+                            {
+                                showrelations = 1;
+                            }
+                        }
+
+                        if (showrelations > 0)
+                        {
+                            <li class="active"><a href="#" data-toggle="pill">Relationer</a></li>
+                        }
+                    }
+                }
+            }
+        </ul>
+        <br />
+        <div class="tab-content">
+            @if (accesslevel > 1)
+            {
+                <div class="tab-pane active" id="generelt@(person.uuid())">
+                    <div class="row">
+                        <div class="col-md-7">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">@Messages.resultat_egenskaber</h3>
+                            </div>
+                            <div class="panel-body">
+                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_firstname, person.firstname()))
+                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_middelname, person.middelname()))
+                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_lastname, person.lastname()))
+                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_callname, person.callname()))
+                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_nameForAddressing, person.nameForAddressing()))
+                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_gender, person.gender()))
+                                @if (person.birthdate() != null)
+                                {
+                                    <dl class="dl-horizontal margins-removed">
+                                        <dt>@Messages.person_birthdate</dt>
+                                        <dd>@person.birthdate().ToString("dd. MMMM yyyy")</dd>
+                                    </dl>
+                                }
+                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_birthplace, person.nameForAddressing()))
+                                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_birthRegisteringAuthority, person.birthRegisteringAuthority()))
+                            </div>
+                            <div class="panel-footer"><p class="text-right">@Html.Partial("virkning", new Tuple<IVirkning, bool>(person.effect(), true))</p></div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">@Messages.resultat_registeroplysninger</h3>
+                            </div>
+                            <div class="panel-body">
+                                @if (person.registerInformation() != null)
+                                {
+                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_socialSecurityNumberActive, person.registerInformation().cprCitizen().isSocialSecurityNumberValid()))
+                                    @Html.Partial("textfield", new Tuple<string, object>(Messages.person_registerInformation_cprCitizen_personNationalityCode, person.registerInformation().cprCitizen().personNationalityCode()))
+                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_isMemberOfTheChurch, person.registerInformation().cprCitizen().isMemberOfTheChurch()))
+                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_isResearcherProtected, person.registerInformation().cprCitizen().isResearcherProtected()))
+                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_isNameAddressProtected, person.registerInformation().cprCitizen().isNameAddressProtected()))
+                                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_registerInformation_cprCitizen_isPhoneNumberProtected, person.registerInformation().cprCitizen().isPhoneNumberProtected()))
+                                }
+                            </div>
+                            <div class="panel-footer">
+                                <p class="text-right">@Html.Partial("virkning", new Tuple<IVirkning, bool>(person.registerInformation().virkning(), true))</p>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">@Messages.resultat_tilstande</h3>
+                            </div>
+                            <div class="panel-body">
+                                @if (person.tilstand() != null) {
+                                    if (person.tilstand().civilStatusKode() != null)
+                                    {
+                                        <dl class="dl-horizontal">
+                                            <dt>@Messages.person_tilstand_civilStatusKode</dt>
+                                            <dd>@person.tilstand().civilStatusKode()</dd>
+                                            @if (person.tilstand().civilTilstandsVirkning() != null && person.tilstand().civilTilstandsVirkning().fraTidspunkt() != null)
+                                            {
+                                                <dd>@Html.Partial("virkning", new Tuple<IVirkning, bool>(person.tilstand().civilTilstandsVirkning(), false))</dd>
+                                            }
+                                        </dl>
+                                    }
+                                    if (person.tilstand().livStatusKode() != null)
+                                    {
+                                        <dl class="dl-horizontal">
+                                            <dt>@Messages.person_tilstand_livStatusKode</dt>
+                                            <dd>@person.tilstand().livStatusKode()</dd>
+                                            @if (person.tilstand().livTilstandsVirkning() != null && person.tilstand().livTilstandsVirkning().fraTidspunkt() != null)
+                                            {
+                                                <dd>@Html.Partial("virkning", new Tuple<IVirkning, bool>(person.tilstand().livTilstandsVirkning(), false))</dd>
+                                            }
+                                        </dl>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="tab-pane" id="addresse@(person.uuid())">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if (person.address() != null) {
+                                if (person.address().addressType() == EAddressType.Danish) {
+                                    @Html.Partial("danishaddress", new Tuple<IPerson>(person))
+                                }
+                                if (person.address().addressType() == EAddressType.Greenlandic) {
+                                    @Html.Partial("greenlandicaddress", new Tuple<IPerson>(person))
+                                }
+                                if (person.address().addressType() == EAddressType.World) {
+                                    @Html.Partial("worldaddress", new Tuple<IPerson>(person))
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (person.relationsWithPerson() != null)
+            {
+                if (person.relationsWithPerson().allRelations().Count > 0)
+                {
+                    if (accesslevel > 1)
+                    {
+                        @:<div class="tab-pane" id="relationer@(person.uuid())">
+                    }
+                    <div class="row">
+                        <div class="col-md-12">
+                            <br />
+                            @if (person.relationsWithPerson() != null)
+                            {
+                                foreach (var r in person.relationsWithPerson().allRelations())
+                                {
+                                    if (accesslevel > 1) {
+                                        @Html.Partial("relation", new Tuple<IRelationshipWithIPerson, IPerson>(r, person))
+                                    }
+                                    else
+                                    {
+                                        if (r.relationshipType() == ERelationshipType.foraeldremyndighedsindehaver || r.relationshipType() == ERelationshipType.fader || r.relationshipType() == ERelationshipType.moder)
+                                        {
+                                            @Html.Partial("relation", new Tuple<IRelationshipWithIPerson, IPerson>(r, person))
+                                        }
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                    if (accesslevel > 1)
+                    {
+                        @:</div>
+                    }
+                }
+            }
+        </div>
+    }
+</div>
+<div class="modal-footer">
+    <button onclick="hideDetail()" id="detailCloseButton@(person.uuid())" type="button" class="btn btn-default" data-dismiss="modal">@Messages.cart_close</button>
+</div>

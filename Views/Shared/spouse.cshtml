@@ -1,0 +1,72 @@
+﻿@model Tuple<util.cprbroker.IPerson>
+@{
+    var person = Model.Item1;
+}
+
+<h4>Partner</h4>
+@if (person.relationsWithPerson() != null)
+{
+    if (person.relationsWithPerson().allRelations().Count > 0)
+    {
+        List<IRelationshipWithIPerson> spouse = person.relationsWithPerson().allRelations().FindAll(
+            delegate (IRelationshipWithIPerson p)
+            {
+                return (p.relationshipType() == ERelationshipType.aegtefaelle || p.relationshipType() == ERelationshipType.registreretPartner) && (p.effect().tilTidspunkt() == null);
+            }
+        );
+
+        if (spouse.Any()) //if there are any spouses (should be one at most, but can handle more)
+        {
+            <table class="table table-condensed" style="width: 100%">
+                <tbody>
+                    @foreach (IRelationshipWithIPerson relation in spouse)
+                    {
+                        if (relation != null)
+                        {
+                            string dateField;
+                            DateTime marriageDate = relation.effect().fraTidspunkt().Value;
+                            if (relation.relationshipType() == ERelationshipType.aegtefaelle)
+                            {
+                                dateField = Messages.person_married_date;
+                            }
+                            else
+                            {
+                                dateField = Messages.person_partner_date;
+                            }
+
+                            string cprNr;
+                            string name;
+                            try
+                            {
+                                cprNr = relation.person().registerInformation().cprCitizen().socialSecurityNumber().Insert(6, "-");
+                            }
+                            catch (Exception e)
+                            {
+                                cprNr = Messages.unknown;
+                            }
+                            try
+                            {
+                                name = relation.person().firstname() + " " + relation.person().middelname() + " " + relation.person().lastname();
+                            }
+                            catch (Exception e)
+                            {
+                                name = Messages.unknown;
+                            }
+                                <tr>
+                                    <td><b>@relation.relationshipTypeString()</b></td>
+                                    <td>@(Messages.person_registerInformation_cprCitizen_socialSecurityNumber + ":") @(cprNr)</td>
+                                    <td>@(Messages.cart_name+":") @(name) </td>
+                                    <td>@dateField: @(marriageDate.ToString("dd.MM.yyyy")) </td>
+                                </tr>
+
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+        else if (person.tilstand().civilStatusKode() != EMaritalStatusType.GIFT)
+        {
+            <p><b>@Messages.person_tilstand_civilStatusKode</b> @person.tilstand().civilStatusKode().ToString()</p>
+        }
+    }
+}

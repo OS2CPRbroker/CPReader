@@ -1,0 +1,100 @@
+The accessfile.csv (found in the conf/ directory) is contains setting user access levels and cart usage
+
+-----------
+User Access
+-----------
+
+The user access levels are available on 2 levels.
+
+1) Group Level
+  - Set to 0, 1 or 2 
+  - This is checked first, then set in the session as "accesslevel".
+   
+2) User Level (if present)
+  - Set to 0, 1 or 2
+  - This is checked next, then set in the session as "accesslevel".
+  - This setting overrides the previously set group level access.
+
+------------------
+Cart Functionality
+------------------
+
+The cart functionality is available on 3 levels
+
+1) Master Level
+  - This is a master cart setting, found in application.conf; using the 'cart.enabled' variable
+  - If this is set to true, the group, then user cart usage settings are checked (see below)
+  - If this is set to false, the cart is disable for all users and no more checks are done regarding the cart
+
+2) Group Level
+  - Set to 0 or 1 (0 switches cart functionality off, 1 switches it on)
+  - This is checked, then set in the session as "usecart".
+
+3) User Level
+  - Set to 0 or 1 (0 switches cart functionality off, 1 switches it on)
+  - This is checked, then set in the session as "usecart".
+  - This setting overrides the previously set group cart usage.
+
+
+-----------------------------------
+Steps to setup the logging database
+-----------------------------------
+
+1) Create a MySQL database with the name 'cprlogger'
+2) Run the SQL command provided below to create the required tables
+3) Edit the application-logger.xml file at the point below, changing the url, user and password to match the newly created database credentials.
+
+<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+    <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+      <driverClass>com.mysql.jdbc.Driver</driverClass>
+
+        <!-- Edit the url, username and password here -->
+        <url>jdbc:mysql://localhost:8889/cprlogger</url>
+        <user>mat</user>
+        <password>mat</password>
+
+    </connectionSource>
+</appender>
+
+
+The following SQL command is required to correctly set up the Logback Database tables.
+
+Reference URL: http://sergii-kartashov.blogspot.co.uk/2012/12/loggining-into-database-with-help.html
+
+DROP TABLE IF EXISTS `logging_event`;
+CREATE TABLE `logging_event` (
+  `timestmp` LONG NOT NULL, 
+  `formatted_message` TEXT NOT NULL,
+  `logger_name` VARCHAR(255) NOT NULL,
+  `level_string` VARCHAR(255) NOT NULL,
+  `thread_name` VARCHAR(255) NOT NULL,
+  `reference_flag` SMALLINT NOT NULL,
+  `caller_filename` VARCHAR(255) NOT NULL,
+  `arg0` VARCHAR(255),
+  `arg1` VARCHAR(255),
+  `arg2` VARCHAR(255),
+  `arg3` VARCHAR(255),
+  `caller_class` VARCHAR(255) NOT NULL,
+  `caller_method` VARCHAR(255) NOT NULL,
+  `caller_line` VARCHAR(255) NOT NULL,
+  `event_id` INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (event_id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS `logging_event_property`;
+CREATE TABLE `logging_event_property` (
+  `event_id` INT NOT NULL, 
+  `mapped_key` VARCHAR(255) NOT NULL,
+  `mapped_value` TEXT NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS `logging_event_exception`;
+CREATE TABLE `logging_event_exception` (
+  `event_id` INT NOT NULL, 
+  `i` SMALLINT NOT NULL,
+  `trace_line` VARCHAR(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

@@ -1,0 +1,91 @@
+@model Tuple< util.cprbroker.IPerson>
+@{ 
+    var person = Model.Item1;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <br/>
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    @Messages.resultat_postaddresse
+                    @if (person.registerInformation().cprCitizen().isNameAddressProtected())
+                    {
+                        <span class="glyphicon glyphicon-exclamation-sign" />
+                    }
+                </h3>
+            </div>
+
+            <div class="panel-body">
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_streetName, person.address().danishAddress().streetName()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_streetNameForAddressing, person.address().danishAddress().streetNameForAddressing()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_streetBuildingIdentifier, person.address().danishAddress().streetBuildingIdentifier()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_floor, person.address().danishAddress().floor()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_suite, person.address().danishAddress().suite()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_districtSubdivision, person.address().danishAddress().districtSubdivision()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_postCode, person.address().danishAddress().postCode()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_districtName, person.address().danishAddress().districtName()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_mailSubLocaltion, person.address().danishAddress().mailSublocation()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_postOfficeBox, person.address().danishAddress().postOfficeBox()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_countryIdentificationCode, person.address().danishAddress().countryIdentificationCode()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_municipalityCode, person.address().danishAddress().municipalityCode()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_streetCode, person.address().danishAddress().streetCode()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_streetBuildingIdentifier, person.address().danishAddress().streetBuildingIdentifier()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_politiDistrikt, person.address().danishAddress().politiDistrikt()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_postDistrikt, person.address().danishAddress().postDistrikt()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_skoleDistrikt, person.address().danishAddress().skoleDistrikt()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_socialDistrikt, person.address().danishAddress().socialDistrikt()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_sogneDistrikt, person.address().danishAddress().sogneDistrikt()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_valgkredsDistrikt, person.address().danishAddress().valgkredsDistrikt()))
+        
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_isSpecielVejkode, person.address().danishAddress().isSpecielVejkode()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_isUkendtAdresse, person.address().danishAddress().isUkendtAdresse()))
+        
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_note, person.address().danishAddress().note()))
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_danishAddress_danishNote, person.address().danishAddress().danishNote()))
+            </div>
+        
+            <div class="panel-footer"><p class="text-right">@Html.Partial("virkning", new Tuple<IVirkning, bool>(person.effect(), true)) </p></div>
+        </div>
+    </div>
+
+    @* Have to do some silly check here, because a worldAddress ALWAYS has two fields..*@
+            @if(person.otherAddress() != null &&
+            person.otherAddress().worldAddress() != null &&
+            (person.otherAddress().worldAddress().locationDescriptionText() != null ||
+                    person.otherAddress().worldAddress().postalAddressFirstLineText() != null ||
+                    person.otherAddress().worldAddress().postalAddressSecondLineText() != null ||
+                    person.otherAddress().worldAddress().postalAddressThirdLineText() != null ||
+                    person.otherAddress().worldAddress().postalAddressFourthLineText() != null ||
+                    person.otherAddress().worldAddress().postalAddressFifthLineText() != null)
+
+    ) {
+
+                if(person.otherAddress().addressType() == util.cprbroker.EAddressType.World) {
+            <div class="col-md-12">
+                <br/>
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Messages.resultat_andenaddresse</h3>
+                    </div>
+
+                    <div class="panel-body">
+
+                        @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_locationDescriptionText, person.otherAddress().worldAddress().locationDescriptionText()))
+                        @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_postalAddressFirstLineText, person.otherAddress().worldAddress().postalAddressFirstLineText()))
+                        @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_postalAddressSecondLineText, person.otherAddress().worldAddress().postalAddressSecondLineText()))
+                        @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_postalAddressThirdLineText, person.otherAddress().worldAddress().postalAddressThirdLineText()))
+                        @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_postalAddressFourthLineText, person.otherAddress().worldAddress().postalAddressFourthLineText()))
+                        @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_postalAddressFifthLineText, person.otherAddress().worldAddress().postalAddressFifthLineText()))
+                        @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_otherAddress_worldAddress_isUkendtAdresseIndikator, person.otherAddress().worldAddress().isUkendtAdresseIndikator()))
+                        @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_note, person.otherAddress().worldAddress().note()))
+
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

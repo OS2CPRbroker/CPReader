@@ -5,10 +5,10 @@
 !.gitignore
 
 # Ignore Play! working directory #
-bin
+#bin
 db
 eclipse
-lib
+#lib
 log
 logs
 modules
@@ -22,3 +22,27 @@ server.pid
 *.iml
 *.eml
 /.target
+
+
+# Visual Studio files
+[Oo]bj/
+[Bb]in/
+# The packages folder can be ignored because of Package Restore
+**/packages/*
+# except build/, which is used as an MSBuild target.
+!**/packages/build/
+
+#User specific data
+*.user
+
+# Visual Studio 2015 cache/options directory
+.vs/
+
+# SQL Server files
+#*.mdf - Not sure if they should be ignored yet
+#*.ldf - Not sure if they should be ignored yet
+
+# Web.config file - create from Web.config.example
+Web.*config
+
+Properties/PublishProfiles/CustomProfile\.pubxml

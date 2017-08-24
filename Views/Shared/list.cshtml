@@ -1,0 +1,210 @@
+@*
+    ***** BEGIN LICENSE BLOCK *****
+        * Version: MPL 2.0/GPL 2.0/LGPL 2.1
+        *
+        * The contents of this file are subject to the Mozilla Public License
+        * Version 2.0 (the "License"); you may not use this file except in
+        * compliance with the License. You may obtain a copy of the License at
+        * http://www.mozilla.org/MPL/
+        *
+        * Software distributed under the License is distributed on an "AS IS"basis,
+        * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+        * for the specific language governing rights and limitations under the
+        * License.
+        *
+        * Contributor(s):
+        * Beemen Beshara
+        * Søren Kirkegård
+        *
+        * The code is currently governed by OS2 - Offentligt digitaliserings-
+        * fællesskab / http://www.os2web.dk .
+        *
+        * Alternatively, the contents of this file may be used under the terms of
+        * either the GNU General Public License Version 2 or later (the "GPL"), or
+        * the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+        * in which case the provisions of the GPL or the LGPL are applicable instead
+        * of those above. If you wish to allow use of your version of this file only
+        * under the terms of either the GPL or the LGPL, and not to allow others to
+        * use your version of this file under the terms of the MPL, indicate your
+        * decision by deleting the provisions above and replace them with the notice
+        * and other provisions required by the GPL or the LGPL. If you do not delete
+        * the provisions above, a recipient may use your version of this file under
+        * the terms of any one of the MPL, the GPL or the LGPL.
+        *
+        * ***** END LICENSE BLOCK *****
+*@
+
+@model SearchController.list_viewModel
+
+@{
+    var persons = Model.Item1;
+    var results = Model.Item2;
+    var currentpage = Model.Item3;
+    var location = Model.Item4;
+    var searchInput = Model.Item5;
+    var accesslevel = Model.Item6;
+}
+@*@main("CPReader", searchInput)*@
+<div id="above-search-results">
+    @Html.Partial("partial_pagination", new Tuple<int, int, string>(results, currentpage, location))
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                @if (persons != null)
+                {
+                    @(string.Format(Messages.results_list_amountOfResults, results)) <strong>@searchInput.getQuery()</strong>
+                    if (searchInput.getAddressQuery() != null && searchInput.getAddressQuery().Length > 0)
+                    {
+                        @(" " + searchInput.getAddressQuery())
+                    }
+                }
+                else {
+                    @(string.Format(Messages.results_list_searchFailed, results))
+                }
+            </h3>
+        </div>
+    </div>
+</div>
+<div class="list-group" id="search-result-list">
+    @if (persons != null)
+    {
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @if (searchInput.online)
+                {
+                    <h4>@Messages.results_list_online_desc_1</h4>
+                    @Messages.results_list_online_desc_2<br />
+                    @Messages.results_list_online_desc_3
+                }
+                else {
+                    <h4>@Messages.results_list_local_desc_1</h4>
+                    @Messages.results_list_local_desc_2<br />
+                    @Messages.results_list_local_desc_3
+                }
+            </div>
+        </div>
+        foreach (var person in persons)
+        {
+
+            <div class="list-group-item">
+                <div class="row">
+                    @Html.Partial("listperson", new Tuple<IPerson, bool, string>(person, true, ""))
+
+                    @if (accesslevel > 0)
+                    {
+                        <div class="col-md-2 text-left">
+                            @if (accesslevel > 1)
+                            {
+                                @* Button to show person details *@
+                                <a href="#" onclick="javascript:showPersonDetails(event,'@(person.uuid())')"
+                                   data-backdrop="static" data-toggle="modal" loaded="@(person.relationsWithPerson() != null? "true" : "false")">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    @Messages.person_viewdetails
+                                </a>
+                            }
+                        </div>
+                        <div class="col-md-2 text-left">
+                            @* Button to show person parents and custody holders *@
+                            <a href="#" onclick="javascript:showParents(event,'@(person.uuid())')" loaded="@(person.relationsWithPerson() != null? "true" : "false")">
+                                <span class="glyphicon glyphicon-user"></span>
+                                @Messages.person_showparents
+                            </a>
+                        </div>
+                        <div class="col-md-2 text-left">
+                            @if (accesslevel > 1)
+                            {
+                                @* Button to show full page information view of person *@
+                                <a href="#" onclick="javascript:ShowFullPageView(event,'@(person.uuid())')"
+                                   data-backdrop="static" data-toggle="modal" loaded="@(person.relationsWithPerson() != null? "true" : "false")">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    @Messages.person_viewfullpage
+                                </a>
+                            }
+                        </div>
+
+                        <div class="col-md-2 text-right">
+                            @if (HttpContext.Current.Session["usecart"] as string == "1")
+                            {  
+                                <div id="cart@(person.uuid())">
+                                    @Html.Partial("cart", new Tuple<IPerson>(person))
+                                </div> 
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-5 text-right">
+                            @if (HttpContext.Current.Session["usecart"] as string == "1")
+                            {
+                                <div id="cart@(person.uuid())">
+                                    @Html.Partial("cart", new Tuple<IPerson>(person))
+                                </div>
+                            }
+                        </div>
+                    }
+
+                </div>
+
+                @********************************************************************************************************************@
+                @**************** SHOW PARENTS / CUSTODY HOLDERS ********************************************************************@
+                @********************************************************************************************************************@
+                <div id="parents-row@(person.uuid())">
+                    @Html.Partial("parentlist", new Tuple<IPerson, int>(person, accesslevel))
+                </div>
+                <script>
+                    document.getElementById("parents-row@(person.uuid())").style.display = 'none';
+                </script>
+
+
+                @***** force show parents row ******@
+                @if (HttpContext.Current.Session["showparents@person.uuid"] as string == "show")
+                {
+                    <script>
+                        document.getElementById("parents-row@(person.uuid())").style.display = 'block';
+                    </script>
+                }
+                else
+                {
+
+                }
+                @********************************************************************************************************************@
+                @**************** END SHOW PARENTS / CUSTODY HOLDERS ****************************************************************@
+                @********************************************************************************************************************@
+            </div>
+            
+            <!-- Modal HTML -->
+            @(Html.Partial("detailmodal", new Tuple<IPerson, int>(person, accesslevel)))
+            @(Html.Partial("fullpagemodal", new Tuple<IPerson, int>(person, accesslevel)))
+
+            if (HttpContext.Current.Session["showparents"] as string == person.uuid())
+            {
+                <script>
+
+                            window.onload = function () {
+                                $('[id^=parents-row]').slideUp("fast");
+                                $('#parents-row@(person.uuid())').slideDown("fast");
+                }
+                </script>
+            }
+            if (HttpContext.Current.Session["showperson"] as string == person.uuid())
+            {
+                <script>
+                    window.onload = function () {
+                        $('[id^=detailModal]').hide();
+                        $('#detailModal@(person.uuid())').modal('show');
+                    };
+                </script>
+            }
+            if (HttpContext.Current.Session["showfullpageview"] as string == person.uuid())
+            {
+                <script>
+                    window.onload = function () {
+                        $('[id^=fullpageModal]').hide();
+                        $('#fullpageModal@(person.uuid())').modal('show');
+                    };
+                </script>
+            }
+        }
+    }
+</div>
+@Html.Partial("partial_pagination", new Tuple<int, int, string>(results, currentpage, location))

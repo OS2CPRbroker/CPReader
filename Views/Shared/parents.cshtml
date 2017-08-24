@@ -1,0 +1,27 @@
+﻿@model Tuple<util.cprbroker.IPerson>
+@{
+    var person = Model.Item1;
+}
+
+<h4>Forældre</h4>
+@if (person.relationsWithPerson() != null)
+{
+    if (person.relationsWithPerson().allRelations().Count > 0)
+    {
+        List<IRelationshipWithIPerson> parents = person.relationsWithPerson().allRelations().FindAll(
+            delegate (IRelationshipWithIPerson p)
+            {
+                return p.relationshipType() == ERelationshipType.fader || p.relationshipType() == ERelationshipType.moder || p.relationshipType() == ERelationshipType.foraeldremyndighedsindehaver;
+            }
+        );
+
+        if (parents.Any()) //if there are any parents
+        {
+            @Html.Partial("cprAndName", parents)
+        }
+        else
+        {
+            <text>Ingen oplysninger på forældre</text>
+        }
+    }
+}

@@ -1,0 +1,77 @@
+@model Tuple<util.cprbroker.IPerson>
+
+@{
+    var person = Model.Item1;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <br/>
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    @Messages.resultat_postaddresse 
+                    @if (person.registerInformation().cprCitizen().isNameAddressProtected())
+                    {
+                        <span class="glyphicon glyphicon-exclamation-sign" />
+                    }
+                </h3>
+            </div>
+
+            <div class="panel-body">
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_worldAddress_postalAddressFirstLineText, person.address().worldAddress().postalAddressFirstLineText()));
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_worldAddress_postalAddressSecondLineText, person.address().worldAddress().postalAddressSecondLineText()));
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_worldAddress_postalAddressThirdLineText, person.address().worldAddress().postalAddressThirdLineText()));
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_worldAddress_postalAddressFourthLineText, person.address().worldAddress().postalAddressFourthLineText()));
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_worldAddress_postalAddressFifthLineText, person.address().worldAddress().postalAddressFifthLineText()));
+                @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_address_worldAddress_isUkendtAdresseIndikator, person.address().worldAddress().isUkendtAdresseIndikator()));
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_worldAddress_locationDescriptionText, person.address().worldAddress().locationDescriptionText()));
+                
+                @Html.Partial("textfield", new Tuple<string, object>(Messages.person_address_worldAddress_note, person.address().worldAddress().note()));
+
+            </div>
+            <div class="panel-footer"><p class="text-right">@Html.Partial("virkning", new Tuple<IVirkning, bool>(person.effect(), true));</p></div>
+        </div>
+    </div>
+    @* Have to do some silly check here, because a worldAddress ALWAYS has two fields..*@
+
+    @if (person.otherAddress() != null &&
+             person.otherAddress().worldAddress() != null &&
+             (person.otherAddress().worldAddress().locationDescriptionText() != null ||
+                        person.otherAddress().worldAddress().postalAddressFirstLineText() != null ||
+                        person.otherAddress().worldAddress().postalAddressSecondLineText() != null ||
+                        person.otherAddress().worldAddress().postalAddressThirdLineText() != null ||
+                        person.otherAddress().worldAddress().postalAddressFourthLineText() != null ||
+                        person.otherAddress().worldAddress().postalAddressFifthLineText() != null)
+
+                        )
+    {
+
+        if (person.otherAddress().addressType() == util.cprbroker.EAddressType.World)
+        {
+            <div class="col-md-12">
+            <br/>
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Messages.resultat_andenaddresse</h3>
+                </div>
+
+                <div class="panel-body">
+
+                    @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_locationDescriptionText, person.otherAddress().worldAddress().locationDescriptionText()));
+                    @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_postalAddressFirstLineText, person.otherAddress().worldAddress().postalAddressFirstLineText()));
+                    @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_postalAddressSecondLineText, person.otherAddress().worldAddress().postalAddressSecondLineText()));
+                    @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_postalAddressThirdLineText, person.otherAddress().worldAddress().postalAddressThirdLineText()));
+                    @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_postalAddressFourthLineText, person.otherAddress().worldAddress().postalAddressFourthLineText()));
+                    @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_postalAddressFifthLineText, person.otherAddress().worldAddress().postalAddressFifthLineText()));
+                    @Html.Partial("booleanfield", new Tuple<bool, string, bool>(true, Messages.person_otherAddress_worldAddress_isUkendtAdresseIndikator, person.otherAddress().worldAddress().isUkendtAdresseIndikator()));
+                    @Html.Partial("textfield", new Tuple<string, object>(Messages.person_otherAddress_worldAddress_note, person.otherAddress().worldAddress().note()));
+
+                </div>
+            </div>
+        </div>
+        }
+    }
+    </div>

@@ -1,0 +1,79 @@
+@model Tuple<util.cprbroker.IPerson, int>
+@{
+    var person = Model.Item1;
+    var accesslevel = Model.Item2;
+}
+
+<div class="modal-header">
+    <div class="well">
+        <h4>
+            <span class="glyphicon glyphicon-user"></span>
+            Person: @(person.registerInformation().cprCitizen().socialSecurityNumber().Insert(6, "-"))
+            <br/>
+            <br/>
+            @person.firstname() @person.middelname() @person.lastname()
+        </h4>
+        @if (person.tidspunkt() != null)
+        {
+            <p class="text-right">
+                @if (person.tidspunkt().sourceName() != null)
+                {
+                    @(person.tidspunkt().sourceName())
+                    @(",")
+                }
+                @if (person.tidspunkt().tidspunkt() != null)
+                {
+                    @(Messages.person_registrationdate)
+                    @(":")
+                    @(person.tidspunkt().tidspunkt().ToString("dd.MM.yy HH:mm:ss"))
+                }
+            </p>
+        }
+    </div>
+</div>
+<div class="modal-body">
+    @if(accesslevel > 0)
+    {
+        <br />
+        <div class="tab-content">
+            @if (accesslevel > 1)
+            {
+                <div class="tab-pane active" id="familie@(person.uuid())">
+                    @*ADRESSE*@
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.Partial("residence", new Tuple<IPerson>(person))
+                        </div>
+
+                        @*FAMILIE*@
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Familie</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @Html.Partial("spouse", new Tuple<IPerson>(person))
+                                        </div>
+                                        <hr />
+                                        <div class="col-md-12">
+                                            @Html.Partial("children", new Tuple<IPerson>(person))
+                                        </div>
+                                        <hr />
+                                        <div class="col-md-12">
+                                            @Html.Partial("parents", new Tuple<IPerson>(person))
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+<div class="modal-footer">
+    <button onclick="hideDetail()" id="fullpageCloseButton@(person.uuid())" type="button" class="btn btn-default" data-dismiss="modal">@Messages.cart_close</button>
+</div>

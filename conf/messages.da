@@ -1,0 +1,164 @@
+# route /login
+login.pagetitle = CPReader - Log på
+login.title = Indtast venligst dine oplysninger
+login.submit = Log på
+
+#error
+error.503 = Der findes ingen informationer om den pågældende person i CPR Brokeren.
+
+
+# /login feedback messages
+# implement the different error messages here
+logout.succesful = Du er nu logget ud
+login.not_authorized = Du har ikke tilladelse til at benytte applikationen
+login.unexpected_error = Applikationen havde en uventet fejl
+login.invalid_credientials = Forkert brugernavn eller adgangskode
+
+username = Brugernavn
+password = Adgangskode
+error.required = Feltet {0} skal udfyldes
+
+# navbar
+nav.title = CPReader
+nav.quicksearch_placeholder = CPR eller navn
+nav.quicksearch_addresslaceholder = Adresse
+nav.quicksearch_submit = Søg
+nav.quicksearch_online = Online
+nav.quicksearch_local = Lokal
+nav.quicksearch.invalidaddress = Ugyldig adresse
+nav.quicksearch.addressrequired = Du skal skrive en adresse hvis du vil at søge online
+
+nav.help = Hjælp
+nav.logout_button = Log ud
+
+# cart
+cart.view = Vis kurv
+cart.add= Føj til kurv
+cart.remove= Fjern
+cart.copy= Kopier CPR-numre
+cart.empty= Tøm kurv
+cart.name= Navn
+cart.cprnumber= CPR-nummer
+cart.items = Personer
+cart.added = er blevet føjet til kurven.
+cart.exists = er allerede føjet til kurven.
+cart.removed = fjernet fra kurven.
+cart.notremoved = ikke fjernet fra kurven.
+cart.copied = kopieret til klippebordet.
+cart.emptied = Kurv tømt.
+cart.noitems = Der er i øjeblikket ingen CPR-numre i kurven
+cart.select = Vælg CPR-numre
+cart.select.title = Vælg
+cart.rightclick = Højreklik på de markerede CPR-numre for at kopiere
+cart.close = Luk
+
+results.list.amountOfResults = Der er {0} resultater i søgningen:
+results.list.searchFailed = Fejl i søgningen
+results.list.online_desc_1 = Liste over søgeresultater fra søgning online
+results.list.online_desc_2 = Listen indeholder søgeresultater fra CPR Registret. Du kan klikke på et søgeresultat og se flere detaljer om personen.
+results.list.online_desc_3 =  Klik på et søgeresultat vil desuden resultere i, at personen fremover vil optræde i lokale søgninger.
+results.list.local_desc_1 = Liste over søgeresultater fra søgning lokalt
+results.list.local_desc_2 = Listen indeholder kun søgeresultater fra den lokale database og ikke alle CPR Registrets data.
+results.list.local_desc_3 = Ønsker du at søge bredt i CPR Registret, skal du vælge 'online'.
+
+#---RESULTATSIDE
+resultat.egenskaber = Egenskaber
+resultat.tilstande = Tilstande
+resultat.registeroplysninger = Registeroplysninger
+resultat.postaddresse = Postadresse
+resultat.andenaddresse = Anden adresse
+
+#------ GENERAL
+person.true = Ja
+person.false = Nej
+person.registrationdate = Senest opdateret
+person.viewdetails = Se personen
+person.showparents = Forældre/værge
+person.noparents = (Ingen informationer)
+
+#------ EGENSKABER
+person.firstname = Fornavn
+person.middelname = Mellemnavn
+person.lastname = Efternavn
+person.callname = Kaldenavn
+person.nameForAddressing = Adresseringsnavn
+person.gender = Køn
+person.birthdate = Fødselsdato
+person.birthplace = Fødested
+person.birthRegisteringAuthority = Fødereg. myndighed
+
+#------ TILSTANDE
+person.tilstand.civilStatusKode = Civilstatus
+person.tilstand.livStatusKode = Livsstatus 
+
+
+#------ REGISTER OPLYSNINGER
+person.registerInformation.cprCitizen.socialSecurityNumber = CPR-nummer
+person.registerInformation.cprCitizen.socialSecurityNumberActive = CPR-nummer aktiv
+person.registerInformation.cprCitizen.personNationalityCode = Nationalitetskode
+person.registerInformation.cprCitizen.isMemberOfTheChurch = Folkekirkemedlem
+person.registerInformation.cprCitizen.isResearcherProtected = Forskerbeskyttelse
+person.registerInformation.cprCitizen.isNameAddressProtected = Navn- og Adressebeskyttelse
+person.registerInformation.cprCitizen.isPhoneNumberProtected = Telefonnummerbeskyttelse
+
+#------ ADDRESSE
+person.address.danishAddress.countryIdentificationCode = Landekode
+person.address.danishAddress.districtName = By
+person.address.danishAddress.districtSubdivision = Forstad
+person.address.danishAddress.floor = Etage
+person.address.danishAddress.mailSubLocaltion = Postunderlokalition
+person.address.danishAddress.postCode = Postnummer
+person.address.danishAddress.postOfficeBox = Postboks
+person.address.danishAddress.streetName = Gadenavn
+person.address.danishAddress.streetBuilding = Gadenummer
+person.address.danishAddress.streetNameForAddressing = Adresseforadressering
+person.address.danishAddress.suite = Suite
+person.address.danishAddress.note = Note
+person.address.danishAddress.municipalityCode = Kommunekode
+person.address.danishAddress.streetCode = Vejkode
+person.address.danishAddress.streetBuildingIdentifier = Nummer
+person.address.danishAddress.danishNote = Ekstranote
+person.address.danishAddress.politiDistrikt = Politidistrikt
+person.address.danishAddress.postDistrikt = Postdistrikt
+person.address.danishAddress.skoleDistrikt = Skoledistrikt
+person.address.danishAddress.socialDistrikt = Socialdistrikt
+person.address.danishAddress.sogneDistrikt = Sognedistrikt
+person.address.danishAddress.valgkredsDistrikt = Valgdistrikt
+person.address.danishAddress.isSpecielVejkode = Specielvejkode
+person.address.danishAddress.isUkendtAdresse = Ukendt adresse
+
+person.address.greenlandicAddress.streetName = Gadenavn
+person.address.greenlandicAddress.streetNameForAddressing = Adresseforadressering
+person.address.greenlandicAddress.streetBuilding = Gadenummer
+person.address.greenlandicAddress.floor = Etage
+person.address.greenlandicAddress.suite = Suite
+person.address.greenlandicAddress.districtSubdivision = Forstad
+person.address.greenlandicAddress.postCode = Postnummer
+person.address.greenlandicAddress.districtName = By
+person.address.greenlandicAddress.countryIdentificationCode = Landekode
+person.address.greenlandicAddress.municipalityCode = Kommunekode
+person.address.greenlandicAddress.streetCode = Vejkode
+person.address.greenlandicAddress.isSpecielVejkode = Specielvejkode
+person.address.greenlandicAddress.isUkendtAdresse = Ukendt adresse
+person.address.greenlandicAddress.note = Note
+
+
+
+person.address.worldAddress.postalAddressFirstLineText = Adresse
+person.address.worldAddress.postalAddressSecondLineText =
+person.address.worldAddress.postalAddressThirdLineText =
+person.address.worldAddress.postalAddressFourthLineText =
+person.address.worldAddress.postalAddressFifthLineText =
+person.address.worldAddress.isUkendtAdresseIndikator = Ukendt adresse
+person.address.worldAddress.locationDescriptionText = Beskrivelse
+person.address.worldAddress.note = Note
+
+#------ ANDEN ADDRESSE
+person.otherAddress.worldAddress.locationDescriptionText = Beskrivelse
+person.otherAddress.worldAddress.postalAddressFirstLineText = Adresse
+person.otherAddress.worldAddress.postalAddressSecondLineText =
+person.otherAddress.worldAddress.postalAddressThirdLineText =
+person.otherAddress.worldAddress.postalAddressFourthLineText =
+person.otherAddress.worldAddress.postalAddressFifthLineText =
+person.otherAddress.worldAddress.isUkendtAdresseIndikator = Ukendt adresse
+person.otherAddress.worldAddress.note = Note

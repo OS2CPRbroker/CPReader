@@ -1,0 +1,46 @@
+body {
+padding: 30px;
+}
+
+.navbar {
+margin-bottom: 30px;
+}
+
+.navbar-form-online {
+    float: left;
+    padding-top: 2%;
+    text-align: left;
+}
+.navbar-form-online-hidden {
+    display: none;
+}
+
+.navbar-form-search{
+    float: right;
+    margin-top: 1%;
+    text-align: right;
+}
+
+.nav>li>span#currentUsername {
+    padding: 15px;
+    line-height: 20px;
+    display: block;
+}
+#above-search-results .pagination {
+    float:left;
+    margin-top:0;
+    margin-right:20px;
+}
+#above-search-results .panel.panel-default {
+    float:left;
+}
+#above-search-results .panel.panel-default .panel-heading {
+    padding:8px 15px;
+}
+#search-result-list {
+    clear:both;
+}
+
+.link-disabled{
+    color: lightgray;
+}
