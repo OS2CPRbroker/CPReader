@@ -78,7 +78,7 @@ namespace cpreader.Controllers
             try
             {
                 String ipAddress = LoggingTools.GetVisitorIPAddress();
-                String hostName = System.Net.Dns.GetHostEntry(ipAddress).HostName.Split(new Char[] { '.' }).FirstOrDefault<String>();
+                String hostName = LoggingTools.GetHostName(ipAddress);
 
                 // log what page the user requested
                 cpreader.Logger.info(String.Format("At <{0}> user <{1}> searched for name<{2}>, address<{3}>; online <{4}>, page <{5}>. Host name: <{6}> at local IP address <{7}>.",
@@ -158,7 +158,7 @@ namespace cpreader.Controllers
         public ActionResult showPerson(String uuid)
         {
             String ipAddress = LoggingTools.GetVisitorIPAddress();
-            String hostName = System.Net.Dns.GetHostEntry(ipAddress).HostName.Split(new Char[] { '.' }).FirstOrDefault<String>();
+            String hostName = LoggingTools.GetHostName(ipAddress);
 
             // Logging the show request
             cpreader.Logger.info(String.Format("At <{0}> user <{1}> requested to see uuid <{2}>. Host name: <{3}> at local IP address <{4}>.",
@@ -268,7 +268,7 @@ namespace cpreader.Controllers
             searchInput.saveToSession(this);
 
             String ipAddress = LoggingTools.GetVisitorIPAddress();
-            String hostName = System.Net.Dns.GetHostEntry(ipAddress).HostName.Split(new Char[] { '.' }).FirstOrDefault<String>();
+            String hostName = LoggingTools.GetHostName(ipAddress);
 
             // Logging the search
             cpreader.Logger.info(String.Format("<{0}> searched for: <{1}> from host name: <{2}> at local IP address <{3}>.", 

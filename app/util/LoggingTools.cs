@@ -77,5 +77,19 @@ namespace util
             }
             return visitorIPAddress;
         }
+
+        public static String GetHostName(String ipAddress)
+        {
+            String hostName = "";
+            try
+            {
+                hostName = System.Net.Dns.GetHostEntry(ipAddress).HostName.Split(new Char[] { '.' }).FirstOrDefault<String>();
+            }
+            catch (Exception ex)
+            {
+                cpreader.Logger.error(ex);
+            }
+            return hostName;
+        }
     }
 }
