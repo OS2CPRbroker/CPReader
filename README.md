@@ -3,7 +3,7 @@
 This is a web-application for making searches and looking up information from an instance of CPR Broker.
 
 ## Installation
-- Clone the git repository from https://github.com/magenta-aps/cpreader.git
+- Clone the git repository from https://github.com/OS2CPRbroker/CPReader
 - Checkout the branch of the  latest version. 
     - As of 31/3/2017, this is: *release_2.0_rc0*
 - Register a website in IIS that points to the root folder of the cloned repo
