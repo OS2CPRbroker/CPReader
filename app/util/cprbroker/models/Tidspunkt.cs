@@ -87,9 +87,11 @@ namespace util.cprbroker.models
 
             sourceUuidMap = new Dictionary<String, String>();
             sourceUuidMap["2B2C1518-F466-491F-8149-57AFEF48CC01"] = "CPR Direct";
+            sourceUuidMap["C1B08A8E-3CE4-4C66-90AD-686F841A47FE"] = "CPR Services";
             sourceUuidMap["4A953CF9-B4C1-4CE9-BF09-2BF655DC61C7"] = "DPR";
             sourceUuidMap["F2B564A4-CB97-4984-990C-39A5F010BDE3"] = "E&M";
             sourceUuidMap["A4E9B3E0-275F-4B76-AADB-4398AA56B871"] = "KMD";
+            sourceUuidMap["9FD5B2AA-1C83-4FFE-A036-E38308B83A98"] = "Service Platformen";
         }
 
 
