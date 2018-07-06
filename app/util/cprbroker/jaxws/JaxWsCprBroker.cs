@@ -598,9 +598,9 @@ namespace util.cprbroker.jaxws
                 builder.otherAddress(newAddress);
 
                 // Find earliest registration of current address
-                IAddress currentAddress = getAddress(citizenData.FolkeregisterAdresse);
+                IAddress currentAddress = getAddress(citizenData.FolkeregisterAdresse); //GetValueOrDefault(birthdate)
                 // Sort by virkning-date
-                Array.Sort(registerList, (x, y) => DateTime.Compare(DateTime.Parse(getEffect(y.Virkning).fraTidspunkt().Value.ToString("dd.MM.yyyy"), Converters.danishDateFormat), DateTime.Parse(getEffect(x.Virkning).fraTidspunkt().Value.ToString("dd.MM.yyyy"), Converters.danishDateFormat)));
+                Array.Sort(registerList, (x, y) => DateTime.Compare(DateTime.Parse(getEffect(y.Virkning).fraTidspunkt().GetValueOrDefault(birthdate).ToString("dd.MM.yyyy"), Converters.danishDateFormat), DateTime.Parse(getEffect(x.Virkning).fraTidspunkt().GetValueOrDefault(birthdate).ToString("dd.MM.yyyy"), Converters.danishDateFormat)));
                 DateTime movingDate = birthdate;
                 foreach (RegisterOplysningType registerType in registerList)
                 {
