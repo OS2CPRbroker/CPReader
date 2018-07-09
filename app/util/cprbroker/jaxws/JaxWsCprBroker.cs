@@ -598,9 +598,9 @@ namespace util.cprbroker.jaxws
                 builder.otherAddress(newAddress);
 
                 // Find earliest registration of current address
-                IAddress currentAddress = getAddress(citizenData.FolkeregisterAdresse);
+                IAddress currentAddress = getAddress(citizenData.FolkeregisterAdresse); //GetValueOrDefault(birthdate)
                 // Sort by virkning-date
-                Array.Sort(registerList, (x, y) => DateTime.Compare(DateTime.Parse(getEffect(y.Virkning).fraTidspunkt().Value.ToString("dd.MM.yyyy"), Converters.danishDateFormat), DateTime.Parse(getEffect(x.Virkning).fraTidspunkt().Value.ToString("dd.MM.yyyy"), Converters.danishDateFormat)));
+                Array.Sort(registerList, (x, y) => DateTime.Compare(DateTime.Parse(getEffect(y.Virkning).fraTidspunkt().GetValueOrDefault(birthdate).ToString("dd.MM.yyyy"), Converters.danishDateFormat), DateTime.Parse(getEffect(x.Virkning).fraTidspunkt().GetValueOrDefault(birthdate).ToString("dd.MM.yyyy"), Converters.danishDateFormat)));
                 DateTime movingDate = birthdate;
                 foreach (RegisterOplysningType registerType in registerList)
                 {
@@ -616,6 +616,10 @@ namespace util.cprbroker.jaxws
                         String name = attributes.NavnStruktur.PersonNameForAddressingName;
                         // Get virkningstidspunkt
                         IVirkning virkning = getEffect(registerType.Virkning);
+                        if(virkning.fraTidspunkt() == null)
+                        {
+                            virkning = new Virkning.Builder().effectiveFromDate(birthdate).build();
+                        }
                         DateTime newMovingDate = DateTime.Parse(virkning.fraTidspunkt().Value.ToString("dd.MM.yyyy"), Converters.danishDateFormat);
                         movingDate = newMovingDate;
                     }
@@ -1294,7 +1298,7 @@ namespace util.cprbroker.jaxws
                 if (virkningType.FraTidspunkt != null && virkningType.FraTidspunkt.Item is DateTime)
                 {
                     effectBuilder.effectiveFromDate((DateTime)virkningType.FraTidspunkt.Item);
-                }
+                } 
 
                 if (virkningType.TilTidspunkt != null && virkningType.TilTidspunkt.Item is DateTime)
                 {
