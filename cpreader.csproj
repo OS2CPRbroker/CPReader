@@ -28,6 +28,7 @@
     </NuGetPackageImportStamp>
     <WebGreaseLibPath>packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -359,14 +360,14 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config">
+    <None Include="Web.config.example">
       <SubType>Designer</SubType>
-    </Content>
+    </None>
     <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
+      <DependentUpon>Web.config.example</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
+      <DependentUpon>Web.config.example</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -457,7 +458,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50313</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
