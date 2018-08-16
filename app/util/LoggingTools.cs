@@ -70,7 +70,6 @@ namespace util
                 }
                 catch (Exception ex)
                 {
-                    cpreader.Logger.error(ex);
                     visitorIPAddress = "Unable to determine client IP Address";
                 }
 
@@ -87,7 +86,7 @@ namespace util
             }
             catch (Exception ex)
             {
-                cpreader.Logger.error(ex);
+                hostName = "Unable to determine host name";
             }
             return hostName;
         }
