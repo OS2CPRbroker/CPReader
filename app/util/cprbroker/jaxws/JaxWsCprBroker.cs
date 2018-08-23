@@ -720,9 +720,48 @@ namespace util.cprbroker.jaxws
 
             var registerList =
                     attributListeType.RegisterOplysning;
-
             // TODO make a guard check if the list has values
-            RegisterOplysningType register = registerList[0];
+            // Get the correct RegisterOplysning
+            for (int i = 0; i < registerList.Length; i++)
+            {
+                // Get a DateTime representation of FraTidspunkt
+                // It might be the value "false", in which case we default 
+                // FraTidspunkt to the min value
+                DateTime FraTidspunkt;
+                if (registerList[i].Virkning.FraTidspunkt.Item.Equals(false))
+                {
+                    FraTidspunkt = DateTime.MinValue;
+                }
+                else
+                {
+                    FraTidspunkt = (DateTime)registerList[i].Virkning.FraTidspunkt.Item;
+                }
+
+
+                DateTime TilTidspunkt;
+                if (registerList[i].Virkning.TilTidspunkt.Item.Equals(false))
+                {
+                    TilTidspunkt = DateTime.MaxValue;
+                } else
+                {
+                    TilTidspunkt = (DateTime) registerList[i].Virkning.TilTidspunkt.Item;
+                }
+
+
+                if (TilTidspunkt > DateTime.Today && FraTidspunkt <= DateTime.Today)
+                {
+                    return getSpecificRegisterOplysning(registerList[i]);
+                }
+            }
+
+            cpreader.Logger.error("JaxWsCprBroker.cs could not find a valid registration.");
+            throw new Exception("JaxWsCprBroker.cs could not find a valid registration.");
+
+
+        }
+
+        private IRegisterInformation getSpecificRegisterOplysning(RegisterOplysningType register)
+        {
 
             //// Make a builder
             CprCitizenData.Builder regInfoBuilder = new CprCitizenData.Builder();
