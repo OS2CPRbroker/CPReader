@@ -754,8 +754,10 @@ namespace util.cprbroker.jaxws
                 }
             }
 
-            cpreader.Logger.error("JaxWsCprBroker.cs could not find a valid registration.");
-            throw new Exception("JaxWsCprBroker.cs could not find a valid registration.");
+            // No registration valid for current date available
+            // Default to newest
+            return getSpecificRegisterOplysning(registerList[0]);
+
 
 
         }
