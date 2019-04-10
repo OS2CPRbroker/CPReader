@@ -295,6 +295,10 @@
     <None Include="conf\log4net.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
@@ -360,14 +364,15 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Web.config" />
     <None Include="Web.config.example">
       <SubType>Designer</SubType>
     </None>
     <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config.example</DependentUpon>
+      <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
-      <DependentUpon>Web.config.example</DependentUpon>
+      <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
