@@ -247,6 +247,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\modal.css" />
     <Content Include="Content\navbar.css" />
+    <Content Include="Content\overwrite.css" />
     <Content Include="Content\signin.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
