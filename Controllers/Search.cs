@@ -194,7 +194,7 @@ namespace cpreader.Controllers
             // access level - add to person model
             if (person == null)
             {
-                return View("show_error", new Tuple<int, SearchInput>(503, searchInput));
+                return View("show_error", new Tuple<string, SearchInput>("ERROR MESSAGE PENDING", searchInput));
             }
             if (person.code() == 200)
             {
@@ -209,7 +209,7 @@ namespace cpreader.Controllers
             }
             else {
                 //TODO - A person wasn't found
-                return View("show_error", new Tuple<int, SearchInput>(person.code(), searchInput));
+                return View("show_error", new Tuple<string, SearchInput>("ERROR MESSAGE PENDING", searchInput));
             }
         }
         /*
@@ -296,6 +296,15 @@ namespace cpreader.Controllers
                 String uuidStr = uuid.value();
                 return Content(uuidStr);
             }
+            else if(uuid.code() == 408)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.RequestTimeout, "Request to CPR Broker, or Personmaster timed out.");
+            }
+            else if (uuid.code() == 404)
+            {
+                cpreader.Logger.info(String.Format("{0} - {1}", uuid.code(), uuid.message()));
+                return Content(uuid.code().ToString());
+            }
             else {
                 // this should never happen as person master will just assign
                 // a new uuid if it doesn't exist
@@ -335,7 +344,7 @@ namespace cpreader.Controllers
             }
             if (person == null)
             {
-                return View("show_error", new Tuple<int, SearchInput>(503, searchInput));
+                return View("show_error", new Tuple<string, SearchInput>(cpreader.Properties.Messages.error_503, searchInput));
             }
 
 
@@ -345,7 +354,7 @@ namespace cpreader.Controllers
             }
             else {
                 //TODO - A person wasn't found
-                return PartialView("show_error", new Tuple<int, SearchInput>(person.code(), searchInput));
+                return PartialView("show_error", new Tuple<string, SearchInput>("ERROR MESSAGE PENDING", searchInput));
             }
         }
 
@@ -380,7 +389,7 @@ namespace cpreader.Controllers
             }
             if (person == null)
             {
-                return PartialView("show_error", new Tuple<int, SearchInput>(503, searchInput));
+                return PartialView("show_error", new Tuple<string, SearchInput>("ERROR MESSAGE PENDING", searchInput));
             }
 
             if (person.code() == 200)
@@ -392,7 +401,7 @@ namespace cpreader.Controllers
             else
             {
                 //TODO - A person wasn't found
-                return PartialView("show_error", new Tuple<int, SearchInput>(person.code(), searchInput));
+                return PartialView("show_error", new Tuple<string, SearchInput>("ERROR MESSAGE PENDING", searchInput));
             }
         }
             
@@ -428,7 +437,7 @@ namespace cpreader.Controllers
             }
             if (person == null)
             {
-                return PartialView("show_error", new Tuple<int, SearchInput>(503, searchInput));
+                return PartialView("show_error", new Tuple<string, SearchInput>("ERROR MESSAGE PENDING", searchInput));
             }
 
             if (person.code() == 200)
@@ -438,8 +447,25 @@ namespace cpreader.Controllers
             }
             else {
                 //TODO - A person wasn't found
-                return PartialView("show_error", new Tuple<int, SearchInput>(person.code(), searchInput));
+                return PartialView("show_error", new Tuple<string, SearchInput>("ERROR MESSAGE PENDING", searchInput));
             }
+
+
+        }
+
+        public ActionResult showError(string httpErrorCode)
+        {
+            SearchInput searchInput = new SearchInput();
+            searchInput.fillFromSession(this);
+
+            if(httpErrorCode == "404")
+            {
+                return View("show_error", new Tuple<string, SearchInput>(cpreader.Properties.Messages.error_404, searchInput));
+            }
+            return null;
+
+
+
         }
 
 
@@ -574,6 +600,5 @@ namespace cpreader.Controllers
             public list_viewModel(List<util.cprbroker.IPerson> i1, int i2, int i3, string i4, SearchInput i5, int i6) : base(i1, i2, i3, i4, i5, i6)
             { }
         }
-
     }
 }

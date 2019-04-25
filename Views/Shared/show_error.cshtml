@@ -32,17 +32,16 @@
     *
     * ***** END LICENSE BLOCK ***** *@
 
-@model Tuple<int, SearchController.SearchInput>
+@model Tuple<string, SearchController.SearchInput>
 @{
-    var code = Model.Item1;
+    var errorMessage = Model.Item1;
     var searchInput = Model.Item2;
 }
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            @cpreader.Properties.Messages.error_503
+            @errorMessage
         </h3>
-            @*<h3 class="panel-title">@Messages("error." + code)</h3>*@
 </div>
 </div>

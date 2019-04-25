@@ -27,6 +27,7 @@
                     var lastname = /.*$/; // no commas
                     var firstlastname = /.*,\s*.*$/; // one comma
                     var firstmiddlelastname = /.*,\s*.*,\s.*$/; // two commas
+                    var uuid = ('/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i');
 
                     var redirectLocation = null;
                     var queryExists = false;
@@ -36,8 +37,13 @@
                         query = query.replace("-", "");
                         if(query.length === 9)
                             query = "0" + query;
-                        $.post('/search/cpr/', {"query": query}, function (data) {
-                            window.location = '/show/uuid/' + data + '/';
+                        $.post('/search/cpr/', { "query": query }, function (data) {
+                            if (data.length === 36) {
+                                window.location = '/show/uuid/' + data + '/';
+                            } else {
+                                window.location = '/search/error/' + data + '/';
+                            }
+                            
                         });
                     }
                     // otherwise build the name based search string and redirect to a name search

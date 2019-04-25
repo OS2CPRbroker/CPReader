@@ -80,6 +80,9 @@ namespace cpreader
             //    url: "{controller}/{action}/{id}",
             //    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             //);
+
+            // Error page
+            routes.MapRoute("showSearchError", "search/error/{httpErrorCode}/", new { controller = "Search", action = "showError"});
         }
     }
 }
