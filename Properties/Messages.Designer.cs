@@ -19,7 +19,7 @@ namespace cpreader.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Messages {
@@ -228,6 +228,15 @@ namespace cpreader.Properties {
         public static string cart_view {
             get {
                 return ResourceManager.GetString("cart_view", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HTTP 404 - Kontakt IT-driftsafdeling..
+        /// </summary>
+        public static string error_404 {
+            get {
+                return ResourceManager.GetString("error_404", resourceCulture);
             }
         }
         

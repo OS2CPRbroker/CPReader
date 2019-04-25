@@ -129,6 +129,9 @@
   <data name="error_503" xml:space="preserve">
     <value>Der findes ingen informationer om den pågældende person i CPR Brokeren.</value>
   </data>
+  <data name="error_404" xml:space="preserve">
+    <value>HTTP 404 - Kontakt IT-driftsafdeling.</value>
+  </data>
   <data name="logout_succesful" xml:space="preserve">
     <value>Du er nu logget ud</value>
   </data>
