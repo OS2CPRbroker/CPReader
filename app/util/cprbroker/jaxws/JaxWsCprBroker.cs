@@ -170,10 +170,42 @@ namespace util.cprbroker.jaxws
                 cpreader.Logger.error(e);
                 return null;
             }
-            GetUuidOutputType uuid = service.GetUuid(cprNumber);
+
+            GetUuidOutputType uuid;
+            try
+            {
+                uuid = service.GetUuid(cprNumber);
+            }
+            catch (System.Net.WebException e)
+            {
+                int sk;
+                if (e.Response.GetType() == typeof(System.Net.HttpWebResponse))
+                { 
+                    System.Net.HttpWebResponse resp = e.Response as System.Net.HttpWebResponse;
+                    sk = (int) resp.StatusCode;
+                } else
+                {
+                    sk = 500;
+                }
+
+                 uuid = new GetUuidOutputType()
+                {
+                    UUID = "",
+                    StandardRetur = new StandardReturType()
+                    {
+                        StatusKode = sk.ToString(),
+                        FejlbeskedTekst = e.Message
+                    }
+                };
+            }
+
             return new Uuid(uuid.UUID,
-                    int.Parse(uuid.StandardRetur.StatusKode),
-                    uuid.StandardRetur.FejlbeskedTekst);
+                int.Parse(uuid.StandardRetur.StatusKode),
+                uuid.StandardRetur.FejlbeskedTekst);
+
+            
+
+
         }
         /*
         public IUuids search(String firstname, String middlename, String lastname, int maxResults, int startIndex)
