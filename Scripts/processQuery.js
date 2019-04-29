@@ -39,9 +39,12 @@
                             query = "0" + query;
                         $.post('/search/cpr/', { "query": query }, function (data) {
                             var guidRegexMatch = guidPattern.test(data);
-                            if (guidRegexMatch) {
+                            if (guidRegexMatch)
+                            {
                                 window.location = '/show/uuid/' + data + '/';
-                            } else {
+                            }
+                            else
+                            {
                                 window.location = '/search/error/' + data + '/';
                             }
                             
