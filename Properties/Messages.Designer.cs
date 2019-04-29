@@ -232,7 +232,16 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HTTP 404 - Kontakt IT-driftsafdeling..
+        ///   Looks up a localized string similar to HTTP 400 - An error occured. Please try again. If you receive this mesage again then contact the respective IT department..
+        /// </summary>
+        public static string error_400 {
+            get {
+                return ResourceManager.GetString("error_400", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HTTP 404 - HTTP 503 - There is no information about the given person in CPR Broker. You can retrieve a person by doing an &apos;Online&apos; CPR search..
         /// </summary>
         public static string error_404 {
             get {
@@ -241,7 +250,25 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Der findes ingen informationer om den pågældende person i CPR Brokeren..
+        ///   Looks up a localized string similar to HTTP 408 - Request timed out. Please try again. If you receive this mesage again then contact the respective IT department..
+        /// </summary>
+        public static string error_408 {
+            get {
+                return ResourceManager.GetString("error_408", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HTTP 500 - An error occured. Please try again. If you receive this mesage again then contact the respective IT department..
+        /// </summary>
+        public static string error_500 {
+            get {
+                return ResourceManager.GetString("error_500", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HTTP 503 - An error occured. Please try again. If you receive this mesage again then contact the respective IT department..
         /// </summary>
         public static string error_503 {
             get {
@@ -1334,6 +1361,15 @@ namespace cpreader.Properties {
         public static string results_list_searchFailed {
             get {
                 return ResourceManager.GetString("results_list_searchFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

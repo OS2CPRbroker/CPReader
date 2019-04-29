@@ -127,10 +127,10 @@
     <value>Log på</value>
   </data>
   <data name="error_503" xml:space="preserve">
-    <value>Der findes ingen informationer om den pågældende person i CPR Brokeren.</value>
+    <value>HTTP 503 - Der er sket en ukendt fejl. Prøv igen. Hvis du får samme besked, så kontakt den respektive IT driftsafdeling.</value>
   </data>
   <data name="error_404" xml:space="preserve">
-    <value>HTTP 404 - Kontakt IT-driftsafdeling.</value>
+    <value>HTTP 404 - Der findes ingen informationer om den pågældende person i CPR Broker. En given person kan hentes ved at lave en 'Online' søgning på cpr nummer.</value>
   </data>
   <data name="logout_succesful" xml:space="preserve">
     <value>Du er nu logget ud</value>
@@ -553,5 +553,14 @@
   </data>
   <data name="moving_date" xml:space="preserve">
     <value>Flyttedato</value>
+  </data>
+  <data name="error_400" xml:space="preserve">
+    <value>HTTP 400 - Der er sket en fejl. Prøv igen. Hvis du får samme besked, så kontakt den respektive IT driftsafdeling.</value>
+  </data>
+  <data name="error_408" xml:space="preserve">
+    <value>HTTP 408 - Forespørgsel fik en "timeout". Prøv igen. Hvis du fortsætter med at modtage denne besked, så kontakt den respektive IT driftsafdeling.</value>
+  </data>
+  <data name="error_500" xml:space="preserve">
+    <value>HTTP 500 - Der er sket en ukendt fejl. Prøv igen. Hvis du får samme besked, så kontakt den respektive IT driftsafdeling.</value>
   </data>
 </root>

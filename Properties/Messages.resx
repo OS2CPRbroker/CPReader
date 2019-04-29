@@ -127,10 +127,10 @@
     <value>Log på</value>
   </data>
   <data name="error_503" xml:space="preserve">
-    <value>Der findes ingen informationer om den pågældende person i CPR Brokeren.</value>
+    <value>HTTP 503 - An error occured. Please try again. If you receive this mesage again then contact the respective IT department.</value>
   </data>
   <data name="error_404" xml:space="preserve">
-    <value>HTTP 404 - Kontakt IT-driftsafdeling.</value>
+    <value>HTTP 404 - HTTP 503 - There is no information about the given person in CPR Broker. You can retrieve a person by doing an 'Online' CPR search.</value>
   </data>
   <data name="logout_succesful" xml:space="preserve">
     <value>Du er nu logget ud</value>
@@ -553,5 +553,17 @@
   </data>
   <data name="moving_date" xml:space="preserve">
     <value>Moving date</value>
+  </data>
+  <data name="error_400" xml:space="preserve">
+    <value>HTTP 400 - An error occured. Please try again. If you receive this mesage again then contact the respective IT department.</value>
+  </data>
+  <data name="error_408" xml:space="preserve">
+    <value>HTTP 408 - Request timed out. Please try again. If you receive this mesage again then contact the respective IT department.</value>
+  </data>
+  <data name="error_500" xml:space="preserve">
+    <value>HTTP 500 - An error occured. Please try again. If you receive this mesage again then contact the respective IT department.</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
 </root>
