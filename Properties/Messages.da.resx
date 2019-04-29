@@ -130,7 +130,7 @@
     <value>HTTP 503 - Der er sket en ukendt fejl. Prøv igen. Hvis du får samme besked, så kontakt den respektive IT driftsafdeling.</value>
   </data>
   <data name="error_404" xml:space="preserve">
-    <value>HTTP 404 - Der findes ingen informationer om den pågældende person i CPR Broker. En given person kan hentes ved at lave en 'Online' søgning på cpr nummer.</value>
+    <value>HTTP 404 - Personen kunne ikke hentes. Prøv igen. Hvis du får samme besked, så kontakt den respektive IT driftsafdeling.</value>
   </data>
   <data name="logout_succesful" xml:space="preserve">
     <value>Du er nu logget ud</value>

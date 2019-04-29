@@ -130,7 +130,7 @@
     <value>HTTP 503 - An error occured. Please try again. If you receive this mesage again then contact the respective IT department.</value>
   </data>
   <data name="error_404" xml:space="preserve">
-    <value>HTTP 404 - HTTP 503 - There is no information about the given person in CPR Broker. You can retrieve a person by doing an 'Online' CPR search.</value>
+    <value>HTTP 404 - Person could not be fetched. Please try again. If you receive this mesage again then contact the respective IT department.</value>
   </data>
   <data name="logout_succesful" xml:space="preserve">
     <value>Du er nu logget ud</value>

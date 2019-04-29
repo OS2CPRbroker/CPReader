@@ -241,7 +241,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HTTP 404 - HTTP 503 - There is no information about the given person in CPR Broker. You can retrieve a person by doing an &apos;Online&apos; CPR search..
+        ///   Looks up a localized string similar to HTTP 404 - Person could not be fetched. Please try again. If you receive this mesage again then contact the respective IT department..
         /// </summary>
         public static string error_404 {
             get {
