@@ -160,7 +160,6 @@ namespace util.cprbroker.jaxws
         public IUuid getUuid(String cprNumber)
         {
             Part service;
-            // start the performance logging
             try
             {
                 service = getService(ESourceUsageOrder.LocalThenExternal);
@@ -178,17 +177,19 @@ namespace util.cprbroker.jaxws
             }
             catch (System.Net.WebException e)
             {
+
                 int sk;
                 if (e.Response.GetType() == typeof(System.Net.HttpWebResponse))
-                { 
+                {
                     System.Net.HttpWebResponse resp = e.Response as System.Net.HttpWebResponse;
-                    sk = (int) resp.StatusCode;
-                } else
+                    sk = (int)resp.StatusCode;
+                }
+                else
                 {
                     sk = 500;
                 }
 
-                 uuid = new GetUuidOutputType()
+                uuid = new GetUuidOutputType()
                 {
                     UUID = "",
                     StandardRetur = new StandardReturType()
@@ -196,15 +197,12 @@ namespace util.cprbroker.jaxws
                         StatusKode = sk.ToString(),
                         FejlbeskedTekst = e.Message
                     }
-                };
+                };               
             }
 
             return new Uuid(uuid.UUID,
                 int.Parse(uuid.StandardRetur.StatusKode),
                 uuid.StandardRetur.FejlbeskedTekst);
-
-            
-
 
         }
         /*
