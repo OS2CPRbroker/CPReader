@@ -27,7 +27,7 @@
                     var lastname = /.*$/; // no commas
                     var firstlastname = /.*,\s*.*$/; // one comma
                     var firstmiddlelastname = /.*,\s*.*,\s.*$/; // two commas
-                    var uuid = ('/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i');
+                    var guidPattern = /[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}/i;
 
                     var redirectLocation = null;
                     var queryExists = false;
@@ -38,7 +38,8 @@
                         if(query.length === 9)
                             query = "0" + query;
                         $.post('/search/cpr/', { "query": query }, function (data) {
-                            if (data.length === 36) {
+                            var guidRegexMatch = guidPattern.test(data);
+                            if (guidRegexMatch) {
                                 window.location = '/show/uuid/' + data + '/';
                             } else {
                                 window.location = '/search/error/' + data + '/';
