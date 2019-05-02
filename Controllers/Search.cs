@@ -300,7 +300,16 @@ namespace cpreader.Controllers
                 }
                 else
                 {
-                    return Content(uuid.code().ToString());
+                    /* 
+                     * We only want to return HTTP 404 if the person does not exist in CPR Broker.
+                     * BUT! this method does NOT return any person object; only a GUID/UUID. 
+                     * In the case the CPReader user gets returned an HTTP 404:
+                     * 1) Personmaster could be down/turned off,
+                     * 2) Personmaster is given an invalid cprno,
+                     * 3) CPR Broker IIS Site is down, 
+                     * Therefor we return an HTTP 500 instead, because an HTTP 404 would not make any when trying to explain the user what went wrong.
+                     */
+                    return Content("500");
                 }
             }
             catch (NullReferenceException e)
