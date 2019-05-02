@@ -241,7 +241,7 @@ namespace cpreader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HTTP 404 - Person could not be fetched. Please try again. If you receive this mesage again then contact the respective IT department..
+        ///   Looks up a localized string similar to HTTP 404 - Person not found. Please try again. If you receive this mesage again then contact the respective IT department..
         /// </summary>
         public static string error_404 {
             get {

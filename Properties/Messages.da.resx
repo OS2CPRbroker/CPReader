@@ -130,7 +130,7 @@
     <value>HTTP 503 - Der er sket en fejl. Prøv igen. Hvis du får samme besked, så kontakt den respektive IT driftsafdeling.</value>
   </data>
   <data name="error_404" xml:space="preserve">
-    <value>HTTP 404 - Personen kunne ikke hentes. Foretag 'Online' opslag, og prøv igen. Hvis du får samme besked, så kontakt den respektive IT driftsafdeling.</value>
+    <value>HTTP 404 - Person ikke fundet. Prøv igen. Hvis du får samme besked, så kontakt den respektive IT driftsafdeling.</value>
   </data>
   <data name="logout_succesful" xml:space="preserve">
     <value>Du er nu logget ud</value>
