@@ -127,10 +127,10 @@
     <value>Log på</value>
   </data>
   <data name="error_503" xml:space="preserve">
-    <value>HTTP 503 - Der er sket en ukendt fejl. Prøv igen. Hvis du får samme besked, så kontakt den respektive IT driftsafdeling.</value>
+    <value>HTTP 503 - Der er sket en fejl. Prøv igen. Hvis du får samme besked, så kontakt den respektive IT driftsafdeling.</value>
   </data>
   <data name="error_404" xml:space="preserve">
-    <value>HTTP 404 - Personen kunne ikke hentes. Prøv igen. Hvis du får samme besked, så kontakt den respektive IT driftsafdeling.</value>
+    <value>HTTP 404 - Personen kunne ikke hentes. Foretag 'Online' opslag, og prøv igen. Hvis du får samme besked, så kontakt den respektive IT driftsafdeling.</value>
   </data>
   <data name="logout_succesful" xml:space="preserve">
     <value>Du er nu logget ud</value>
@@ -561,6 +561,6 @@
     <value>HTTP 408 - Forespørgsel fik en "timeout". Prøv igen. Hvis du fortsætter med at modtage denne besked, så kontakt den respektive IT driftsafdeling.</value>
   </data>
   <data name="error_500" xml:space="preserve">
-    <value>HTTP 500 - Der er sket en ukendt fejl. Prøv igen. Hvis du får samme besked, så kontakt den respektive IT driftsafdeling.</value>
+    <value>HTTP 500 - Der er sket en fejl. Prøv igen. Hvis du får samme besked, så kontakt den respektive IT driftsafdeling.</value>
   </data>
 </root>
