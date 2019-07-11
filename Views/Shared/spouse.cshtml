@@ -24,7 +24,6 @@
                         if (relation != null)
                         {
                             string dateField;
-                            DateTime marriageDate = relation.effect().fraTidspunkt().Value;
                             if (relation.relationshipType() == ERelationshipType.aegtefaelle)
                             {
                                 dateField = Messages.person_married_date;
@@ -56,7 +55,11 @@
                                     <td><b>@relation.relationshipTypeString()</b></td>
                                     <td>@(Messages.person_registerInformation_cprCitizen_socialSecurityNumber + ":") @(cprNr)</td>
                                     <td>@(Messages.cart_name+":") @(name) </td>
-                                    <td>@dateField: @(marriageDate.ToString("dd.MM.yyyy")) </td>
+                                    @if (relation.effect().fraTidspunkt().HasValue)
+                                    {
+                                        DateTime marriageDate = relation.effect().fraTidspunkt().Value;
+                                        <td>@dateField: @(marriageDate.ToString("dd.MM.yyyy")) </td>
+                                    }
                                 </tr>
 
                         }
