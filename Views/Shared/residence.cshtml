@@ -41,9 +41,7 @@
                 int municipalityCode;
                 List<IPerson> livingOnAddress;
 
-                if (person.address().danishAddress() != null &&
-                    int.TryParse(person.address().danishAddress().municipalityCode(), out municipalityCode) &&
-                    localMunicipalities.Contains(municipalityCode))
+                if (person.address() != null)
                 {
                     livingOnAddress = SearchController.cprBroker.getPersonsOnAddress(person.address(), ESourceUsageOrder.LocalOnly, -1, -1);
                 }
