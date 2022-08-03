@@ -17,6 +17,8 @@ namespace cpreader
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             app.util.Logcleaner.AddTask("CleanOldLogs", app.util.Constants.SecondsInADay);
+
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
         }
     }
 }
