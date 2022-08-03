@@ -63,13 +63,12 @@ require(["jquery", "bootstrap", "processQuery", "validate", "cart", "modolus11",
         $('#addressQuery').autocomplete({
 
             minLength: 1,
-            delay: 100,
-
+            delay: 100,           
             source: function (request, response) {
                 $.ajax({
-                    url: document.location.protocol + '//dawa.aws.dk/adresser/autocomplete',
-                    type: "GET",
-                    dataType: "jsonp",
+                    url:        "https://api.dataforsyningen.dk/adresser/autocomplete",
+                    type:       "GET",
+                    dataType:   "jsonp",
                     data: {q: request.term, maxantal: 11},
                     success: function (data) {
                         var suggestions = [];
