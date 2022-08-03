@@ -125,7 +125,7 @@ define(["modolus11"], function(modolus11) {
 			if(validateDawa === "True")
 			{
 				$.ajax({
-					url:		document.location.protocol + '//dawa.aws.dk/adresser/autocomplete',
+					url:		"https://api.dataforsyningen.dk/adresser/autocomplete",
 					type: 		"GET",
 					dataType: 	"jsonp",
 					data: 		{q: addressQuery, maxantal: 1},
@@ -187,7 +187,7 @@ define(["modolus11"], function(modolus11) {
             }
 
             $.ajax({
-                url: document.location.protocol + '//dawa.aws.dk/adresser/autocomplete',
+				url: "https://api.dataforsyningen.dk/adresser/autocomplete",
                 type: "GET",
                 dataType: "jsonp",
                 data: { q: addressQuery, maxantal: 1 },

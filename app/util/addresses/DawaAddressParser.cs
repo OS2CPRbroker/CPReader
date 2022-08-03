@@ -43,6 +43,7 @@ namespace util.addresses
 
     /**
      * Created by Beemen on 02/02/2015.
+     * Patched by Heini on 03/08/2022.
      */
     public class DawaAddressParser : IAddressParser
     {
@@ -52,7 +53,7 @@ namespace util.addresses
             {
 
                 addressString = HttpUtility.UrlEncode(addressString, Encoding.UTF8);
-                String urlString = "http://dawa.aws.dk/adresser?q=" + addressString;
+                String urlString = "https://api.dataforsyningen.dk/adresser?q=" + addressString;
                 var url = new Uri(urlString);
                 var responseBytes = new System.Net.WebClient().DownloadData(url);
                 var charset = Encoding.UTF8;
